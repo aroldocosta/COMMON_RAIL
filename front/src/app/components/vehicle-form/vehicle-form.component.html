@@ -1,0 +1,52 @@
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-6">
+        <label for="">PROPRIETÁRIO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateVehicleEvent()"
+                [(ngModel)]="editingVehicle.ownerId" 
+            >
+                <option value="" selected>Selecione</option>
+                <option *ngFor="let u of userList" [value]="u.id">{{u.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-6">
+        <label for="">PLACA</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite a placa"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingVehicle.plate"
+            >
+        </div>
+    </div>    
+</div>
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-6">
+        <label for="">MODELO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o modelo"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingVehicle.model"
+            >
+        </div>
+    </div>      
+    <div class="col-6">
+        <label for="">ANO/MODELO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o ano/modelo"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingVehicle.yearModel"
+            >
+        </div>
+    </div> 
+</div>

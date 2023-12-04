@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por sequência" 
+                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-123"></i> SEQUÊNCIA</a></th>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por data" 
+                    data-bs-target="#dateFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-calendar-date"></i> DATA</a></th>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por injetor" 
+                    data-bs-target="#injectorFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-droplet-half"></i> INJETOR</a></th>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por veículo" 
+                    data-bs-target="#vehicleFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-truck"></i> VEíCULO</a></th>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por ordem de serviço" 
+                    data-bs-target="#serviceOrderFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-receipt"></i> ORDEM DE SERVIÇO</a></th>                                     
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Editar teste" 
+                    ><i class="bi bi-pencil-square"></i> EDITAR</a></th>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Remover teste" 
+                    ><i class="bi bi-trash3"></i> REMOVER</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of tableData">
+                <td>{{d.sequence}}</td>
+                <td>{{d.date | date: 'dd/MM/yyyy'}}</td>	
+                <td>{{d.injectorCode}}</td>
+                <td>{{d.vehiclePlate}}</td>
+                <td>{{d.serviceOrder}}</td>
+                <td><a href="#" onclick="return null" (click)="emitEditEvent(d)" title="Editar"><i class="bi bi-pencil-square icon"></i></a></td>
+                <td><a href="#" onclick="return null" (click)="emitRemoveEvent(d)" title="Excluir"  data-bs-target="#removeModalToggle" 
+                    data-bs-toggle="modal"><i class="bi bi-trash3 icon"></i></a></td>
+           </tr>
+        </tbody>
+    </table>
+</div>

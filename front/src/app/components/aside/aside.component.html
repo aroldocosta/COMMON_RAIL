@@ -1,0 +1,166 @@
+<div class="hide-small">
+ 	<div class="thumbnail">
+		<div class="form-group side-logo-img">
+			<a href="/">
+	 	    	<div>
+				    <img src="assets/img/logo.png" alt="Logomarca">
+				</div>
+			</a>
+		</div>
+	</div>
+	<div>	
+		<div class="card gasoline">
+			<div class="card-body">
+			  <h2 class="top-title">ELETRICO</h2>
+			  <div class="table-responsive">
+				<table class="table table-sm  table-striped">
+					<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">MIN</th>
+						<th scope="col">LIDO</th>
+						<th scope="col">MAX</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope="row" title="Quantidade vendido">RES:</th>
+						<td>{{gTodayQuantity | number: '1.2'}}</td>
+						<td>{{gMonthQuantity | number: '1.2'}}</td>
+						<td>{{gYearQuantity  | number: '1.2'}}</td>
+					</tr>
+					<tr>
+						<th scope="row" title="RET:al faturado">IND:</th>
+						<td>{{gTodayPayment | number: '1.2'}}</td>
+						<td>{{gMonthPayment | number: '1.2'}}</td>
+						<td>{{gYearPayment  | number: '1.2'}}</td>
+					</tr>
+					<tr>
+						<th scope="row" title="RET:al faturado">ISO:</th>
+						<td>{{gTodayPayment | number: '1.2'}}</td>
+						<td>{{gMonthPayment | number: '1.2'}}</td>
+						<td>{{gYearPayment  | number: '1.2'}}</td>
+					</tr>				  
+					</tbody>
+				</table>
+			  </div>
+			</div>
+			<div class="card-body">
+			  <h2 class="top-title">CARGA PARCIAL</h2>
+			  <div class="table-responsive">
+				<table class="table table-sm  table-striped">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">MIN</th>
+							<th scope="col">LIDO</th>
+							<th scope="col">MAX</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope="row" title="Quantidade vendida em litros">DEB:</th>
+						<td>{{dTodayQuantity | number: '1.2'}}</td>
+						<td>{{dMonthQuantity | number: '1.2'}}</td>
+						<td>{{dYearQuantity  | number: '1.2'}}</td>
+					</tr>
+					<tr>
+						<th scope="row" title="RET:al faturado em Reais">RET:</th>
+						<td>{{tTodayQuantity | number: '1.2'}}</td>
+						<td>{{tMonthQuantity | number: '1.2'}}</td>
+						<td>{{tYearQuantity  | number: '1.2'}}</td>
+					</tr>				  
+					</tbody>
+				</table>
+			  </div>
+			</div>
+			<div class="card-body">
+			  <h2 class="top-title">MARCHA LENTA</h2>	
+			  <div class="table-responsive">
+				<table class="table table-sm  table-striped">
+					<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">MIN</th>
+							<th scope="col">LIDO</th>
+							<th scope="col">MAX</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope="row" title="Quantidade vendidida em litros">DEB:</th>
+						<td>{{tTodayQuantity | number: '1.2'}}</td>
+						<td>{{tMonthQuantity | number: '1.2'}}</td>
+						<td>{{tYearQuantity  | number: '1.2'}}</td>
+					</tr>
+					<tr>
+						<th scope="row" title="RET:al faturado">RET:</th>
+						<td>{{tTodayQuantity | number: '1.2'}}</td>
+						<td>{{tMonthQuantity | number: '1.2'}}</td>
+						<td>{{tYearQuantity  | number: '1.2'}}</td>
+					</tr>				  
+					</tbody>
+				</table>
+			  </div>
+			</div>
+			<div class="card-body">
+				<h2 class="top-title">PLENA CARGA</h2>	
+				<div class="table-responsive">
+				  <table class="table table-sm  table-striped">
+					  <thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">MIN</th>
+							<th scope="col">LIDO</th>
+							<th scope="col">MAX</th>
+						</tr>
+					  </thead>
+					  <tbody>
+					  <tr>
+						  <th scope="row" title="Quantidade vendidida em litros">DEB:</th>
+						  <td>{{tTodayQuantity | number: '1.2'}}</td>
+						  <td>{{tMonthQuantity | number: '1.2'}}</td>
+						  <td>{{tYearQuantity  | number: '1.2'}}</td>
+					  </tr>
+					  <tr>
+						  <th scope="row" title="RET:al faturado">RET:</th>
+						  <td>{{tTodayQuantity | number: '1.2'}}</td>
+						  <td>{{tMonthQuantity | number: '1.2'}}</td>
+						  <td>{{tYearQuantity  | number: '1.2'}}</td>
+					  </tr>				  
+					  </tbody>
+				  </table>
+				</div>
+			</div>	
+			<div class="card-body">
+			<h2 class="top-title">PRÉ INJEÇÃO</h2>	
+			<div class="table-responsive">
+				<table class="table table-sm  table-striped">
+					<thead>
+					<tr>
+						<th scope="col"></th>
+						<th scope="col">MIN</th>
+						<th scope="col">LIDO</th>
+						<th scope="col">MAX</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<th scope="row" title="Quantidade vendidida em litros">DEB:</th>
+						<td>{{tTodayQuantity | number: '1.2'}}</td>
+						<td>{{tMonthQuantity | number: '1.2'}}</td>
+						<td>{{tYearQuantity  | number: '1.2'}}</td>
+					</tr>
+					<tr>
+						<th scope="row" title="RET:al faturado">RET:</th>
+						<td>{{tTodayQuantity | number: '1.2'}}</td>
+						<td>{{tMonthQuantity | number: '1.2'}}</td>
+						<td>{{tYearQuantity  | number: '1.2'}}</td>
+					</tr>				  
+					</tbody>
+				</table>
+			</div>
+			</div>			  				
+		</div>
+	</div>
+</div>		

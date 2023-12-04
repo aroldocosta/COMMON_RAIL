@@ -1,0 +1,217 @@
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-6">
+        <label for="">ORDEM DE SERVIÇO - {{command}}</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite a ordem de serviço"
+                (input)="emitUpdateTestEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingTest.serviceOrder"
+                [disabled]="command == 'editing'"
+            >
+        </div>
+    </div>      
+    <div class="col-6">
+        <label for="">PLANO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateTestEvent()"
+                [(ngModel)]="editingTest.planId" 
+                [disabled]="command == 'editing'">
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let p of planList" [value]="p.id">{{p.code}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding: 2em 0">
+    <div class="col-6">
+        <label for="">VEÍCULO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateTestEvent()"
+                [(ngModel)]="editingTest.vehicleId" 
+                [disabled]="command == 'editing'">
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-6">
+        <label for="">INJETOR</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateTestEvent()"
+                [(ngModel)]="editingTest.injectorId" 
+                [disabled]="command == 'editing'">
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let i of injectorList" [value]="i.id">{{i.code}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding: 2em 0">
+    <div class="col-12">
+        <label for="">CÓDIGO IMA</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o código IMA"
+                (input)="emitUpdateTestEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingTest.imaCode"
+            >
+        </div>
+    </div> 
+</div>
+ <div class="row" *ngIf="command == 'editing'">  
+    <div class="col-md-12">
+    <tabset class="menber-tabset">
+        <tab heading="MED ELETRICAS">
+            <div class="row" style="padding: 2em 0">
+                <div class="col-4">
+                    <label for="">RESISTÊNCIA</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            (input)="emitUpdateTestEvent()"
+                            [(ngModel)]="editingTest.resistance"
+                        >
+                    </div>
+                </div>
+                <div class="col-4" *ngIf="command == 'editing'">
+                    <label for="">INDUTÂNCIA</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
+                        <input type="text" class="form-control" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            (input)="emitUpdateTestEvent()"
+                            [(ngModel)]="editingTest.inductance"
+                        >
+                    </div>
+                </div>
+                <div class="col-4" *ngIf="command == 'editing'">
+                    <label for="">ISOLAMENTO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                        <input type="text" class="form-control" 
+                             aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            (input)="emitUpdateTestEvent()"
+                            [(ngModel)]="editingTest.isolation"
+                        >
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="CARGA PARCIAL">
+            <div class="row" style="padding: 2em 0">
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">DEBITO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.halfLoad"
+                        >
+                    </div>
+                </div>
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">RETORNO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control" 
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.halfLoadReturn"
+                        >
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="MARCHA LENTA">
+            <div class="row" style="padding: 2em 0">
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">DEBITO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.idling"
+                        >
+                    </div>
+                </div>
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">RETORNO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.idlingReturn"
+                        >
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="PLENA CARGA">
+            <div class="row" style="padding: 2em 0">
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">DEBITO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.fullLoad"
+                        >
+                    </div>
+                </div>
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">RETORNO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.fullLoadReturn"
+                        >
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="PRÉ INJEÇÃO">
+            <div class="row" style="padding: 2em 0">
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">DEBITO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.preInjection"
+                        >
+                    </div>
+                </div>
+                <div class="col-6" *ngIf="command == 'editing'">
+                    <label for="">RETORNO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="text" class="form-control"                             
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.preInjectionReturn"
+                        >
+                    </div>
+                </div>
+            </div>
+        </tab>
+    </tabset>
+    </div>
+</div>

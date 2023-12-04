@@ -1,0 +1,28 @@
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-12">
+        <label for="">MODELO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o modelo"
+                (input)="emitUpdateInjectorEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingInjector.model"
+            >
+        </div>
+    </div>      
+</div>
+<div class="row" style="padding: 2em 0">
+    <div class="col-12">
+        <label for="">DESCRIÇÃO</label>
+        <div class="input-group input-group-lg">
+            <textarea type="text" class="form-control"
+                placeholder="Descrição" 
+                (input)="emitUpdateInjectorEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingInjector.description"
+            ></textarea>
+        </div>
+    </div>
+</div>

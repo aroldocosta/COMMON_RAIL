@@ -1,0 +1,398 @@
+<tabset class="menber-tabset">
+    <tab heading="IDENTIFICAÇÃO">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-6">
+                <label for="">CODIGO</label>
+                <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" 
+                        placeholder="Código"
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.code"
+                    >
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="">TIPO</label>
+                <div class="input-group input-group-lg">
+                    <select class="form-select" aria-label="Default select example" 
+                        (change)="emitUpdatePlanEvent()" 
+                        [disabled]="planCommand == 'editing'"
+                        [(ngModel)]="editingPlan.type" 
+                    >
+                        <option value="" selected>Selecione o tipo</option>
+                        <option value="INDUCTIVE">INDUTIVO</option>
+                        <option value="PIEZO_ELETRICO"selected>PIEZO ELÉTRICO</option>
+                    </select>
+                </div>
+            </div>
+        </div> 
+        <div class="row" style="padding: 2em 0">
+            <div class="col-12">
+                <label for="">DESCRIÇÃO</label>
+                <div class="input-group input-group-lg">
+                    <textarea type="text" class="form-control"
+                        placeholder="Descrição" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.description"
+                    ></textarea>
+                </div>
+            </div>
+        </div>  
+    </tab>
+    <tab heading="MED ELETRICAS">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-6">
+                <label for="">MAX RESISTÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxResistance"
+                    >
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="">MIN RESISTÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                    <input type="text" class="form-control"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minResistance"
+                    >
+                </div>
+            </div>
+        </div>  
+        <div class="row" style="padding: 2em 0">  
+            <div class="col-6">
+                <label for="">MAX INDUTÂNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
+                    <input type="text" class="form-control"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxInductance"
+                    >
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="">MIN INDUTÂNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minInductance"
+                    >
+                </div>
+            </div>
+        </div>    
+        <div class="row" style="padding: 2em 0">   
+            <div class="col-6">
+                <label for="">MAX ISOLAMENTO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxIsolation"
+                    >
+                </div>
+            </div>
+            <div class="col-6">
+                <label for="">MIN ISOLAMENTO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minIsolation"
+                    >
+                </div>
+            </div>            
+        </div>
+    </tab>
+    <tab heading="CARGA PARCIAL">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">DEBITO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxHalfLoad"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">DEBITO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minHalfLoad"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">PRESSÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.halfLoadPression"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">RETORNO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxHalfLoadReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">RETORNO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minHalfLoadReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </tab>
+    <tab heading="MARCHA LENTA">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">DEBITO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxIdling"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">DEBITO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minIdling"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">PRESSÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.idlingPression"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">RETORNO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxIdlingReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">RETORNO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minIdlingReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </tab>
+    <tab heading="PLENA CARGA">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">DEBITO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxFullLoad"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">DEBITO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minFullLoad"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">PRESSÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
+                    <input type="text" class="form-control"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.fullLoadPression"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">RETORNO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxFullLoadReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">RETORNO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minFullLoadReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </tab>
+    <tab heading="PRÉ INJEÇÃO">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">DEBITO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxPreInjection"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">DEBITO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minPreInjection"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">PRESSÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.preInjectionPression"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-4">
+                <label for="">RETORNO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.maxPreInjectionReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+                <label for="">RETORNO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="text" class="form-control" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="editingPlan.minPreInjectionReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-4">
+            </div>
+        </div>
+    </tab>
+</tabset>

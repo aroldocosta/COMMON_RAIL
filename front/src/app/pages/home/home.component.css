@@ -1,0 +1,86 @@
+h2 {
+   padding-top: 0.5em;
+}
+th {
+    font-weight: bold;
+}
+.icon {
+    text-align: center !important;
+}
+
+.top-filter {
+    display: inline-flex;
+}
+
+/* .btn-modal {
+    width: 50%;
+    float: right;
+} */
+
+.form-check {
+    width: 100%;
+}
+
+.fueling-btn {
+    height: 88%;
+    font-size: 1.6em;
+}
+
+.filter-input {
+    width: 50% !important;
+    margin: auto 25%;
+    color: grey;
+}
+
+@media screen and (max-width: 1200px) {
+    .small {
+        width: 50%;
+    }
+
+    .fueling-btn {
+        height: 88%;
+        font-size: 1.0em;
+    }
+
+    .form-check-label {
+        font-size: 0.6em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .small-check {
+        width: 25%;
+    }
+
+    .fueling-btn {
+        height: 2em;
+        font-size: 1.7em;
+        margin-bottom: 0.5em;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .small-check {
+        width: 50%;
+    }
+
+    .btn-modal {
+        width: 100%;
+    }
+
+    .fueling-btn {
+        height: 3.5em;
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .large {
+        width: 50%;
+        margin-left: 54%;
+    }
+    .form-check {
+        padding-right: 1.6em;
+    }
+}

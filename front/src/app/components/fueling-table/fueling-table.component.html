@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>DATA</th>
+                <th>BOMBA</th>
+                <th title="Tipo de combustíve / numero do tanque">TANQ/COMB</th>
+                <th>QUANTIDADE</th>
+                <th>VALOR</th>
+                <th>TRIBUTAÇÃO</th>
+                <th>TOTAL</th>
+                <th>EDITAR</th>
+                <th>REMOVER</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let f of tableData">
+                <td>{{f.id}}</td>
+                <td>{{f.date | date: 'dd/MM/yyyy'}}</td>	
+                <td>{{f.pumpName}}</td>
+                <td>{{f.tankName}}/{{f.fuel}}</td>
+                <td>{{f.quantity  | number: '1.2-2'}}</td>
+                <td>{{f.payment    | currency: 'BRL'}}</td>								
+                <td>{{f.taxation  | currency: 'BRL'}}</td>
+                <td>{{f.payment + f.taxation | currency: 'BRL'}}</td>
+                <td><a href="#" onclick="return null" (click)="emitEditEvent(f)" title="Editar" data-bs-target="#editModalToggle" 
+                    data-bs-toggle="modal"><i class="bi bi-pencil-square icon"></i></a></td>
+                <td><a href="#" onclick="return null" (click)="emitRemoveEvent(f.id)" title="Excluir"  data-bs-target="#removeModalToggle" 
+                    data-bs-toggle="modal"><i class="bi bi-trash3 icon"></i></a></td>
+           </tr>
+        </tbody>
+    </table>
+</div>
