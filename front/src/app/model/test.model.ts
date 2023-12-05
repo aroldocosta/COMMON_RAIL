@@ -3,7 +3,9 @@ import { Injector } from "@angular/core";
 export class Test {
 
 	id: string = '';
+	injectorNumber = '';
 	sequence: string = '';
+	comments: string = '';
 	date: string = '';
 	resistance: string = '0.00';
 	inductance: string = '0.00';

@@ -23,7 +23,9 @@ CREATE TABLE injector (
 
 CREATE TABLE test (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
+	injector_number NUMERIC NOT NULL,
 	sequence NUMERIC NOT NULL,
+	comments TEXT,
 	date TEXT NOT NULL,
 	resistance NUMERIC,
 	inductance NUMERIC,

@@ -35,6 +35,9 @@ public class Test {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
+
+	@Column(name = "injector_number")
+	private Integer injectorNumber;
 	
 	@Column(name = "ima_code")
 	private String imaCode;
@@ -47,6 +50,9 @@ public class Test {
 	
 	@Column(name = "date")
 	private String date;
+	
+	@Column(name = "comments")
+	private String comments;
 	
 	@Column(name = "resistance")
 	private Float resistance;
@@ -87,8 +93,10 @@ public class Test {
 	
 	public Test(TestDTO dto) {
 		this.setId(dto.id());
+		this.setInjectorNumber(dto.injectorNumber());
 		this.setSequence(dto.sequence());
 		this.setDate(dto.date());
+		this.setComments(dto.comments());
 		this.setResistance(dto.resistance());
 		this.setInductance(dto.inductance());
 		this.setIsolation(dto.isolation());
@@ -162,6 +170,14 @@ public class Test {
 		this.plan = plan;
 	}
 
+	public Integer getInjectorNumber() {
+		return injectorNumber;
+	}
+
+	public void setInjectorNumber(Integer injectorNumber) {
+		this.injectorNumber = injectorNumber;
+	}
+
 	public String getImaCode() {
 		return imaCode;
 	}
@@ -192,6 +208,14 @@ public class Test {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
 	}
 
 	public Float getResistance() {

@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="col-6">
-        <label for="">INJETOR</label>
+        <label for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
@@ -52,7 +52,19 @@
     </div>
 </div>
 <div class="row" style="padding: 2em 0">
-    <div class="col-12">
+    <div class="col-6">
+        <label for="">NÚMERO INJETOR</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o número do injetor"
+                (input)="emitUpdateTestEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingTest.injectorNumber"
+            >
+        </div>
+    </div> 
+    <div class="col-6">
         <label for="">CÓDIGO IMA</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
@@ -216,6 +228,22 @@
                             (input)="handleInputFormat()"
                             [(ngModel)]="editingTest.preInjectionReturn"
                         >
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab heading="OBSERVAÇÕES">
+            <div class="row" style="padding: 2em 0">
+                <div class="col-12" *ngIf="command == 'editing'">
+                    <label for="">DEBITO</label>
+                    <div class="input-group input-group-lg">
+                        <textarea type="text" class="form-control"
+                            placeholder="Observções" 
+                            (input)="emitUpdateTestEvent()"
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            [(ngModel)]="editingTest.comments"
+                        ></textarea>
                     </div>
                 </div>
             </div>
