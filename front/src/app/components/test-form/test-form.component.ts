@@ -28,10 +28,9 @@ export class TestFormComponent {
     }
 
     ngOnInit() {
-      this.editingTest.planId = '0';
-      this.editingTest.injectorId = '0';
-      this.editingTest.vehicleId = '0';
-      let t = setTimeout(() => this.handleInputFormat(), 100);
+      let t = setTimeout(() => {
+        this.handleInputFormat();
+      }, 500);
     }
 
     emitClearMessage() {
@@ -39,6 +38,7 @@ export class TestFormComponent {
     }
 
     emitUpdateTestEvent() {
+      console.log("PlanId: " + this.editingTest.planId);
       this.updateEvent.emit(this.editingTest);
     }
 
