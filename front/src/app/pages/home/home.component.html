@@ -46,7 +46,7 @@
 								  </div>
 							</div>							
 							<div class="col-md-3 small">
-								<label for="">INJETOR</label>
+								<label for="">MODELO</label>
 								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredInjector" (change)="doTestCombinedFilter()">
 									<option value="ALL"selected>TODOS</option>
 									<option *ngFor="let d of injectorList" [value]="d.id">{{d.model}}</option>
