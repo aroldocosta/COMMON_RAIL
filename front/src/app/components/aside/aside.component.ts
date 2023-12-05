@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleStrategy } from '@angular/router';
-import { Totals } from 'src/app/model/totals.model';
-import { FuelingsService } from 'src/app/services/fuelings.service';
 
 @Component({
   selector: 'app-aside',
@@ -34,7 +31,7 @@ export class AsideComponent implements OnInit {
   gUnitPrice: number = 5.85;
   dUnitPrice: number = 5.99;
 
-  constructor(private fuelingService: FuelingsService) { 
+  constructor() { 
 
   }
 

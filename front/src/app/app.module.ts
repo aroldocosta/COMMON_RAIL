@@ -13,11 +13,7 @@ import { AsideComponent } from './components/aside/aside.component';
 import { TopMessageComponent } from './components/top-message/top-message.component';
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import { FuelingTableComponent } from './components/fueling-table/fueling-table.component';
 import { AlertMessageComponent } from './components/alert-message/alert-message.component';
-import { PumpTableComponent } from './components/pump-table/pump-table.component';
-import { TankTableComponent } from './components/tank-table/tank-table.component';
-import { FuelingFormComponent } from './components/fueling-form/fueling-form.component';
 import { CommonsComponent } from './components/commons/commons.component';
 import { TestFormComponent } from './components/test-form/test-form.component';
 import { TestTableComponent } from './components/test-table/test-table.component';
@@ -41,11 +37,7 @@ registerLocaleData(ptBr);
     FooterComponent,
     AsideComponent,
     TopMessageComponent,
-    FuelingTableComponent,
     AlertMessageComponent,
-    PumpTableComponent,
-    TankTableComponent,
-    FuelingFormComponent,
     CommonsComponent,
     TestFormComponent,
     TestTableComponent,
