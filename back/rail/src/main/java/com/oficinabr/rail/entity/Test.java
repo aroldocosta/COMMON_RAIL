@@ -54,6 +54,9 @@ public class Test {
 	@Column(name = "comments")
 	private String comments;
 	
+	@Column(name = "description")
+	private String description;
+	
 	@Column(name = "resistance")
 	private Float resistance;
 	
@@ -97,6 +100,7 @@ public class Test {
 		this.setSequence(dto.sequence());
 		this.setDate(dto.date());
 		this.setComments(dto.comments());
+		this.setDescription(dto.description());
 		this.setResistance(dto.resistance());
 		this.setInductance(dto.inductance());
 		this.setIsolation(dto.isolation());
@@ -216,6 +220,14 @@ public class Test {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Float getResistance() {

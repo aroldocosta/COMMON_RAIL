@@ -5,6 +5,7 @@ export class Test {
 	id: string = '';
 	injectorNumber = '';
 	sequence: string = '';
+	description: string = '';
 	comments: string = '';
 	date: string = '';
 	resistance: string = '0.00';
