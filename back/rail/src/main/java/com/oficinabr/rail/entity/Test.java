@@ -46,7 +46,7 @@ public class Test {
 	private String serviceOrder;
 	
 	@Column(name = "sequence")
-	private Long sequence;
+	private Integer sequence;
 	
 	@Column(name = "date")
 	private String date;
@@ -194,11 +194,11 @@ public class Test {
 		this.serviceOrder = serviceOrder;
 	}
 
-	public Long getSequence() {
+	public Integer getSequence() {
 		return sequence;
 	}
 
-	public void setSequence(Long sequence) {
+	public void setSequence(Integer sequence) {
 		this.sequence = sequence;
 	}
 

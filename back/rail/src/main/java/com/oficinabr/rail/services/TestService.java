@@ -33,7 +33,7 @@ public class TestService {
 	
 	public ResponseEntity<List<TestDTO>> getAll() {
 		try {
-			List<TestDTO> resp = repository.findAll().stream().map(TestDTO::new).toList();
+			List<TestDTO> resp = repository.findAllByOrderByDateDesc().stream().map(TestDTO::new).toList();
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -54,9 +54,8 @@ public class TestService {
 			Test test = createTest(dto);	
 			List<Test> testList = repository.findByServiceOrderAndInjectorNumber(test.getServiceOrder(), test.getInjectorNumber());
 			Test max = testList.stream().max(Comparator.comparing(Test::getSequence)).orElse(null);
-			Long sequence = (max == null) ? 1 : max.getSequence() + 1;
+			Integer sequence = (max == null) ? 1 : max.getSequence() + 1;
 			test.setSequence(sequence);
-			System.out.println("Max Sequence: " + sequence);
 			
 			TestDTO resp = new TestDTO(repository.save(test));
 			return ResponseEntity.ok(resp);
