@@ -51,15 +51,8 @@ public class TestService {
 	
 	public ResponseEntity<TestDTO> save(TestDTO dto) {
 		try {
-//			Test test = new Test(dto);
-//			Plan plan  = planRepository.findById(dto.planId()).get();
-//			Injector injector = injectorRepository.findById(dto.injectorId()).get();
-//			Vehicle vehicle = vehicleRepository.findById(dto.vehicleId()).get();
-//			test.setInjector(injector);
-//			test.setVehicle(vehicle);
-//			test.setPlan(plan);
 			Test test = createTest(dto);	
-			List<Test> testList = repository.findByInjector(test.getInjector());
+			List<Test> testList = repository.findByServiceOrderAndInjectorNumber(test.getServiceOrder(), test.getInjectorNumber());
 			Test max = testList.stream().max(Comparator.comparing(Test::getSequence)).orElse(null);
 			Long sequence = (max == null) ? 1 : max.getSequence() + 1;
 			test.setSequence(sequence);
@@ -98,6 +91,7 @@ public class TestService {
 		Plan plan  = planRepository.findById(dto.planId()).get();
 		Injector injector = injectorRepository.findById(dto.injectorId()).get();
 		Vehicle vehicle = vehicleRepository.findById(dto.vehicleId()).get();
+		test.setInjectorNumber(dto.injectorNumber());
 		test.setInjector(injector);
 		test.setVehicle(vehicle);
 		test.setPlan(plan);
