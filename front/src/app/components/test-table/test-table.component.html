@@ -22,7 +22,7 @@
             <tr *ngFor="let d of tableData">
                 <td>{{d.sequence}}</td>
                 <td>{{d.date | date: 'dd/MM/yyyy'}}</td>	
-                <td>{{d.injectorCode}}</td>
+                <td>{{d.injectorModel}}</td>
                 <td>{{d.vehiclePlate}}</td>
                 <td>{{d.serviceOrder}}</td>
                 <td><a href="#" onclick="return null" (click)="emitEditEvent(d)" title="Editar"><i class="bi bi-pencil-square icon"></i></a></td>
