@@ -21,7 +21,7 @@ th {
     width: 100%;
 }
 
-.fueling-btn {
+.top-button {
     height: 88%;
     font-size: 1.6em;
 }
@@ -37,13 +37,17 @@ th {
         width: 50%;
     }
 
-    .fueling-btn {
-        height: 88%;
+    .top-button {
+        height: 98%;
         font-size: 1.0em;
     }
 
     .form-check-label {
         font-size: 0.6em;
+    }
+
+    .colorgraph {
+        margin-top: 0.7em;
     }
 }
 
@@ -52,7 +56,7 @@ th {
         width: 25%;
     }
 
-    .fueling-btn {
+    .top-button {
         height: 2em;
         font-size: 1.7em;
         margin-bottom: 0.5em;
@@ -68,7 +72,7 @@ th {
         width: 100%;
     }
 
-    .fueling-btn {
+    .top-button {
         height: 3.5em;
         font-size: 1.2em;
         margin-bottom: 0.5em;

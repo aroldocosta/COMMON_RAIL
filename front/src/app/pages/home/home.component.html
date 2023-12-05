@@ -18,7 +18,7 @@
 					<div class="col-md-3">
 						<button type="button" 
 							(click)="handleTestCommandButton()" 
-							class="btn btn-outline-primary btn-block fueling-btn" 
+							class="btn btn-outline-primary btn-block top-button" 
 							>{{homeCommandButton}}</button>
 					</div>
 					<div class="col-md-9">
@@ -47,14 +47,14 @@
 							</div>							
 							<div class="col-md-3 small">
 								<label for="">INJETOR</label>
-								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredInjector" (change)="filterTest()">
+								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredInjector" (change)="doTestCombinedFilter()">
 									<option value="ALL"selected>TODOS</option>
-									<option *ngFor="let d of injectorList" [value]="d.id">{{d.code}}</option>
+									<option *ngFor="let d of injectorList" [value]="d.id">{{d.model}}</option>
 								</select>
 							</div>
 							<div class="col-md-3 small">
 								<label for="">VEÍCULO</label>
-								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredVehicle" (change)="filterTest()">
+								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredVehicle" (change)="doTestCombinedFilter()">
 									<option value="ALL"selected>TODOS</option>
 									<option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
 								</select>
@@ -78,9 +78,6 @@
 						(editEvent)="setEditingTestEvent($event)"
 						(removeEvent)="setRemovingTestEvent($event)"
 					></app-test-table>
-					<!-- <app-plan-form
-						*ngIf="testCommand == 'editing' || testCommand == 'creating'"
-					></app-plan-form> -->
 				<hr class="colorgraph">
 				<div>
 					<button class="btn btn-outline-primary btn-block btn-right" 
@@ -88,6 +85,7 @@
 						(click)="handleTestCommandButton()"
 					>{{homeCommandButton}}</button>					
 					<button class="btn btn-outline-secondary btn-block btn-right" 
+						*ngIf="testCommand != 'listing'"
 						tabindex="11"
 						(click)="cancelTestCommandButton()"
 					>CANCELAR</button>
@@ -335,7 +333,7 @@
 					placeholder="Código do injetor"
 					aria-label="Sizing example input" 
 					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredInjectorCode"
+					[(ngModel)]="filteredInjectorModel"
 				>
 			</div>
 			<app-alert-message 

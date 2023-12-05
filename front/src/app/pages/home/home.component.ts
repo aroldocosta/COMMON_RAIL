@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit{
   modalCommand: string = 'listing';
   // vehicleCommand: string = 'listing';
   // injectorCommand: string = 'listing';
-  homeCommandButton = 'NOVO'
+  homeCommandButton = 'NOVO TESTE'
   modalCommandButton = 'NOVO'
   report: any = 'Aguarde...';
   editingTest = new Test();
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit{
   filteredTest: any;
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
-  filteredInjectorCode: string = '';
+  filteredInjectorModel: string = '';
   filteredVechiclePlate: string = '';
   filteredSequence: number = 1;
   filteredServiceOrder: string = '';
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit{
       this.filteredDateEnd = this.getFormattedDate(new Date()); 
       // this.filteredDateTest = this.getFormattedDate(new Date());
       this.editingTest.planId = '0';
-      this.editingTest.injectorCode = '0';
+      this.editingTest.injectorModel = '0';
       this.editingTest.vehiclePlate = '0';
     }
 
@@ -116,7 +116,9 @@ export class HomeComponent implements OnInit{
   }
 
   cancelTestCommandButton() {
+    console.log("cancelTestCommandButton")
     this.testCommand = 'listing';
+    this.homeCommandButton = 'NOVO TESTE'
   }
 
   handlePlanCommandButton() { 
@@ -509,11 +511,14 @@ export class HomeComponent implements OnInit{
   //     .filter(t => t.serviceOrder == this.filteredServiceOrder);
   // }
 
+  doTestCombinedFilter() {
+    console.log("Test Combined filter")
+  }
 
   doTestSequenceFilter() {
-    this.filteredList = this.testList
-      .filter(t => t.sequence == this.filteredSequence);
-    document.getElementById("sequenceFilterCloseModalButton")?.click();  
+    // this.filteredList = this.testList
+    //   .filter(t => t.sequence == this.filteredSequence);
+    // document.getElementById("sequenceFilterCloseModalButton")?.click();  
   }
 
   doTestDateFilterDebug() {
@@ -535,7 +540,7 @@ export class HomeComponent implements OnInit{
 
   doTestInjectorFilter() {
     this.filteredList = this.testList
-    .filter(t => t.injectorCode == this.filteredInjectorCode);
+    .filter(t => t.injectorModel == this.filteredInjectorModel);
     document.getElementById("injectorFilterCloseModalButton")?.click(); 
   }
 
