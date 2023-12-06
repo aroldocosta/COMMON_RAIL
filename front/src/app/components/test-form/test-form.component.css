@@ -5,3 +5,7 @@
     border-width: 1px;
     display: inline;
 }
+
+.row.input {
+    margin: 1.5em auto 1.0em auto;
+}

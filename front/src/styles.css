@@ -238,7 +238,7 @@ h6.info {
 	margin-right: 0.6em;
  }
 
- .danger-icon {
+.danger-icon {
 	color: grey !important;
    font-size: 3em;
    margin-left: 0.2em;
@@ -397,7 +397,12 @@ hr {
 }
 
 th {
-	color: red;
 	font-weight: bold;
 	font-style: italic;
+}
+
+label.input {
+	font-weight: bold;
+	font-style: italic;
+	color: grey;
 }

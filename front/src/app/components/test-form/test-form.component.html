@@ -1,6 +1,6 @@
-<div class="row" style="padding: 2em 0"> 
+<div class="row input"> 
     <div class="col-6">
-        <label for="">ORDEM DE SERVIÇO</label>
+        <label class="input" for="">ORDEM DE SERVIÇO</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
                 placeholder="Digite a ordem de serviço"
@@ -13,7 +13,7 @@
         </div>
     </div>      
     <div class="col-6">
-        <label for="">PLANO</label>
+        <label class="input" for="">PLANO</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
@@ -25,9 +25,9 @@
         </div>
     </div>
 </div>
-<div class="row" style="padding: 2em 0">
+<div class="row input">
     <div class="col-6">
-        <label for="">VEÍCULO</label>
+        <label class="input" for="">VEÍCULO</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
@@ -39,7 +39,7 @@
         </div>
     </div>
     <div class="col-6">
-        <label for="">MODELO INJETOR</label>
+        <label class="input" for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
@@ -51,9 +51,9 @@
         </div>
     </div>
 </div>
-<div class="row" style="padding: 2em 0">
+<div class="row input">
     <div class="col-6">
-        <label for="">NÚMERO INJETOR</label>
+        <label class="input" for="">NÚMERO INJETOR</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
                 placeholder="Digite o número do injetor"
@@ -65,7 +65,7 @@
         </div>
     </div> 
     <div class="col-6">
-        <label for="">CÓDIGO IMA</label>
+        <label class="input" for="">CÓDIGO IMA</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
                 placeholder="Digite o código IMA"
@@ -77,13 +77,28 @@
         </div>
     </div> 
 </div>
- <div class="row" *ngIf="command == 'editing'">  
+<div class="row input">
+    <div class="col-12">
+        <label class="input" for="">DESCRIÇÃO</label>
+        <div class="input-group input-group-lg">
+            <textarea type="text" class="form-control"
+                placeholder="Descrição" 
+                (input)="emitUpdateTestEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingTest.description"
+            ></textarea>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row" *ngIf="command == 'editing'">  
     <div class="col-md-12">
     <tabset class="menber-tabset">
         <tab heading="MED ELETRICAS">
-            <div class="row" style="padding: 2em 0">
+            <div class="row input">
                 <div class="col-4">
-                    <label for="">RESISTÊNCIA</label>
+                    <label class="input" for="">RESISTÊNCIA</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                         <input type="text" class="form-control"                             
@@ -95,7 +110,7 @@
                     </div>
                 </div>
                 <div class="col-4" *ngIf="command == 'editing'">
-                    <label for="">INDUTÂNCIA</label>
+                    <label class="input" for="">INDUTÂNCIA</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
                         <input type="text" class="form-control" 
@@ -107,7 +122,7 @@
                     </div>
                 </div>
                 <div class="col-4" *ngIf="command == 'editing'">
-                    <label for="">ISOLAMENTO</label>
+                    <label class="input" for="">ISOLAMENTO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                         <input type="text" class="form-control" 
@@ -121,9 +136,9 @@
             </div>
         </tab>
         <tab heading="CARGA PARCIAL">
-            <div class="row" style="padding: 2em 0">
+            <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">DEBITO</label>
+                    <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control" 
@@ -135,7 +150,7 @@
                     </div>
                 </div>
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">RETORNO</label>
+                    <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control" 
@@ -149,9 +164,9 @@
             </div>
         </tab>
         <tab heading="MARCHA LENTA">
-            <div class="row" style="padding: 2em 0">
+            <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">DEBITO</label>
+                    <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control"                             
@@ -163,7 +178,7 @@
                     </div>
                 </div>
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">RETORNO</label>
+                    <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control"                             
@@ -177,9 +192,9 @@
             </div>
         </tab>
         <tab heading="PLENA CARGA">
-            <div class="row" style="padding: 2em 0">
+            <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">DEBITO</label>
+                    <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control"                             
@@ -191,7 +206,7 @@
                     </div>
                 </div>
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">RETORNO</label>
+                    <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control"                             
@@ -205,9 +220,9 @@
             </div>
         </tab>
         <tab heading="PRÉ INJEÇÃO">
-            <div class="row" style="padding: 2em 0">
+            <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">DEBITO</label>
+                    <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control"                             
@@ -219,7 +234,7 @@
                     </div>
                 </div>
                 <div class="col-6" *ngIf="command == 'editing'">
-                    <label for="">RETORNO</label>
+                    <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                         <input type="text" class="form-control"                             
@@ -233,9 +248,9 @@
             </div>
         </tab>
         <tab heading="OBSERVAÇÕES">
-            <div class="row" style="padding: 2em 0">
+            <div class="row input">
                 <div class="col-12" *ngIf="command == 'editing'">
-                    <label for="">OBSERVAÇÕES</label>
+                    <label class="input" for="">OBSERVAÇÕES</label>
                     <div class="input-group input-group-lg">
                         <textarea type="text" class="form-control"
                             placeholder="Observções" 

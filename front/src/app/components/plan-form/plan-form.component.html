@@ -2,7 +2,7 @@
     <tab heading="IDENTIFICAÇÃO">
         <div class="row" style="padding: 2em 0">
             <div class="col-6">
-                <label for="">CODIGO</label>
+                <label class="input" for="">CODIGO</label>
                 <div class="input-group input-group-lg">
                     <input type="text" class="form-control" 
                         placeholder="Código"
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <label for="">TIPO</label>
+                <label class="input" for="">TIPO</label>
                 <div class="input-group input-group-lg">
                     <select class="form-select" aria-label="Default select example" 
                         (change)="emitUpdatePlanEvent()" 
@@ -30,7 +30,7 @@
         </div> 
         <div class="row" style="padding: 2em 0">
             <div class="col-12">
-                <label for="">DESCRIÇÃO</label>
+                <label class="input" for="">DESCRIÇÃO</label>
                 <div class="input-group input-group-lg">
                     <textarea type="text" class="form-control"
                         placeholder="Descrição" 
@@ -46,7 +46,7 @@
     <tab heading="MED ELETRICAS">
         <div class="row" style="padding: 2em 0">
             <div class="col-6">
-                <label for="">MIN RESISTÊNCIA</label>
+                <label class="input" for="">MIN RESISTÊNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                     <input type="text" class="form-control"
@@ -58,7 +58,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <label for="">MAX RESISTÊNCIA</label>
+                <label class="input" for="">MAX RESISTÊNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                     <input type="text" class="form-control" 
@@ -72,7 +72,7 @@
         </div>  
         <div class="row" style="padding: 2em 0">  
             <div class="col-6">
-                <label for="">MIN INDUTÂNCIA</label>
+                <label class="input" for="">MIN INDUTÂNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
                     <input type="text" class="form-control" 
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <label for="">MAX INDUTÂNCIA</label>
+                <label class="input" for="">MAX INDUTÂNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
                     <input type="text" class="form-control"
@@ -98,7 +98,7 @@
         </div>    
         <div class="row" style="padding: 2em 0">   
             <div class="col-6">
-                <label for="">MIN ISOLAMENTO</label>
+                <label class="input" for="">MIN ISOLAMENTO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                     <input type="text" class="form-control" 
@@ -110,7 +110,7 @@
                 </div>
             </div>  
             <div class="col-6">
-                <label for="">MAX ISOLAMENTO</label>
+                <label class="input" for="">MAX ISOLAMENTO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                     <input type="text" class="form-control" 
@@ -126,7 +126,7 @@
     <tab heading="CARGA PARCIAL">
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">DEBITO MIN</label>
+                <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control"
@@ -138,7 +138,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">DEBITO MAX</label>
+                <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -150,7 +150,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">PRESSÃO</label>
+                <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control" 
@@ -164,7 +164,7 @@
         </div>
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">RETORNO MIN</label>
+                <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -176,7 +176,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">RETORNO MAX</label>
+                <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -194,7 +194,7 @@
     <tab heading="MARCHA LENTA">
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">DEBITO MIN</label>
+                <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -206,7 +206,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">DEBITO MAX</label>
+                <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -218,7 +218,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">PRESSÃO</label>
+                <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control" 
@@ -232,7 +232,7 @@
         </div>
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">RETORNO MIN</label>
+                <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -244,7 +244,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">RETORNO MAX</label>
+                <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -262,7 +262,7 @@
     <tab heading="PLENA CARGA">
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">DEBITO MIN</label>
+                <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control"
@@ -274,7 +274,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">DEBITO MAX</label>
+                <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control"
@@ -286,7 +286,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">PRESSÃO</label>
+                <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control"
@@ -300,7 +300,7 @@
         </div>
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">RETORNO MIN</label>
+                <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -312,7 +312,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">RETORNO MAX</label>
+                <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -330,7 +330,7 @@
     <tab heading="PRÉ INJEÇÃO">
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">DEBITO MIN</label>
+                <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -342,7 +342,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">DEBITO MAX</label>
+                <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -354,7 +354,7 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="">PRESSÃO</label>
+                <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control" 
@@ -368,7 +368,7 @@
         </div>
         <div class="row" style="padding: 2em 0">
             <div class="col-4">
-                <label for="">RETORNO MIN</label>
+                <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
@@ -380,7 +380,7 @@
                 </div>
             </div>            
             <div class="col-4">
-                <label for="">RETORNO MAX</label>
+                <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
