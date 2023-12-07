@@ -1,7 +1,8 @@
 import { formatNumber } from '@angular/common';
-import { BootstrapOptions, Component, EventEmitter, Input, Output } from '@angular/core';
+import { BootstrapOptions, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Test } from 'src/app/model/test.model';
 import { FormatService } from 'src/app/services/format.service';
+import { AsideComponent } from '../aside/aside.component';
 
 @Component({
   selector: 'app-test-form',
@@ -18,10 +19,15 @@ export class TestFormComponent {
     @Input() vehicleList: any = [];
     @Input() injectorList: any = [];
     @Input() editingTest: Test = new Test();
-
+        
     @Output() tabbingEvent = new EventEmitter<any>();
     @Output() updateEvent = new EventEmitter<Test>();
-    @Output() clearEvent = new EventEmitter();
+    @Output() createEvent = new EventEmitter<Test>();
+    @Output() clearEvent = new EventEmitter();  
+
+    numberList = [1, 2, 3, 4, 5, 6, 7, 8];
+
+    
     
 
     constructor(
@@ -30,25 +36,21 @@ export class TestFormComponent {
     }
 
     ngOnInit() {
-      let t = setTimeout(() => {
-        //this.handleInputFormat();
-      }, 500);
     }
-
     emitClearMessage() {
       this.clearEvent.emit();
     }
-
     emitUpdateTestEvent() {
       console.log("PlanId: " + this.editingTest.planId);
       this.updateEvent.emit(this.editingTest);
     }
-
+    emitCreateEvent(test: Test) {
+      this.createEvent.emit(test);
+    }
     handleResistanceFormat() {
       this.editingTest.resistance         = this.formatter.format(this.editingTest.resistance);
       this.emitUpdateTestEvent();
     }
-
     handleInductanceFormat() {
       this.editingTest.inductance         = this.formatter.format(this.editingTest.inductance);
       this.emitUpdateTestEvent();
@@ -92,5 +94,10 @@ export class TestFormComponent {
 
     changeTab(tab: any) {
       this.tabbingEvent.emit(tab);
+    }
+    newTestFromServiceOrder() {
+      console.log("Service Order: " + this.editingTest.serviceOrder);
+      this.editingTest.id = '';
+      this.createEvent.emit(this.editingTest);
     }
 }

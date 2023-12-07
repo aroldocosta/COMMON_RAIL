@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Filtered } from 'src/app/model/filtered.model';
+import { Filter } from 'src/app/model/filter.model';
 import { Test } from 'src/app/model/test.model';
 import { Plan } from 'src/app/model/plan.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -49,10 +49,13 @@ export class HomeComponent implements OnInit{
   filteredList: Test[] = [];
   enabledDateIni: boolean = true;
   enabledDateEnd: boolean = true;
+  filteredField = '';
   filteredDateIni: string = '';
   filteredDateEnd: string = '';
   filteredTestDate: string = '';
-  filteredPlans: Filtered[] = [];
+  filteredTestSequence: string = '';
+  filteredTestInjectorNumber: string = '';
+  filteredPlans: Filter[] = [];
   filteredTest: any;
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
@@ -218,6 +221,7 @@ export class HomeComponent implements OnInit{
     this.editingTest = test;
     this.testCommand = 'editing';
     this.homeCommandButton = 'SALVAR';
+    this.handleTabbingTestEvent(this.currentTab);
   }
 
   setRemovingTestEvent(test: Test) {
@@ -247,15 +251,6 @@ export class HomeComponent implements OnInit{
 
     window.URL.revokeObjectURL(blob);
     link.remove();
-  }
-
-  setFilteredPlan(index: number) {  
-    let planId = 'BOMBA'+(index+1);
-    let dumbId = 'DUMB';
-    this.filteredPlans[index] = this.filteredPlans[index].checked
-          ? this.filteredPlans[index] = new Filtered(dumbId, false)
-          : this.filteredPlans[index] = new Filtered(planId, true);
-    this.filterTest();
   }
 
   isFilteredDate(date: string) {    
@@ -500,11 +495,12 @@ export class HomeComponent implements OnInit{
     this.testService.list().subscribe({
       next: list => {        
         this.testList = list;
-        this.filteredList = this.testList;
-
-        for(let t of this.filteredList) {
-          console.log("Resistance: " + t.resistance + " Inductance: " + t.inductance + " Isolation: " + t.isolation);
-        }
+        this.filteredList = this.testList.sort((a, b) => {
+          if(a.serviceOrder  == b.serviceOrder) {
+            return a.injectorNumber - b.injectorNumber;
+          } 
+          return a.serviceOrder > b.serviceOrder ?  -1 : 1;
+        });
       }
     });
   }
@@ -522,48 +518,49 @@ export class HomeComponent implements OnInit{
     console.log("Test Combined filter")
   }
 
+  doTestInjectorNumberFilter() {
+    this.filteredField = 'injectorNumber';
+    this.filteredList = this.testList
+      .filter(t => t.injectorNumber == Number(this.filteredTestInjectorNumber));
+    document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
+                               
+  }
+
   doTestSequenceFilter() {
-    // this.filteredList = this.testList
-    //   .filter(t => t.sequence == this.filteredSequence);
-    // document.getElementById("sequenceFilterCloseModalButton")?.click();  
+    this.filteredField = 'sequence';
+    this.filteredList = this.testList
+      .filter(t => t.sequence == this.filteredTestSequence);
+    document.getElementById("sequenceFilterCloseModalButton")?.click();  
   }
-
-  doTestDateFilterDebug() {
-    this.testList
-      .forEach(t => {
-        console.log("Test Date: " + t.date + " Filtered Date: " + this.filteredTestDate) 
-      });
-    //document.getElementById("sequenceFilterCloseModalButton")?.click();  
-  }
-  
+ 
   doTestDateFilter() {
-    
-    this.doTestDateFilterDebug();
-
+    this.filteredField = 'date';
     this.filteredList = this.testList
       .filter(t => t.date == this.filteredTestDate);
     document.getElementById("dateFilterCloseModalButton")?.click();  
   }
 
   doTestInjectorFilter() {
+    this.filteredField = 'injectorModel';
     this.filteredList = this.testList
-    .filter(t => t.injectorModel == this.filteredInjectorModel);
+    .filter(t => t.injectorModel == this.filteredInjectorModel)
     document.getElementById("injectorFilterCloseModalButton")?.click(); 
   }
 
   doTestVehicleFilter() {
+    this.filteredField = 'vehicle';
     this.filteredList = this.testList
     .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
     document.getElementById("vehicleFilterCloseModalButton")?.click(); 
   }
 
   doTestFilteredOrderFilter() {
+    this.filteredField = 'serviceOrder';
     this.filteredList = this.testList
-    .filter(t => t.serviceOrder == this.filteredServiceOrder);
+    .filter(t => t.serviceOrder == this.filteredServiceOrder)
+    .sort((a, b) => a.injectorNumber - b.injectorNumber)
     document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
   }
-
-  
 
   //edit(test: Test) {
     // this.testPlanId = test.planId;
@@ -692,6 +689,13 @@ export class HomeComponent implements OnInit{
     this.handleTabbingTestEvent(this.currentTab);
   }
 
+  handleCreateTestEvent(test: Test){
+    console.log("Teste de criação");
+    this.testCommand = 'creating';
+    this.homeCommandButton = "SALVAR";
+    this.editingTest = test;
+  }
+
   handleUpdatePlanEvent(plan: Plan) {
     this.editingPlan = plan;
   }
@@ -702,5 +706,10 @@ export class HomeComponent implements OnInit{
 
   handleUpdateInjectorEvent(injector: Injector) {
     this.editingInjector = injector;
+  }
+
+  handleResetFilterEvent() {
+    this.filteredField = '';
+    this.filteredList = this.testList;
   }
 }

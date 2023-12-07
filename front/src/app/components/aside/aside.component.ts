@@ -108,7 +108,7 @@ export class AsideComponent implements OnInit {
 
     if(tab.id == 'half_load') {
       this.drawGauge(this.debContxt, plan.maxHalfLoad, plan.minHalfLoad, test.halfLoad);
-      //this.drawGauge(this.retContxt, plan.maxHalfLoadReturn, plan.minHalfLoadReturn, test.halfLoadReturn);
+      this.drawGauge(this.retContxt, plan.maxHalfLoadReturn, plan.minHalfLoadReturn, test.halfLoadReturn);
     } else if(tab.id == 'full_load') {
       this.drawGauge(this.debContxt, plan.maxFullLoad, plan.minFullLoad, test.fullLoad);
       this.drawGauge(this.retContxt, plan.maxFullLoadReturn, plan.minFullLoadReturn, test.fullLoadReturn);

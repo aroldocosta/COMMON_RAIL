@@ -1,6 +1,6 @@
 <div class="row input"> 
     <div class="col-6">
-        <label class="input" for="">ORDEM DE SERVIÇO</label>
+        <label class="input" for="">ORDEM DE SERVIÇO / <a href="#" onclick="return null" (click)="newTestFromServiceOrder()">NOVO TESTE</a></label> 
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
                 placeholder="Digite a ordem de serviço"
@@ -45,7 +45,7 @@
                 (change)="emitUpdateTestEvent()"
                 [(ngModel)]="editingTest.injectorId" 
                 [disabled]="command == 'editing'">
-                <option value="0"selected>Selecione</option>
+                <option value="0" selected>Selecione</option>
                 <option *ngFor="let i of injectorList" [value]="i.id">{{i.model}}</option>
             </select>
         </div>
@@ -55,13 +55,13 @@
     <div class="col-6">
         <label class="input" for="">NÚMERO INJETOR</label>
         <div class="input-group input-group-lg">
-            <input type="text" class="form-control" 
-                placeholder="Digite o número do injetor"
-                (input)="emitUpdateTestEvent()"
-                aria-label="Sizing example input" 
-                aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingTest.injectorNumber"
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateTestEvent()"
+                [(ngModel)]="editingTest.injectorNumber" 
             >
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let n of numberList" [value]="n">{{n}}</option>
+            </select>
         </div>
     </div> 
     <div class="col-6">
