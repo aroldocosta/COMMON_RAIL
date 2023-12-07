@@ -58,8 +58,8 @@ public class Plan {
 	@Column(name = "min_half_load")
 	private Float minHalfLoad;
 	
-	@Column(name = "half_load_pression")
-	private Float halfLoadPression;
+	@Column(name = "half_load_pressure")
+	private Float halfLoadPressure;
 	
 	@Column(name = "max_full_load")
 	private Float maxFullLoad;
@@ -67,8 +67,8 @@ public class Plan {
 	@Column(name = "min_full_load")
 	private Float minFullLoad;
 	
-	@Column(name = "full_load_pression")
-	private Float fullLoadPression;
+	@Column(name = "full_load_pressure")
+	private Float fullLoadPressure;
 	
 	@Column(name = "max_idling")
 	private Float maxIdling;
@@ -76,8 +76,8 @@ public class Plan {
 	@Column(name = "min_idling")
 	private Float minIdling;
 	
-	@Column(name = "idling_pression")
-	private Float idlingPression;
+	@Column(name = "idling_pressure")
+	private Float idlingPressure;
 	
 	@Column(name = "max_pre_injection")
     private Float maxPreInjection;
@@ -85,8 +85,8 @@ public class Plan {
 	@Column(name = "min_pre_injection")
     private Float minPreInjection;
 	
-	@Column(name = "pre_injection_pression")
-    private Float preInjectionPression;
+	@Column(name = "pre_injection_pressure")
+    private Float preInjectionPressure;
 	
 	@Column(name = "max_half_load_return")
 	private Float maxHalfLoadReturn;
@@ -129,16 +129,16 @@ public class Plan {
 		this.setMinIsolation(dto.minIsolation());
 		this.setMaxHalfLoad(dto.maxHalfLoad());
 		this.setMinHalfLoad(dto.minHalfLoad());
-		this.setHalfLoadPression(dto.halfLoadPression());
+		this.setHalfLoadPressure(dto.halfLoadPressure());
 		this.setMaxFullLoad(dto.maxFullLoad());
 		this.setMinFullLoad(dto.minFullLoad());
-		this.setFullLoadPression(dto.fullLoadPression());
+		this.setFullLoadPressure(dto.fullLoadPressure());
 		this.setMaxIdling(dto.maxIdling());
 		this.setMinIdling(dto.minIdling());
-		this.setIdlingPression(dto.idlingPression());
+		this.setIdlingPressure(dto.idlingPressure());
 		this.setMaxPreInjection(dto.maxPreInjection());
 		this.setMinPreInjection(dto.minPreInjection());
-		this.setPreInjectionPression(dto.preInjectionPression());
+		this.setPreInjectionPressure(dto.preInjectionPressure());
 		this.setMaxHalfLoadReturn(dto.maxHalfLoadReturn());
 		this.setMinHalfLoadReturn(dto.minHalfLoadReturn());
 		this.setMaxFullLoadReturn(dto.maxFullLoadReturn());
@@ -253,23 +253,23 @@ public class Plan {
 	public void setMinIdling(Float minIdling) {
 		this.minIdling = minIdling;
 	}
-	public Float getHalfLoadPression() {
-		return halfLoadPression;
+	public Float getHalfLoadPressure() {
+		return halfLoadPressure;
 	}
-	public void setHalfLoadPression(Float halfLoadPression) {
-		this.halfLoadPression = halfLoadPression;
+	public void setHalfLoadPressure(Float halfLoadPressure) {
+		this.halfLoadPressure = halfLoadPressure;
 	}
-	public Float getFullLoadPression() {
-		return fullLoadPression;
+	public Float getFullLoadPressure() {
+		return fullLoadPressure;
 	}
-	public void setFullLoadPression(Float fullLoadPression) {
-		this.fullLoadPression = fullLoadPression;
+	public void setFullLoadPressure(Float fullLoadPressure) {
+		this.fullLoadPressure = fullLoadPressure;
 	}
-	public Float getIdlingPression() {
-		return idlingPression;
+	public Float getIdlingPressure() {
+		return idlingPressure;
 	}
-	public void setIdlingPression(Float idlingPression) {
-		this.idlingPression = idlingPression;
+	public void setIdlingPressure(Float idlingPressure) {
+		this.idlingPressure = idlingPressure;
 	}
 	public Float getMaxPreInjection() {
 		return maxPreInjection;
@@ -283,11 +283,11 @@ public class Plan {
 	public void setMinPreInjection(Float minPreInjection) {
 		this.minPreInjection = minPreInjection;
 	}
-	public Float getPreInjectionPression() {
-		return preInjectionPression;
+	public Float getPreInjectionPressure() {
+		return preInjectionPressure;
 	}
-	public void setPreInjectionPression(Float preInjectionPression) {
-		this.preInjectionPression = preInjectionPression;
+	public void setPreInjectionPressure(Float preInjectionPressure) {
+		this.preInjectionPressure = preInjectionPressure;
 	}
 	public Float getMaxHalfLoadReturn() {
 		return maxHalfLoadReturn;

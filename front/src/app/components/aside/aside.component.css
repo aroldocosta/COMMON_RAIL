@@ -28,26 +28,36 @@
 	text-align: center;
 	color: darkgrey;
 	font-size: 1.4em;
+	margin-top: 1em;
 }
-
-/* .gasoline, .diesel {
-	margin-bottom: 1em;
-}
-
-h2.gasoline, h2.diesel {
-	text-align: center;
-	color: darkgrey;
-	margin-bottom: 0;
-} */
 
 .pump-value {
 	color: red;
 	margin-left: 2em;
 }
 
-th {
-	font-weight: bold;
+h4 {
+	text-align: center;
+}
+
+th, td {
+	text-align: right;
+}
+
+h4, th {
 	color: #aaaaaa;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+td {
+	color: darkgray;
+	font-size: 1.5em;
+	font-weight: 500;
+}
+
+td.infinity {
+	padding-right: 0.5em;
 }
 
 p {
@@ -60,4 +70,45 @@ p {
 	margin-bottom: 0 !important;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
+}
+
+#debCanvas {
+	background-image: url("../../../assets/img/proveta.png");
+	background-size: 100% 100%;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	width: 80%;
+	height: 12em;
+	margin-top: 2em;
+	margin-left: 1em;
+}
+
+#retCanvas {
+	background-image: url("../../../assets/img/proveta.png");
+	background-size: 100% 100%;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	width: 80%;
+	height: 12em;
+	margin-top: 2em;
+	margin-left: 1em;
+}
+
+#comments {
+	background-color: #eeeeee;
+	border-radius: 10px;
+	margin: 1.8em 1em 1em 0;
+	height: 12em;
+}
+
+
+.comments {
+	color: #202020;
+	text-align: center;
+	padding-top: 0.5em
+}
+
+.components {
+	width: 60%;
+	margin: auto 20%
 }

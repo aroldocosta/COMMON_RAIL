@@ -20,9 +20,9 @@ export class PlanService {
     return this.http.get<Plan[]>(url, this.login.getHttpOptions());
   }
 
-  get(id: number) {
+  get(id: string) {
     const url = `${this.baseUrl}plans/${id}`;
-    return this.http.get<Plan>(url, {});
+    return this.http.get<Plan>(url, this.login.getHttpOptions());
   }
   
   create(plan: any): Observable<any> {

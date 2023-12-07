@@ -19,8 +19,10 @@ export class TestFormComponent {
     @Input() injectorList: any = [];
     @Input() editingTest: Test = new Test();
 
+    @Output() tabbingEvent = new EventEmitter<any>();
     @Output() updateEvent = new EventEmitter<Test>();
     @Output() clearEvent = new EventEmitter();
+    
 
     constructor(
       private formatter: FormatService
@@ -29,7 +31,7 @@ export class TestFormComponent {
 
     ngOnInit() {
       let t = setTimeout(() => {
-        this.handleInputFormat();
+        //this.handleInputFormat();
       }, 500);
     }
 
@@ -42,18 +44,53 @@ export class TestFormComponent {
       this.updateEvent.emit(this.editingTest);
     }
 
-    handleInputFormat() {
+    handleResistanceFormat() {
       this.editingTest.resistance         = this.formatter.format(this.editingTest.resistance);
-      this.editingTest.inductance         = this.formatter.format(this.editingTest.inductance);
-      this.editingTest.isolation          = this.formatter.format(this.editingTest.isolation);
-      this.editingTest.halfLoad           = this.formatter.format(this.editingTest.halfLoad);
-      this.editingTest.fullLoad           = this.formatter.format(this.editingTest.fullLoad);
-      this.editingTest.idling             = this.formatter.format(this.editingTest.idling); 
-      this.editingTest.preInjection       = this.formatter.format(this.editingTest.preInjection)
-      this.editingTest.halfLoadReturn     = this.formatter.format(this.editingTest.halfLoadReturn);
-      this.editingTest.fullLoadReturn     = this.formatter.format(this.editingTest.fullLoadReturn);
-      this.editingTest.idlingReturn       = this.formatter.format(this.editingTest.idlingReturn); 
-      this.editingTest.preInjectionReturn = this.formatter.format(this.editingTest.preInjectionReturn);
       this.emitUpdateTestEvent();
+    }
+
+    handleInductanceFormat() {
+      this.editingTest.inductance         = this.formatter.format(this.editingTest.inductance);
+      this.emitUpdateTestEvent();
+    }
+    handleIsolationFormat() {
+      this.editingTest.isolation          = this.formatter.format(this.editingTest.isolation);
+      this.emitUpdateTestEvent();
+    }
+    handleHalfLoadFormat() {
+      this.editingTest.halfLoad           = this.formatter.format(this.editingTest.halfLoad);
+      this.emitUpdateTestEvent();
+    }
+    handleIdlingFormat() {
+      this.editingTest.idling             = this.formatter.format(this.editingTest.idling); 
+      this.emitUpdateTestEvent();
+    }
+    handleFullLoadFormat() {
+      this.editingTest.fullLoad           = this.formatter.format(this.editingTest.fullLoad);
+      this.emitUpdateTestEvent();
+    }
+    handlePreInjectionFormat() {
+      this.editingTest.preInjection       = this.formatter.format(this.editingTest.preInjection);
+      this.emitUpdateTestEvent();
+    }
+    handleHalfLoadReturnFormat() {
+      this.editingTest.halfLoadReturn           = this.formatter.format(this.editingTest.halfLoadReturn);
+      this.emitUpdateTestEvent();
+    }
+    handleIdlingReturnFormat() {
+      this.editingTest.idlingReturn             = this.formatter.format(this.editingTest.idlingReturn); 
+      this.emitUpdateTestEvent();
+    }
+    handleFullLoadReturnFormat() {
+      this.editingTest.fullLoadReturn           = this.formatter.format(this.editingTest.fullLoadReturn);
+      this.emitUpdateTestEvent();
+    }
+    handlePreInjectionReturnFormat() {
+      this.editingTest.preInjectionReturn       = this.formatter.format(this.editingTest.preInjectionReturn);
+      this.emitUpdateTestEvent();
+    }
+
+    changeTab(tab: any) {
+      this.tabbingEvent.emit(tab);
     }
 }

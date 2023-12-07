@@ -9,9 +9,29 @@
 		</div>
 	</div>
 	<div>	
-		<div class="card gasoline">
-			<div class="card-body">
-			  <h2 class="top-title">ELETRICO</h2>
+		<div class="card">
+			<!-- <img id="gauge" class="card-img-top" src="assets/img/proveta.png" alt="Card image cap">  -->
+			<div [ngClass]="(tabId == 'med_electric') ? 'show' : 'hidden'">
+				<div class="row">
+					<div class="col-sm-12">
+						<img class="card-img-top" class="components" src="../../../assets/img/componente.png">
+					</div>
+				</div>
+			</div>
+			<div [class]="(tabId == 'med_electric') ? 'hidden' : 'show'">
+				<div class="row">
+					<div class="col-sm-4 offset-sm-2">
+						<canvas id="debCanvas" #debCanvas></canvas>
+						<h4>DÉB</h4>
+					</div>
+					<div class="col-sm-4">
+						<canvas id="retCanvas" #retCanvas></canvas>
+						<h4>RET</h4>
+					</div>
+				</div>
+			</div>		
+			<div class="card-body" *ngIf="tabId == 'med_electric'">
+			  <h2 class="top-title">{{tabTitle}}</h2>
 			  <div class="table-responsive">
 				<table class="table table-sm  table-striped">
 					<thead>
@@ -24,29 +44,32 @@
 					</thead>
 					<tbody>
 					<tr>
-						<th scope="row" title="Quantidade vendido">RES:</th>
-						<td>{{gTodayQuantity | number: '1.2'}}</td>
-						<td>{{gMonthQuantity | number: '1.2'}}</td>
-						<td>{{gYearQuantity  | number: '1.2'}}</td>
+						<th scope="row" title="Medições elétricas">RES(m&#937;):</th>
+						<td>{{editingPlan.minResistance | number: '1.2'}}</td>
+						<td>{{editingTest.resistance 	| number: '1.2'}}</td>
+						<td>{{editingPlan.maxResistance | number: '1.2'}}</td>
 					</tr>
 					<tr>
-						<th scope="row" title="RET:al faturado">IND:</th>
-						<td>{{gTodayPayment | number: '1.2'}}</td>
-						<td>{{gMonthPayment | number: '1.2'}}</td>
-						<td>{{gYearPayment  | number: '1.2'}}</td>
+						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELECTRIC'">CAP(nF):</th>
+						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELECTRIC'">IND(mH):</th>
+						<td>{{editingPlan.minInductance | number: '1.2'}}</td>
+						<td>{{editingTest.inductance 	| number: '1.2'}}</td>
+						<td>{{editingPlan.maxInductance | number: '1.2'}}</td>
 					</tr>
 					<tr>
-						<th scope="row" title="RET:al faturado">ISO:</th>
-						<td>{{gTodayPayment | number: '1.2'}}</td>
-						<td>{{gMonthPayment | number: '1.2'}}</td>
-						<td>{{gYearPayment  | number: '1.2'}}</td>
-					</tr>				  
+						<th scope="row" title="RET:al faturado">ISO(&#937;):</th>
+						<td>{{editingPlan.minIsolation 	| number: '1.2'}}</td>
+						<td>{{editingTest.isolation 	| number: '1.2'}}</td>
+						<td *ngIf="editingPlan.maxIsolation">{{editingPlan.maxIsolation  | number: '1.2'}}</td>
+						<td *ngIf="!editingPlan.maxIsolation" class="infinity">&infin;</td>
+					</tr>		  
 					</tbody>
 				</table>
 			  </div>
 			</div>
-			<div class="card-body">
-			  <h2 class="top-title">CARGA PARCIAL</h2>
+			<div class="card-body" *ngIf="tabId == 'half_load'">
+			  <h2 class="top-title">{{tabTitle}}</h2>                               
+			  <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.halfLoadPressure}})</i></b></h6>
 			  <div class="table-responsive">
 				<table class="table table-sm  table-striped">
 					<thead>
@@ -59,23 +82,24 @@
 					</thead>
 					<tbody>
 					<tr>
-						<th scope="row" title="Quantidade vendida em litros">DEB:</th>
-						<td>{{dTodayQuantity | number: '1.2'}}</td>
-						<td>{{dMonthQuantity | number: '1.2'}}</td>
-						<td>{{dYearQuantity  | number: '1.2'}}</td>
+						<th scope="row" title="Quantidade vendida em litros">DEB(ml):</th>
+						<td>{{editingPlan.minHalfLoad 	| number: '1.2'}}</td>
+						<td>{{editingTest.halfLoad 		| number: '1.2'}}</td>
+						<td>{{editingPlan.maxHalfLoad 	| number: '1.2'}}</td>
 					</tr>
 					<tr>
-						<th scope="row" title="RET:al faturado em Reais">RET:</th>
-						<td>{{tTodayQuantity | number: '1.2'}}</td>
-						<td>{{tMonthQuantity | number: '1.2'}}</td>
-						<td>{{tYearQuantity  | number: '1.2'}}</td>
+						<th scope="row" title="RET:al faturado em Reais">RET(ml):</th>
+						<td>{{editingPlan.minHalfLoadReturn 	| number: '1.2'}}</td>
+						<td>{{editingTest.halfLoadReturn 		| number: '1.2'}}</td>
+						<td>{{editingPlan.maxHalfLoadReturn 	| number: '1.2'}}</td>
 					</tr>				  
 					</tbody>
 				</table>
 			  </div>
 			</div>
-			<div class="card-body">
-			  <h2 class="top-title">MARCHA LENTA</h2>	
+			<div class="card-body" *ngIf="tabId == 'idling'">
+			  <h2 class="top-title">{{tabTitle}}</h2>
+			  <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.idlingPressure}}bar)</i></b></h6>	
 			  <div class="table-responsive">
 				<table class="table table-sm  table-striped">
 					<thead>
@@ -88,23 +112,24 @@
 					</thead>
 					<tbody>
 					<tr>
-						<th scope="row" title="Quantidade vendidida em litros">DEB:</th>
-						<td>{{tTodayQuantity | number: '1.2'}}</td>
-						<td>{{tMonthQuantity | number: '1.2'}}</td>
-						<td>{{tYearQuantity  | number: '1.2'}}</td>
+						<th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
+						<td>{{editingPlan.minIdling 	| number: '1.2'}}</td>
+						<td>{{editingTest.idling 		| number: '1.2'}}</td>
+						<td>{{editingPlan.maxIdling 	| number: '1.2'}}</td>
 					</tr>
 					<tr>
-						<th scope="row" title="RET:al faturado">RET:</th>
-						<td>{{tTodayQuantity | number: '1.2'}}</td>
-						<td>{{tMonthQuantity | number: '1.2'}}</td>
-						<td>{{tYearQuantity  | number: '1.2'}}</td>
+						<th scope="row" title="RET:al faturado">RET(ml):</th>
+						<td>{{editingPlan.minIdlingReturn 	| number: '1.2'}}</td>
+						<td>{{editingTest.idlingReturn 		| number: '1.2'}}</td>
+						<td>{{editingPlan.maxIdlingReturn 	| number: '1.2'}}</td>
 					</tr>				  
 					</tbody>
 				</table>
 			  </div>
 			</div>
-			<div class="card-body">
-				<h2 class="top-title">PLENA CARGA</h2>	
+			<div class="card-body" *ngIf="tabId == 'full_load'">
+				<h2 class="top-title">{{tabTitle}}</h2>
+				<h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.fullLoadPressure}}bar)</i></b></h6>	
 				<div class="table-responsive">
 				  <table class="table table-sm  table-striped">
 					  <thead>
@@ -117,50 +142,81 @@
 					  </thead>
 					  <tbody>
 					  <tr>
-						  <th scope="row" title="Quantidade vendidida em litros">DEB:</th>
-						  <td>{{tTodayQuantity | number: '1.2'}}</td>
-						  <td>{{tMonthQuantity | number: '1.2'}}</td>
-						  <td>{{tYearQuantity  | number: '1.2'}}</td>
+						  <th scope="row" title="Quantidade vendidida em litros">DEB(ml)(ml):</th>
+						  <td>{{editingPlan.minFullLoad 	| number: '1.2'}}</td>
+						  <td>{{editingTest.fullLoad 		| number: '1.2'}}</td>
+						  <td>{{editingPlan.maxFullLoad 	| number: '1.2'}}</td>
 					  </tr>
 					  <tr>
-						  <th scope="row" title="RET:al faturado">RET:</th>
-						  <td>{{tTodayQuantity | number: '1.2'}}</td>
-						  <td>{{tMonthQuantity | number: '1.2'}}</td>
-						  <td>{{tYearQuantity  | number: '1.2'}}</td>
+						  <th scope="row" title="RET:al faturado">RET(ml)(ml):</th>
+						  <td>{{editingPlan.minFullLoadReturn 	| number: '1.2'}}</td>
+						  <td>{{editingTest.fullLoadReturn 		| number: '1.2'}}</td>
+						  <td>{{editingPlan.maxFullLoadReturn 	| number: '1.2'}}</td>
 					  </tr>				  
 					  </tbody>
 				  </table>
 				</div>
 			</div>	
-			<div class="card-body">
-			<h2 class="top-title">PRÉ INJEÇÃO</h2>	
-			<div class="table-responsive">
-				<table class="table table-sm  table-striped">
-					<thead>
-					<tr>
-						<th scope="col"></th>
-						<th scope="col">MIN</th>
-						<th scope="col">LIDO</th>
-						<th scope="col">MAX</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<th scope="row" title="Quantidade vendidida em litros">DEB:</th>
-						<td>{{tTodayQuantity | number: '1.2'}}</td>
-						<td>{{tMonthQuantity | number: '1.2'}}</td>
-						<td>{{tYearQuantity  | number: '1.2'}}</td>
-					</tr>
-					<tr>
-						<th scope="row" title="RET:al faturado">RET:</th>
-						<td>{{tTodayQuantity | number: '1.2'}}</td>
-						<td>{{tMonthQuantity | number: '1.2'}}</td>
-						<td>{{tYearQuantity  | number: '1.2'}}</td>
-					</tr>				  
-					</tbody>
-				</table>
+			<div class="card-body" *ngIf="tabId == 'pre_injection'">
+				<h2 class="top-title">{{tabTitle}}</h2>
+				<h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.preInjectionPressure}}bar)</i></b></h6>	
+				<div class="table-responsive">
+					<table class="table table-sm  table-striped">
+						<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">MIN</th>
+							<th scope="col">LIDO</th>
+							<th scope="col">MAX</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
+							<td>{{editingPlan.minPreInjection 	| number: '1.2'}}</td>
+							<td>{{editingTest.preInjection 		| number: '1.2'}}</td>
+							<td>{{editingPlan.maxPreInjection 	| number: '1.2'}}</td>
+						</tr>
+						<tr>
+							<th scope="row" title="RET:al faturado">RET(ml):</th>
+							<td>{{editingPlan.minPreInjectionReturn | number: '1.2'}}</td>
+							<td>{{editingTest.preInjectionReturn 	| number: '1.2'}}</td>
+							<td>{{editingPlan.maxPreInjectionReturn | number: '1.2'}}</td>
+						</tr>				  
+						</tbody>
+					</table>
+				</div>
 			</div>
-			</div>			  				
+			<div class="card-body" *ngIf="tabId == 'comments'">
+				<h2 class="top-title">{{tabTitle}}</h2>	
+				<!-- <div class="table-responsive">
+					<table class="table table-sm  table-striped">
+						<thead>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col">MIN</th>
+							<th scope="col">LIDO</th>
+							<th scope="col">MAX</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<th scope="row" title="Quantidade vendidida em litros">DEB:</th>
+							<td>{{tTodayQuantity | number: '1.2'}}</td>
+							<td>{{tMonthQuantity | number: '1.2'}}</td>
+							<td>{{tYearQuantity  | number: '1.2'}}</td>
+						</tr>
+						<tr>
+							<th scope="row" title="RET:al faturado">RET:</th>
+							<td>{{tTodayQuantity | number: '1.2'}}</td>
+							<td>{{tMonthQuantity | number: '1.2'}}</td>
+							<td>{{tYearQuantity  | number: '1.2'}}</td>
+						</tr>				  
+						</tbody>
+					</table>					
+				</div> -->
+			</div>				  				
 		</div>
 	</div>
+	
 </div>		

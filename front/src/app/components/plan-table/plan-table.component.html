@@ -9,7 +9,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of list">
+        <tr *ngFor="let p of list" (click)="emitEditingEvent(p)">
             <td>{{p.code}}</td>
             <td>{{p.type}}</td>
             <td>{{p.description}}</td>	

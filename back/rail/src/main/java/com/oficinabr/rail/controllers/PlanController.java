@@ -33,6 +33,7 @@ public class PlanController {
 	}
 	
 	@GetMapping(value = "/{id}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<PlanDTO> get(@PathVariable("id") String id) {
 		return service.get(id);
 	}

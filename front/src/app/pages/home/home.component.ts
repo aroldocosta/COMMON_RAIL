@@ -65,6 +65,8 @@ export class HomeComponent implements OnInit{
   removingAlertTopTitle: string = '';
   removingAlertMessage: string = '';
 
+  currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
+
   constructor(
     private userService: UserService,
     private testService: TestService, 
@@ -74,6 +76,7 @@ export class HomeComponent implements OnInit{
     private injectorService: InjectorService,
     private router: Router
     ) {
+      let aside = new AsideComponent();
   }
 
   ngOnInit(): void {
@@ -98,6 +101,7 @@ export class HomeComponent implements OnInit{
 
   /* ---------------- Command Button Handlers ----------------- */
   handleTestCommandButton() {
+
     let button = 'NOVO';
     let command = 'listing';
     if(this.testCommand == 'listing') {
@@ -108,6 +112,8 @@ export class HomeComponent implements OnInit{
       this.saveTest();
       this.list();
     } else if(this.testCommand == 'editing') {
+      command = 'editing';
+      button = 'SALVAR';
       this.updateTest();
       this.list();
     }
@@ -379,6 +385,7 @@ export class HomeComponent implements OnInit{
   updateTest() { 
     this.testService.update(this.editingTest).subscribe({
       next: resp => {
+        this.handleTabbingTestEvent(this.currentTab);
         this.list();
         //this.aside.requestTotals();
         //document.getElementById("editCloseModalButton")?.click();
@@ -661,8 +668,28 @@ export class HomeComponent implements OnInit{
   //   console.log("----------------- handleSaveEvent -----------------\n" + JSON.stringify(event));
   // }
 
+  handleTabbingTestEvent(tab: any) {
+
+    this.currentTab = tab;
+    
+    let planId = this.editingTest.planId;
+
+    console.log("Current Tab: " + this.currentTab.heading);
+
+    this.planService.get(planId).subscribe({
+      next: plan => {
+        this.aside.setCurrentTab(this.currentTab, this.editingTest, plan);
+      },
+      error: err => {
+        console.log("Error:\n", err);
+      }
+    })
+  }
+
   handleUpdateTestEvent(test: Test) {
     this.editingTest = test;
+    // this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan);
+    this.handleTabbingTestEvent(this.currentTab);
   }
 
   handleUpdatePlanEvent(plan: Plan) {
@@ -675,8 +702,5 @@ export class HomeComponent implements OnInit{
 
   handleUpdateInjectorEvent(injector: Injector) {
     this.editingInjector = injector;
-  }
-
-  home() {
   }
 }

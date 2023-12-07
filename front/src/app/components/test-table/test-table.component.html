@@ -3,17 +3,17 @@
         <thead>
             <tr>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por numero do injetor" 
-                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-1-square"></i> INJETOR</a></th>
+                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-1-square"></i> NUM</a></th>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por sequência" 
-                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-window-stack"></i> SEQUÊNCIA</a></th>
+                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-window-stack"></i> SEQ</a></th>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por data" 
                     data-bs-target="#dateFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-calendar-date"></i> DATA</a></th>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por modelo" 
-                    data-bs-target="#injectorFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-droplet-half"></i> MODELO</a></th>
+                    data-bs-target="#injectorFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-droplet-half"></i> INJET</a></th>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por veículo" 
-                    data-bs-target="#vehicleFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-truck"></i> VEíCULO</a></th>
+                    data-bs-target="#vehicleFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-truck"></i> VEíC</a></th>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por ordem de serviço" 
-                    data-bs-target="#serviceOrderFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-receipt"></i> ORD.SERVIÇO</a></th>                                     
+                    data-bs-target="#serviceOrderFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-receipt"></i> OS</a></th>                                     
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Editar teste" 
                     ><i class="bi bi-pencil-square"></i> EDT</a></th>
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Remover teste" 
@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let d of tableData">
+            <tr *ngFor="let d of tableData" (click)="emitEditEvent(d)">
                 <td>{{d.injectorNumber}}</td>
                 <td>{{d.sequence}}</td>
                 <td>{{d.date | date: 'dd/MM/yyyy'}}</td>	

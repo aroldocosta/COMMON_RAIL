@@ -48,9 +48,9 @@
             <div class="col-6">
                 <label class="input" for="">MIN RESISTÊNCIA</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
                     <input type="text" class="form-control"
-                        (input)="handleInputFormat()" 
+                        (input)="handleMinResistanceFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minResistance"
@@ -60,9 +60,9 @@
             <div class="col-6">
                 <label class="input" for="">MAX RESISTÊNCIA</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxResistanceFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxResistance"
@@ -74,9 +74,9 @@
             <div class="col-6">
                 <label class="input" for="">MIN INDUTÂNCIA</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>mH</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinInductanceFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minInductance"
@@ -86,9 +86,9 @@
             <div class="col-6">
                 <label class="input" for="">MAX INDUTÂNCIA</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>mH</b></i></span>
                     <input type="text" class="form-control"
-                        (input)="handleInputFormat()" 
+                        (input)="handleMaxInductanceFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxInductance"
@@ -102,7 +102,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinIsolationFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minIsolation"
@@ -114,7 +114,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxIsolationFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxIsolation"
@@ -130,7 +130,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control"
-                        (input)="handleInputFormat()" 
+                        (input)="handleMinHalfLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minHalfLoad"
@@ -142,7 +142,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxHalfLoadFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxHalfLoad"
@@ -154,10 +154,10 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleHalfLoadPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.halfLoadPression"
+                        [(ngModel)]="editingPlan.halfLoadPressure"
                     >
                 </div>
             </div>
@@ -168,7 +168,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinHalfLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minHalfLoadReturn"
@@ -180,7 +180,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxHalfLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxHalfLoadReturn"
@@ -198,7 +198,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinIdlingFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minIdling"
@@ -210,7 +210,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxIdlingFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxIdling"
@@ -222,10 +222,10 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleIdlingPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.idlingPression"
+                        [(ngModel)]="editingPlan.idlingPressure"
                     >
                 </div>
             </div>
@@ -236,7 +236,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinIdlingReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minIdlingReturn"
@@ -248,7 +248,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxIdlingReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxIdlingReturn"
@@ -266,7 +266,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control"
-                        (input)="handleInputFormat()" 
+                        (input)="handleMinFullLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minFullLoad"
@@ -278,7 +278,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control"
-                        (input)="handleInputFormat()" 
+                        (input)="handleMaxFullLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxFullLoad"
@@ -290,10 +290,10 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control"
-                        (input)="handleInputFormat()" 
+                        (input)="handleFullLoadPressureFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.fullLoadPression"
+                        [(ngModel)]="editingPlan.fullLoadPressure"
                     >
                 </div>
             </div>
@@ -304,7 +304,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinFullLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minFullLoadReturn"
@@ -316,7 +316,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxFullLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxFullLoadReturn"
@@ -334,7 +334,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinPreInjectionFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minPreInjection"
@@ -346,7 +346,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxPreInjectionFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxPreInjection"
@@ -358,10 +358,10 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handlePreInjectionPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.preInjectionPression"
+                        [(ngModel)]="editingPlan.preInjectionPressure"
                     >
                 </div>
             </div>
@@ -372,7 +372,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMinPreInjectionReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.minPreInjectionReturn"
@@ -384,7 +384,7 @@
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="text" class="form-control" 
-                        (input)="handleInputFormat()"
+                        (input)="handleMaxPreInjectionReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="editingPlan.maxPreInjectionReturn"

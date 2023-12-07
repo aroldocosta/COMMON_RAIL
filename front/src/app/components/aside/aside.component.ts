@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ThisReceiver } from '@angular/compiler';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Plan } from 'src/app/model/plan.model';
+import { Test } from 'src/app/model/test.model';
+import { PlanService } from 'src/app/services/plan.service';
 
 @Component({
   selector: 'app-aside',
@@ -7,76 +11,113 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideComponent implements OnInit {  
 
-  gTodayQuantity: number = 0.0;
-  gMonthQuantity: number = 0.0;
-  gYearQuantity: number = 0.0;
-  gTodayPayment: number = 0.0;
-  gMonthPayment: number = 0.0;
-  gYearPayment: number = 0.0;
+  editingPlan: Plan = new Plan();
+  editingTest: Test = new Test();
+  tabId: string = 'med_electric';
+  tabTitle: string = 'MED ELETRICAS';
+  gaugeH = 0;
+  gaugeY = 135;
 
-  dTodayQuantity: number = 0.0;
-  dMonthQuantity: number = 0.0;
-  dYearQuantity: number = 0.0;
-  dTodayPayment: number = 0.0;
-  dMonthPayment: number = 0.0;
-  dYearPayment: number = 0.0;
-
-  tTodayQuantity: number = 0.0;
-  tMonthQuantity: number = 0.0;
-  tYearQuantity: number = 0.0;
-  tTodayPayment: number = 0.0;
-  tMonthPayment: number = 0.0;
-  tYearPayment: number = 0.0;
-
-  gUnitPrice: number = 5.85;
-  dUnitPrice: number = 5.99;
+  // @ViewChild('gauge', { static: false, read: HTMLCanvasElement }) gauge!: HTMLCanvasElement;
+  // @ViewChild('gaugeCanvas') gaugeCanvas!: ElementRef;
+  @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
+  @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
+  public debContxt!: CanvasRenderingContext2D;
+  public retContxt!: CanvasRenderingContext2D;
 
   constructor() { 
-
   }
 
   ngOnInit(): void {
-    this.requestTotals();
   }
 
-  refresh() {
-    let time = setTimeout(() => {
-      this.requestTotals();
-      this.refresh();
-    }, 10000);
+  ngAfterViewInit(): void {
+    this.debContxt = this.debCanvas.nativeElement.getContext('2d');
+    this.retContxt = this.retCanvas.nativeElement.getContext('2d');
   }
+
+  drawGauge(contxt: CanvasRenderingContext2D, maxValue: string, minValue: string, measuredValue: string) {
+    let colHeight = 130;
+    let red = 0;
+    let grn = 255;
+    let blu = 0;
+
+    let val = Number(measuredValue);
+    let min = Number(minValue);
+    let max = Number(maxValue);
+
+    let n_val = 100*val/max;
+    
+    let n_min = 100*min/max;
+
+    let n_max = 100;
+
+    let n_ref = 100*((max+min)/2)/max;
+
+    let col = (colHeight * n_val / 100);
+
+    if(val < min) {
+      red = 255;
+      grn = 255;
+      blu = 0;
+    } else if(val > max) {
+      red = 255;
+      grn = 0;
+      blu = 0;
+    } else {
+      
+      
+      if(n_val < (n_ref + min)/2) {//greenyellow
+        red = 173;
+        grn = 255;
+        blu = 47;
+        //rrgb(173,255,47)
+      } else if(n_val < (n_ref + max)/2) { //green - rgb(0,255,0)
+        red = 0;
+        grn = 255;
+        blu = 0;
+      } else if(n_val <= n_max) {//orange - rgb(255,140,0)
+        red = 255;
+        grn = 140;
+        blu = 0;
+      }
+    }
+
+    this.gaugeY = colHeight - col+10;
+    this.gaugeH = col;
+
+    contxt.clearRect(0, 0, this.debCanvas.nativeElement.width, this.debCanvas.nativeElement.height);
+    contxt.clearRect(0, 0, this.retCanvas.nativeElement.width, this.retCanvas.nativeElement.height);
+    contxt.beginPath();
+    contxt.lineWidth = 6;
+    contxt.fillStyle = `rgb(${red}, ${grn}, ${blu})`;
+    contxt.fillRect(85, this.gaugeY, 130, this.gaugeH);
+    contxt.stroke();
+  }
+
 
   requestTotals() {
-    // this.fuelingService.totals().subscribe({
-    //   next: (totals: any) => {
-    //     //--------- Gasoline totals ----------------
-    //     this.gTodayQuantity = totals.gTodayQuantity;
-    //     this.gMonthQuantity = totals.gMonthQuantity;
-    //     this.gYearQuantity  = totals.gYearQuantity;
-    //     this.gTodayPayment   = totals.gTodayPayment;
-    //     this.gMonthPayment   = totals.gMonthPayment;
-    //     this.gYearPayment    =  totals.gYearPayment;
 
-    //     //--------- Diesel totals -----------------
-    //     this.dTodayQuantity = totals.dTodayQuantity;
-    //     this.dMonthQuantity = totals.dMonthQuantity;
-    //     this.dYearQuantity  = totals.dYearQuantity;
-    //     this.dTodayPayment   = totals.dTodayPayment;
-    //     this.dMonthPayment   = totals.dMonthPayment;
-    //     this.dYearPayment    = totals.dYearPayment;
+  }
 
-    //     //---------- General totals --------------- 
-    //     this.tTodayQuantity = this.gTodayQuantity + this.dTodayQuantity;
-    //     this.tMonthQuantity = this.gMonthQuantity + this.dMonthQuantity;
-    //     this.tYearQuantity  = this.gYearQuantity  + this.dYearQuantity;
-    //     this.tTodayPayment   = this.gTodayPayment   + this.dTodayPayment;
-    //     this.tMonthPayment   = this.gMonthPayment   + this.dMonthPayment;
-    //     this.tYearPayment    = this.gYearPayment    + this.dYearPayment;
+  setCurrentTab(tab: any, test: Test, plan: Plan) {
+    this.tabId = tab.id;
+    this.tabTitle = tab.heading;
+    this.editingTest = test;
+    this.editingPlan = plan;
 
-    //     //---------- Unit prices ------------------
-    //     this.gUnitPrice = totals.gUnitPrice;
-    //     this.dUnitPrice = totals.dUnitPrice;
-    //   }
-    // })
+    if(tab.id == 'half_load') {
+      this.drawGauge(this.debContxt, plan.maxHalfLoad, plan.minHalfLoad, test.halfLoad);
+      //this.drawGauge(this.retContxt, plan.maxHalfLoadReturn, plan.minHalfLoadReturn, test.halfLoadReturn);
+    } else if(tab.id == 'full_load') {
+      this.drawGauge(this.debContxt, plan.maxFullLoad, plan.minFullLoad, test.fullLoad);
+      this.drawGauge(this.retContxt, plan.maxFullLoadReturn, plan.minFullLoadReturn, test.fullLoadReturn);
+    } else if(tab.id == 'idling') {
+      this.drawGauge(this.debContxt, plan.maxIdling, plan.minIdling, test.idling);
+      this.drawGauge(this.retContxt, plan.maxIdlingReturn, plan.minIdlingReturn, test.idlingReturn);
+    } else if(tab.id == 'pre_injection') {
+      this.drawGauge(this.debContxt, plan.maxPreInjection, plan.minPreInjection, test.preInjection);
+      this.drawGauge(this.retContxt, plan.maxPreInjectionReturn, plan.minPreInjectionReturn, test.preInjectionReturn);
+    }
   }
 }

@@ -9,10 +9,10 @@
 	<input id="base_url" type="hidden" value="/" >
 
    <div class="row">
-	   <div class="col-md-3">
+	   <div class="col-md-4">
 		   <app-aside class="hide-small"></app-aside>
 	   </div>
-	   <div class="col-sm-0 col-md-9">
+	   <div class="col-sm-0 col-md-8">
 			<section class="right-content">
 				<div class="row">
 					<div class="col-md-3">
@@ -71,6 +71,7 @@
 						[injectorList] = 'injectorList'
 						[editingTest] = 'editingTest'
 						(updateEvent)="handleUpdateTestEvent($event)"
+						(tabbingEvent)="handleTabbingTestEvent($event)"
 					></app-test-form>  				        
 					<app-test-table
 						*ngIf="testCommand == 'listing'"

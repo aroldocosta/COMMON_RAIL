@@ -95,16 +95,16 @@
 <div class="row" *ngIf="command == 'editing'">  
     <div class="col-md-12">
     <tabset class="menber-tabset">
-        <tab heading="MED ELETRICAS">
+        <tab id="med_electric" heading="MED ELETRICAS" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-4">
                     <label class="input" for="">RESISTÊNCIA</label>
                     <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
-                        <input type="text" class="form-control"                             
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
+                        <input id="x" type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleResistanceFormat()"
                             [(ngModel)]="editingTest.resistance"
                         >
                     </div>
@@ -112,11 +112,11 @@
                 <div class="col-4" *ngIf="command == 'editing'">
                     <label class="input" for="">INDUTÂNCIA</label>
                     <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>H</b></i></span>
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>mH</b></i></span>
                         <input type="text" class="form-control" 
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleInductanceFormat()"
                             [(ngModel)]="editingTest.inductance"
                         >
                     </div>
@@ -128,14 +128,14 @@
                         <input type="text" class="form-control" 
                              aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleIsolationFormat()"
                             [(ngModel)]="editingTest.isolation"
                         >
                     </div>
                 </div>
             </div>
         </tab>
-        <tab heading="CARGA PARCIAL">
+        <tab id="half_load" heading="CARGA PARCIAL" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
@@ -144,7 +144,7 @@
                         <input type="text" class="form-control" 
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleHalfLoadFormat()"
                             [(ngModel)]="editingTest.halfLoad"
                         >
                     </div>
@@ -156,14 +156,14 @@
                         <input type="text" class="form-control" 
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleHalfLoadReturnFormat()"
                             [(ngModel)]="editingTest.halfLoadReturn"
                         >
                     </div>
                 </div>
             </div>
         </tab>
-        <tab heading="MARCHA LENTA">
+        <tab id="idling" heading="MARCHA LENTA" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
@@ -172,7 +172,7 @@
                         <input type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleIdlingFormat()"
                             [(ngModel)]="editingTest.idling"
                         >
                     </div>
@@ -184,14 +184,14 @@
                         <input type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleIdlingReturnFormat()"
                             [(ngModel)]="editingTest.idlingReturn"
                         >
                     </div>
                 </div>
             </div>
         </tab>
-        <tab heading="PLENA CARGA">
+        <tab id="full_load" heading="PLENA CARGA" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
@@ -200,7 +200,7 @@
                         <input type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleFullLoadFormat()"
                             [(ngModel)]="editingTest.fullLoad"
                         >
                     </div>
@@ -212,14 +212,14 @@
                         <input type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handleFullLoadReturnFormat()"
                             [(ngModel)]="editingTest.fullLoadReturn"
                         >
                     </div>
                 </div>
             </div>
         </tab>
-        <tab heading="PRÉ INJEÇÃO">
+        <tab id="pre_injection" heading="PRÉ INJEÇÃO" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
@@ -228,7 +228,7 @@
                         <input type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handlePreInjectionFormat()"
                             [(ngModel)]="editingTest.preInjection"
                         >
                     </div>
@@ -240,14 +240,14 @@
                         <input type="text" class="form-control"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInputFormat()"
+                            (input)="handlePreInjectionReturnFormat()"
                             [(ngModel)]="editingTest.preInjectionReturn"
                         >
                     </div>
                 </div>
             </div>
         </tab>
-        <tab heading="OBSERVAÇÕES">
+        <tab id="comments" heading="OBSERVAÇÕES" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-12" *ngIf="command == 'editing'">
                     <label class="input" for="">OBSERVAÇÕES</label>
