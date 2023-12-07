@@ -3,7 +3,7 @@ import { Injector } from "@angular/core";
 export class Test {
 
 	id: string = '';
-	injectorNumber = '';
+	injectorNumber: number = 0;
 	sequence: string = '';
 	description: string = '';
 	comments: string = '';

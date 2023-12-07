@@ -64,20 +64,23 @@
 				</div>	
 				<hr class="colorgraph">
 					<app-test-form
-						[command] = 'testCommand'
 						*ngIf="testCommand == 'editing' || testCommand == 'creating'" 
-						[planList] = 'planList'
-						[vehicleList] = 'vehicleList'
-						[injectorList] = 'injectorList'
-						[editingTest] = 'editingTest'
-						(updateEvent)="handleUpdateTestEvent($event)"
-						(tabbingEvent)="handleTabbingTestEvent($event)"
+						[command]='testCommand'						
+						[planList]='planList'
+						[vehicleList]='vehicleList'						
+						[editingTest]='editingTest'
+						[injectorList]='injectorList'
+						(createEvent)='handleCreateTestEvent($event)'
+						(updateEvent)='handleUpdateTestEvent($event)'
+						(tabbingEvent)='handleTabbingTestEvent($event)'
 					></app-test-form>  				        
 					<app-test-table
 						*ngIf="testCommand == 'listing'"
-						[tableData]="filteredList"
+						[testList]="filteredList"
+						[filteredField]="filteredField"
 						(editEvent)="setEditingTestEvent($event)"
 						(removeEvent)="setRemovingTestEvent($event)"
+						(resetFilterEvent)="handleResetFilterEvent()"
 					></app-test-table>
 				<hr class="colorgraph">
 				<div>
@@ -253,6 +256,37 @@
 		<div class="modal-footer">
 			<button class="btn btn-outline-secondary btn-modal">CANCELAR</button>
 			<button class="btn btn-outline-primary btn-modal" (click)="confirmRemove()">REMOVER</button>
+	    </div>	
+	  </div>
+	</div>	
+  </div>  
+  <div class="modal fade" id="injectorNumberFilterModalToggle" aria-labelledby="injectorNumberModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="injectorNumberFilterModalToggleLabel">FILTRAR NUMERO DO INJETOR</h1>
+		  <button id="injectorNumberFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div class="table-responsive filter-input">
+				<label for="">DIGITE O NUMERO DO INJETOR</label>
+				<div class="input-group input-group-lg">
+					<input type="text" class="form-control" 
+						placeholder="Número do injetor"
+						aria-label="Sizing example input" 
+						aria-describedby="inputGroup-sizing-lg" 
+						[(ngModel)]="filteredTestInjectorNumber"
+					>
+				</div>
+				<app-alert-message 
+					[message]="alertMessage"
+					(clearEvent)="clearAlertMessage()"
+				></app-alert-message>
+			</div>
+		</div>	
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
+			<button class="btn btn-outline-primary btn-modal" (click)="doTestInjectorNumberFilter()">FILTRAR</button>
 	    </div>	
 	  </div>
 	</div>	

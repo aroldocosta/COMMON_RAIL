@@ -2,26 +2,38 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por numero do injetor" 
-                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-1-square"></i> NUM</a></th>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por sequência" 
-                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-window-stack"></i> SEQ</a></th>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por data" 
-                    data-bs-target="#dateFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-calendar-date"></i> DATA</a></th>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por modelo" 
-                    data-bs-target="#injectorFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-droplet-half"></i> INJET</a></th>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por veículo" 
-                    data-bs-target="#vehicleFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-truck"></i> VEíC</a></th>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por ordem de serviço" 
-                    data-bs-target="#serviceOrderFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-receipt"></i> OS</a></th>                                     
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Editar teste" 
-                    ><i class="bi bi-pencil-square"></i> EDT</a></th>
-                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Remover teste" 
-                    ><i class="bi bi-trash3"></i> REM</a></th>
+                <th><a *ngIf="filteredField != 'injectorNumber'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por numero do injetor" 
+                    data-bs-target="#injectorNumberFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-1-square"></i> NUM</a>
+                    <a *ngIf="filteredField == 'injectorNumber'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> NUM</a>
+                </th>
+                <th><a *ngIf="filteredField != 'sequence'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por sequência" 
+                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-window-stack"></i> SEQ</a>
+                    <a *ngIf="filteredField == 'sequence'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> SEQ</a>
+                </th>
+                <th><a *ngIf="filteredField != 'date'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por data" 
+                    data-bs-target="#dateFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-calendar-date"></i> DATA</a>
+                    <a *ngIf="filteredField == 'date'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> DATA</a>
+                </th>
+                <th><a *ngIf="filteredField != 'injectorModel'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por modelo" 
+                    data-bs-target="#injectorFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-droplet-half"></i> INJET</a>
+                    <a *ngIf="filteredField == 'injectorModel'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> INJET</a>
+                </th>
+                <th><a *ngIf="filteredField != 'vehicle'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por veículo" 
+                    data-bs-target="#vehicleFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-truck"></i> VEíC</a>
+                    <a *ngIf="filteredField == 'vehicle'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> VEIC</a>
+                </th>
+                <th><a *ngIf="filteredField != 'serviceOrder'" class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por ordem de serviço" 
+                    data-bs-target="#serviceOrderFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-receipt"></i> OS</a>
+                    <a *ngIf="filteredField == 'serviceOrder'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> OS</a>
+                </th>                                     
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Editar teste"><i class="bi bi-pencil-square"></i> EDT</a></th>
+                <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Remover teste"><i class="bi bi-trash3"></i> REM</a></th>
             </tr>
         </thead>
+
+        <i *ngIf="filteredField == 'serviceOrder'" class="bi bi-funnel"></i>
         <tbody>
-            <tr *ngFor="let d of tableData" (click)="emitEditEvent(d)">
+            <tr *ngFor="let d of testList" (click)="emitEditEvent(d)">
                 <td>{{d.injectorNumber}}</td>
                 <td>{{d.sequence}}</td>
                 <td>{{d.date | date: 'dd/MM/yyyy'}}</td>	

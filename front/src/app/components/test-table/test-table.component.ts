@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Filter } from 'src/app/model/filter.model';
 import { Test } from 'src/app/model/test.model';
 
 @Component({
@@ -8,14 +9,14 @@ import { Test } from 'src/app/model/test.model';
 })
 export class TestTableComponent {
 
-  @Input()  tableData: Test[] = [];
-
+  @Input() testList: Test[] = [];
+  @Input() filteredField = 'serviceOrder';
+  @Output() resetFilterEvent = new EventEmitter();    
   @Output() newEvent = new EventEmitter<Test>();
   @Output() editEvent = new EventEmitter<Test>();
   @Output() removeEvent = new EventEmitter<Test>();
 
   constructor() {}
-
 
   emitNewEvent(test: Test) {
     this.newEvent.emit(test);
@@ -29,4 +30,7 @@ export class TestTableComponent {
     this.removeEvent.emit(test);
   }
 
+  emitResetFilterEvent() {
+    this.resetFilterEvent.emit();
+  }
 }
