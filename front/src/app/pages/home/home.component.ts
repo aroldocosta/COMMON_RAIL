@@ -110,9 +110,13 @@ export class HomeComponent implements OnInit{
       command = 'creating';
       this.editingTest = new Test();
     } else if(this.testCommand == 'creating') {
+      this.topMessage?.setAlertMessage("Criando teste..", this.topMessage.SUCCESS, 1000);
+      command = 'editing';
+      button = 'SALVAR';
       this.saveTest();
       this.requestTests();
     } else if(this.testCommand == 'editing') {
+      this.topMessage?.setAlertMessage("Salvando dados do teste..", this.topMessage.SUCCESS, 1000);
       command = 'editing';
       button = 'SALVAR';
       this.updateTest();
@@ -214,15 +218,24 @@ export class HomeComponent implements OnInit{
   }
   /*------------------------------------------------------------*/
 
-  setEditingTestEvent(test: Test) {
+  handleEditingTestEvent(test: Test) {
     console.log("-------- EDITING TEST --------\n" + JSON.stringify(test));
     this.editingTest = test;
     this.testCommand = 'editing';
     this.homeCommandButton = 'SALVAR';
-    this.handleTabbingTestEvent(this.currentTab);
+
+    this.planService.get(test.planId).subscribe({
+      next: plan => {
+        this.editingPlan = plan;
+        this.handleTabbingTestEvent(this.currentTab);
+      },
+      error: err => {
+        console.log("Error: ", err);
+      }
+    });
   }
 
-  setRemovingTestEvent(test: Test) {
+  handleRemovingTestEvent(test: Test) {
     
   }
 
@@ -684,7 +697,7 @@ export class HomeComponent implements OnInit{
         let injectorTypeSelected = (this.editingInjector != null && this.editingInjector.type.length > 0);
 
         if(injectorTypeSelected && planType != injectorType) {
-          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", 3000);
+          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", this.topMessage.WARNING, 3000);
         }
       },
       error: err => {
@@ -708,7 +721,7 @@ export class HomeComponent implements OnInit{
         let planTypeSelected = (this.editingPlan != null) ? (this.editingPlan.type.length > 0) : false;
 
         if(planTypeSelected && planType != injectorType) {
-          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", 3000);
+          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", this.topMessage.WARNING, 3000);
         }
       },
       error: err => {

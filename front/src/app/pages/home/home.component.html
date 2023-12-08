@@ -82,8 +82,8 @@
 						*ngIf="testCommand == 'listing'"
 						[testList]="filteredList"
 						[filteredField]="filteredField"
-						(editEvent)="setEditingTestEvent($event)"
-						(removeEvent)="setRemovingTestEvent($event)"
+						(editEvent)="handleEditingTestEvent($event)"
+						(removeEvent)="handleRemovingTestEvent($event)"
 						(resetFilterEvent)="handleResetFilterEvent()"
 					></app-test-table>
 				<hr class="colorgraph">

@@ -83,13 +83,13 @@ insert into plan (
 	2,
 	700,
 	15,
-	null,
+	0,
 	25,
-	null,
+	0,
 	12, 
-	null,
+	0,
 	5,
-	null
+	0
 );
 
 insert into plan (
@@ -147,13 +147,13 @@ insert into plan (
 	2,
 	700,
 	15,
-	null,
+	0,
 	25,
-	null,
+	0,
 	12, 
-	null,
+	0,
 	5,
-	null
+	0
 );
 
 insert into plan (
@@ -211,13 +211,13 @@ insert into plan (
 	2,
 	700,
 	15,
-	null,
+	0,
 	25,
-	null,
+	0,
 	12, 
-	null,
+	0,
 	5,
-	null
+	0
 );
 
 insert into plan (
@@ -275,11 +275,11 @@ insert into plan (
 	2,
 	700,
 	15,
-	null,
+	0,
 	25,
-	null,
+	0,
 	12, 
-	null,
+	0,
 	5,
-	null
+	0
 );
