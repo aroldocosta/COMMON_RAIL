@@ -9,17 +9,23 @@ export class TopMessageComponent {
 
   messageFading = 100;
   messageHeight = "4.5em";
+  status = "alert-danger";
   message = "";
   fading = 1;
+
+  DANGER  = "alert-danger"
+  WARNING = "alert-warning"
+  SUCCESS = "alert-success"
 
   constructor() {
 
   }
 
-  setAlertMessage(message: string, time: number) {
+  setAlertMessage(message: string, status: string, time: number) {
     this.messageFading = 1; 
     this.messageHeight = "4.5em";   
     this.message = message;
+    this.status = status;
     let t = setTimeout(() => {
       this.setMessageFading();
       this.fading = 100;

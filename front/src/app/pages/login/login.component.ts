@@ -47,12 +47,12 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl("/");
           } else {
             this.router.navigateByUrl("/login");
-            this.topMessage?.setAlertMessage("Token de autenticação inválido!", 4500);
+            this.topMessage?.setAlertMessage("Token de autenticação inválido!", this.topMessage.DANGER, 4500);
           }
         },
         error: ( err ) => {
           console.log("Erro de autenticação: " + err.message);
-          this.topMessage?.setAlertMessage("Erro de autenticação!", 4500);
+          this.topMessage?.setAlertMessage("Erro de autenticação!", this.topMessage.DANGER, 4500);
         }
      });
   }
