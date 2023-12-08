@@ -8,6 +8,7 @@
 			</a>
 		</div>
 	</div>
+	{{editingPlan.type}}
 	<div>	
 		<div class="card">
 			<!-- <img id="gauge" class="card-img-top" src="assets/img/proveta.png" alt="Card image cap">  -->
@@ -50,8 +51,8 @@
 						<td>{{editingPlan.maxResistance | number: '1.2'}}</td>
 					</tr>
 					<tr>
-						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELECTRIC'">CAP(nF):</th>
-						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELECTRIC'">IND(mH):</th>
+						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
+						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
 						<td>{{editingPlan.minInductance | number: '1.2'}}</td>
 						<td>{{editingTest.inductance 	| number: '1.2'}}</td>
 						<td>{{editingPlan.maxInductance | number: '1.2'}}</td>
@@ -68,8 +69,8 @@
 			  </div>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'half_load'">
-			  <h2 class="top-title">{{tabTitle}}</h2>                               
-			  <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.halfLoadPressure}})</i></b></h6>
+			  <h2 class="top-title">{{tabTitle}}<i>({{editingPlan.halfLoadPressure}}bar)</i></h2>                               
+			  <!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.halfLoadPressure}})</i></b></h6> -->
 			  <div class="table-responsive">
 				<table class="table table-sm  table-striped">
 					<thead>
@@ -98,8 +99,8 @@
 			  </div>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'idling'">
-			  <h2 class="top-title">{{tabTitle}}</h2>
-			  <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.idlingPressure}}bar)</i></b></h6>	
+			  <h2 class="top-title">{{tabTitle}}<i>({{editingPlan.idlingPressure}}bar)</i></h2>
+			  <!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.idlingPressure}}bar)</i></b></h6>	 -->
 			  <div class="table-responsive">
 				<table class="table table-sm  table-striped">
 					<thead>
@@ -128,8 +129,8 @@
 			  </div>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'full_load'">
-				<h2 class="top-title">{{tabTitle}}</h2>
-				<h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.fullLoadPressure}}bar)</i></b></h6>	
+				<h2 class="top-title">{{tabTitle}}<i>({{editingPlan.fullLoadPressure}}bar)</i></h2>
+				<!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.fullLoadPressure}}bar)</i></b></h6>	 -->
 				<div class="table-responsive">
 				  <table class="table table-sm  table-striped">
 					  <thead>
@@ -142,13 +143,13 @@
 					  </thead>
 					  <tbody>
 					  <tr>
-						  <th scope="row" title="Quantidade vendidida em litros">DEB(ml)(ml):</th>
+						  <th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
 						  <td>{{editingPlan.minFullLoad 	| number: '1.2'}}</td>
 						  <td>{{editingTest.fullLoad 		| number: '1.2'}}</td>
 						  <td>{{editingPlan.maxFullLoad 	| number: '1.2'}}</td>
 					  </tr>
 					  <tr>
-						  <th scope="row" title="RET:al faturado">RET(ml)(ml):</th>
+						  <th scope="row" title="RET:al faturado">RET(ml):</th>
 						  <td>{{editingPlan.minFullLoadReturn 	| number: '1.2'}}</td>
 						  <td>{{editingTest.fullLoadReturn 		| number: '1.2'}}</td>
 						  <td>{{editingPlan.maxFullLoadReturn 	| number: '1.2'}}</td>
@@ -158,8 +159,8 @@
 				</div>
 			</div>	
 			<div class="card-body" *ngIf="tabId == 'pre_injection'">
-				<h2 class="top-title">{{tabTitle}}</h2>
-				<h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.preInjectionPressure}}bar)</i></b></h6>	
+				<h2 class="top-title">{{tabTitle}}({{editingPlan.preInjectionPressure}}bar)</h2>
+				<!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.preInjectionPressure}}bar)</i></b></h6>	 -->
 				<div class="table-responsive">
 					<table class="table table-sm  table-striped">
 						<thead>
