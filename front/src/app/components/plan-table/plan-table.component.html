@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>CODIGO</th>
+            <th>TIPO</th>
             <th>DESCRIÇÃO</th>
             <th>EDITAR</th>
             <th>REMOVER</th>
@@ -10,6 +11,7 @@
     <tbody>
         <tr *ngFor="let p of list" (click)="emitEditingEvent(p)">
             <td>{{p.code}}</td>
+            <td>{{p.type}}</td>
             <td>{{p.description}}</td>	
             <td slot="right"><a href="#" onclick="return null" (click)="emitEditingEvent(p)"><i class="bi bi-pencil-square icon"></i></a></td>
             <td slot="right"><a href="#" onclick="return null" (click)="emitRemovingEvent(p)" title="Excluir" title="Excluir"  

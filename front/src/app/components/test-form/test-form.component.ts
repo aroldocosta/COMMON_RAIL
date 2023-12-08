@@ -17,6 +17,7 @@ export class TestFormComponent {
     @Input() testList: any = [];
     @Input() planList: any = [];
     @Input() vehicleList: any = [];
+    @Input() injectorType: string = '';
     @Input() injectorList: any = [];
     @Input() editingTest: Test = new Test();
         

@@ -4,6 +4,7 @@
             <tr>
                 <!-- <th>CODE</th> -->
                 <th>MODELO</th>
+                <th>TIPO</th>
                 <th>DESCRIÇÃO</th>
                 <th>EDITAR</th>
                 <th>REMOVER</th>
@@ -13,6 +14,7 @@
             <tr *ngFor="let d of list" (click)="emitEditingEvent(d)">
                 <!-- <td>{{d.code}}</td> -->
                 <td>{{d.model}}</td>
+                <td>{{d.type}}</td>
                 <td>{{d.description}}</td>
                 <td slot="right"><a href="#" onclick="return null" (click)="emitEditingEvent(d)"><i class="bi bi-pencil-square icon"></i></a></td>
                 <td slot="right"><a href="#" onclick="return null" (click)="emitRemovingEvent(d)" title="Excluir" title="Excluir"  

@@ -1,7 +1,12 @@
 <app-top-message></app-top-message>  
 <div class="row input"> 
     <div class="col-6">
-        <label class="input" for="">ORDEM DE SERVIÇO / <a href="#" onclick="return null" (click)="newTestFromServiceOrder()">NOVO TESTE</a></label> 
+        <label class="input" for="">
+            <span>ORDEM DE SERVIÇO </span>
+            <span *ngIf="command == 'editing'">
+                / <a href="#" onclick="return null" (click)="newTestFromServiceOrder()">  NOVO TESTE</a>
+            </span>              
+        </label> 
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
                 placeholder="Digite a ordem de serviço"
