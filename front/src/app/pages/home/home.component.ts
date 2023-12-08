@@ -13,8 +13,7 @@ import { VehicleService } from 'src/app/services/vehicle.service';
 import { Injector } from 'src/app/model/injector.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
-import { ThisReceiver } from '@angular/compiler';
-import { bootstrapApplication } from '@angular/platform-browser';
+import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +22,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit{
 
+  @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any
   @Input() injectorList: any;
   @Input() vehicleList: any;
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit{
     if(!this.loginService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     } else {
-      this.list();
+      this.requestTests();
       this.requestUsers();
       this.requestPlans();
       this.requestVehicles();
@@ -111,12 +111,12 @@ export class HomeComponent implements OnInit{
       this.editingTest = new Test();
     } else if(this.testCommand == 'creating') {
       this.saveTest();
-      this.list();
+      this.requestTests();
     } else if(this.testCommand == 'editing') {
       command = 'editing';
       button = 'SALVAR';
       this.updateTest();
-      this.list();
+      this.requestTests();
     }
     this.testCommand = command;
     this.homeCommandButton = button;
@@ -367,7 +367,7 @@ export class HomeComponent implements OnInit{
     this.testService.create(this.editingTest).subscribe({
       next: resp => {
         //document.getElementById("newCloseModalButton")?.click();
-        this.list();
+        this.requestTests();
       },
       error: err => {
         console.log("Error: " + JSON.stringify(err));
@@ -379,9 +379,7 @@ export class HomeComponent implements OnInit{
     this.testService.update(this.editingTest).subscribe({
       next: resp => {
         this.handleTabbingTestEvent(this.currentTab);
-        this.list();
-        //this.aside.requestTotals();
-        //document.getElementById("editCloseModalButton")?.click();
+        this.requestTests();
       },
       error: err => {
         this.alertMessage = "Ação não permitida, entre em contato com a gerência."
@@ -489,7 +487,7 @@ export class HomeComponent implements OnInit{
 
   }
 
-  list() {
+  requestTests() {
     this.testService.list().subscribe({
       next: list => {        
         this.testList = list;
@@ -666,24 +664,57 @@ export class HomeComponent implements OnInit{
   handleTabbingTestEvent(tab: any) {
 
     this.currentTab = tab;
-    
-    let planId = this.editingTest.planId;
-
-    console.log("Current Tab: " + this.currentTab.heading);
-
-    this.planService.get(planId).subscribe({
-      next: plan => {
-        this.aside.setCurrentTab(this.currentTab, this.editingTest, plan);
-      },
-      error: err => {
-        console.log("Error:\n", err);
-      }
-    })
+    this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan, this.editingInjector);
   }
 
   handleUpdateTestEvent(test: Test) {
+    this.editingTest = test;  
+    this.handleTabbingTestEvent(this.currentTab);
+  }
+
+  handleUpdateTestPlanEvent(test: Test) {
+    this.editingTest = test; 
+    let planId = this.editingTest.planId;
+    
+    this.planService.get(planId).subscribe({
+      next: plan => {
+        this.editingPlan = plan;
+        let planType = (this.editingPlan != null) ? this.editingPlan.type : '';
+        let injectorType = (this.editingInjector != null) ? this.editingInjector.type : '';
+        let injectorTypeSelected = (this.editingInjector != null && this.editingInjector.type.length > 0);
+
+        if(injectorTypeSelected && planType != injectorType) {
+          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", 3000);
+        }
+      },
+      error: err => {
+        console.log("Error: ", err);
+      }
+    });
+
+    this.handleTabbingTestEvent(this.currentTab);
+  }
+
+  handleUpdateTestInjectorEvent(test: Test) {
+    debugger
     this.editingTest = test;
-    // this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan);
+    let injectorId = this.editingTest.injectorId;
+    
+    this.injectorService.get(injectorId).subscribe({
+      next: injector => {
+        this.editingInjector = injector;
+        let planType = (this.editingPlan != null) ? this.editingPlan.type : '';
+        let injectorType = (this.editingInjector != null) ? this.editingInjector.type : '';
+        let planTypeSelected = (this.editingPlan != null) ? (this.editingPlan.type.length > 0) : false;
+
+        if(planTypeSelected && planType != injectorType) {
+          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", 3000);
+        }
+      },
+      error: err => {
+        console.log("Error: ", err)
+      }
+    }) 
     this.handleTabbingTestEvent(this.currentTab);
   }
 

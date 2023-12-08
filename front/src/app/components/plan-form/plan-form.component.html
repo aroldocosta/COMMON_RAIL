@@ -17,12 +17,11 @@
                 <label class="input" for="">TIPO</label>
                 <div class="input-group input-group-lg">
                     <select class="form-select" aria-label="Default select example" 
-                        (change)="emitUpdatePlanEvent()" 
                         [disabled]="planCommand == 'editing'"
                         [(ngModel)]="editingPlan.type" 
                     >
                         <option value="" selected>Selecione o tipo</option>
-                        <option value="INDUCTIVE">INDUTIVO</option>
+                        <option value="INDUTIVO">INDUTIVO</option>
                         <option value="PIEZO_ELETRICO"selected>PIEZO ELÉTRICO</option>
                     </select>
                 </div>
@@ -49,7 +48,8 @@
                 <label class="input" for="">MIN RESISTÊNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
-                    <input type="text" class="form-control"
+                    <input type="number" class="form-control"
+                        step="0.01"
                         (input)="handleMinResistanceFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -61,7 +61,8 @@
                 <label class="input" for="">MAX RESISTÊNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxResistanceFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -72,26 +73,36 @@
         </div>  
         <div class="row" style="padding: 2em 0">  
             <div class="col-6">
-                <label class="input" for="">MIN INDUTÂNCIA</label>
+                <label *ngIf="editingPlan.type != 'PIEZO_ELETRICO'" class="input" for="">MIN INDUTÂNCIA</label>
+                <label *ngIf="editingPlan.type == 'PIEZO_ELETRICO'" class="input" for="">MIN CAPACITÂNCIA</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>mH</b></i></span>
-                    <input type="text" class="form-control" 
-                        (input)="handleMinInductanceFormat()"
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i>
+                        <b *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">mH</b>
+                        <b *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">nF</b>
+                    </i></span>
+                    <input type="number" class="form-control"
+                        step="0.01" 
+                        (input)="handleMinReactanceFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minInductance"
+                        [(ngModel)]="editingPlan.minReactance"
                     >
                 </div>
             </div>
             <div class="col-6">
-                <label class="input" for="">MAX INDUTÂNCIA</label>
+                <label *ngIf="editingPlan.type != 'PIEZO_ELETRICO'" class="input" for="">MAX INDUTÂNCIA</label>
+                <label *ngIf="editingPlan.type == 'PIEZO_ELETRICO'" class="input" for="">MAX CAPACITÂNCIA</label>
                 <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>mH</b></i></span>
-                    <input type="text" class="form-control"
-                        (input)="handleMaxInductanceFormat()" 
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i>
+                        <b *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">mH</b>
+                        <b *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">nF</b>
+                    </i></span>
+                    <input type="number" class="form-control"
+                        step="0.01"
+                        (input)="handleMaxReactanceFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxInductance"
+                        [(ngModel)]="editingPlan.maxReactance"
                     >
                 </div>
             </div>
@@ -101,7 +112,8 @@
                 <label class="input" for="">MIN ISOLAMENTO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control" 
+                        step="0.01"
                         (input)="handleMinIsolationFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -113,7 +125,8 @@
                 <label class="input" for="">MAX ISOLAMENTO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>&#937;</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxIsolationFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -129,7 +142,8 @@
                 <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control"
+                    <input type="number" class="form-control"
+                        step="0.01"
                         (input)="handleMinHalfLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -141,7 +155,8 @@
                 <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control" 
+                        step="0.01"
                         (input)="handleMaxHalfLoadFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -153,7 +168,8 @@
                 <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleHalfLoadPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -167,7 +183,8 @@
                 <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMinHalfLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -179,7 +196,8 @@
                 <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxHalfLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -197,7 +215,8 @@
                 <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMinIdlingFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -209,7 +228,8 @@
                 <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxIdlingFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -221,7 +241,8 @@
                 <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleIdlingPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -235,7 +256,8 @@
                 <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMinIdlingReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -247,7 +269,8 @@
                 <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control" 
+                        step="0.01"
                         (input)="handleMaxIdlingReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -265,7 +288,8 @@
                 <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control"
+                    <input type="number" class="form-control"
+                        step="0.01"
                         (input)="handleMinFullLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -277,7 +301,8 @@
                 <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control"
+                    <input type="number" class="form-control"
+                        step="0.01"
                         (input)="handleMaxFullLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -289,7 +314,8 @@
                 <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
-                    <input type="text" class="form-control"
+                    <input type="number" class="form-control"
+                        step="0.01"
                         (input)="handleFullLoadPressureFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -303,7 +329,8 @@
                 <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control" 
+                        step="0.01"
                         (input)="handleMinFullLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -315,7 +342,8 @@
                 <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxFullLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -333,7 +361,8 @@
                 <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMinPreInjectionFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -345,7 +374,8 @@
                 <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxPreInjectionFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -357,7 +387,8 @@
                 <label class="input" for="">PRESSÃO</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control" 
+                        step="0.01"
                         (input)="handlePreInjectionPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -371,7 +402,8 @@
                 <label class="input" for="">RETORNO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control" 
+                        step="0.01"
                         (input)="handleMinPreInjectionReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
@@ -383,7 +415,8 @@
                 <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="text" class="form-control" 
+                    <input type="number" class="form-control"
+                        step="0.01" 
                         (input)="handleMaxPreInjectionReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 

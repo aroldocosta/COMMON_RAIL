@@ -63,10 +63,11 @@
 					</div>	
 				</div>	
 				<hr class="colorgraph">
+					<app-top-message></app-top-message>
 					<app-test-form
 						*ngIf="testCommand == 'editing' || testCommand == 'creating'" 
 						[command]='testCommand'	
-						[planType]='editingTest.planType'					
+						[injectorType]='editingTest.injectorType'					
 						[planList]='planList'
 						[vehicleList]='vehicleList'						
 						[editingTest]='editingTest'
@@ -74,6 +75,8 @@
 						(createEvent)='handleCreateTestEvent($event)'
 						(updateEvent)='handleUpdateTestEvent($event)'
 						(tabbingEvent)='handleTabbingTestEvent($event)'
+						(updatePlanEvent)='handleUpdateTestPlanEvent($event)'
+						(updateInjectorEvent)='handleUpdateTestInjectorEvent($event)'
 					></app-test-form>  				        
 					<app-test-table
 						*ngIf="testCommand == 'listing'"

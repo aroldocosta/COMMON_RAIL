@@ -22,6 +22,8 @@ export class TestFormComponent {
         
     @Output() tabbingEvent = new EventEmitter<any>();
     @Output() updateEvent = new EventEmitter<Test>();
+    @Output() updatePlanEvent = new EventEmitter<Test>();
+    @Output() updateInjectorEvent = new EventEmitter<Test>();
     @Output() createEvent = new EventEmitter<Test>();
     @Output() clearEvent = new EventEmitter();  
 
@@ -41,6 +43,16 @@ export class TestFormComponent {
       console.log("PlanId: " + this.editingTest.planId);
       this.updateEvent.emit(this.editingTest);
     }
+
+    emitUpdateTestPlanEvent() {
+      console.log("PlanId: " + this.editingTest.planId);
+      this.updatePlanEvent.emit(this.editingTest);
+    }
+
+    emitUpdateTestInjectorEvent() {
+      console.log("PlanId: " + this.editingTest.injectorId);
+      this.updateInjectorEvent.emit(this.editingTest);
+    }
     emitCreateEvent(test: Test) {
       this.createEvent.emit(test);
     }
@@ -48,10 +60,12 @@ export class TestFormComponent {
       //this.editingTest.resistance   = this.formatter.format(this.editingTest.resistance);
       this.emitUpdateTestEvent();
     }
-    handleInductanceFormat() {
-      //this.editingTest.inductance   = this.formatter.format(this.editingTest.inductance);
+
+    handleReactanceFormat() {
+      //this.editingTest.reactance   = this.formatter.format(this.editingTest.reactance);
       this.emitUpdateTestEvent();
     }
+
     handleIsolationFormat() {
       this.editingTest.isolation    = this.formatter.format(this.editingTest.isolation);
       this.emitUpdateTestEvent();

@@ -1,3 +1,4 @@
+<app-top-message></app-top-message>  
 <div class="row input"> 
     <div class="col-6">
         <label class="input" for="">ORDEM DE SERVIÇO / <a href="#" onclick="return null" (click)="newTestFromServiceOrder()">NOVO TESTE</a></label> 
@@ -16,7 +17,7 @@
         <label class="input" for="">PLANO</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateTestEvent()"
+                (change)="emitUpdateTestPlanEvent()"
                 [(ngModel)]="editingTest.planId" 
                 [disabled]="command == 'editing'">
                 <option value="0"selected>Selecione</option>
@@ -42,7 +43,7 @@
         <label class="input" for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateTestEvent()"
+                (change)="emitUpdateTestInjectorEvent()"
                 [(ngModel)]="editingTest.injectorId" 
                 [disabled]="command == 'editing'">
                 <option value="0" selected>Selecione</option>
@@ -110,16 +111,20 @@
                         >
                     </div>
                 </div>
-                <div class="col-4" *ngIf="command == 'editing'">
-                    <label class="input" for="">INDUTÂNCIA</label>
+                <div class="col-4">
+                    <label *ngIf="editingTest.injectorType != 'PIEZO_ELETRICO'"class="input" for="">INDUTÂNCIA</label>
+                    <label *ngIf="editingTest.injectorType == 'PIEZO_ELETRICO'" class="input" for="">CAPACITÂNCIA</label>
                     <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>mH</b></i></span>
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i>
+                            <b *ngIf="injectorType != 'PIEZO_ELETRICO'">mH</b>
+                            <b *ngIf="injectorType == 'PIEZO_ELETRICO'">nF</b>
+                        </i></span>
                         <input type="number" class="form-control" 
                             step="0.01"
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleInductanceFormat()"
-                            [(ngModel)]="editingTest.inductance"
+                            (input)="handleReactanceFormat()"
+                            [(ngModel)]="editingTest.reactance"
                         >
                     </div>
                 </div>
