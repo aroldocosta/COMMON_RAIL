@@ -65,11 +65,12 @@
 				<hr class="colorgraph">
 					<app-test-form
 						*ngIf="testCommand == 'editing' || testCommand == 'creating'" 
-						[command]='testCommand'						
+						[command]='testCommand'	
+						[planType]='editingTest.planType'					
 						[planList]='planList'
 						[vehicleList]='vehicleList'						
 						[editingTest]='editingTest'
-						[injectorList]='injectorList'
+						[injectorList]='injectorList'						
 						(createEvent)='handleCreateTestEvent($event)'
 						(updateEvent)='handleUpdateTestEvent($event)'
 						(tabbingEvent)='handleTabbingTestEvent($event)'
@@ -121,7 +122,7 @@
 			<hr class="colorgraph">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelPlanCommandButton()">CANCELAR</button>	
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelPlanCommandButton()">FECHAR</button>	
 		  	<button class="btn btn-outline-primary btn-modal" (click)="handlePlanCommandButton()">{{modalCommandButton}}</button>
 		</div>
 	  </div>
@@ -152,7 +153,7 @@
 			<hr class="colorgraph">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelVehicleCommandButton()">CANCELAR</button>
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelVehicleCommandButton()">FECHAR</button>
 		  	<button class="btn btn-outline-primary btn-modal" (click)="handleVehicleCommandButton()">{{modalCommandButton}}</button>
 		</div>
 	  </div>
@@ -181,7 +182,7 @@
 			<hr class="colorgraph">
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelInjectorCommandButton()">CANCELAR</button>
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelInjectorCommandButton()">FECHAR</button>
 		  	<button class="btn btn-outline-primary btn-modal" (click)="handleInjectorCommandButton()">{{modalCommandButton}}</button>
 		</div>
 	  </div>
@@ -306,7 +307,7 @@
 						placeholder="Número de sequência"
 						aria-label="Sizing example input" 
 						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="filteredSequence"
+						[(ngModel)]="filteredTestSequence"
 					>
 				</div>
 				<app-alert-message 

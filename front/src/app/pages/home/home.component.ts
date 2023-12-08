@@ -30,8 +30,6 @@ export class HomeComponent implements OnInit{
   @Input() userList: any;
   testCommand: string = 'listing';
   modalCommand: string = 'listing';
-  // vehicleCommand: string = 'listing';
-  // injectorCommand: string = 'listing';
   homeCommandButton = 'NOVO TESTE'
   modalCommandButton = 'NOVO'
   report: any = 'Aguarde...';
