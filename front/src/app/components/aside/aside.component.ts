@@ -18,7 +18,9 @@ export class AsideComponent implements OnInit {
   gaugeH = 0;
   gaugeY = 135;
 
-  
+  res_color = ''; 
+  rct_color = '';
+  iso_color = '';
 
   // @ViewChild('gauge', { static: false, read: HTMLCanvasElement }) gauge!: HTMLCanvasElement;
   // @ViewChild('gaugeCanvas') gaugeCanvas!: ElementRef;
@@ -38,22 +40,41 @@ export class AsideComponent implements OnInit {
     this.retContxt = this.retCanvas.nativeElement.getContext('2d');
   }
 
-  drawGauge(contxt: CanvasRenderingContext2D, maxValue: string, minValue: string, value: string) {
+  drawGauge(contxt: CanvasRenderingContext2D, value: string, maxValue: string, minValue: string) {
     let colHeight = 130;
-    let red = 0;
-    let grn = 255;
-    let blu = 0;
-
     let val = Number(value);
     let min = Number(minValue);
     let max = Number(maxValue);
 
     let n_val = 100*val/max;
+    let col  = (colHeight * n_val / 100);
+    let color = this.getColor(val, max, min);
+
+    this.gaugeY = colHeight - col+10;
+    this.gaugeH = col;
+
+    contxt.clearRect(0, 0, this.debCanvas.nativeElement.width, this.debCanvas.nativeElement.height);
+    contxt.clearRect(0, 0, this.retCanvas.nativeElement.width, this.retCanvas.nativeElement.height);
+    contxt.beginPath();
+    contxt.lineWidth = 6;
+    contxt.fillStyle = `rgb(${color.red}, ${color.grn}, ${color.blu})`;
+    contxt.fillRect(85, this.gaugeY, 130, this.gaugeH);
+    contxt.stroke();
+  }
+
+
+  requestTotals() {
+
+  }
+
+  getColor(val: number, max: number, min: number) {
+    let red = 0;
+    let grn = 0;
+    let blu = 0;   
+    let n_val = 100*val/max;
     let n_min = 100*min/max;
     let n_max = 100;
     let n_ref = 100*((max+min)/2)/max;
-
-    let col  = (colHeight * n_val / 100);
     let med1 = (n_ref + n_min)/2;
     let med2 = (n_ref + n_max)/2;
 
@@ -81,22 +102,22 @@ export class AsideComponent implements OnInit {
         blu = 0;
       }
     }
-
-    this.gaugeY = colHeight - col+10;
-    this.gaugeH = col;
-
-    contxt.clearRect(0, 0, this.debCanvas.nativeElement.width, this.debCanvas.nativeElement.height);
-    contxt.clearRect(0, 0, this.retCanvas.nativeElement.width, this.retCanvas.nativeElement.height);
-    contxt.beginPath();
-    contxt.lineWidth = 6;
-    contxt.fillStyle = `rgb(${red}, ${grn}, ${blu})`;
-    contxt.fillRect(85, this.gaugeY, 130, this.gaugeH);
-    contxt.stroke();
+    let color = {red: red, grn: grn, blu: blu};
+    return color;
   }
 
+  drawColor(value: string, maxValue: string, minValue: string) {
+    let val = Number(value);
+    let min = (minValue != null) ? Number(minValue) : 0;
+    let max = (maxValue != null) ? Number(maxValue) : 0;
 
-  requestTotals() {
+    console.log("Max: " + max + " Min: " + min);
+    
+    let color = this.getColor(val, max, min);
 
+    if(max <= min && val >= min) {color.red = 0; color.grn = 255; color.blu = 0}
+
+    return `text-shadow: 1px 1px 2px black; color: rgb(${color.red}, ${color.grn}, ${color.blu}); `;
   }
 
   setCurrentTab(tab: any, test: Test, plan: Plan) {
@@ -105,18 +126,22 @@ export class AsideComponent implements OnInit {
     this.editingTest = test;
     this.editingPlan = plan;
 
-    if(tab.id == 'half_load') {
-      this.drawGauge(this.debContxt, plan.maxHalfLoad, plan.minHalfLoad, test.halfLoad);
-      this.drawGauge(this.retContxt, plan.maxHalfLoadReturn, plan.minHalfLoadReturn, test.halfLoadReturn);
+    if(tab.id == 'med_electric') {
+      this.res_color = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
+      this.rct_color = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
+      this.iso_color = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
+    }else if(tab.id == 'half_load') {
+      this.drawGauge(this.debContxt, test.halfLoad, plan.maxHalfLoad, plan.minHalfLoad);
+      this.drawGauge(this.retContxt, test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);
     } else if(tab.id == 'full_load') {
-      this.drawGauge(this.debContxt, plan.maxFullLoad, plan.minFullLoad, test.fullLoad);
-      this.drawGauge(this.retContxt, plan.maxFullLoadReturn, plan.minFullLoadReturn, test.fullLoadReturn);
+      this.drawGauge(this.debContxt, test.fullLoad, plan.maxFullLoad, plan.minFullLoad);
+      this.drawGauge(this.retContxt, plan.maxFullLoadReturn, test.fullLoadReturn, plan.minFullLoadReturn);
     } else if(tab.id == 'idling') {
-      this.drawGauge(this.debContxt, plan.maxIdling, plan.minIdling, test.idling);
-      this.drawGauge(this.retContxt, plan.maxIdlingReturn, plan.minIdlingReturn, test.idlingReturn);
+      this.drawGauge(this.debContxt, test.idling, plan.maxIdling, plan.minIdling);
+      this.drawGauge(this.retContxt, test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);
     } else if(tab.id == 'pre_injection') {
-      this.drawGauge(this.debContxt, plan.maxPreInjection, plan.minPreInjection, test.preInjection);
-      this.drawGauge(this.retContxt, plan.maxPreInjectionReturn, plan.minPreInjectionReturn, test.preInjectionReturn);
+      this.drawGauge(this.debContxt, test.preInjection, plan.maxPreInjection, plan.minPreInjection);
+      this.drawGauge(this.retContxt, test.preInjectionReturn, plan.maxPreInjectionReturn, plan.minPreInjectionReturn);
     }
   }
 }

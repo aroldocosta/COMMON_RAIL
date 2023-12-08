@@ -68,7 +68,7 @@ export class TestFormComponent {
     }
 
     handleIsolationFormat() {
-      this.editingTest.isolation    = this.formatter.format(this.editingTest.isolation);
+      //this.editingTest.isolation    = this.formatter.format(this.editingTest.isolation);
       this.emitUpdateTestEvent();
     }
     handleHalfLoadFormat() {

@@ -46,20 +46,20 @@
 					<tr>
 						<th scope="row" title="Medições elétricas">RES(m&#937;):</th>
 						<td>{{editingPlan.minResistance | number: '1.2'}}</td>
-						<td>{{editingTest.resistance 	| number: '1.2'}}</td>
+						<td [style]="res_color">{{editingTest.resistance 	| number: '1.2'}}</td>
 						<td>{{editingPlan.maxResistance | number: '1.2'}}</td>
 					</tr>
 					<tr>
 						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
 						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
 						<td>{{editingPlan.minReactance | number: '1.2'}}</td>
-						<td>{{editingTest.reactance	   | number: '1.2'}}</td>
+						<td [style]="rct_color">{{editingTest.reactance	   | number: '1.2'}}</td>
 						<td>{{editingPlan.maxReactance | number: '1.2'}}</td>
 					</tr>
 					<tr>
 						<th scope="row" title="RET:al faturado">ISO(&#937;):</th>
 						<td>{{editingPlan.minIsolation 	| number: '1.2'}}</td>
-						<td>{{editingTest.isolation 	| number: '1.2'}}</td>
+						<td [style]="iso_color">{{editingTest.isolation 	| number: '1.2'}}</td>
 						<td *ngIf="editingPlan.maxIsolation">{{editingPlan.maxIsolation  | number: '1.2'}}</td>
 						<td *ngIf="!editingPlan.maxIsolation" class="infinity">&infin;</td>
 					</tr>		  
