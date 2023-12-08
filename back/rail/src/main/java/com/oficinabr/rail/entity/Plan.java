@@ -22,11 +22,11 @@ public class Plan {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
 	
-	@Column(name = "type")
-	private String type;
-	
 	@Column(name = "code")
 	private String code;
+	
+	@Column(name = "type")
+	private String type;
 
 	@Column(name = "description")
 	private String description;
@@ -40,11 +40,11 @@ public class Plan {
 	@Column(name = "min_resistance")
 	private Float minResistance;
 	
-	@Column(name = "max_inductance")
-	private Float maxInductance;
+	@Column(name = "max_reactance")
+	private Float maxReactance;
 	
-	@Column(name = "min_inductance")
-	private Float minInductance;
+	@Column(name = "min_reactance")
+	private Float minReactance;
 	
 	@Column(name = "max_isolation")
 	private Float maxIsolation;
@@ -118,13 +118,13 @@ public class Plan {
 	
 	public Plan(PlanDTO dto) {
 		this.setId(dto.id());
-		this.setType(dto.type());
 		this.setCode(dto.code());
+		this.setType(dto.type());
 		this.setDescription(dto.description());
 		this.setMaxResistance(dto.maxResistance());
 		this.setMinResistance(dto.minResistance());
-		this.setMaxInductance(dto.maxInductance());
-		this.setMinInductance(dto.minInductance());
+		this.setMaxReactance(dto.maxReactance());
+		this.setMinReactance(dto.minReactance());
 		this.setMaxIsolation(dto.maxIsolation());
 		this.setMinIsolation(dto.minIsolation());
 		this.setMaxHalfLoad(dto.maxHalfLoad());
@@ -155,18 +155,20 @@ public class Plan {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public String getCode() {
 		return code;
 	}
 	public void setCode(String code) {
 		this.code = code;
 	}
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -193,17 +195,17 @@ public class Plan {
 	public void setMinResistance(Float minResistance) {
 		this.minResistance = minResistance;
 	}
-	public Float getMaxInductance() {
-		return maxInductance;
+	public Float getMaxReactance() {
+		return maxReactance;
 	}
-	public void setMaxInductance(Float maxInductance) {
-		this.maxInductance = maxInductance;
+	public void setMaxReactance(Float maxReactance) {
+		this.maxReactance = maxReactance;
 	}
-	public Float getMinInductance() {
-		return minInductance;
+	public Float getMinReactance() {
+		return minReactance;
 	}
-	public void setMinInductance(Float minInductance) {
-		this.minInductance = minInductance;
+	public void setMinReactance(Float minReactance) {
+		this.minReactance = minReactance;
 	}
 	public Float getMaxIsolation() {
 		return maxIsolation;

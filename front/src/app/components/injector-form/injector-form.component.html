@@ -1,5 +1,5 @@
 <div class="row" style="padding: 2em 0"> 
-    <div class="col-12">
+    <div class="col-6">
         <label class="input" for="">MODELO</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
@@ -10,7 +10,20 @@
                 [(ngModel)]="editingInjector.model"
             >
         </div>
-    </div>      
+    </div> 
+    <div class="col-6">
+        <label class="input" for="">TIPO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateInjectorEvent()" 
+                [(ngModel)]="editingInjector.type" 
+            >
+                <option value="" selected>Selecione o tipo</option>
+                <option value="INDUCTIVE">INDUTIVO</option>
+                <option value="PIEZO_ELETRICO"selected>PIEZO ELÉTRICO</option>
+            </select>
+        </div>
+    </div>     
 </div>
 <div class="row" style="padding: 2em 0">
     <div class="col-12">

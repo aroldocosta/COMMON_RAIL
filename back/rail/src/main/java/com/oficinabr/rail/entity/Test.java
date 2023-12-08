@@ -60,8 +60,8 @@ public class Test {
 	@Column(name = "resistance")
 	private Float resistance;
 	
-	@Column(name = "inductance")
-	private Float inductance;
+	@Column(name = "reactance")
+	private Float reactance;
 	
 	@Column(name = "isolation")
 	private Float isolation;
@@ -102,7 +102,7 @@ public class Test {
 		this.setComments(dto.comments());
 		this.setDescription(dto.description());
 		this.setResistance(dto.resistance());
-		this.setInductance(dto.inductance());
+		this.setReactance(dto.reactance());
 		this.setIsolation(dto.isolation());
 		//------------------------------------
 		this.setHalfLoad(dto.halfLoad());
@@ -124,7 +124,7 @@ public class Test {
 	t.getSequence(),
 	t.getDate(),
 	t.getResistance(),
-	t.getInductance(),
+	t.getReactance(),
 	t.getIsolation(),
 	t.getHalfLoad(),
 	t.getFullLoad(),
@@ -238,12 +238,12 @@ public class Test {
 		this.resistance = resistance;
 	}
 
-	public Float getInductance() {
-		return inductance;
+	public Float getReactance() {
+		return reactance;
 	}
 
-	public void setInductance(Float inductance) {
-		this.inductance = inductance;
+	public void setReactance(Float reactance) {
+		this.reactance = reactance;
 	}
 
 	public Float getIsolation() {

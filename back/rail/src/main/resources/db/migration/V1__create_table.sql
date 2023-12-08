@@ -17,6 +17,7 @@ CREATE TABLE vehicle (
 CREATE TABLE injector (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	code TEXT,
+	type TEXT NOT NULL,
 	model TEXT NOT NULL,
 	description TEXT
 );
@@ -29,7 +30,7 @@ CREATE TABLE test (
 	comments TEXT,
 	date TEXT NOT NULL,
 	resistance NUMERIC,
-	inductance NUMERIC,
+	reactance NUMERIC,
 	isolation NUMERIC,
 	half_load NUMERIC,
 	full_load NUMERIC,
@@ -48,13 +49,13 @@ CREATE TABLE test (
 
 CREATE TABLE plan (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
-	type TEXT NOT NULL,
 	code TEXT NOT NULL,
+	type TEXT NOT NULL,
 	description TEXT,
 	max_resistance NUMERIC,
 	min_resistance NUMERIC,
-	max_inductance NUMERIC,
-	min_inductance NUMERIC,
+	max_reactance NUMERIC,
+	min_reactance NUMERIC,
 	max_isolation NUMERIC,
 	min_isolation NUMERIC,
 	max_half_load NUMERIC,

@@ -9,7 +9,7 @@ export class Test {
 	comments: string = '';
 	date: string = '';
 	resistance: string = '0.00';
-	inductance: string = '0.00';
+	reactance: string = '0.00';
 	isolation: string = '0.00';
 	halfLoad: string = '0.00';
 	fullLoad: string = '0.00';
@@ -20,6 +20,7 @@ export class Test {
 	idlingReturn: string = '0.00';
 	preInjectionReturn: string = '0.00';
 	injectorId: string = '';
+	injectorType: string = '';
 	injectorModel: string = '';
 	planId: string = '';
 	vehicleId: string = '';

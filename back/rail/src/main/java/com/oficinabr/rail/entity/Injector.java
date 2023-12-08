@@ -26,6 +26,9 @@ public class Injector {
 	@Column(name = "code")
 	private String code;
 	
+	@Column(name = "type")
+	private String type;
+	
 	@Column(name = "model")
 	private String model;
 	
@@ -46,6 +49,7 @@ public class Injector {
 	public Injector(InjectorDTO dto) {
 		this.setId(dto.id());
 		this.setCode(dto.code());
+		this.setType(dto.type());
 		this.setModel(dto.model());
 		this.setDescription(dto.description());
 		//this.setTestList(new ArrayList<Test>());
@@ -66,7 +70,14 @@ public class Injector {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	public String getModel() {
 		return model;
 	}

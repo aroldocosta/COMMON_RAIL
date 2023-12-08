@@ -6,8 +6,8 @@ export class Plan {
 	description: string = '';
 	maxResistance: string = '0.00';
 	minResistance: string = '0.00';
-	maxInductance: string = '0.00';
-	minInductance: string = '0.00';
+	maxReactance: string = '0.00';
+	minReactance: string = '0.00';
 	maxIsolation: string = '0.00';
 	minIsolation: string = '0.00';
 	maxHalfLoad: string = '0.00';

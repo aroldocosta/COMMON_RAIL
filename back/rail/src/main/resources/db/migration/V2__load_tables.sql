@@ -22,21 +22,21 @@ insert into vehicle (id, plate, model, year_model, owner_id) values ('VCL3333', 
 insert into vehicle (id, plate, model, year_model, owner_id) values ('VCL4444', 'ABC4444', 'FORD 04', '2023/2023', '2933d5c4-3b47-4355-acf9-b24e358740d1');
 
 -- Injetores
-insert into injector (id, code, model, description) values ('INJ1111', '0', '0445110231', 'Modelo de injetor para teste');	
-insert into injector (id, code, model, description) values ('INJ2222', '0', '0445110190', 'Modelo de injetor para teste');	
-insert into injector (id, code, model, description) values ('INJ3333', '0', '0445110520', 'Modelo de injetor para teste');	
-insert into injector (id, code, model, description) values ('INJ4444', '0', '0445110374', 'Modelo de injetor para teste');							 
+insert into injector (id, code, type, model, description) values ('INJ1111', '0', 'INDUTIVO', '0445110231', 'Modelo de injetor para teste');	
+insert into injector (id, code, type, model, description) values ('INJ2222', '0', 'INDUTIVO', '0445110190', 'Modelo de injetor para teste');	
+insert into injector (id, code, type, model, description) values ('INJ3333', '0', 'PIEZO_ELETRICO', '0445110520', 'Modelo de injetor para teste');	
+insert into injector (id, code, type, model, description) values ('INJ4444', '0', 'PIEZO_ELETRICO', '0445110374', 'Modelo de injetor para teste');							 
 
 -- Planos
 insert into plan (
 	id,
-	type,
 	code,
+	type,
 	description,
 	max_resistance,
 	min_resistance,
-	max_inductance,
-	min_inductance,
+	max_reactance,
+	min_reactance,
 	max_isolation,
 	min_isolation,
 	max_half_load,
@@ -61,13 +61,13 @@ insert into plan (
 	min_pre_injection_return
 ) values (
 	'PLN000001',
-	'INDUCTIVE',
 	'PLANO_01',
+	'INDUTIVO',
 	'Teste plano 01',
-	0.70,
-	0.30,
-	0.70,
-	0.30,
+	700,
+	300,
+	700,
+	300,
 	null,
 	270,
 	28,
@@ -94,13 +94,13 @@ insert into plan (
 
 insert into plan (
 	id,
-	type,
 	code,
+	type,
 	description,
 	max_resistance,
 	min_resistance,
-	max_inductance,
-	min_inductance,
+	max_reactance,
+	min_reactance,
 	max_isolation,
 	min_isolation,
 	max_half_load,
@@ -125,13 +125,13 @@ insert into plan (
 	min_pre_injection_return
 ) values (
 	'PLN000002',
-	'INDUCTIVE',
 	'PLANO_02',
+	'INDUTIVO',
 	'Teste plano 02',
-	0.70,
-	0.30,
-	0.70,
-	0.30,
+	700,
+	300,
+	700,
+	300,
 	null,
 	270,
 	28,
@@ -158,13 +158,13 @@ insert into plan (
 
 insert into plan (
 	id,
-	type,
 	code,
+	type,
 	description,
 	max_resistance,
 	min_resistance,
-	max_inductance,
-	min_inductance,
+	max_reactance,
+	min_reactance,
 	max_isolation,
 	min_isolation,
 	max_half_load,
@@ -189,13 +189,13 @@ insert into plan (
 	min_pre_injection_return
 ) values (
 	'PLN000003',
-	'INDUCTIVE',
 	'HILUX 2.5',
+	'INDUTIVO',
 	'Plano de Teste 2005 a 2010',
 	120,
 	80,
-	0.70,
-	0.30,
+	700,
+	300,
 	null,
 	270,
 	28,
@@ -222,13 +222,13 @@ insert into plan (
 
 insert into plan (
 	id,
-	type,
 	code,
+	type,
 	description,
 	max_resistance,
 	min_resistance,
-	max_inductance,
-	min_inductance,
+	max_reactance,
+	min_reactance,
 	max_isolation,
 	min_isolation,
 	max_half_load,
@@ -253,13 +253,13 @@ insert into plan (
 	min_pre_injection_return
 ) values (
 	'PLN000004',
-	'PIEZO_ELECTRIC',
 	'PLANO_04',
+	'PIEZO_ELETRICO',
 	'Teste plano 04',
-	0.70,
-	0.30,
-	0.70,
-	0.30,
+	700,
+	300,
+	700,
+	300,
 	null,
 	270,
 	28,

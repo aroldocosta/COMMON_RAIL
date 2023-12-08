@@ -8,7 +8,6 @@
 			</a>
 		</div>
 	</div>
-	{{editingPlan.type}}
 	<div>	
 		<div class="card">
 			<!-- <img id="gauge" class="card-img-top" src="assets/img/proveta.png" alt="Card image cap">  -->
@@ -53,9 +52,9 @@
 					<tr>
 						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
 						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
-						<td>{{editingPlan.minInductance | number: '1.2'}}</td>
-						<td>{{editingTest.inductance 	| number: '1.2'}}</td>
-						<td>{{editingPlan.maxInductance | number: '1.2'}}</td>
+						<td>{{editingPlan.minReactance | number: '1.2'}}</td>
+						<td>{{editingTest.reactance	   | number: '1.2'}}</td>
+						<td>{{editingPlan.maxReactance | number: '1.2'}}</td>
 					</tr>
 					<tr>
 						<th scope="row" title="RET:al faturado">ISO(&#937;):</th>

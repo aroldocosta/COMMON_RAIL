@@ -9,7 +9,6 @@ import { FormatService } from 'src/app/services/format.service';
 })
 export class PlanFormComponent {
 
-
   @Input() planCommand: string = '';
   @Input() message: string = '';
   @Input() testDate: string = '';
@@ -47,8 +46,8 @@ export class PlanFormComponent {
   }
 
 
-  handleMaxInductanceFormat() {
-    //this.editingPlan.maxInductance         = this.formatter.format(this.editingPlan.maxInductance);
+  handleMaxReactanceFormat() {
+    //this.editingPlan.maxReactance         = this.formatter.format(this.editingPlan.maxReactance);
     this.emitUpdatePlanEvent();
   }
 
@@ -125,8 +124,8 @@ export class PlanFormComponent {
   }
 
 
-  handleMinInductanceFormat() {
-    //this.editingPlan.minInductance         = this.formatter.format(this.editingPlan.minInductance);
+  handleMinReactanceFormat() {
+    //this.editingPlan.minReactance         = this.formatter.format(this.editingPlan.minReactance);
     this.emitUpdatePlanEvent();
   }
 

@@ -4,13 +4,13 @@ import com.oficinabr.rail.entity.Plan;
 
 public record PlanDTO(
 	String id,
-	String type,
 	String code,
+	String type,
 	String description,
 	Float maxResistance,
 	Float minResistance,
-	Float maxInductance,
-	Float minInductance,
+	Float maxReactance,
+	Float minReactance,
 	Float maxIsolation,
 	Float minIsolation,
 	Float maxHalfLoad,
@@ -38,13 +38,13 @@ public record PlanDTO(
 	public PlanDTO(Plan p) {
 		this(
 			p.getId(),
-			p.getType(),
 			p.getCode(),
+			p.getType(),
 			p.getDescription(),
 			p.getMaxResistance(),
 			p.getMinResistance(),
-			p.getMaxInductance(),
-			p.getMinInductance(),
+			p.getMaxReactance(),
+			p.getMinReactance(),
 			p.getMaxIsolation(),
 			p.getMinIsolation(),
 			p.getMaxHalfLoad(),
