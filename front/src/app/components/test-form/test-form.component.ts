@@ -27,9 +27,6 @@ export class TestFormComponent {
 
     numberList = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    
-    
-
     constructor(
       private formatter: FormatService
     ) {
@@ -48,47 +45,47 @@ export class TestFormComponent {
       this.createEvent.emit(test);
     }
     handleResistanceFormat() {
-      this.editingTest.resistance         = this.formatter.format(this.editingTest.resistance);
+      //this.editingTest.resistance   = this.formatter.format(this.editingTest.resistance);
       this.emitUpdateTestEvent();
     }
     handleInductanceFormat() {
-      this.editingTest.inductance         = this.formatter.format(this.editingTest.inductance);
+      //this.editingTest.inductance   = this.formatter.format(this.editingTest.inductance);
       this.emitUpdateTestEvent();
     }
     handleIsolationFormat() {
-      this.editingTest.isolation          = this.formatter.format(this.editingTest.isolation);
+      this.editingTest.isolation    = this.formatter.format(this.editingTest.isolation);
       this.emitUpdateTestEvent();
     }
     handleHalfLoadFormat() {
-      this.editingTest.halfLoad           = this.formatter.format(this.editingTest.halfLoad);
+      //this.editingTest.halfLoad     = this.formatter.format(this.editingTest.halfLoad);
       this.emitUpdateTestEvent();
     }
     handleIdlingFormat() {
-      this.editingTest.idling             = this.formatter.format(this.editingTest.idling); 
+      //this.editingTest.idling = this.formatter.format(this.editingTest.idling); 
       this.emitUpdateTestEvent();
     }
     handleFullLoadFormat() {
-      this.editingTest.fullLoad           = this.formatter.format(this.editingTest.fullLoad);
+      //this.editingTest.fullLoad           = this.formatter.format(this.editingTest.fullLoad);
       this.emitUpdateTestEvent();
     }
     handlePreInjectionFormat() {
-      this.editingTest.preInjection       = this.formatter.format(this.editingTest.preInjection);
+      //this.editingTest.preInjection       = this.formatter.format(this.editingTest.preInjection);
       this.emitUpdateTestEvent();
     }
     handleHalfLoadReturnFormat() {
-      this.editingTest.halfLoadReturn           = this.formatter.format(this.editingTest.halfLoadReturn);
+      //this.editingTest.halfLoadReturn     = this.formatter.format(this.editingTest.halfLoadReturn);
       this.emitUpdateTestEvent();
     }
     handleIdlingReturnFormat() {
-      this.editingTest.idlingReturn             = this.formatter.format(this.editingTest.idlingReturn); 
+      //this.editingTest.idlingReturn       = this.formatter.format(this.editingTest.idlingReturn); 
       this.emitUpdateTestEvent();
     }
     handleFullLoadReturnFormat() {
-      this.editingTest.fullLoadReturn           = this.formatter.format(this.editingTest.fullLoadReturn);
+      //this.editingTest.fullLoadReturn     = this.formatter.format(this.editingTest.fullLoadReturn);
       this.emitUpdateTestEvent();
     }
     handlePreInjectionReturnFormat() {
-      this.editingTest.preInjectionReturn       = this.formatter.format(this.editingTest.preInjectionReturn);
+      //this.editingTest.preInjectionReturn = this.formatter.format(this.editingTest.preInjectionReturn);
       this.emitUpdateTestEvent();
     }
 
