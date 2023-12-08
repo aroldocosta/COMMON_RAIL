@@ -19,9 +19,9 @@ export class InjectorService {
     return this.http.get<Injector[]>(url, this.login.getHttpOptions());
   }
 
-  get(id: number) {
+  get(id: string) {
     const url = `${this.baseUrl}injectors/${id}`;
-    return this.http.get<Injector>(url, {});
+    return this.http.get<Injector>(url, this.login.getHttpOptions());
   }
   
   create(injector: any): Observable<any> {
