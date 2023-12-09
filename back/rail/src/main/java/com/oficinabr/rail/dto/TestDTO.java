@@ -11,7 +11,7 @@ public record TestDTO(String id, Integer injectorNumber, Integer sequence, Strin
 		this(t.getId(), t.getInjectorNumber(), t.getSequence(), t.getComments(), t.getDescription(), t.getDate(),
 				t.getResistance(), t.getReactance(), t.getIsolation(), t.getHalfLoad(), t.getFullLoad(), t.getIdling(),
 				t.getPreInjection(), t.getHalfLoadReturn(), t.getFullLoadReturn(), t.getIdlingReturn(),
-				t.getPreInjectionReturn(), t.getPlan().getId(), t.getInjector().getId(), t.getInjector().getType(), t.getInjector().getModel(),
+				t.getPreInjectionReturn(), t.getPlan().getId(), t.getInjector().getId(), t.getInjector().getPlan().getType(), t.getInjector().getModel(),
 				t.getVehicle().getId(), t.getVehicle().getPlate(), t.getImaCode(), t.getServiceOrder());
 	}
 }

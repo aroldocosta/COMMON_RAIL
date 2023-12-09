@@ -8,13 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.InjectorDTO;
 import com.oficinabr.rail.entity.Injector;
+import com.oficinabr.rail.entity.Plan;
 import com.oficinabr.rail.repository.InjectorRepository;
+import com.oficinabr.rail.repository.PlanRepository;
 
 @Service
 public class InjectorService {
 
 	@Autowired
 	private InjectorRepository repository;
+	
+	@Autowired
+	private PlanRepository planRepository;
 
 	
 	public ResponseEntity<List<InjectorDTO>> getAll() {
@@ -39,12 +44,10 @@ public class InjectorService {
 	public ResponseEntity<InjectorDTO> save(InjectorDTO dto) {
 		
 		try {
-			Injector i = new Injector(dto);
-//			i.setCode(dto.code());
-//			i.setModel(dto.model());
-//			i.setDescription(dto.description());
-//			i.setTestList(new ArrayList<Test>());
-			InjectorDTO resp = new InjectorDTO(repository.save(i));
+			Injector injector = new Injector(dto);
+			Plan plan = planRepository.findById(dto.planId()).get();
+			injector.setPlan(plan);
+			InjectorDTO resp = new InjectorDTO(repository.save(injector));
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -53,8 +56,8 @@ public class InjectorService {
 	
 	public ResponseEntity<InjectorDTO> update(InjectorDTO dto) {
 		try {
-			Injector v = new Injector(dto);
-			InjectorDTO resp = new InjectorDTO(repository.save(v));
+			Injector injector = new Injector(dto);
+			InjectorDTO resp = new InjectorDTO(repository.save(injector));
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -64,9 +67,9 @@ public class InjectorService {
 	
 	public ResponseEntity<InjectorDTO> delete(String id) {
 		try {
-			Injector vehicle = repository.findById(id).get();
-			repository.delete(vehicle);
-			return ResponseEntity.ok(new InjectorDTO(vehicle));
+			Injector injector = repository.findById(id).get();
+			repository.delete(injector);
+			return ResponseEntity.ok(new InjectorDTO(injector));
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		} 

@@ -1,6 +1,5 @@
 package com.oficinabr.rail.entity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.oficinabr.rail.dto.InjectorDTO;
@@ -12,6 +11,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -26,18 +27,15 @@ public class Injector {
 	@Column(name = "code")
 	private String code;
 	
-	@Column(name = "type")
-	private String type;
-	
 	@Column(name = "model")
 	private String model;
 	
 	@Column(name = "description")
 	private String description;
 
-//	@ManyToOne(fetch = FetchType.EAGER)
-//	@JoinColumn(name = "vehicle_id")
-//	private Vehicle vehicle;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "plan_id")
+	private Plan plan;
 	
 	@OneToMany(mappedBy = "injector", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Test> testList;
@@ -49,7 +47,6 @@ public class Injector {
 	public Injector(InjectorDTO dto) {
 		this.setId(dto.id());
 		this.setCode(dto.code());
-		this.setType(dto.type());
 		this.setModel(dto.model());
 		this.setDescription(dto.description());
 		//this.setTestList(new ArrayList<Test>());
@@ -70,13 +67,6 @@ public class Injector {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getType() {
-		return type;
-	}
-	
-	public void setType(String type) {
-		this.type = type;
-	}
 	
 	public String getModel() {
 		return model;
@@ -94,13 +84,13 @@ public class Injector {
 		this.description = description;
 	}
 
-//	public Vehicle getVehicle() {
-//		return vehicle;
-//	}
-//
-//	public void setVehicle(Vehicle vehicle) {
-//		this.vehicle = vehicle;
-//	}
+	public Plan getPlan() {
+		return plan;
+	}
+
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
 
 	public List<Test> getTestList() {
 		return testList;

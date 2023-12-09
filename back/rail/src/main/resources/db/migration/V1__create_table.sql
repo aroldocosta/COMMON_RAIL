@@ -17,8 +17,8 @@ CREATE TABLE vehicle (
 CREATE TABLE injector (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	code TEXT,
-	type TEXT NOT NULL,
 	model TEXT NOT NULL,
+	plan_id TEXT NOT NULL,
 	description TEXT
 );
 

@@ -14,6 +14,7 @@ import { Injector } from 'src/app/model/injector.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
 import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-home',
@@ -24,10 +25,10 @@ export class HomeComponent implements OnInit{
 
   @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any
-  @Input() injectorList: any;
-  @Input() vehicleList: any;
-  @Input() planList: any;
-  @Input() userList: any;
+  @Input() injectorList: Injector[] = [];
+  @Input() vehicleList: Vehicle[] = [];
+  @Input() planList: Plan[] = [];
+  @Input() userList: User[] = [];
   testCommand: string = 'listing';
   modalCommand: string = 'listing';
   homeCommandButton = 'NOVO TESTE'
@@ -53,7 +54,6 @@ export class HomeComponent implements OnInit{
   filteredTestDate: string = '';
   filteredTestSequence: string = '';
   filteredTestInjectorNumber: string = '';
-  filteredPlans: Filter[] = [];
   filteredTest: any;
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
@@ -84,11 +84,7 @@ export class HomeComponent implements OnInit{
     if(!this.loginService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     } else {
-      this.requestTests();
       this.requestUsers();
-      this.requestPlans();
-      this.requestVehicles();
-      this.requestInjectors();
       this.filteredDateIni = this.getFormattedDate(new Date());
       this.filteredDateEnd = this.getFormattedDate(new Date()); 
       // this.filteredDateTest = this.getFormattedDate(new Date());
@@ -109,6 +105,9 @@ export class HomeComponent implements OnInit{
       button = 'SALVAR';
       command = 'creating';
       this.editingTest = new Test();
+      this.requestPlans();
+      this.requestVehicles();
+      this.requestInjectors();
     } else if(this.testCommand == 'creating') {
       this.topMessage?.setAlertMessage("Criando teste..", this.topMessage.SUCCESS, 1000);
       command = 'editing';
@@ -189,7 +188,8 @@ export class HomeComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingPlan = new Plan();
+      this.editingInjector = new Injector();
+      this.requestPlans();
     } else if(this.modalCommand == 'creating') {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO';
@@ -315,9 +315,6 @@ export class HomeComponent implements OnInit{
     this.planService.list().subscribe({
       next: list => {
         this.planList = list;
-        this.filteredPlans = this.planList; // this.planList.map((p: Plan) => new Filtered(p.code, true));
-        this.modalCommand = 'listing';
-        this.modalCommandButton = 'NOVO'; 
       }
     })
   }
@@ -326,8 +323,6 @@ export class HomeComponent implements OnInit{
     this.vehicleService.list().subscribe({
       next: list => {
         this.vehicleList = list;
-        this.modalCommand = 'listing';
-        this.modalCommandButton = 'NOVO'; 
       }
     })
   }
@@ -466,6 +461,7 @@ export class HomeComponent implements OnInit{
   }
 
   saveInjector() {
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22\n" + JSON.stringify(this.editingInjector));
     this.injectorService.create(this.editingInjector).subscribe({
       next: resp => {
         this.injectorService.list().subscribe({

@@ -16,14 +16,14 @@ export class UserService {
   
   readonly baseUrl = environment.API_BASE_URL;
 
-  list() {
+  list(): Observable<User[]> {
     const url = `${this.baseUrl}users`;
-    return this.http.get(url, this.login.getHttpOptions());
+    return this.http.get<User[]>(url, this.login.getHttpOptions());
   }
 
   get(id: string) {
     const url = `${this.baseUrl}users/${id}`;
-    return this.http.get(url, this.login.getHttpOptions());
+    return this.http.get<User>(url, this.login.getHttpOptions());
   }
 
   // create(user: any): Observable<any> {

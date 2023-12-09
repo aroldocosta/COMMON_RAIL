@@ -173,6 +173,7 @@
 			<hr class="colorgraph">
 			<app-injector-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
+				[planList]="planList"
 				[editingInjector]="editingInjector"
 				(updateEvent)="handleUpdateInjectorEvent($event)"
 			>

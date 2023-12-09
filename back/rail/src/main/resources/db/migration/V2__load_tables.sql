@@ -22,10 +22,10 @@ insert into vehicle (id, plate, model, year_model, owner_id) values ('VCL3333', 
 insert into vehicle (id, plate, model, year_model, owner_id) values ('VCL4444', 'ABC4444', 'FORD 04', '2023/2023', '2933d5c4-3b47-4355-acf9-b24e358740d1');
 
 -- Injetores
-insert into injector (id, code, type, model, description) values ('INJ1111', '0', 'INDUTIVO', '0445110231', 'Modelo de injetor para teste');	
-insert into injector (id, code, type, model, description) values ('INJ2222', '0', 'INDUTIVO', '0445110190', 'Modelo de injetor para teste');	
-insert into injector (id, code, type, model, description) values ('INJ3333', '0', 'PIEZO_ELETRICO', '0445110520', 'Modelo de injetor para teste');	
-insert into injector (id, code, type, model, description) values ('INJ4444', '0', 'PIEZO_ELETRICO', '0445110374', 'Modelo de injetor para teste');							 
+insert into injector (id, code, model, plan_id, description) values ('INJ1111', '0', '0445110231', 'PLN000001', 'Modelo de injetor para teste');	
+insert into injector (id, code, model, plan_id, description) values ('INJ2222', '0', '0445110190', 'PLN000001', 'Modelo de injetor para teste');	
+insert into injector (id, code, model, plan_id, description) values ('INJ3333', '0', '0445110520', 'PLN000004', 'Modelo de injetor para teste');	
+insert into injector (id, code, model, plan_id, description) values ('INJ4444', '0', '0445110374', 'PLN000004', 'Modelo de injetor para teste');							 
 
 -- Planos
 insert into plan (

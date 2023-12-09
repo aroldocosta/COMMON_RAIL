@@ -34,6 +34,9 @@ public class Plan {
 	@OneToMany(mappedBy = "plan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Test> testList;
 	
+	@OneToMany(mappedBy = "plan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Test> injectorList;
+	
 	@Column(name = "max_resistance")
 	private Float maxResistance;
 	
@@ -183,6 +186,14 @@ public class Plan {
 	public void setTestList(List<Test> testList) {
 		this.testList = testList;
 	}
+	public List<Test> getInjectorList() {
+		return injectorList;
+	}
+
+	public void setInjectorList(List<Test> injectorList) {
+		this.injectorList = injectorList;
+	}
+
 	public Float getMaxResistance() {
 		return maxResistance;
 	}
