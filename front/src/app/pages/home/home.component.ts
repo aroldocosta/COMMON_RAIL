@@ -85,6 +85,7 @@ export class HomeComponent implements OnInit{
       this.router.navigateByUrl('/login');
     } else {
       this.requestUsers();
+      this.requestTests();
       this.filteredDateIni = this.getFormattedDate(new Date());
       this.filteredDateEnd = this.getFormattedDate(new Date()); 
       // this.filteredDateTest = this.getFormattedDate(new Date());
@@ -695,36 +696,28 @@ export class HomeComponent implements OnInit{
         if(injectorTypeSelected && planType != injectorType) {
           this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", this.topMessage.WARNING, 3000);
         }
+        this.handleTabbingTestEvent(this.currentTab);
       },
       error: err => {
         console.log("Error: ", err);
       }
     });
-
-    this.handleTabbingTestEvent(this.currentTab);
   }
 
   handleUpdateTestInjectorEvent(test: Test) {
-    debugger
     this.editingTest = test;
     let injectorId = this.editingTest.injectorId;
     
     this.injectorService.get(injectorId).subscribe({
       next: injector => {
         this.editingInjector = injector;
-        let planType = (this.editingPlan != null) ? this.editingPlan.type : '';
-        let injectorType = (this.editingInjector != null) ? this.editingInjector.type : '';
-        let planTypeSelected = (this.editingPlan != null) ? (this.editingPlan.type.length > 0) : false;
-
-        if(planTypeSelected && planType != injectorType) {
-          this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", this.topMessage.WARNING, 3000);
-        }
+        this.editingTest.planId = injector.planId;
+        this.handleTabbingTestEvent(this.currentTab);
       },
       error: err => {
         console.log("Error: ", err)
       }
     }) 
-    this.handleTabbingTestEvent(this.currentTab);
   }
 
   handleCreateTestEvent(test: Test){

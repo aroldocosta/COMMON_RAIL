@@ -19,32 +19,6 @@
         </div>
     </div>      
     <div class="col-6">
-        <label class="input" for="">PLANO</label>
-        <div class="input-group input-group-lg">
-            <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateTestPlanEvent()"
-                [(ngModel)]="editingTest.planId" 
-                [disabled]="command == 'editing'">
-                <option value="0"selected>Selecione</option>
-                <option *ngFor="let p of planList" [value]="p.id">{{p.code}}</option>
-            </select>
-        </div>
-    </div>
-</div>
-<div class="row input">
-    <div class="col-6">
-        <label class="input" for="">VEÍCULO</label>
-        <div class="input-group input-group-lg">
-            <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateTestEvent()"
-                [(ngModel)]="editingTest.vehicleId" 
-                [disabled]="command == 'editing'">
-                <option value="0"selected>Selecione</option>
-                <option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-6">
         <label class="input" for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
@@ -56,6 +30,32 @@
             </select>
         </div>
     </div>
+</div>
+<div class="row input">
+    <div class="col-6">
+        <label class="input" for="">PLANO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateTestPlanEvent()"
+                [(ngModel)]="editingTest.planId" 
+                [disabled]="command == 'editing'">
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let p of planList" [value]="p.id">{{p.code}}</option>
+            </select>
+        </div>
+    </div> 
+    <div class="col-6">
+        <label class="input" for="">VEÍCULO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateTestEvent()"
+                [(ngModel)]="editingTest.vehicleId" 
+                [disabled]="command == 'editing'">
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
+            </select>
+        </div>
+    </div>   
 </div>
 <div class="row input">
     <div class="col-6">
