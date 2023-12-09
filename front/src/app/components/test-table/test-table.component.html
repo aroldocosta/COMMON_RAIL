@@ -30,8 +30,6 @@
                 <th><a class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Remover teste"><i class="bi bi-trash3"></i> REM</a></th>
             </tr>
         </thead>
-
-        <i *ngIf="filteredField == 'serviceOrder'" class="bi bi-funnel"></i>
         <tbody>
             <tr *ngFor="let d of testList" (click)="emitEditEvent(d)">
                 <td>{{d.injectorNumber}}</td>
