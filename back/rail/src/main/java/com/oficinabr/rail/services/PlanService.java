@@ -59,7 +59,7 @@ public class PlanService {
 		try {
 			Plan plan = repository.findById(id).get();
 			repository.delete(plan);
-			return ResponseEntity.ok(new PlanDTO(plan));
+			return ResponseEntity.ok().build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		} 

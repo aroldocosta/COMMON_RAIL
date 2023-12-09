@@ -607,6 +607,8 @@ export class HomeComponent implements OnInit{
       next: (resp: any) => {
         document.getElementById("removeCloseModalButton")?.click();
         modal?.click();
+        this.modalCommand = 'listing';
+        this.modalCommandButton = "NOVO"
         service.list().subscribe({
           next: (list: any) => {
             component.list = list;
