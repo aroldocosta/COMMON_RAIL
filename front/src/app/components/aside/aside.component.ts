@@ -45,6 +45,7 @@ export class AsideComponent implements OnInit {
     let val = Number(value);
     let min = Number(minValue);
     let max = Number(maxValue);
+    let ref = (max + min) / 2;
 
     let n_val = 100*val/max;
     let col  = (colHeight * n_val / 100);
@@ -58,8 +59,47 @@ export class AsideComponent implements OnInit {
     contxt.beginPath();
     contxt.lineWidth = 6;
     contxt.fillStyle = `rgb(${color.red}, ${color.grn}, ${color.blu})`;
-    contxt.fillRect(85, this.gaugeY, 130, this.gaugeH);
+    contxt.fillRect(115, this.gaugeY, 76, this.gaugeH);
     contxt.stroke();
+
+    let n_max = 100*max/max;
+    let n_min = 100*min/max;
+    let n_ref = 100*ref/max;
+
+    let c_max = colHeight - (colHeight * n_max / 100) + 10;
+    let c_min = colHeight - (colHeight * n_min / 100) + 10;
+    let c_ref = colHeight - (colHeight * n_ref / 100) + 10;
+
+    let x_1 = 205;
+    let x_2 = 225;
+
+    contxt.beginPath();
+    contxt.lineTo(x_1, c_min);
+    contxt.lineTo(x_2, c_min);
+    contxt.strokeStyle = "orange";
+    contxt.lineWidth = 1;
+    contxt.stroke();
+
+    contxt.beginPath();
+    contxt.lineTo(x_1, c_ref);
+    contxt.lineTo(x_2, c_ref);
+    contxt.strokeStyle = "green";
+    contxt.lineWidth = 1;
+    contxt.stroke();
+
+    contxt.beginPath();
+    contxt.lineTo(x_1, c_max);
+    contxt.lineTo(x_2, c_max);
+    contxt.strokeStyle = "red";
+    contxt.lineWidth = 1;
+    contxt.stroke();
+
+    contxt.font = "12px Monospace";
+    contxt.fillStyle = "darkblue";
+    contxt.fillText(min.toFixed(1), x_2+3, c_min);
+    contxt.fillText(ref.toFixed(1), x_2+3, c_ref);
+    contxt.fillText(max.toFixed(1), x_2+3, c_max);
+
   }
 
 
@@ -135,7 +175,7 @@ export class AsideComponent implements OnInit {
       this.drawGauge(this.retContxt, test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);
     } else if(tab.id == 'full_load') {
       this.drawGauge(this.debContxt, test.fullLoad, plan.maxFullLoad, plan.minFullLoad);
-      this.drawGauge(this.retContxt, plan.maxFullLoadReturn, test.fullLoadReturn, plan.minFullLoadReturn);
+      this.drawGauge(this.retContxt, test.fullLoadReturn, plan.maxFullLoadReturn, plan.minFullLoadReturn);
     } else if(tab.id == 'idling') {
       this.drawGauge(this.debContxt, test.idling, plan.maxIdling, plan.minIdling);
       this.drawGauge(this.retContxt, test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);

@@ -69,24 +69,24 @@ p {
 
 #debCanvas {
 	background-image: url("../../../assets/img/proveta.png");
+	/* background: green; */
 	background-size: 100% 100%;
 	background-position-x: center;
 	background-repeat: no-repeat;
-	width: 80%;
+	width: 100%;
 	height: 12em;
 	margin-top: 2em;
-	margin-left: 1em;
 }
 
 #retCanvas {
 	background-image: url("../../../assets/img/proveta.png");
+	/* background: blue; */
 	background-size: 100% 100%;
 	background-position-x: center;
 	background-repeat: no-repeat;
-	width: 80%;
+	width: 100%;
 	height: 12em;
 	margin-top: 2em;
-	margin-left: 1em;
 }
 
 #comments {
