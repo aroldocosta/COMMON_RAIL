@@ -213,12 +213,6 @@ export class HomeComponent implements OnInit{
   }
 
   cancelInjectorCommandButton() {
-    // if(this.modalCommand == 'listing') {
-    //   document.getElementById('injectorModalCloseButton')?.click();
-    // } else {
-    //   this.modalCommand = 'listing';
-    // }
-    console.log(this.modalCommand);
     if(this.modalCommand == 'listing') {
       console.log("Entrou aqui")
       document.getElementById('injectorModalCloseButton')?.click();
@@ -249,15 +243,6 @@ export class HomeComponent implements OnInit{
   handleRemovingTestEvent(test: Test) {
     
   }
-
-  // handleMenuModalEvent() {
-  //   this.modalCommand = 'listing';
-  //   this.modalCommandButton = 'NOVO'; 
-  // }
-
-  // setInjectorList(list: Injector[]) {
-  //   this.injectorList = list;
-  // }
 
   setReportFile(report: any) {
     const file = new Blob([report], {
@@ -664,10 +649,11 @@ export class HomeComponent implements OnInit{
     } else if(event.command == 'saving') {
 
     } else if(event.command == 'removing') {
-        this.removingName = event.object.plate;
-        this.removingEvent = event;
-        this.removingAlertMessage01 = "Deseja remover o veículo ";
-        this.removingAlertTopTitle = "REMOVER VEÍCULO";
+      this.removingObjects = ''; 
+      this.removingName = event.object.plate;
+      this.removingEvent = event;
+      this.removingAlertMessage01 = "Deseja remover o veículo ";
+      this.removingAlertTopTitle = "REMOVER VEÍCULO";
     }
   }
 
@@ -680,10 +666,11 @@ export class HomeComponent implements OnInit{
     } else if(event.command == 'saving') {
 
     } else if(event.command == 'removing') {
-        this.removingName = event.object.model;
-        this.removingEvent = event;
-        this.removingAlertMessage01 = "Deseja remover o injetor ";
-        this.removingAlertTopTitle = "REMOVER INJETOR";
+      this.removingObjects = '';
+      this.removingName = event.object.model;
+      this.removingEvent = event;
+      this.removingAlertMessage01 = "Deseja remover o injetor ";
+      this.removingAlertTopTitle = "REMOVER INJETOR";
     }
   }
 
