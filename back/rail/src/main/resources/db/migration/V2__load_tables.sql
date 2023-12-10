@@ -23,8 +23,8 @@ insert into vehicle (id, plate, model, year_model, owner_id) values ('VCL4444', 
 
 -- Injetores
 insert into injector (id, code, model, plan_id, description) values ('INJ1111', '0', '0445110231', 'PLN000001', 'Modelo de injetor para teste');	
-insert into injector (id, code, model, plan_id, description) values ('INJ2222', '0', '0445110190', 'PLN000001', 'Modelo de injetor para teste');	
-insert into injector (id, code, model, plan_id, description) values ('INJ3333', '0', '0445110520', 'PLN000004', 'Modelo de injetor para teste');	
+insert into injector (id, code, model, plan_id, description) values ('INJ2222', '0', '0445110190', 'PLN000002', 'Modelo de injetor para teste');	
+insert into injector (id, code, model, plan_id, description) values ('INJ3333', '0', '0445110520', 'PLN000003', 'Modelo de injetor para teste');	
 insert into injector (id, code, model, plan_id, description) values ('INJ4444', '0', '0445110374', 'PLN000004', 'Modelo de injetor para teste');							 
 
 -- Planos
@@ -66,8 +66,8 @@ insert into plan (
 	'Teste plano 01',
 	700,
 	300,
-	700,
-	300,
+	380,
+	195,
 	null,
 	270,
 	28,
@@ -128,10 +128,10 @@ insert into plan (
 	'PLANO_02',
 	'INDUTIVO',
 	'Teste plano 02',
-	700,
-	300,
-	700,
-	300,
+	560,
+	275,
+	420,
+	130,
 	null,
 	270,
 	28,
@@ -194,8 +194,8 @@ insert into plan (
 	'Plano de Teste 2005 a 2010',
 	120,
 	80,
-	700,
-	300,
+	78,
+	34,
 	null,
 	270,
 	28,
@@ -256,10 +256,10 @@ insert into plan (
 	'PLANO_04',
 	'PIEZO_ELETRICO',
 	'Teste plano 04',
-	700,
-	300,
-	700,
-	300,
+	340,
+	130,
+	450,
+	230,
 	null,
 	270,
 	28,

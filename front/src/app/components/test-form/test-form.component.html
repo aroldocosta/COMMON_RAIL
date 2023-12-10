@@ -1,10 +1,10 @@
 <app-top-message></app-top-message>  
 <div class="row input"> 
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
         <label class="input" for="">
             <span>ORDEM DE SERVIÇO </span>
             <span *ngIf="command == 'editing'">
-                / <a href="#" onclick="return null" (click)="newTestFromServiceOrder()">  NOVO TESTE</a>
+                / <a href="#" onclick="return null" (click)="newTestFromServiceOrder()">  REPETIR TESTE</a>
             </span>              
         </label> 
         <div class="input-group input-group-lg">
@@ -18,7 +18,7 @@
             >
         </div>
     </div>      
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
         <label class="input" for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
@@ -32,7 +32,7 @@
     </div>
 </div>
 <div class="row input">
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
         <label class="input" for="">PLANO</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
@@ -44,7 +44,7 @@
             </select>
         </div>
     </div> 
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
         <label class="input" for="">VEÍCULO</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
@@ -58,7 +58,7 @@
     </div>   
 </div>
 <div class="row input">
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
         <label class="input" for="">NÚMERO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
@@ -70,7 +70,7 @@
             </select>
         </div>
     </div> 
-    <div class="col-6">
+    <div class="col-sm-12 col-md-6">
         <label class="input" for="">CÓDIGO IMA</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
@@ -103,7 +103,7 @@
     <tabset class="menber-tabset">
         <tab id="med_electric" heading="MED ELETRICAS" (selectTab)="changeTab($event)">
             <div class="row input">
-                <div class="col-4">
+                <div class="col-sm-12 col-md-4">
                     <label class="input" for="">RESISTÊNCIA</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
@@ -116,7 +116,7 @@
                         >
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-sm-12 col-md-4">
                     <label *ngIf="editingTest.injectorType != 'PIEZO_ELETRICO'"class="input" for="">INDUTÂNCIA</label>
                     <label *ngIf="editingTest.injectorType == 'PIEZO_ELETRICO'" class="input" for="">CAPACITÂNCIA</label>
                     <div class="input-group input-group-lg">
@@ -133,7 +133,7 @@
                         >
                     </div>
                 </div>
-                <div class="col-4" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-4" *ngIf="command == 'editing'">
                     <label class="input" for="">ISOLAMENTO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>M&#937;</b></i></span>
@@ -150,7 +150,7 @@
         </tab>
         <tab id="half_load" heading="CARGA PARCIAL" (selectTab)="changeTab($event)">
             <div class="row input">
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
@@ -163,7 +163,7 @@
                         >
                     </div>
                 </div>
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
@@ -180,7 +180,7 @@
         </tab>
         <tab id="idling" heading="MARCHA LENTA" (selectTab)="changeTab($event)">
             <div class="row input">
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
@@ -193,7 +193,7 @@
                         >
                     </div>
                 </div>
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
@@ -210,7 +210,7 @@
         </tab>
         <tab id="full_load" heading="PLENA CARGA" (selectTab)="changeTab($event)">
             <div class="row input">
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
@@ -223,7 +223,7 @@
                         >
                     </div>
                 </div>
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
@@ -240,7 +240,7 @@
         </tab>
         <tab id="pre_injection" heading="PRÉ INJEÇÃO" (selectTab)="changeTab($event)">
             <div class="row input">
-                <div class="col-6" *ngIf="command == 'editing'">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>

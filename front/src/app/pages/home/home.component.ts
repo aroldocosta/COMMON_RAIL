@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit{
       this.requestUsers();
       this.requestTests();
       this.requestPlans();
-      this.requestVehicles;
+      this.requestVehicles();
       this.requestInjectors();
       this.filteredDateIni = this.getFormattedDate(new Date());
       this.filteredDateEnd = this.getFormattedDate(new Date()); 
