@@ -63,8 +63,10 @@ export class HomeComponent implements OnInit{
   filteredServiceOrder: string = '';
   removingName: string = '';
   removingEvent: any;
+  removingObjects: string = '';
   removingAlertTopTitle: string = '';
-  removingAlertMessage: string = '';
+  removingAlertMessage01: string = '';
+  removingAlertMessage02: string = '';
 
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
 
@@ -154,7 +156,12 @@ export class HomeComponent implements OnInit{
   cancelPlanCommandButton() {
     if(this.modalCommand == 'listing') {
       document.getElementById('planModalCloseButton')?.click();
-    } else {
+    } else if(this.modalCommand = 'removing') {
+      document.getElementById('removeCloseModalButton')?.click();
+      this.modalCommand = 'listing';
+      this.modalCommandButton = 'NOVO'
+    } 
+    else {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO'
     }
@@ -626,17 +633,25 @@ export class HomeComponent implements OnInit{
   }
 
   handlePlanCommandEvent(event: any) {  
+    this.modalCommand = event.command;
     if(event.command == 'editing') {
-      this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
       this.editingPlan = event.object;
     } else if(event.command == 'saving') {
 
     } else if(event.command == 'removing') {
-        this.removingName = event.object.code;
-        this.removingEvent = event;
-        this.removingAlertMessage = "Deseja remover o plano ";
-        this.removingAlertTopTitle = "REMOVER PLANO";
+        this.injectorService.getByPlanId(event.object.id).subscribe({
+          next: list => {
+            this.removingObjects = '';
+            list.forEach(i => this.removingObjects += i.model + ", ");
+            this.removingObjects = this.removingObjects.substring(0, this.removingObjects.lastIndexOf(","));
+            this.removingName = event.object.code;
+            this.removingEvent = event;
+            this.removingAlertMessage01 = "Deseja remover o plano" 
+            this.removingAlertMessage02 = "Esta ação também removerá o(s) injetor(es) a seguir: ";
+            this.removingAlertTopTitle = "REMOVER PLANO";
+          }
+        })
     }
   }
 
@@ -651,7 +666,7 @@ export class HomeComponent implements OnInit{
     } else if(event.command == 'removing') {
         this.removingName = event.object.plate;
         this.removingEvent = event;
-        this.removingAlertMessage = "Deseja remover o veículo ";
+        this.removingAlertMessage01 = "Deseja remover o veículo ";
         this.removingAlertTopTitle = "REMOVER VEÍCULO";
     }
   }
@@ -667,7 +682,7 @@ export class HomeComponent implements OnInit{
     } else if(event.command == 'removing') {
         this.removingName = event.object.model;
         this.removingEvent = event;
-        this.removingAlertMessage = "Deseja remover o injetor ";
+        this.removingAlertMessage01 = "Deseja remover o injetor ";
         this.removingAlertTopTitle = "REMOVER INJETOR";
     }
   }

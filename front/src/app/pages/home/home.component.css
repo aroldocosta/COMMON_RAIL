@@ -32,6 +32,18 @@ th {
     color: grey;
 }
 
+.danger-icon {
+   color: red !important;
+   /* margin-left: 0.2em;
+   margin-right: 0.6em; */
+   margin: auto;
+   font-size: 3em;
+}
+
+.warning {
+    color: red;
+}
+
 @media screen and (max-width: 1200px) {
     .small {
         width: 50%;
@@ -61,6 +73,10 @@ th {
         font-size: 1.7em;
         margin-bottom: 0.5em;
     }
+
+    /* .danger-icon {
+        font-size: 2em;
+    } */
 }
 
 @media screen and (max-width: 460px) {

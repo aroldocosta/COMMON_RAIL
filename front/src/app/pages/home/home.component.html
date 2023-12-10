@@ -248,10 +248,19 @@
 		</div>
 		<div class="modal-body">
 		<div class="table-responsive">
-			<h3 class="grey">
-				<i class="bi bi-exclamation-diamond danger-icon"></i>
-				{{removingAlertMessage}} <b><i>{{removingName}}</i></b>
-			</h3>
+			<div class="row">
+				<div class="col-sm-2">
+					<h3 style="text-align: center;"><i class="bi bi-exclamation-diamond danger-icon"></i></h3>
+				</div>
+				<div class="col-sm-10">
+					<h3>{{removingAlertMessage01}} <b><i>{{removingName}}?</i></b></h3><br>
+					<h5 *ngIf="removingObjects.length > 0">
+						<span class="warning">ATENÇÃO: </span>
+						<span style="color: darkgrey">{{removingAlertMessage02}}</span> <br>
+						<span style="color: gray; font-weight: bolder;">{{removingObjects}}</span>
+					</h5>
+				</div>
+			</div>
 			<app-alert-message 
 				[message]="alertMessage"
 				(clearEvent)="clearAlertMessage()"
@@ -259,7 +268,7 @@
 		</div>
 		</div>	
 		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal">CANCELAR</button>
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelPlanCommandButton()">CANCELAR</button>
 			<button class="btn btn-outline-primary btn-modal" (click)="confirmRemove()">REMOVER</button>
 	    </div>	
 	  </div>

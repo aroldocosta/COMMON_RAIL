@@ -38,4 +38,9 @@ export class InjectorService {
     const url = `${this.baseUrl}injectors/${id}`;
     return this.http.delete(url, this.login.getHttpOptions());
   }
+
+  getByPlanId(planId: string): Observable<Injector[]> {
+    const url = `${this.baseUrl}injectors/plan/${planId}`;
+    return this.http.get<Injector[]>(url, this.login.getHttpOptions());
+  }
 }

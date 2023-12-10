@@ -30,19 +30,21 @@ public class InjectorController {
 	public ResponseEntity<List<InjectorDTO>> getAll() {
 		return service.getAll();
 	}
-	
 	@GetMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<InjectorDTO> get(@PathVariable("id") String id) {
 		return service.get(id);
 	}
-	
+	@GetMapping(value = "/plan/{id}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<List<InjectorDTO>> getByPlanId(@PathVariable("id") String id) {
+		return service.getByPlanId(id);
+	}
 	@PostMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
 	public ResponseEntity<InjectorDTO> save(@RequestBody InjectorDTO dto) {
 		return service.save(dto);
 	}
-	
 	@PutMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.PUT)
 	public ResponseEntity<InjectorDTO> update(@RequestBody InjectorDTO dto) {

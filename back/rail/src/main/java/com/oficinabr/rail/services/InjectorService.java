@@ -23,8 +23,8 @@ public class InjectorService {
 
 	
 	public ResponseEntity<List<InjectorDTO>> getAll() {
-		try {
-			List<InjectorDTO> resp = repository.findAll().stream().map(InjectorDTO::new).toList();
+		try {	
+			List<InjectorDTO> resp = repository.findAll().stream().filter(i -> i.getPlan() != null).map(InjectorDTO::new).toList();		
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -32,9 +32,17 @@ public class InjectorService {
 	}
 	
 	public ResponseEntity<InjectorDTO> get(String id) {	
-		
 		try {
 			InjectorDTO resp = repository.findById(id).stream().map(InjectorDTO::new).findAny().get();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	public ResponseEntity<List<InjectorDTO>> getByPlanId(String id) {
+		try {
+			List<InjectorDTO> resp = repository.findByPlanId(id).stream().map(InjectorDTO::new).toList();
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -57,6 +65,8 @@ public class InjectorService {
 	public ResponseEntity<InjectorDTO> update(InjectorDTO dto) {
 		try {
 			Injector injector = new Injector(dto);
+			Plan plan = planRepository.findById(dto.planId()).get();
+			injector.setPlan(plan);
 			InjectorDTO resp = new InjectorDTO(repository.save(injector));
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
