@@ -1,5 +1,5 @@
 import { ThisReceiver } from '@angular/compiler';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Plan } from 'src/app/model/plan.model';
 import { Test } from 'src/app/model/test.model';
 import { PlanService } from 'src/app/services/plan.service';
@@ -22,8 +22,7 @@ export class AsideComponent implements OnInit {
   rct_color = '';
   iso_color = '';
 
-  // @ViewChild('gauge', { static: false, read: HTMLCanvasElement }) gauge!: HTMLCanvasElement;
-  // @ViewChild('gaugeCanvas') gaugeCanvas!: ElementRef;
+  @Output() arrowEvent = new EventEmitter<string>();
   @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
   @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
   public debContxt!: CanvasRenderingContext2D;
@@ -183,5 +182,9 @@ export class AsideComponent implements OnInit {
       this.drawGauge(this.debContxt, test.preInjection, plan.maxPreInjection, plan.minPreInjection);
       this.drawGauge(this.retContxt, test.preInjectionReturn, plan.maxPreInjectionReturn, plan.minPreInjectionReturn);
     }
+  }
+
+  emitArrowEvent(arrow: string) {
+    this.arrowEvent.emit(arrow);
   }
 }

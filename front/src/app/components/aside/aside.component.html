@@ -18,18 +18,18 @@
 					</div>
 				</div>
 			</div>
-			<div [class]="(tabId == 'med_electric') ? 'hidden' : 'show'">
+			<div [class]="(tabId == 'med_electric' || tabId == 'comments') ? 'hidden' : 'show'">
 				<div class="row">
-					<div class="col-sm-6" style="padding-right: 0;">
+					<div class="col-sm-6" style="width: 50%">
 						<canvas id="debCanvas" #debCanvas></canvas>
 						<h4>DÉB</h4>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-6"  style="width: 50%">
 						<canvas id="retCanvas" #retCanvas></canvas>
 						<h4>RET</h4>
 					</div>
 				</div>
-			</div>		
+			</div>	
 			<div class="card-body" *ngIf="tabId == 'med_electric'">
 			  <h2 class="top-title">{{tabTitle}}</h2>
 			  <div class="table-responsive">
@@ -189,33 +189,21 @@
 			</div>
 			<div class="card-body" *ngIf="tabId == 'comments'">
 				<h2 class="top-title">{{tabTitle}}</h2>	
-				<!-- <div class="table-responsive">
-					<table class="table table-sm  table-striped">
-						<thead>
-						<tr>
-							<th scope="col"></th>
-							<th scope="col">MIN</th>
-							<th scope="col">LIDO</th>
-							<th scope="col">MAX</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<th scope="row" title="Quantidade vendidida em litros">DEB:</th>
-							<td>{{tTodayQuantity | number: '1.2'}}</td>
-							<td>{{tMonthQuantity | number: '1.2'}}</td>
-							<td>{{tYearQuantity  | number: '1.2'}}</td>
-						</tr>
-						<tr>
-							<th scope="row" title="RET:al faturado">RET:</th>
-							<td>{{tTodayQuantity | number: '1.2'}}</td>
-							<td>{{tMonthQuantity | number: '1.2'}}</td>
-							<td>{{tYearQuantity  | number: '1.2'}}</td>
-						</tr>				  
-						</tbody>
-					</table>					
-				</div> -->
-			</div>				  				
+				<div class="input-group input-group-lg">
+					<textarea type="text" class="form-control"
+						rows="12"
+						readonly
+						placeholder="Observções" 
+						aria-label="Sizing example input" 
+						aria-describedby="inputGroup-sizing-lg" 
+						[(ngModel)]="editingTest.comments"
+					></textarea>
+				</div>
+			</div>	
+			<div class="row hide-large">
+				<div class="col-6 arrow-left"><i class="bi bi-caret-left" (click)="emitArrowEvent('left')"></i></div>
+				<div class="col-6 arrow-right"><i class="bi bi-caret-right" (click)="emitArrowEvent('right')"></i></div>
+			</div>			  				
 		</div>
 	</div>
 	

@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Filter } from 'src/app/model/filter.model';
 import { Test } from 'src/app/model/test.model';
 import { Plan } from 'src/app/model/plan.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -68,7 +67,16 @@ export class HomeComponent implements OnInit{
   removingAlertMessage01: string = '';
   removingAlertMessage02: string = '';
 
+  tabIndex = 0;
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
+  tabList = [
+    {id:'med_electric',   heading: 'MED ELETRICAS'},
+    {id:'half_load',      heading: 'CARGA PARCIAL'},
+    {id:'full_load',      heading: 'PLENA CARAGA'},
+    {id:'idling',         heading: 'MARCHA LENTA'},
+    {id:'pre_injection',  heading: 'PRE INJEÇÃO'},
+    {id:'comments',       heading: 'OBSERVAÇÕES'},
+  ];
 
   constructor(
     private userService: UserService,
@@ -677,6 +685,21 @@ export class HomeComponent implements OnInit{
   // handleSaveEvent(event: any) {
   //   console.log("----------------- handleSaveEvent -----------------\n" + JSON.stringify(event));
   // }
+
+  handleArrowEvent(arrow: string) {
+    console.log("Arrow: " + arrow + " Tab: " + JSON.stringify(this.tabList[this.tabIndex]));//
+    if(arrow == 'right') {
+      this.tabIndex++;
+      if(this.tabIndex >= this.tabList.length) this.tabIndex = 0;
+      console.log("TabIndex: " + this.tabIndex);
+      this.handleTabbingTestEvent(this.tabList[this.tabIndex]);
+    } else if(arrow == 'left') {
+      this.tabIndex--;
+      if(this.tabIndex < 0) this.tabIndex = this.tabList.length - 1;
+      console.log("TabIndex: " + this.tabIndex);
+      this.handleTabbingTestEvent(this.tabList[this.tabIndex]);
+    }
+  }
 
   handleTabbingTestEvent(tab: any) {
 

@@ -305,21 +305,27 @@ td {
 
 @media screen and (max-width: 767px) {
 	.hide-small {
-        display: none;
+        /* display: none; */
+		visibility: hidden;
+		height: 0;
     }
 
 	.hide-large {
-		display: block;
+		/* display: block; */
+		visibility: visible;
 	} 
 } 
 
 @media screen and (min-width: 768px) {
 	.hide-small {
         display: block;
+		visibility: visible;
     } 
 
 	.hide-large {
-		display: none;
+		/* display: none; */
+		visibility: hidden;
+		height: 0;
 	}
 }
 

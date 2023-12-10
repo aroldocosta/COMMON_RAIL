@@ -74,7 +74,7 @@ p {
 	background-position-x: center;
 	background-repeat: no-repeat;
 	width: 100%;
-	height: 12em;
+	height: 12rem;
 	margin-top: 2em;
 }
 
@@ -85,7 +85,7 @@ p {
 	background-position-x: center;
 	background-repeat: no-repeat;
 	width: 100%;
-	height: 12em;
+	height: 12rem;
 	margin-top: 2em;
 }
 
@@ -104,6 +104,16 @@ p {
 }
 
 .components {
-	width: 60%;
-	margin: auto 20%
+	width: 64%;
+	margin: auto 18%
+}
+
+.arrow-left, .arrow-right {
+	font-size: 2.5em;
+	text-align: center;
+	padding-bottom: 0.5em;
+}
+
+.card {
+	height: 35rem !important;
 }
