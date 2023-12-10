@@ -719,7 +719,12 @@ export class HomeComponent implements OnInit{
       next: injector => {
         this.editingInjector = injector;
         this.editingTest.planId = injector.planId;
-        this.handleTabbingTestEvent(this.currentTab);
+        this.planService.get(injector.planId).subscribe({
+          next: plan => {
+            this.editingPlan = plan;
+            this.handleTabbingTestEvent(this.currentTab);
+          }
+        })
       },
       error: err => {
         console.log("Error: ", err)
