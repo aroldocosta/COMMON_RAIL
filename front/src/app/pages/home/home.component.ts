@@ -79,13 +79,13 @@ export class HomeComponent implements OnInit{
   ];
 
   constructor(
+    private router: Router,
     private userService: UserService,
-    private testService: TestService, 
-    private loginService: LoginService, 
+    private testService: TestService,      
     private planService: PlanService,
+    private loginService: LoginService,
     private vehicleService: VehicleService,
-    private injectorService: InjectorService,
-    private router: Router
+    private injectorService: InjectorService
     ) {
       let aside = new AsideComponent();
   }
@@ -103,8 +103,8 @@ export class HomeComponent implements OnInit{
       this.filteredDateEnd = this.getFormattedDate(new Date()); 
       // this.filteredDateTest = this.getFormattedDate(new Date());
       this.editingTest.planId = '0';
-      this.editingTest.injectorModel = '0';
       this.editingTest.vehiclePlate = '0';
+      this.editingTest.injectorModel = '0';
     }
 
     //let modal = document.getElementById('planModalToggle');
@@ -582,28 +582,30 @@ export class HomeComponent implements OnInit{
   confirmRemove() {
 
     let modal: any;
-    //let method: any;
     let service: any;
     let component: any;
+
+    let objectId = this.removingEvent.object.id;
+    let objectClass = this.removingEvent.objClass;
  
-    if(this.removingEvent.class == 'Plan') {
-      service = this.planService;
+    if(objectClass == 'Plan') {
+      service = <PlanService>this.planService;
       component = Plan;
       modal = document.getElementById("planMenuLink");
-    } else if(this.removingEvent.class == 'Test') {
-      service = this.testService;
+    } else if(objectClass == 'Test') {
+      service = <TestService>this.testService;
       component = Test;
-    } else if(this.removingEvent.class == 'Vehicle') {
+    } else if(objectClass == 'Vehicle') {
       modal = document.getElementById("vehicleMenuLink");
-      service = this.vehicleService;
+      service = <VehicleService>this.vehicleService;
       component = Vehicle;
-    } else if(this.removingEvent.class == 'Injector') {
+    } else if(objectClass == 'Injector') {
       modal = document.getElementById("injectorMenuLink");
-      service = this.injectorService;
+      service = <InjectorService>this.injectorService;
       component = Injector;
     } 
 
-    service.remove(this.removingEvent.object.id).subscribe({
+    service.remove(objectId).subscribe({
       next: (resp: any) => {
         document.getElementById("removeCloseModalButton")?.click();
         modal?.click();

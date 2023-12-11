@@ -23,7 +23,7 @@ export class VehicleTableComponent {
   }
 
   emitRemovingEvent(vehicle: Vehicle) {
-    let event = { command: 'removing', object: vehicle, class: Vehicle.name }
+    let event = { command: 'removing', object: vehicle, objClass: 'Vehicle' }
     this.commandEvent.emit(event);
   }
 

@@ -23,7 +23,7 @@ export class InjectorTableComponent {
   }
 
   emitRemovingEvent(injector: Injector) {
-    let event = { command: 'removing', object: injector, class: Injector.name }
+    let event = { command: 'removing', object: injector, objClass: 'Injector' }
     this.commandEvent.emit(event);
   }
 

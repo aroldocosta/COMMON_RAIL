@@ -7,19 +7,31 @@ scp -v /Projects/microLet/REPOSITORY/COMMON_RAIL/back/rail/target/rail-0.0.1-SNA
 ## Issues
 
 ###	PROBLEMAS ENCONTRADOS
-- 1 (x) As informa��es dos bicos so salva correto se tiver numero apos a virgula caso contrario o numero inteiro passa pra casa decimal
-- 2 (x) No celular n�o aparece o bot�o salvar dados no teste
+			PROBLEMAS ENCONTRADOS
+1 (x) As informa��es dos bicos so salva correto se tiver numero apos a virgula caso contrario o numero inteiro passa pra casa decimal
+2 (x) No celular n�o aparece o bot�o salvar dados no teste
+
 ----------------------------09/12/23-------------------------------
-- 3 () Na tela de planos altera mais nao apaga
-- 4 () Na tela de injetores mudar o nome "tipo" para "plano"
-- 5 () Na tela de injetores n�o altera e nem apaga
-- 6 () Ao criar um novo teste, traz todos valores lidos do teste anterior
+3 () Na tela de planos altera mais nao apaga, pergunta se quer apagar mais nao apaga
+4 (x) Na tela de injetores mudar o nome "tipo" para "plano"
+5 () Na tela de injetores altera mais nao apaga, pergunta se quer apagar mais nao apaga
+6 (x) Ao criar um novo teste, traz todos valores lidos do teste anterior (Concordamos em ser assim mesmo)
+
+----------------------------10/12/23-------------------------------
+7 () Na tela principal nao apaga um teste
+8 () No celular aparece dois botoes para salvar, o debaixo nao ta salvando
+
+
 
 
 		SOLU��ES DE USABILIDADES
-- 1 (x) Selecionar edi��o do bico pela linha toda
-- 2 (x) Ao salvar um teste voltar para o grupo da mesma "OS"
-- 3 (x) Diminuir a largura das colunas: INJETOR, SEQUENCIA, ORD. SERVI�O,     EDT e REM, para nao precisar barra de rolagem em baixo.
-- 4 (x) Ao salvar um teste manter a ordem dos injetores 1, 2, 3, 4
+1 (x) Selecionar edi��o do bico pela linha toda
+2 (x) Ao salvar um teste voltar para o grupo da mesma "OS"
+3 (x) Diminuir a largura das colunas: INJETOR, SEQUENCIA, ORD. SERVI�O, EDT e REM, para nao precisar barra de rolagem em baixo.
+4 (x) Ao salvar um teste manter a ordem dos injetores 1, 2, 3, 4
 
-x -> reolvidas
+----------------------------10/12/23-------------------------------
+5 () Estando na tela de edi��o de teste e importante ver qual e a sequencia
+6 () Estando na tela de edi��o de teste e importante ter um botao "VOLTAR" ao lado MODELO INJETOR 
+
+

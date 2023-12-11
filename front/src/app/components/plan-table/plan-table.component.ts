@@ -33,7 +33,7 @@ export class PlanTableComponent {
   }
 
   emitRemovingEvent(plan: Plan) {
-    let event = { command: 'removing', object: plan, class: Plan.name }
+    let event = { command: 'removing', object: plan, objClass: 'Plan' }
     this.commandEvent.emit(event);
   }
 

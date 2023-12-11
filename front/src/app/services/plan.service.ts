@@ -35,7 +35,7 @@ export class PlanService {
     return this.http.put(url, plan, this.login.getHttpOptions());
   }
 
-  remove(id: any): Observable<any> {
+  remove(id: string): Observable<any> {
     const url = `${this.baseUrl}plans/${id}`;
     return this.http.delete(url, this.login.getHttpOptions());
   }
