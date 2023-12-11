@@ -23,7 +23,6 @@ export class InjectorFormComponent {
   }
 
   emitUpdateInjectorEvent() {
-    console.log('emitUpdateInjectorEvent: ' + JSON.stringify(this.editingInjector));
     this.updateEvent.emit(this.editingInjector);
   }
 }

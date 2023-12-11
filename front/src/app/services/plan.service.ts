@@ -16,7 +16,6 @@ export class PlanService {
 
   list() {
     const url = `${this.baseUrl}plans`;
-    console.log(url);
     return this.http.get<Plan[]>(url, this.login.getHttpOptions());
   }
 

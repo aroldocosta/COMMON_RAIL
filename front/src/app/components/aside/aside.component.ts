@@ -148,10 +148,7 @@ export class AsideComponent implements OnInit {
   drawColor(value: string, maxValue: string, minValue: string) {
     let val = Number(value);
     let min = (minValue != null) ? Number(minValue) : 0;
-    let max = (maxValue != null) ? Number(maxValue) : 0;
-
-    console.log("Max: " + max + " Min: " + min);
-    
+    let max = (maxValue != null) ? Number(maxValue) : 0;   
     let color = this.getColor(val, max, min);
 
     if(max <= min && val >= min) {color.red = 0; color.grn = 255; color.blu = 0}

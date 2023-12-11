@@ -140,7 +140,6 @@ export class HomeComponent implements OnInit{
   }
 
   cancelTestCommandButton() {
-    console.log("cancelTestCommandButton")
     this.testCommand = 'listing';
     this.homeCommandButton = 'NOVO TESTE'
   }
@@ -176,7 +175,6 @@ export class HomeComponent implements OnInit{
   }
 
   handleVehicleCommandButton() {
-    console.log("Command: " + this.modalCommand);
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
@@ -193,9 +191,7 @@ export class HomeComponent implements OnInit{
   }
 
   cancelVehicleCommandButton() {
-    console.log(this.modalCommand);
     if(this.modalCommand == 'listing') {
-      console.log("Entrou aqui")
       document.getElementById('vehicleModalCloseButton')?.click();
     } else {
       this.modalCommand = 'listing';
@@ -222,7 +218,6 @@ export class HomeComponent implements OnInit{
 
   cancelInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
-      console.log("Entrou aqui")
       document.getElementById('injectorModalCloseButton')?.click();
     } else {
       this.modalCommand = 'listing';
@@ -232,7 +227,6 @@ export class HomeComponent implements OnInit{
   /*------------------------------------------------------------*/
 
   handleEditingTestEvent(test: Test) {
-    console.log("-------- EDITING TEST --------\n" + JSON.stringify(test));
     this.editingTest = test;
     this.testCommand = 'editing';
     this.homeCommandButton = 'SALVAR';
@@ -339,7 +333,7 @@ export class HomeComponent implements OnInit{
         this.modalCommandButton = 'NOVO'; 
       },
       error: err => {
-        console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%\n" + err)
+        console.log("Error: ", err)
       }
     })
   }
@@ -382,7 +376,7 @@ export class HomeComponent implements OnInit{
         this.requestTests();
       },
       error: err => {
-        console.log("Error: " + JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
@@ -409,7 +403,7 @@ export class HomeComponent implements OnInit{
         })
       },
       error: err => {
-        console.log(JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
@@ -417,7 +411,6 @@ export class HomeComponent implements OnInit{
   updatePlan() {
     this.planService.update(this.editingPlan).subscribe({
       next: resp => {
-        console.log(JSON.stringify(resp));
         this.planService.list().subscribe({
           next: list => {
             this.planList = list;
@@ -425,7 +418,7 @@ export class HomeComponent implements OnInit{
         })
       },
       error: err => {
-        console.log(JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
@@ -436,14 +429,11 @@ export class HomeComponent implements OnInit{
         this.vehicleService.list().subscribe({
           next: list => {
             this.vehicleList = list;
-            for(let p of this.planList) {
-              console.log(p.code);
-            }
           }
         })
       },
       error: err => {
-        console.log(JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
@@ -451,7 +441,6 @@ export class HomeComponent implements OnInit{
   updateVehicle() {
     this.vehicleService.update(this.editingVehicle).subscribe({
       next: resp => {
-        console.log(JSON.stringify(resp));
         this.vehicleService.list().subscribe({
           next: list => {
             this.vehicleList = list;
@@ -459,13 +448,12 @@ export class HomeComponent implements OnInit{
         })
       },
       error: err => {
-        console.log(JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
 
   saveInjector() {
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22\n" + JSON.stringify(this.editingInjector));
     this.injectorService.create(this.editingInjector).subscribe({
       next: resp => {
         this.injectorService.list().subscribe({
@@ -475,7 +463,7 @@ export class HomeComponent implements OnInit{
         })
       },
       error: err => {
-        console.log(JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
@@ -483,7 +471,6 @@ export class HomeComponent implements OnInit{
   updateInjector() {
     this.injectorService.update(this.editingInjector).subscribe({
       next: resp => {
-        console.log(JSON.stringify(resp));
         this.injectorService.list().subscribe({
           next: list => {
             this.injectorList = list;
@@ -491,7 +478,7 @@ export class HomeComponent implements OnInit{
         })
       },
       error: err => {
-        console.log(JSON.stringify(err));
+        console.log("Error: ", err);
       }
     })
   }
@@ -524,7 +511,7 @@ export class HomeComponent implements OnInit{
   // }
 
   doTestCombinedFilter() {
-    console.log("Test Combined filter")
+
   }
 
   doTestInjectorNumberFilter() {
@@ -651,7 +638,6 @@ export class HomeComponent implements OnInit{
   }
 
   handleVehicleCommandEvent(event: any) {  
-    console.log("Event: " + JSON.stringify(event));
     if(event.command == 'editing') {
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
@@ -668,7 +654,6 @@ export class HomeComponent implements OnInit{
   }
 
   handleInjectorCommandEvent(event: any) {  
-    console.log("------------- Event -------------\n" + JSON.stringify(event));
     if(event.command == 'editing') {
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
@@ -684,21 +669,14 @@ export class HomeComponent implements OnInit{
     }
   }
 
-  // handleSaveEvent(event: any) {
-  //   console.log("----------------- handleSaveEvent -----------------\n" + JSON.stringify(event));
-  // }
-
   handleArrowEvent(arrow: string) {
-    console.log("Arrow: " + arrow + " Tab: " + JSON.stringify(this.tabList[this.tabIndex]));//
     if(arrow == 'right') {
       this.tabIndex++;
       if(this.tabIndex >= this.tabList.length) this.tabIndex = 0;
-      console.log("TabIndex: " + this.tabIndex);
       this.handleTabbingTestEvent(this.tabList[this.tabIndex]);
     } else if(arrow == 'left') {
       this.tabIndex--;
       if(this.tabIndex < 0) this.tabIndex = this.tabList.length - 1;
-      console.log("TabIndex: " + this.tabIndex);
       this.handleTabbingTestEvent(this.tabList[this.tabIndex]);
     }
   }
@@ -758,7 +736,6 @@ export class HomeComponent implements OnInit{
   }
 
   handleCreateTestEvent(test: Test){
-    console.log("Teste de criação");
     this.testCommand = 'creating';
     this.homeCommandButton = "SALVAR";
     this.editingTest = test;

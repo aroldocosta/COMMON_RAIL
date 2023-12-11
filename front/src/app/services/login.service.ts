@@ -17,7 +17,6 @@ export class LoginService {
 
   public resquestLogin(login: string, password: string): Observable<any> {
     const url = `${this.baseUrl}auth/login`;
-    console.log('---------------------------\n' + url)
     let authentication: AuthenticationDTO = new AuthenticationDTO(login, password);
     return this.http.post(url, authentication, {});
   }

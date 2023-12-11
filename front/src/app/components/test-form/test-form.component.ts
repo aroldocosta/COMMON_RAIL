@@ -41,66 +41,52 @@ export class TestFormComponent {
       this.clearEvent.emit();
     }
     emitUpdateTestEvent() {
-      console.log("PlanId: " + this.editingTest.planId);
       this.updateEvent.emit(this.editingTest);
     }
 
     emitUpdateTestPlanEvent() {
-      console.log("PlanId: " + this.editingTest.planId);
       this.updatePlanEvent.emit(this.editingTest);
     }
 
     emitUpdateTestInjectorEvent() {
-      console.log("PlanId: " + this.editingTest.injectorId);
       this.updateInjectorEvent.emit(this.editingTest);
     }
     emitCreateEvent(test: Test) {
       this.createEvent.emit(test);
     }
     handleResistanceFormat() {
-      //this.editingTest.resistance   = this.formatter.format(this.editingTest.resistance);
       this.emitUpdateTestEvent();
     }
 
     handleReactanceFormat() {
-      //this.editingTest.reactance   = this.formatter.format(this.editingTest.reactance);
       this.emitUpdateTestEvent();
     }
 
     handleIsolationFormat() {
-      //this.editingTest.isolation    = this.formatter.format(this.editingTest.isolation);
       this.emitUpdateTestEvent();
     }
     handleHalfLoadFormat() {
-      //this.editingTest.halfLoad     = this.formatter.format(this.editingTest.halfLoad);
       this.emitUpdateTestEvent();
     }
     handleIdlingFormat() {
-      //this.editingTest.idling = this.formatter.format(this.editingTest.idling); 
       this.emitUpdateTestEvent();
     }
     handleFullLoadFormat() {
-      //this.editingTest.fullLoad           = this.formatter.format(this.editingTest.fullLoad);
       this.emitUpdateTestEvent();
     }
     handlePreInjectionFormat() {
-      //this.editingTest.preInjection       = this.formatter.format(this.editingTest.preInjection);
       this.emitUpdateTestEvent();
     }
     handleHalfLoadReturnFormat() {
-      //this.editingTest.halfLoadReturn     = this.formatter.format(this.editingTest.halfLoadReturn);
       this.emitUpdateTestEvent();
     }
     handleIdlingReturnFormat() {
-      //this.editingTest.idlingReturn       = this.formatter.format(this.editingTest.idlingReturn); 
       this.emitUpdateTestEvent();
     }
     handleFullLoadReturnFormat() {
-      //this.editingTest.fullLoadReturn     = this.formatter.format(this.editingTest.fullLoadReturn);
       this.emitUpdateTestEvent();
     }
     handlePreInjectionReturnFormat() {
-      //this.editingTest.preInjectionReturn = this.formatter.format(this.editingTest.preInjectionReturn);
       this.emitUpdateTestEvent();
     }
 
@@ -108,7 +94,6 @@ export class TestFormComponent {
       this.tabbingEvent.emit(tab);
     }
     newTestFromServiceOrder() {
-      console.log("Service Order: " + this.editingTest.serviceOrder);
       this.editingTest.id = '';
       this.createEvent.emit(this.editingTest);
     }

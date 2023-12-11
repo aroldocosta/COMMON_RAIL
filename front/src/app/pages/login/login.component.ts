@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
           }
         },
         error: ( err ) => {
-          console.log("Erro de autenticação: " + err.message);
           this.topMessage?.setAlertMessage("Erro de autenticação!", this.topMessage.DANGER, 4500);
         }
      });
