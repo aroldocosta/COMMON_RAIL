@@ -9,12 +9,11 @@ import { Test } from 'src/app/model/test.model';
 })
 export class TestTableComponent {
 
-  @Input() testList: Test[] = [];
+  @Input() list: Test[] = [];
   @Input() filteredField = 'serviceOrder';
   @Output() resetFilterEvent = new EventEmitter();    
   @Output() newEvent = new EventEmitter<Test>();
-  @Output() editEvent = new EventEmitter<Test>();
-  @Output() removeEvent = new EventEmitter<Test>();
+  @Output() commandEvent = new EventEmitter
 
   constructor() {}
 
@@ -23,11 +22,13 @@ export class TestTableComponent {
   }
 
   emitEditEvent(test: Test) {
-    this.editEvent.emit(test);
+    let event = { command: 'editing', object: test, objClass: 'Test' }
+    this.commandEvent.emit(event);
   }
 
   emitRemoveEvent(test: Test) {
-    this.removeEvent.emit(test);
+    let event = { command: 'removing', object: test, objClass: 'Test' }
+    this.commandEvent.emit(event);
   }
 
   emitResetFilterEvent() {

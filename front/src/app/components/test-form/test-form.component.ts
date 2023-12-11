@@ -44,11 +44,11 @@ export class TestFormComponent {
       this.updateEvent.emit(this.editingTest);
     }
 
-    emitUpdateTestPlanEvent() {
+    emitUpdatePlanEvent() {
       this.updatePlanEvent.emit(this.editingTest);
     }
 
-    emitUpdateTestInjectorEvent() {
+    emitUpdateInjectorEvent() {
       this.updateInjectorEvent.emit(this.editingTest);
     }
     emitCreateEvent(test: Test) {

@@ -1,7 +1,7 @@
 <app-header 
-	(requestPlansEvent)="requestPlans()"
-	(requestVehiclesEvent)="requestVehicles()"
-	(requestInjectorsEvent)="requestInjectors()"
+	(requestPlansEvent)="handlePlanLinkEvent()"
+	(requestVehiclesEvent)="handleVehicleLinkEvent()"
+	(requestInjectorsEvent)="handleInjectorLinkEvent()"
 	(reportEvent)="setReportFile($event)"
 ></app-header>
  <div class="container-fluid">
@@ -22,7 +22,7 @@
 						<button type="button" 
 							(click)="handleTestCommandButton()" 
 							class="btn btn-outline-primary btn-block top-button" 
-							>{{homeCommandButton}}</button>
+							>{{testCommandButton}}</button>
 					</div>
 					<div class="col-md-9">
 						<div class="row">
@@ -83,10 +83,9 @@
 					></app-test-form>  				        
 					<app-test-table
 						*ngIf="testCommand == 'listing'"
-						[testList]="filteredList"
+						[list]="filteredList"
 						[filteredField]="filteredField"
-						(editEvent)="handleEditingTestEvent($event)"
-						(removeEvent)="handleRemovingTestEvent($event)"
+						(commandEvent)="handleTestCommandEvent($event)"
 						(resetFilterEvent)="handleResetFilterEvent()"
 					></app-test-table>
 				<hr class="colorgraph">
@@ -94,12 +93,12 @@
 					<button class="btn btn-outline-primary btn-block btn-right" 
 						tabindex="12"
 						(click)="handleTestCommandButton()"
-					>{{homeCommandButton}}</button>					
-					<button class="btn btn-outline-secondary btn-block btn-right" 
+					>{{testCommandButton}}</button>					
+					<button id="testListButton" class="btn btn-outline-secondary btn-block btn-right" 
 						*ngIf="testCommand != 'listing'"
 						tabindex="11"
 						(click)="cancelTestCommandButton()"
-					>CANCELAR</button>
+					>VOLTAR / LISTAR</button>
 				</div>
 			</section>
 	   </div>
@@ -109,7 +108,7 @@
 	  <div class="modal-content">
 		<div class="modal-header">
 		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">PLANOS</h1>
-		  <button id="planModalCloseButton"type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  <button (click)="cancelPlanCommandButton()" id="planModalCloseButton"type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
 			<hr class="colorgraph">
@@ -139,7 +138,7 @@
 	  <div class="modal-content">
 		<div class="modal-header">
 		  <h1 class="modal-title fs-5" id="vehicleModalToggleLabel">VEÍCULOS {{modalCommand}}</h1>
-		  <button id="vehicleModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  <button (click)="cancelVehicleCommandButton()" id="vehicleModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
 			<hr class="colorgraph">
@@ -153,7 +152,7 @@
 			<app-vehicle-table
 				*ngIf="modalCommand == 'listing'"				
 				[list]="vehicleList"
-				(commandEvent)="handleVehicleCommandEvent($event)"
+				(commandEvent)="handleVehicleCommandEvent($event)"				
 			>
 			</app-vehicle-table>
 			<hr class="colorgraph">
@@ -170,7 +169,7 @@
 	  <div class="modal-content">
 		<div class="modal-header">
 		  <h1 class="modal-title fs-5" id="injectModalToggleLabel">INJETORES</h1>
-		  <button id="injectorModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  <button (click)="cancelInjectorCommandButton()" id="injectorModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
 			<hr class="colorgraph">
@@ -195,30 +194,6 @@
 	  </div>
 	</div>
   </div>  
-  <!-- <div class="modal fade" id="newModalToggle" aria-labelledby="newModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="newModalToggleLabel">NOVO TESTE</h1>
-		  <button id="newCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<app-test-form
-				command = 'creating'
-				[planList] = 'planList'
-				[vehicleList] = 'vehicleList'
-				[injectorList] = 'injectorList'
-				[editingTest] = 'editingTest'
-				(updateEvent)="updateEditingTest($event)"
-			></app-test-form>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="saveTest()">SALVAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>	  	 -->
   <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
@@ -247,7 +222,7 @@
 	  <div class="modal-content">
 		<div class="modal-header">
 		  <h1 class="modal-title fs-5" id="removeModalToggleLabel">{{removingAlertTopTitle}}</h1>
-		  <button id="removeCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  <button (click)="cancelRemoveCommandButton()" id="removeCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
 		<div class="table-responsive">
@@ -271,8 +246,8 @@
 		</div>
 		</div>	
 		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelPlanCommandButton()">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="confirmRemove()">REMOVER</button>
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelRemoveCommandButton()">CANCELAR</button>
+			<button class="btn btn-outline-primary btn-modal" (click)="handleModalRemoveConfirm()">REMOVER</button>
 	    </div>	
 	  </div>
 	</div>	
@@ -464,4 +439,5 @@
 	</div>	
   </div>       
 </div>
+CurrentModalLink: {{currentModalLink}}
 <app-footer></app-footer>

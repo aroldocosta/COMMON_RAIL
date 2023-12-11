@@ -22,7 +22,7 @@
         <label class="input" for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateTestInjectorEvent()"
+                (change)="emitUpdateInjectorEvent()"
                 [(ngModel)]="editingTest.injectorId" 
                 [disabled]="command == 'editing'">
                 <option value="0" selected>Selecione</option>
@@ -36,7 +36,7 @@
         <label class="input" for="">PLANO</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateTestPlanEvent()"
+                (change)="emitUpdatePlanEvent()"
                 [(ngModel)]="editingTest.planId" 
                 [disabled]="command == 'editing'">
                 <option value="0"selected>Selecione</option>
@@ -59,14 +59,15 @@
 </div>
 <div class="row input">
     <div class="col-sm-12 col-md-6">
-        <label class="input" for="">NÚMERO INJETOR</label>
+        <label class="input" for="">NÚMERO INJETOR </label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
-                [(ngModel)]="editingTest.injectorNumber" 
+                [(ngModel)]="editingTest.injectorNumber"
+                [disabled]="command == 'editing'" 
             >
                 <option value="0"selected>Selecione</option>
-                <option *ngFor="let n of numberList" [value]="n">{{n}}</option>
+                <option *ngFor="let n of numberList" [value]="n">{{n}} / [ {{editingTest.sequence}} ]</option>
             </select>
         </div>
     </div> 

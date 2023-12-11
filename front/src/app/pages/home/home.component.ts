@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit{
   @Input() userList: User[] = [];
   testCommand: string = 'listing';
   modalCommand: string = 'listing';
-  homeCommandButton = 'NOVO TESTE'
+  testCommandButton = 'NOVO TESTE'
   modalCommandButton = 'NOVO'
   report: any = 'Aguarde...';
   editingTest = new Test();
@@ -66,14 +66,15 @@ export class HomeComponent implements OnInit{
   removingAlertTopTitle: string = '';
   removingAlertMessage01: string = '';
   removingAlertMessage02: string = '';
+  currentModalLink: string = '';
 
   tabIndex = 0;
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
   tabList = [
     {id:'med_electric',   heading: 'MED ELETRICAS'},
     {id:'half_load',      heading: 'CARGA PARCIAL'},
-    {id:'full_load',      heading: 'PLENA CARAGA'},
     {id:'idling',         heading: 'MARCHA LENTA'},
+    {id:'full_load',      heading: 'PLENA CARGA'},    
     {id:'pre_injection',  heading: 'PRE INJEÇÃO'},
     {id:'comments',       heading: 'OBSERVAÇÕES'},
   ];
@@ -110,9 +111,21 @@ export class HomeComponent implements OnInit{
     //let modal = document.getElementById('planModalToggle');
   }
 
-  /* ---------------- Command Button Handlers ----------------- */
-  handleTestCommandButton() {
+  /* ---------------- Remove Command Button Handlers ----------------- */
+  cancelRemoveCommandButton() {
+    this.testCommand = 'listing';
+    this.testCommandButton = "NOVO TESTE";
+    this.modalCommand = 'listing';
+    this.modalCommandButton = "NOVO";  
+    document.getElementById('removeCloseModalButton')?.click(); 
 
+    if(this.currentModalLink.length > 0) {
+      document.getElementById(this.currentModalLink)?.click();
+    }   
+  }
+
+  /* ---------------- Test Command Button Handlers ----------------- */
+  handleTestCommandButton() {
     let button = 'NOVO';
     let command = 'listing';
     if(this.testCommand == 'listing') {
@@ -123,27 +136,29 @@ export class HomeComponent implements OnInit{
       this.requestVehicles();
       this.requestInjectors();
     } else if(this.testCommand == 'creating') {
-      this.topMessage?.setAlertMessage("Criando teste..", this.topMessage.SUCCESS, 1000);
+      this.topMessage?.setAlertMessage("Criando teste..", this.topMessage.SUCCESS, 600);
       command = 'editing';
       button = 'SALVAR';
       this.saveTest();
       this.requestTests();
     } else if(this.testCommand == 'editing') {
-      this.topMessage?.setAlertMessage("Salvando dados do teste..", this.topMessage.SUCCESS, 1000);
+      this.topMessage?.setAlertMessage("Salvando dados do teste..", this.topMessage.SUCCESS, 600);
       command = 'editing';
       button = 'SALVAR';
       this.updateTest();
       this.requestTests();
     }
     this.testCommand = command;
-    this.homeCommandButton = button;
+    this.testCommandButton = button;
   }
 
   cancelTestCommandButton() {
     this.testCommand = 'listing';
-    this.homeCommandButton = 'NOVO TESTE'
+    this.testCommandButton = 'NOVO TESTE';
+    this.requestTests();
   }
 
+  /* ---------------- Plan Command Button Handlers ----------------- */
   handlePlanCommandButton() { 
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
@@ -163,17 +178,14 @@ export class HomeComponent implements OnInit{
   cancelPlanCommandButton() {
     if(this.modalCommand == 'listing') {
       document.getElementById('planModalCloseButton')?.click();
-    } else if(this.modalCommand = 'removing') {
-      document.getElementById('removeCloseModalButton')?.click();
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO'
-    } 
-    else {
+      this.currentModalLink = '';
+    } else {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO'
     }
   }
 
+  /* -------------- Vehicle Command Button Handlers --------------- */
   handleVehicleCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
@@ -193,12 +205,14 @@ export class HomeComponent implements OnInit{
   cancelVehicleCommandButton() {
     if(this.modalCommand == 'listing') {
       document.getElementById('vehicleModalCloseButton')?.click();
+      this.currentModalLink = '';
     } else {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO'
     }
   }
 
+  /* ------------ Injector Command Button Handlers ------------- */
   handleInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
@@ -219,6 +233,7 @@ export class HomeComponent implements OnInit{
   cancelInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       document.getElementById('injectorModalCloseButton')?.click();
+      this.currentModalLink = '';
     } else {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO'
@@ -226,25 +241,55 @@ export class HomeComponent implements OnInit{
   }
   /*------------------------------------------------------------*/
 
-  handleEditingTestEvent(test: Test) {
-    this.editingTest = test;
-    this.testCommand = 'editing';
-    this.homeCommandButton = 'SALVAR';
-
-    this.planService.get(test.planId).subscribe({
-      next: plan => {
-        this.editingPlan = plan;
-        this.handleTabbingTestEvent(this.currentTab);
+  /* ---------------- Confirm Remove Button Handlers ----------------- */
+  handleTestRemoveConfirm(test: Test) {
+    this.testService.remove(test.id).subscribe({
+      next: resp => {
+        this.testCommand = 'listing';
+        this.testCommandButton = 'NOVO TESTE';
+        document.getElementById("removeCloseModalButton")?.click();
+        this.requestTests();      
       },
       error: err => {
         console.log("Error: ", err);
       }
-    });
+    }) 
   }
 
-  handleRemovingTestEvent(test: Test) {
-    
+  handleModalRemoveConfirm() {
+    let link: any;
+    let service: any;
+
+    let objectId = this.removingEvent.object.id;
+    let objectClass = this.removingEvent.objClass;
+ 
+    if(objectClass == 'Plan') {
+      service = <PlanService>this.planService;
+      link = document.getElementById("planMenuLink");
+    } else if(objectClass == 'Test') {
+      this.handleTestRemoveConfirm(this.removingEvent.object);
+      return;
+    } else if(objectClass == 'Vehicle') {
+      link = document.getElementById("vehicleMenuLink");
+      service = <VehicleService>this.vehicleService;
+    } else if(objectClass == 'Injector') {
+      link = document.getElementById("injectorMenuLink");
+      service = <InjectorService>this.injectorService;
+    } 
+
+    service.remove(objectId).subscribe({
+      next: (resp: any) => {
+        document.getElementById("removeCloseModalButton")?.click();
+        link?.click();
+        this.modalCommand = 'listing';
+        this.modalCommandButton = "NOVO";
+      },
+      error: (err: any) => {
+        this.alertMessage = "Ação não permitida, entre em contato com a gerência."
+      }
+    })
   }
+/*--------------------------------------------------------------*/
 
   setReportFile(report: any) {
     const file = new Blob([report], {
@@ -308,8 +353,14 @@ export class HomeComponent implements OnInit{
       }
     })
   }
+  
+  handlePlanLinkEvent() {
+    this.currentModalLink = 'planMenuLink';
+    this.requestPlans();
+  }
 
   requestPlans() {
+    
     this.planService.list().subscribe({
       next: list => {
         this.planList = list;
@@ -317,7 +368,13 @@ export class HomeComponent implements OnInit{
     })
   }
 
+  handleVehicleLinkEvent() {
+    this.currentModalLink = 'planMenuLink';
+    this.requestVehicles();
+  }
+
   requestVehicles() {
+    this.currentModalLink = 'vehicleMenuLink';
     this.vehicleService.list().subscribe({
       next: list => {
         this.vehicleList = list;
@@ -325,12 +382,16 @@ export class HomeComponent implements OnInit{
     })
   }
 
+  handleInjectorLinkEvent() {
+    this.currentModalLink = 'planMenuLink';
+    this.requestInjectors();
+  }
+
   requestInjectors() {
+    this.currentModalLink = 'injectorMenuLink';
     this.injectorService.list().subscribe({
       next: list => {
         this.injectorList = list;
-        this.modalCommand = 'listing';
-        this.modalCommandButton = 'NOVO'; 
       },
       error: err => {
         console.log("Error: ", err)
@@ -558,60 +619,28 @@ export class HomeComponent implements OnInit{
     document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
   }
 
-  //edit(test: Test) {
-    // this.testPlanId = test.planId;
-    // this.testPayment = this.appyCurrencyMask(test.payment.toFixed(2));
-    // this.testQuantity = this.appyCurrencyMask(test.quantity.toFixed(2));
-    // this.testDate = test.date.split('T')[0];   
-    // this.editingTest = test;
-  //}
+  handleTestCommandEvent(event: any) {  
+    this.testCommand = event.command;
+    if(event.command == 'editing') {
+      this.planService.get(event.object.planId).subscribe({
+        next: plan => {
+          this.editingPlan = plan
+          this.testCommandButton = 'SALVAR';
+          this.editingTest = event.object;
+          this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan, this.editingInjector);
+        }
+      })
 
-  confirmRemove() {
+    } else if(event.command == 'saving') {
 
-    let modal: any;
-    let service: any;
-    let component: any;
-
-    let objectId = this.removingEvent.object.id;
-    let objectClass = this.removingEvent.objClass;
- 
-    if(objectClass == 'Plan') {
-      service = <PlanService>this.planService;
-      component = Plan;
-      modal = document.getElementById("planMenuLink");
-    } else if(objectClass == 'Test') {
-      service = <TestService>this.testService;
-      component = Test;
-    } else if(objectClass == 'Vehicle') {
-      modal = document.getElementById("vehicleMenuLink");
-      service = <VehicleService>this.vehicleService;
-      component = Vehicle;
-    } else if(objectClass == 'Injector') {
-      modal = document.getElementById("injectorMenuLink");
-      service = <InjectorService>this.injectorService;
-      component = Injector;
-    } 
-
-    service.remove(objectId).subscribe({
-      next: (resp: any) => {
-        document.getElementById("removeCloseModalButton")?.click();
-        modal?.click();
-        this.modalCommand = 'listing';
-        this.modalCommandButton = "NOVO"
-        service.list().subscribe({
-          next: (list: any) => {
-            component.list = list;
-          }
-        });
-      },
-      error: (err: any) => {
-        this.alertMessage = "Ação não permitida, entre em contato com a gerência."
-      }
-    })
-  }
-
-  cancelRemove() {
-
+    } else if(event.command == 'removing') {
+      this.removingObjects = '';
+      this.removingEvent = event;
+      this.removingAlertMessage01 = `Deseja remover o teste da OS ${event.object.serviceOrder}, 
+      injetor ${event.object.injectorNumber} e sequência ${event.object.sequence}`  
+      // this.removingAlertMessage02 = "Esta ação também removerá o(s) injetor(es) a seguir: ";
+      this.removingAlertTopTitle = "REMOVER TESTE";
+    }
   }
 
   handlePlanCommandEvent(event: any) {  
@@ -682,7 +711,6 @@ export class HomeComponent implements OnInit{
   }
 
   handleTabbingTestEvent(tab: any) {
-
     this.currentTab = tab;
     this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan, this.editingInjector);
   }
@@ -725,6 +753,7 @@ export class HomeComponent implements OnInit{
         this.planService.get(injector.planId).subscribe({
           next: plan => {
             this.editingPlan = plan;
+            this.currentTab = {id:'med_electric', heading:  'MED ELETRICAS'};
             this.handleTabbingTestEvent(this.currentTab);
           }
         })
@@ -737,7 +766,7 @@ export class HomeComponent implements OnInit{
 
   handleCreateTestEvent(test: Test){
     this.testCommand = 'creating';
-    this.homeCommandButton = "SALVAR";
+    this.testCommandButton = "SALVAR";
     this.editingTest = test;
   }
 
