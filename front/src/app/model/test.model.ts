@@ -27,6 +27,7 @@ export class Test {
 	vehiclePlate: string = '';
 	imaCode: string = '';
 	serviceOrder: string = '';
+	customerName: string = '';
 
     constructor() {
 		this.planId = '0';
