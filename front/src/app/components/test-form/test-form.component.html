@@ -67,7 +67,8 @@
                 [disabled]="command == 'editing'" 
             >
                 <option value="0"selected>Selecione</option>
-                <option *ngFor="let n of numberList" [value]="n">{{n}} / [ {{editingTest.sequence}} ]</option>
+                <option *ngFor="let n of numberList" [value]="n">{{n}}
+                    <span *ngIf="command == 'editing'"> ( sequência: {{editingTest.sequence}} )</span></option>
             </select>
         </div>
     </div> 
@@ -75,11 +76,25 @@
         <label class="input" for="">CÓDIGO IMA</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
-                placeholder="Digite o código IMA"
+                placeholder="Código IMA"
                 (input)="emitUpdateTestEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
                 [(ngModel)]="editingTest.imaCode"
+            >
+        </div>
+    </div> 
+</div>
+<div class="row input">
+    <div class="col-sm-12 col-md-12">
+        <label class="input" for="">CLIENTE</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Nome do cliente"
+                (input)="emitUpdateTestEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingTest.customerName"
             >
         </div>
     </div> 
