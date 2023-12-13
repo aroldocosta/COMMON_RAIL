@@ -20,8 +20,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.service.setAuthData(null);
     this.loginForm = new FormGroup({
-      login: new FormControl('',[Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      login: new FormControl('admin@railcontrol.com',[Validators.required]),
+      password: new FormControl('87654321', [Validators.required]),
     })
   }
 

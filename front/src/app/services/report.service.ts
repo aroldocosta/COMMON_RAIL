@@ -16,8 +16,8 @@ export class ReportService {
 
   constructor(private http: HttpClient, private login: LoginService) { }
 
-  report() {
-    const url = `${this.baseUrl}report`;
+  report(serviceOrder: string) {
+    const url = `${this.baseUrl}report/${serviceOrder}`;
     return this.http.get(url, { responseType: 'blob', headers: this.headers });
   }
  }

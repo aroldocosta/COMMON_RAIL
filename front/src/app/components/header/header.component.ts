@@ -21,16 +21,13 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
   //@Output() vehicleEvent  = new EventEmitter<Vehicle[]>();
   // @Output() planEvent   = new EventEmitter<Plan[]>();
   @Output() requestPlansEvent =  new EventEmitter();
+  @Output() requestReportEvent = new EventEmitter();
   @Output() requestVehiclesEvent =  new EventEmitter();
   @Output() requestInjectorsEvent =  new EventEmitter();
   @Output() reportEvent = new EventEmitter<any>();
 
   constructor(
-    private injectorService: InjectorService,
-    private vehicleService: VehicleService,
-    private planService: PlanService,
     private userService: UserService,
-    private reportService: ReportService,
     private router: Router,
     private login: LoginService) {
       super();
@@ -66,6 +63,10 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
 
   emitRequestInjectorsEvent() {
     this.requestInjectorsEvent.emit();
+  }
+
+  emitRequestReportEvent() {
+    this.requestReportEvent.emit();
   }
 
 

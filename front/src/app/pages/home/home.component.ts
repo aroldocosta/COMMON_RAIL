@@ -14,6 +14,7 @@ import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
 import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 import { User } from 'src/app/model/user.model';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-home',
@@ -85,6 +86,7 @@ export class HomeComponent implements OnInit{
     private testService: TestService,      
     private planService: PlanService,
     private loginService: LoginService,
+    private reportService: ReportService,
     private vehicleService: VehicleService,
     private injectorService: InjectorService
     ) {
@@ -398,6 +400,46 @@ export class HomeComponent implements OnInit{
       }
     })
   }
+
+  handleReportLinkEvent() {
+    this.reportService.report('1111').subscribe({
+      next: resp => {
+        const file = new Blob([resp], {
+          type: resp.type
+        });
+
+        const blob = window.URL.createObjectURL(file);
+
+        const link = document.createElement('a');
+        link.href = blob;
+        link.download = 'report.pdf';
+        link.click();
+    
+        window.URL.revokeObjectURL(blob);
+        link.remove();
+
+      }
+    })
+  }
+
+  /*
+    setReportFile(report: any) {
+    const file = new Blob([report], {
+      type: report.type
+    });
+
+    const blob = window.URL.createObjectURL(file);
+
+    const link = document.createElement('a');
+    link.href = blob;
+    link.download = 'report.pdf';
+    link.click();
+
+    window.URL.revokeObjectURL(blob);
+    link.remove();
+  }
+  */
+
 
   showNotImplementedAlert() {
     this.alertMessage = 'Função ainda não implementada neste MVP!';
