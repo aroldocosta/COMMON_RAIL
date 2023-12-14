@@ -43,7 +43,6 @@ export class CanvasGraphComponent extends CommonsComponent {
     let t = setInterval(() => {
       this.drawGauge(this.deb_Contxt, this.valDeb, this.maxDeb, this.minDeb);
       this.drawGauge(this.ret_Contxt, this.valRet, this.maxRet, this.minRet);
-      console.log("caraio");
     }, 100);
    
   }

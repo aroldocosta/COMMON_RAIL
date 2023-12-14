@@ -1,4 +1,6 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { Component, Input } from '@angular/core';
 import { Plan } from 'src/app/model/plan.model';
 import { TestReport } from 'src/app/model/test-report.model';
 import { Test } from 'src/app/model/test.model';
@@ -66,6 +68,38 @@ export class ReportComponent {
 
 
   download() {
-    console.log("download");
+    window.scrollTo(0, 0);
+    let buttons: any = document.getElementById('command-bnt');
+    buttons.style.visibility = 'hidden';
+    let btn_height = buttons.style.height;
+    buttons.style.height = 0;
+
+    setTimeout(() => {
+      let now = new Date();
+      let date = now.getDate().toLocaleString() + now.getMonth().toString() + now.getFullYear().toString();
+      let fileName = 'OS_' + this.serviceOrder + '_' + date + '.pdf';
+        let toPrint: any = document.querySelector('#report');
+        html2canvas(toPrint).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+            const imgWidth = 190; 
+            const pageHeight = 290;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            let position = 0;
+            doc.addImage(imgData, 'PNG', 10, 0, imgWidth, imgHeight + 25);
+            heightLeft -= pageHeight;
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight + 25);
+                heightLeft -= pageHeight;
+            }
+            doc.save(fileName);
+        });
+    }, 1000);
+
+    buttons.style.visibility = 'visible';
+    buttons.style.height = btn_height;
   }
 }
