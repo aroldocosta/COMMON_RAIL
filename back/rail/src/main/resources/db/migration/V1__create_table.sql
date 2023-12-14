@@ -44,7 +44,8 @@ CREATE TABLE test (
 	injector_id TEXT NOT NULL,
 	vehicle_id TEXT,
 	ima_code TEXT,
-	service_order TEXT
+	service_order TEXT,
+	customer_name TEXT
 );
 
 CREATE TABLE plan (
@@ -80,11 +81,3 @@ CREATE TABLE plan (
 	min_pre_injection_return NUMERIC
 );
 
-
--- CREATE TABLE tank(
--- 	id BIGINT PRIMARY KEY UNIQUE NOT NULL,
--- 	name TEXT NOT NULL,
--- 	fuel TEXT NOT NULL,
--- 	tax NUMERIC NOT NULL,
--- 	unit_price NUMERIC NOT NULL
--- );

@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 
 
@@ -44,6 +43,9 @@ public class Test {
 	
 	@Column(name = "service_order")
 	private String serviceOrder;
+	
+	@Column(name = "customer_name")
+	private String customerName;
 	
 	@Column(name = "sequence")
 	private Integer sequence;
@@ -117,31 +119,9 @@ public class Test {
 		//----------------------------------
 		this.setImaCode(dto.imaCode());
 		this.setServiceOrder(dto.serviceOrder());
+		this.setCustomerName(dto.customerName());
 	}
 	
-	/*
-	t.getId(),
-	t.getSequence(),
-	t.getDate(),
-	t.getResistance(),
-	t.getReactance(),
-	t.getIsolation(),
-	t.getHalfLoad(),
-	t.getFullLoad(),
-	t.getIdling(),
-	t.getPreInjection(),
-	t.getHalfLoadReturn(),
-	t.getFullLoadReturn(),
-	t.getIdlingReturn(),
-	t.getPreInjectionReturn(),
-	t.getPlan().getId(),
-	t.getInjector().getId(),
-	t.getInjector().getCode(),
-	t.getInjector().getVehicle().getId(),
-	t.getInjector().getVehicle().getPlate(),
-	t.getImaCode(),
-	t.getServiceOrder()
-	 */
 	public String getId() {
 		return id;
 	}
@@ -196,6 +176,14 @@ public class Test {
 
 	public void setServiceOrder(String serviceOrder) {
 		this.serviceOrder = serviceOrder;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public Integer getSequence() {

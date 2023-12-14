@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-3"><h2 class="top-title">INJETOR {{editingTest.injectorNumber}}</h2></div>
+    <div class="col-3"><h2 class="top-title">INJETOR {{test.injectorNumber}} [ {{test.sequence}} ]</h2></div>
     <div class="col-9"><h2 class="top-title">{{tabTitle}}</h2></div>
 </div>
 
@@ -16,23 +16,23 @@
       <tbody>
       <tr>
           <th scope="row" title="Medições elétricas">RES(m&#937;):</th>
-          <td>{{editingPlan.minResistance | number: '1.2'}}</td>
-          <td [style]="resColor">{{editingTest.resistance 	| number: '1.2'}}</td>
-          <td>{{editingPlan.maxResistance | number: '1.2'}}</td>
+          <td>{{plan.minResistance | number: '1.2'}}</td>
+          <td [style]="resColor">{{test.resistance 	| number: '1.2'}}</td>
+          <td>{{plan.maxResistance | number: '1.2'}}</td>
       </tr>
       <tr>
-          <th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
-          <th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
-          <td>{{editingPlan.minReactance | number: '1.2'}}</td>
-          <td [style]="rctColor">{{editingTest.reactance	   | number: '1.2'}}</td>
-          <td>{{editingPlan.maxReactance | number: '1.2'}}</td>
+          <th scope="row" title="RET:al faturado" *ngIf="plan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
+          <th scope="row" title="RET:al faturado" *ngIf="plan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
+          <td>{{plan.minReactance | number: '1.2'}}</td>
+          <td [style]="rctColor">{{test.reactance	   | number: '1.2'}}</td>
+          <td>{{plan.maxReactance | number: '1.2'}}</td>
       </tr>
       <tr>
           <th scope="row" title="RET:al faturado">ISO(M&#937;):</th>
-          <td>{{editingPlan.minIsolation 	| number: '1.2'}}</td>
-          <td [style]="isoColor">{{editingTest.isolation 	| number: '1.2'}}</td>
-          <td *ngIf="editingPlan.maxIsolation">{{editingPlan.maxIsolation  | number: '1.2'}}</td>
-          <td *ngIf="!editingPlan.maxIsolation" class="infinity">&infin;</td>
+          <td>{{plan.minIsolation 	| number: '1.2'}}</td>
+          <td [style]="isoColor">{{test.isolation 	| number: '1.2'}}</td>
+          <td *ngIf="plan.maxIsolation">{{plan.maxIsolation  | number: '1.2'}}</td>
+          <td *ngIf="!plan.maxIsolation" class="infinity">&infin;</td>
       </tr>		  
       </tbody>
   </table>

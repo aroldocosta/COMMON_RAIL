@@ -8,7 +8,7 @@
             <h3 class="sub-title">Relatório de teste</h3>
         </div>
         <div class="col-sm-3"></div>
-        <div class="row">
+        <div class="row" style="margin-bottom: 0.5em;">
             <div class="col-sm-6">
                 <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
             </div>
@@ -51,8 +51,8 @@
             <div class="col-sm-8">
                 <app-med-electric-table
                     tabTitle="MED ELÉTRICAS"
-                    [editingPlan]="editingPlan"
-                    [editingTest]="testList[i]"
+                    [plan]="editingPlan"
+                    [test]="testList[i]"
                 ></app-med-electric-table> 
             </div>  
             <div class="col-sm-4">
@@ -68,17 +68,15 @@
                 ></app-half-load-table> 
             </div>  
             <div class="col-sm-4" style="height: 15em;">
-                <div class="row">
-                    <div class="col-sm-6" style="width: 50%">
-                        <canvas id="debCanvasHalfLoad" #{{camvas[0].deb}}></canvas>
-                        <h4>DÉB</h4>
-                    </div>
-                    <div class="col-sm-6"  style="width: 50%">
-                        <canvas id="retCanvasHalfLoad" #retCanvasHalfLoad></canvas>
-                        <h4>RET</h4>
-                    </div>
-                </div>
-            </div>
+                <app-canvas-graph
+                    [valDeb]="testList[i].halfLoad"
+                    [maxDeb]="editingPlan.maxHalfLoad"
+                    [minDeb]="editingPlan.minHalfLoad"
+                    [valRet]="testList[i].halfLoadReturn"
+                    [maxRet]="editingPlan.maxHalfLoadReturn"
+                    [minRet]="editingPlan.minHalfLoadReturn"
+                ></app-canvas-graph>
+            </div> 
         </div>
         <div class="row">
             <div class="col-sm-8">
@@ -89,16 +87,14 @@
                 ></app-idling-table> 
             </div>  
             <div class="col-sm-4" style="height: 15em;">
-                <div class="row">
-                    <div class="col-sm-6" style="width: 50%">
-                        <canvas id="debCanvasIdling"></canvas>
-                        <h4>DÉB</h4>
-                    </div>
-                    <div class="col-sm-6"  style="width: 50%">
-                        <canvas id="retCanvasIdling"></canvas>
-                        <h4>RET</h4>
-                    </div>
-                </div>
+                <app-canvas-graph
+                    [valDeb]="testList[i].idling"
+                    [maxDeb]="editingPlan.maxIdling"
+                    [minDeb]="editingPlan.minIdling"
+                    [valRet]="testList[i].idlingReturn"
+                    [maxRet]="editingPlan.maxIdlingReturn"
+                    [minRet]="editingPlan.minIdlingReturn"
+                ></app-canvas-graph>
             </div>
         </div>
         <div class="row">
@@ -110,16 +106,14 @@
                 ></app-full-load-table> 
             </div>  
             <div class="col-sm-4" style="height: 15em;">
-                <div class="row">
-                    <div class="col-sm-6" style="width: 50%">
-                        <canvas id="debCanvasFullLoad"></canvas>
-                        <h4>DÉB</h4>
-                    </div>
-                    <div class="col-sm-6"  style="width: 50%">
-                        <canvas id="retCanvasFullLoad"></canvas>
-                        <h4>RET</h4>
-                    </div>
-                </div>
+                <app-canvas-graph
+                    [valDeb]="testList[i].fullLoad"
+                    [maxDeb]="editingPlan.maxFullLoad"
+                    [minDeb]="editingPlan.minFullLoad"
+                    [valRet]="testList[i].fullLoadReturn"
+                    [maxRet]="editingPlan.maxFullLoadReturn"
+                    [minRet]="editingPlan.minFullLoadReturn"
+                ></app-canvas-graph>
             </div>
         </div>
         <div class="row">
@@ -131,16 +125,14 @@
                 ></app-pre-injection-table> 
             </div>  
             <div class="col-sm-4" style="height: 15em;">
-                <div class="row">
-                    <div class="col-sm-6" style="width: 50%">
-                        <canvas id="debCanvasPreInjection"></canvas>
-                        <h4>DÉB</h4>
-                    </div>
-                    <div class="col-sm-6"  style="width: 50%">
-                        <canvas id="retCanvasPreInjection"></canvas>
-                        <h4>RET</h4>
-                    </div>
-                </div>
+                <app-canvas-graph
+                    [valDeb]="testList[i].preInjection"
+                    [maxDeb]="editingPlan.maxHalfLoad"
+                    [minDeb]="editingPlan.minPreInjection"
+                    [valRet]="testList[i].preInjectionReturn"
+                    [maxRet]="editingPlan.maxPreInjectionReturn"
+                    [minRet]="editingPlan.minPreInjectionReturn"
+                ></app-canvas-graph>
             </div>
         </div>
     </div>

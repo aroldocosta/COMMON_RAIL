@@ -20,11 +20,11 @@
 			<div [class]="(tabId == 'med_electric' || tabId == 'comments') ? 'hidden' : 'show'">
 				<div class="row">
 					<div class="col-sm-6" style="width: 50%">
-						<canvas id="debCanvas" #debCanvas></canvas>
+						<canvas class="canvas" #debCanvas></canvas>
 						<h4>DÉB</h4>
 					</div>
 					<div class="col-sm-6"  style="width: 50%">
-						<canvas id="retCanvas" #retCanvas></canvas>
+						<canvas class="canvas" #retCanvas></canvas>
 						<h4>RET</h4>
 					</div>
 				</div>
@@ -35,8 +35,8 @@
 					[rctColor]="rctColor"
 					[isoColor]="isoColor"
 					[tabTitle]="tabTitle"
-					[editingPlan]="editingPlan"
-					[editingTest]="editingTest"
+					[plan]="editingPlan"
+					[test]="editingTest"
 				></app-med-electric-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'half_load'">

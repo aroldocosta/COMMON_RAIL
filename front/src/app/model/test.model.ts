@@ -22,12 +22,14 @@ export class Test {
 	injectorId: string = '';
 	injectorType: string = '';
 	injectorModel: string = '';
+	injectorQuantity: number = 0;
 	planId: string = '';
 	vehicleId: string = '';
 	vehiclePlate: string = '';
 	imaCode: string = '';
 	serviceOrder: string = '';
-
+	customerName: string = '';
+	
     constructor() {
 		this.planId = '0';
 		this.vehicleId = '0';

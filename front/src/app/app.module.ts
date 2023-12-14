@@ -31,6 +31,7 @@ import { FullLoadTableComponent } from './components/full-load-table/full-load-t
 import { HalfLoadTableComponent } from './components/half-load-table/half-load-table.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { ReportComponent } from './pages/report/report.component';
+import { CanvasGraphComponent } from './components/canvas-graph/canvas-graph.component';
 
 registerLocaleData(ptBr);
 
@@ -60,6 +61,7 @@ registerLocaleData(ptBr);
     HalfLoadTableComponent,
     CommentsComponent,
     ReportComponent,
+    CanvasGraphComponent,
   ],
   imports: [
     FormsModule,
