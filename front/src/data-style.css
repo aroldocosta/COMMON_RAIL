@@ -14,13 +14,13 @@ th, td {
 }
 
 h4, th {
-	color: #aaaaaa;
+	color: #333333;
 	font-size: 1.5em;
 	font-weight: 300;
 }
 
 td {
-	color: darkgray;
+	color: #555555;
 	font-size: 1.5em;
 	font-weight: 500;
 }
@@ -115,7 +115,7 @@ h4.report {
     font-size: 0.3em;
 }
 
-.top-title {
+.top-title.report {
 	font-size: 0.6em;
 }
 

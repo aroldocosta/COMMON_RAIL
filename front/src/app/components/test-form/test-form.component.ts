@@ -19,7 +19,7 @@ export class TestFormComponent {
     @Input() vehicleList: any = [];
     @Input() injectorType: string = '';
     @Input() injectorList: any = [];
-    @Input() editingTest: Test = new Test();
+    @Input() test: Test = new Test();
         
     @Output() tabbingEvent = new EventEmitter<any>();
     @Output() updateEvent = new EventEmitter<Test>();
@@ -41,15 +41,15 @@ export class TestFormComponent {
       this.clearEvent.emit();
     }
     emitUpdateTestEvent() {
-      this.updateEvent.emit(this.editingTest);
+      this.updateEvent.emit(this.test);
     }
 
     emitUpdatePlanEvent() {
-      this.updatePlanEvent.emit(this.editingTest);
+      this.updatePlanEvent.emit(this.test);
     }
 
     emitUpdateInjectorEvent() {
-      this.updateInjectorEvent.emit(this.editingTest);
+      this.updateInjectorEvent.emit(this.test);
     }
     emitCreateEvent(test: Test) {
       this.createEvent.emit(test);
@@ -94,7 +94,7 @@ export class TestFormComponent {
       this.tabbingEvent.emit(tab);
     }
     newTestFromServiceOrder() {
-      this.editingTest.id = '';
-      this.createEvent.emit(this.editingTest);
+      this.test.id = '';
+      this.createEvent.emit(this.test);
     }
 }

@@ -12,9 +12,6 @@ import { CommonsComponent } from '../commons/commons.component';
 })
 export class HeaderComponent extends CommonsComponent implements OnInit{
  
-  //@Output() injectorEvent = new EventEmitter<Injector[]>();
-  //@Output() vehicleEvent  = new EventEmitter<Vehicle[]>();
-  // @Output() planEvent   = new EventEmitter<Plan[]>();
   @Output() requestPlansEvent =  new EventEmitter();
   @Output() requestVehiclesEvent =  new EventEmitter();
   @Output() requestInjectorsEvent =  new EventEmitter();
@@ -22,6 +19,7 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
 
   alertMessage = '';
   serviceOrder = '';
+  injectorNumber = '';
 
 
   constructor(
@@ -69,36 +67,15 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
 
   handleTestReport() {
     console.log("Gerar pdf")
-    document.getElementById("reportModalToggleCloseModalButton")?.click();
+    document.getElementById("serviceOrderReportModalToggleCloseModalButton")?.click();
     this.router.navigate(['report'], { state: {serviceOrder: this.serviceOrder }});
   }
 
   clearAlertMessage() {
 
   }
-  
-  //requestPlans() {
-  //   this.planService.list().subscribe({
-  //     next: list => {
-  //       this.planEvent.emit(list);
-  //     },
-  //     error: err => {
-  //       this.goToLink('/login', this.login, this.router);
-  //     }
-  //   })
-   //}
-
-  //requestVeiculos() {
-  //   // this.vehicleService.list().subscribe(list => {
-  //   //   this.vehicleEvent.emit(list);
-  //   // })
-  //}
-
-  //requestInjectors() {
-  //   // this.injectorService.list().subscribe(list => {
-  //   //   this.injectorEvent.emit(list);
-  //   // })
-  //}
+ 
+ 
 
   requestReport(){
   //   this.reportService.report().subscribe(report => {

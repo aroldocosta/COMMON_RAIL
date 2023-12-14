@@ -23,8 +23,19 @@
             <i class="bi bi-droplet-half"></i> INJETORES</a>            
         </li>
         <li class="nav-item" *ngIf="logged.role == 'ADMIN'">              
-          <a class="a-link nav-link px-2 text-secondary" data-bs-target="#reportModalToggle" data-bs-toggle="modal">
-            <i class="bi bi-card-checklist"></i> RELATÓRIO</a>
+          <!-- <a class="a-link nav-link px-2 text-secondary" data-bs-target="#reportModalToggle" data-bs-toggle="modal">
+            <i class="bi bi-card-checklist"></i> RELATÓRIO</a> -->
+            <div class="nav-item dropdown">
+              <a class="a-link nav-link dropdown-toggle px-2 text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-card-checklist"></i> RELATÓRIO
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="a-link dropdown-item" data-bs-target="#serviceOrderReportModalToggle" data-bs-toggle="modal">
+                  <i class="bi bi-box-arrow-right"></i> POR ORDEM DE SERVIÇO</a></li>
+                <li><a class="a-link dropdown-item" data-bs-target="#injectorNumberReportModalToggle" data-bs-toggle="modal">
+                  <i class="bi bi-box-arrow-right"></i> POR INJETOR</a></li>
+              </ul>
+            </div>
         </li>
       </ul>
       <div class="nav-item dropdown">
@@ -44,12 +55,12 @@
     </div>
   </div>
     <!-- ---------------------------------------------------------- -->
-    <div class="modal fade" id="reportModalToggle" aria-labelledby="reportModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal fade" id="serviceOrderReportModalToggle" aria-labelledby="serviceOrderReportModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
       <div class="modal-dialog modal-xl">
         <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="reportModalToggleLabel">RELATORIO POR ORDEM DE SERVIÇO</h1>
-          <button id="reportModalToggleCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5" id="serviceOrderReportModalToggleLabel">RELATORIO POR ORDEM DE SERVIÇO</h1>
+          <button id="serviceOrderReportModalToggleCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
         <div class="table-responsive filter-input">
@@ -74,6 +85,38 @@
           </div>	
         </div>
       </div>	
+      </div> 
+      <!-- ---------------------------------------------------------- -->
+      <div class="modal fade" id="injectorNumberReportModalToggle" aria-labelledby="injectorNumberReportModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="injectorNumberReportModalToggleLabel">RELATORIO POR NUMEROP DO INJETOR</h1>
+            <button id="injectorNumberReportModalToggleCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <div class="table-responsive filter-input">
+            <label for="">DIGITE O NUMERO DO INJETOR</label>
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" 
+                placeholder="Número do injetor"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="injectorNumber"
+              >
+            </div>
+            <app-alert-message 
+              [message]="alertMessage"
+              (clearEvent)="clearAlertMessage()"
+            ></app-alert-message>
+          </div>
+          </div>	
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
+            <button class="btn btn-outline-primary btn-modal" (click)="handleTestReport()">GERAR</button>
+            </div>	
+          </div>
+        </div>	
       </div> 
       <!-- ---------------------------------------------------------- -->
 </nav>

@@ -13,7 +13,7 @@
                 (input)="emitUpdateTestEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingTest.serviceOrder"
+                [(ngModel)]="test.serviceOrder"
                 [disabled]="command == 'editing'"
             >
         </div>
@@ -23,7 +23,7 @@
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateInjectorEvent()"
-                [(ngModel)]="editingTest.injectorId" 
+                [(ngModel)]="test.injectorId" 
                 [disabled]="command == 'editing'">
                 <option value="0" selected>Selecione</option>
                 <option *ngFor="let i of injectorList" [value]="i.id">{{i.model}}</option>
@@ -37,7 +37,7 @@
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdatePlanEvent()"
-                [(ngModel)]="editingTest.planId" 
+                [(ngModel)]="test.planId" 
                 [disabled]="command == 'editing'">
                 <option value="0"selected>Selecione</option>
                 <option *ngFor="let p of planList" [value]="p.id">{{p.code}}</option>
@@ -49,7 +49,7 @@
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
-                [(ngModel)]="editingTest.vehicleId" 
+                [(ngModel)]="test.vehicleId" 
                 [disabled]="command == 'editing'">
                 <option value="0"selected>Selecione</option>
                 <option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
@@ -63,12 +63,12 @@
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateTestEvent()"
-                [(ngModel)]="editingTest.injectorNumber"
+                [(ngModel)]="test.injectorNumber"
                 [disabled]="command == 'editing'" 
             >
                 <option value="0"selected>Selecione</option>
                 <option *ngFor="let n of numberList" [value]="n">{{n}}
-                    <span *ngIf="command == 'editing'"> / [ {{editingTest.sequence}} ]</span></option>
+                    <span *ngIf="command == 'editing'"> / [ {{test.sequence}} ]</span></option>
             </select>
         </div>
     </div> 
@@ -80,7 +80,7 @@
                 (input)="emitUpdateTestEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingTest.imaCode"
+                [(ngModel)]="test.imaCode"
             >
         </div>
     </div> 
@@ -94,7 +94,7 @@
                 (input)="emitUpdateTestEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingTest.customerName"
+                [(ngModel)]="test.customerName"
             >
         </div>
     </div> 
@@ -108,7 +108,7 @@
                 (input)="emitUpdateTestEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingTest.description"
+                [(ngModel)]="test.description"
             ></textarea>
         </div>
     </div>
@@ -128,13 +128,13 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleResistanceFormat()"
-                            [(ngModel)]="editingTest.resistance"
+                            [(ngModel)]="test.resistance"
                         >
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <label *ngIf="editingTest.injectorType != 'PIEZO_ELETRICO'"class="input" for="">INDUTÂNCIA</label>
-                    <label *ngIf="editingTest.injectorType == 'PIEZO_ELETRICO'" class="input" for="">CAPACITÂNCIA</label>
+                    <label *ngIf="test.injectorType != 'PIEZO_ELETRICO'"class="input" for="">INDUTÂNCIA</label>
+                    <label *ngIf="test.injectorType == 'PIEZO_ELETRICO'" class="input" for="">CAPACITÂNCIA</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i>
                             <b *ngIf="injectorType != 'PIEZO_ELETRICO'">mH</b>
@@ -145,7 +145,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleReactanceFormat()"
-                            [(ngModel)]="editingTest.reactance"
+                            [(ngModel)]="test.reactance"
                         >
                     </div>
                 </div>
@@ -158,7 +158,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleIsolationFormat()"
-                            [(ngModel)]="editingTest.isolation"
+                            [(ngModel)]="test.isolation"
                         >
                     </div>
                 </div>
@@ -175,7 +175,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleHalfLoadFormat()"
-                            [(ngModel)]="editingTest.halfLoad"
+                            [(ngModel)]="test.halfLoad"
                         >
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleHalfLoadReturnFormat()"
-                            [(ngModel)]="editingTest.halfLoadReturn"
+                            [(ngModel)]="test.halfLoadReturn"
                         >
                     </div>
                 </div>
@@ -205,7 +205,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleIdlingFormat()"
-                            [(ngModel)]="editingTest.idling"
+                            [(ngModel)]="test.idling"
                         >
                     </div>
                 </div>
@@ -218,7 +218,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleIdlingReturnFormat()"
-                            [(ngModel)]="editingTest.idlingReturn"
+                            [(ngModel)]="test.idlingReturn"
                         >
                     </div>
                 </div>
@@ -235,7 +235,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleFullLoadFormat()"
-                            [(ngModel)]="editingTest.fullLoad"
+                            [(ngModel)]="test.fullLoad"
                         >
                     </div>
                 </div>
@@ -248,7 +248,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleFullLoadReturnFormat()"
-                            [(ngModel)]="editingTest.fullLoadReturn"
+                            [(ngModel)]="test.fullLoadReturn"
                         >
                     </div>
                 </div>
@@ -265,7 +265,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handlePreInjectionFormat()"
-                            [(ngModel)]="editingTest.preInjection"
+                            [(ngModel)]="test.preInjection"
                         >
                     </div>
                 </div>
@@ -278,7 +278,7 @@
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handlePreInjectionReturnFormat()"
-                            [(ngModel)]="editingTest.preInjectionReturn"
+                            [(ngModel)]="test.preInjectionReturn"
                         >
                     </div>
                 </div>
@@ -294,7 +294,7 @@
                             (input)="emitUpdateTestEvent()"
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            [(ngModel)]="editingTest.comments"
+                            [(ngModel)]="test.comments"
                         ></textarea>
                     </div>
                 </div>

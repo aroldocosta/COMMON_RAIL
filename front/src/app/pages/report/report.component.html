@@ -30,10 +30,10 @@
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
                     </tr>
                     <tr>
-                        <th class="report" scope="row">VEÍCULO:</th>
-                        <td class="report">{{testReport.vehiclePlate}}</td>
-                        <th class="report" scope="row">MOD INJ:</th>
-                        <td class="report">{{testReport.injectorModel}}</td>
+                        <th [ngClass]="reportClass" scope="row">VEÍCULO:</th>
+                        <td [ngClass]="reportClass">{{testReport.vehiclePlate}}</td>
+                        <th [ngClass]="reportClass" scope="row">MOD INJ:</th>
+                        <td [ngClass]="reportClass">{{testReport.injectorModel}}</td>
                     </tr>
                     <tr>
                         <th class="striped-table" [ngClass]="reportClass" scope="row" >QDE INJ:</th>
@@ -45,12 +45,14 @@
                 </table>
             </div>  
         </div>
+        <div class="header">
         <div class="row">
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-med-electric-table
                     tabTitle="MED ELÉTRICAS"
                     showSequence="true"
-                    [plan]="editingPlan"
+                    [reportClass]="reportClass"
+                    [plan]="plan"
                     [test]="test"
                 ></app-med-electric-table> 
             </div>  
@@ -62,18 +64,19 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-half-load-table
                     tabTitle="CARGA PARCIAL"
-                    [editingPlan]="editingPlan"
-                    [editingTest]="test"
+                    [reportClass]="reportClass"
+                    [plan]="plan"
+                    [test]="test"
                 ></app-half-load-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.halfLoad"
-                    [maxDeb]="editingPlan.maxHalfLoad"
-                    [minDeb]="editingPlan.minHalfLoad"
+                    [maxDeb]="plan.maxHalfLoad"
+                    [minDeb]="plan.minHalfLoad"
                     [valRet]="test.halfLoadReturn"
-                    [maxRet]="editingPlan.maxHalfLoadReturn"
-                    [minRet]="editingPlan.minHalfLoadReturn"
+                    [maxRet]="plan.maxHalfLoadReturn"
+                    [minRet]="plan.minHalfLoadReturn"
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div> 
@@ -82,18 +85,18 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-idling-table
                     tabTitle="MARCHA LENTA"
-                    [editingPlan]="editingPlan"
-                    [editingTest]="test"
+                    [plan]="plan"
+                    [test]="test"
                 ></app-idling-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.idling"
-                    [maxDeb]="editingPlan.maxIdling"
-                    [minDeb]="editingPlan.minIdling"
+                    [maxDeb]="plan.maxIdling"
+                    [minDeb]="plan.minIdling"
                     [valRet]="test.idlingReturn"
-                    [maxRet]="editingPlan.maxIdlingReturn"
-                    [minRet]="editingPlan.minIdlingReturn"
+                    [maxRet]="plan.maxIdlingReturn"
+                    [minRet]="plan.minIdlingReturn"
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
@@ -102,18 +105,18 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-full-load-table
                     tabTitle="CARGA PLENA"
-                    [editingPlan]="editingPlan"
-                    [editingTest]="test"
+                    [plan]="plan"
+                    [test]="test"
                 ></app-full-load-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.fullLoad"
-                    [maxDeb]="editingPlan.maxFullLoad"
-                    [minDeb]="editingPlan.minFullLoad"
+                    [maxDeb]="plan.maxFullLoad"
+                    [minDeb]="plan.minFullLoad"
                     [valRet]="test.fullLoadReturn"
-                    [maxRet]="editingPlan.maxFullLoadReturn"
-                    [minRet]="editingPlan.minFullLoadReturn"
+                    [maxRet]="plan.maxFullLoadReturn"
+                    [minRet]="plan.minFullLoadReturn"
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
@@ -122,21 +125,22 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-pre-injection-table
                     tabTitle="PRÉ INJEÇÃO"
-                    [editingPlan]="editingPlan"
-                    [editingTest]="test"
+                    [plan]="plan"
+                    [test]="test"
                 ></app-pre-injection-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.preInjection"
-                    [maxDeb]="editingPlan.maxHalfLoad"
-                    [minDeb]="editingPlan.minPreInjection"
+                    [maxDeb]="plan.maxHalfLoad"
+                    [minDeb]="plan.minPreInjection"
                     [valRet]="test.preInjectionReturn"
-                    [maxRet]="editingPlan.maxPreInjectionReturn"
-                    [minRet]="editingPlan.minPreInjectionReturn"
+                    [maxRet]="plan.maxPreInjectionReturn"
+                    [minRet]="plan.minPreInjectionReturn"
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
+        </div>
         </div>
         <div class="rep-footer">powered by <i><b>oficinabr.com</b></i></div>
         <hr>

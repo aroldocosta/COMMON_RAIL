@@ -1,4 +1,4 @@
-<h2 class="top-title">{{tabTitle}}<i>({{editingPlan.idlingPressure}}bar)</i></h2>
+<h2 class="top-title">{{tabTitle}}<i>({{plan.idlingPressure}}bar)</i></h2>
 <div class="table-responsive">
   <table class="table table-sm">
       <thead>
@@ -12,15 +12,15 @@
       <tbody>
       <tr>
           <th class="striped-table" scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-          <td class="striped-table">{{editingPlan.minIdling 	| number: '1.2'}}</td>
-          <td class="striped-table">{{editingTest.idling 		| number: '1.2'}}</td>
-          <td class="striped-table">{{editingPlan.maxIdling 	| number: '1.2'}}</td>
+          <td class="striped-table">{{plan.minIdling 	| number: '1.2'}}</td>
+          <td class="striped-table">{{test.idling 		| number: '1.2'}}</td>
+          <td class="striped-table">{{plan.maxIdling 	| number: '1.2'}}</td>
       </tr>
       <tr>
           <th scope="row" title="RET:al faturado">RET(ml):</th>
-          <td>{{editingPlan.minIdlingReturn 	| number: '1.2'}}</td>
-          <td>{{editingTest.idlingReturn 		| number: '1.2'}}</td>
-          <td>{{editingPlan.maxIdlingReturn 	| number: '1.2'}}</td>
+          <td>{{plan.minIdlingReturn 	| number: '1.2'}}</td>
+          <td>{{test.idlingReturn 		| number: '1.2'}}</td>
+          <td>{{plan.maxIdlingReturn 	| number: '1.2'}}</td>
       </tr>				  
       </tbody>
   </table>

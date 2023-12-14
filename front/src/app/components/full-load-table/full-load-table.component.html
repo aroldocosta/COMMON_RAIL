@@ -1,4 +1,4 @@
-<h2 class="top-title">{{tabTitle}}<i>({{editingPlan.fullLoadPressure}}bar)</i></h2>
+<h2 class="top-title">{{tabTitle}}<i>({{plan.fullLoadPressure}}bar)</i></h2>
 <div class="table-responsive">
   <table class="table table-sm">
       <thead>
@@ -12,15 +12,15 @@
       <tbody>
       <tr>
           <th class="striped-table" scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-          <td class="striped-table">{{editingPlan.minFullLoad 	| number: '1.2'}}</td>
-          <td class="striped-table">{{editingTest.fullLoad 		| number: '1.2'}}</td>
-          <td class="striped-table">{{editingPlan.maxFullLoad 	| number: '1.2'}}</td>
+          <td class="striped-table">{{plan.minFullLoad 	| number: '1.2'}}</td>
+          <td class="striped-table">{{test.fullLoad 		| number: '1.2'}}</td>
+          <td class="striped-table">{{plan.maxFullLoad 	| number: '1.2'}}</td>
       </tr>
       <tr>
           <th scope="row" title="RET:al faturado">RET(ml):</th>
-          <td>{{editingPlan.minFullLoadReturn 	| number: '1.2'}}</td>
-          <td>{{editingTest.fullLoadReturn 		| number: '1.2'}}</td>
-          <td>{{editingPlan.maxFullLoadReturn 	| number: '1.2'}}</td>
+          <td>{{plan.minFullLoadReturn 	| number: '1.2'}}</td>
+          <td>{{test.fullLoadReturn 		| number: '1.2'}}</td>
+          <td>{{plan.maxFullLoadReturn 	| number: '1.2'}}</td>
       </tr>				  
       </tbody>
   </table>

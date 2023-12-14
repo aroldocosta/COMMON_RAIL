@@ -1,6 +1,6 @@
 <div class="row">
     <span *ngIf="showSequence == 'true'">
-        <div class="col-12"><h2 class="top-title">{{tabTitle}} ( INJ_{{test.injectorNumber}} [ {{test.sequence}} ] )</h2></div>
+        <div class="col-12"><h2 class="top-title" [ngClass]="reportClass">{{tabTitle}} ( INJ_{{test.injectorNumber}} [ {{test.sequence}} ] )</h2></div>
     </span>
 </div>
 <div class="table-responsive">

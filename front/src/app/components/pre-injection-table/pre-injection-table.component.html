@@ -1,4 +1,4 @@
-<h2 class="top-title">{{tabTitle}}({{editingPlan.preInjectionPressure}}bar)</h2>
+<h2 class="top-title">{{tabTitle}}({{plan.preInjectionPressure}}bar)</h2>
 <div class="table-responsive">
     <table class="table table-sm">
         <thead>
@@ -12,15 +12,15 @@
         <tbody>
         <tr>
             <th class="striped-table" scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-            <td class="striped-table">{{editingPlan.minPreInjection 	| number: '1.2'}}</td>
-            <td class="striped-table">{{editingTest.preInjection 		| number: '1.2'}}</td>
-            <td class="striped-table">{{editingPlan.maxPreInjection 	| number: '1.2'}}</td>
+            <td class="striped-table">{{plan.minPreInjection 	| number: '1.2'}}</td>
+            <td class="striped-table">{{test.preInjection 		| number: '1.2'}}</td>
+            <td class="striped-table">{{plan.maxPreInjection 	| number: '1.2'}}</td>
         </tr>
         <tr>
             <th scope="row" title="RET:al faturado">RET(ml):</th>
-            <td>{{editingPlan.minPreInjectionReturn | number: '1.2'}}</td>
-            <td>{{editingTest.preInjectionReturn 	| number: '1.2'}}</td>
-            <td>{{editingPlan.maxPreInjectionReturn | number: '1.2'}}</td>
+            <td>{{plan.minPreInjectionReturn | number: '1.2'}}</td>
+            <td>{{test.preInjectionReturn 	| number: '1.2'}}</td>
+            <td>{{plan.maxPreInjectionReturn | number: '1.2'}}</td>
         </tr>				  
         </tbody>
     </table>

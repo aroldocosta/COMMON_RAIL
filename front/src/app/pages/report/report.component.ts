@@ -20,12 +20,12 @@ export class ReportComponent extends CommonsComponent {
   gaugeY = 135;
 
   serviceOrder: string = '';
-  editingPlan: Plan = new Plan();
-  editingTest: Test = new Test();
+  // plan: Plan = new Plan();
+  // test: Test = new Test();
   testReport: TestReport = new TestReport();
   testList: Test[] = [];
 
-  test = 1;
+  //test = 1;
 
   @Input() tabId: string = 'med_electric';
 
@@ -50,8 +50,8 @@ export class ReportComponent extends CommonsComponent {
         next: (report: TestReport) => {
           this.testReport = report;
           this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);
-          this.editingTest = this.testList[0];
-          this.editingPlan = this.editingTest.plan;
+          this.test = this.testList[0];
+          this.plan = this.test.plan;
         }
       });
     }, 100);
