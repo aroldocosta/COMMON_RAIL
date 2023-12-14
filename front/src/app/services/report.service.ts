@@ -14,7 +14,7 @@ export class ReportService {
   constructor(private http: HttpClient, private login: LoginService) { }
 
   getByServiceOrder(serviceOrder: string): Observable<any> {
-    const url = `${this.baseUrl}report/${serviceOrder}`;
+    const url = `${this.baseUrl}reports/${serviceOrder}`;
     return this.http.get(url, this.login.getHttpOptions());
   }
 }
