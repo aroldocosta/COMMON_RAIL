@@ -14,13 +14,14 @@ import { UserService } from 'src/app/services/user.service';
 import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 import { User } from 'src/app/model/user.model';
 import { Router } from '@angular/router';
+import { CommonsComponent } from 'src/app/components/commons/commons.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent extends CommonsComponent implements OnInit{
 
   @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any
@@ -28,10 +29,6 @@ export class HomeComponent implements OnInit{
   @Input() vehicleList: Vehicle[] = [];
   @Input() planList: Plan[] = [];
   @Input() userList: User[] = [];
-  testCommand: string = 'listing';
-  modalCommand: string = 'listing';
-  testCommandButton = 'NOVO TESTE'
-  modalCommandButton = 'NOVO'
   report: any = 'Aguarde...';
   editingTest = new Test();
   editingPlan = new Plan();
@@ -89,7 +86,7 @@ export class HomeComponent implements OnInit{
     private vehicleService: VehicleService,
     private injectorService: InjectorService
     ) {
-      // let aside = new AsideComponent();
+      super();
   }
 
   ngOnInit(): void {
@@ -402,21 +399,7 @@ export class HomeComponent implements OnInit{
 
 
   handleTestReport() {
-    // document.getElementById("testReportModalToggleCloseModalButton")?.click();  
-    // // this.router.navigate(['test-report'], { service_order: this.testReportServiceOrder});
-    // alert("Ordem de serviço a ser enviada: " + this.testReportServiceOrder);
-    // let extras: NavigationBehaviorOptions = {
-    //   state: {
-    //     os: '1111',
-    //     test: '22112212'
-    //   }
-
-    // };
-    //this.router.navigate(['report'], { state: {serviceOrder: 'bosta' }});
-    // this.router.navigateByUrl('/login');
-
     this.router.navigateByUrl('report');
-
   }
 
   showNotImplementedAlert() {

@@ -18,19 +18,18 @@
 				</div>
 			</div>
 			<div [class]="(tabId == 'med_electric' || tabId == 'comments') ? 'hidden' : 'show'">
-				<div class="row">
-					<div class="col-sm-6" style="width: 50%">
-						<canvas class="canvas" #debCanvas></canvas>
-						<h4>DÉB</h4>
-					</div>
-					<div class="col-sm-6"  style="width: 50%">
-						<canvas class="canvas" #retCanvas></canvas>
-						<h4>RET</h4>
-					</div>
-				</div>
+                <app-canvas-graph
+                    [valDeb]="valDeb"
+                    [maxDeb]="maxDeb"
+                    [minDeb]="minDeb"
+                    [valRet]="valRet"
+                    [maxRet]="maxRet"
+                    [minRet]="minRet"
+                ></app-canvas-graph>
 			</div>	
 			<div class="card-body" *ngIf="tabId == 'med_electric'">
 				<app-med-electric-table
+					showSequence="false"
 					[resColor]="resColor"
 					[rctColor]="rctColor"
 					[isoColor]="isoColor"

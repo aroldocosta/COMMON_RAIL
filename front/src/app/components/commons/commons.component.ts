@@ -15,6 +15,10 @@ export class CommonsComponent {
   errors = "";
   DUPLICATED_KEY = "DUPLICATED_KEY";
   UNKNOWN_ERROR  = "UNKNOWN_ERROR";
+  testCommand: string = 'listing';
+  modalCommand: string = 'listing';
+  testCommandButton = 'NOVO TESTE'
+  modalCommandButton = 'NOVO'
 
   constructor() {
 

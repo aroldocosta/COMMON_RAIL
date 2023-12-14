@@ -23,8 +23,8 @@ export class CanvasGraphComponent extends CommonsComponent {
   rctColor = '';
   isoColor = '';
 
-  @ViewChild('deb_Canvas', {static: false}) deb_Canvas!: ElementRef;
-  @ViewChild('ret_Canvas', {static: false}) ret_Canvas!: ElementRef;
+  @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
+  @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
   deb_Contxt!: CanvasRenderingContext2D;
   ret_Contxt!: CanvasRenderingContext2D;
 
@@ -37,8 +37,8 @@ export class CanvasGraphComponent extends CommonsComponent {
   }
 
   ngAfterViewInit(): void {
-    this.deb_Contxt = this.deb_Canvas.nativeElement.getContext('2d');
-    this.ret_Contxt = this.ret_Canvas.nativeElement.getContext('2d');
+    this.deb_Contxt = this.debCanvas.nativeElement.getContext('2d');
+    this.ret_Contxt = this.retCanvas.nativeElement.getContext('2d');
 
     let t = setInterval(() => {
       this.drawGauge(this.deb_Contxt, this.valDeb, this.maxDeb, this.minDeb);
@@ -62,6 +62,9 @@ export class CanvasGraphComponent extends CommonsComponent {
     this.gaugeY = colHeight - col+10;
     this.gaugeH = col;
     
+    contxt.clearRect(0, 0, this.debCanvas.nativeElement.width, this.debCanvas.nativeElement.height);
+    contxt.clearRect(0, 0, this.retCanvas.nativeElement.width, this.retCanvas.nativeElement.height);
+
     contxt.beginPath();
     contxt.lineWidth = 6;
     contxt.fillStyle = `rgb(${color.red}, ${color.grn}, ${color.blu})`;
