@@ -17,20 +17,10 @@ public class ReportService {
 	@Autowired
 	private TestRepository repository;
 	
-	/*
-	 	try {
-			PlanDTO resp = repository.findById(id).stream().map(PlanDTO::new).findAny().get();
-			return ResponseEntity.ok(resp);
-		} catch (Exception e) {
-			return ResponseEntity.noContent().build();
-		}
-	 */
 
 	public ResponseEntity<TestReportDTO> getReportByServiceOrder(String serviceOrder) {	
 		
 		try {
-//			TestReportDTO resp = repository.findById(id).stream().map(TestReportDTO::new).findAny().get();
-//			return ResponseEntity.ok(resp);
 			
 			TestReportDTO testReport = new TestReportDTO();
 
@@ -54,17 +44,3 @@ public class ReportService {
 		}
 	}
 }
-
-//JRBeanCollectionDataSource beanColletionDataSource = new JRBeanCollectionDataSource(testList);
-//
-//	InputStream reportFile = getClass().getResourceAsStream("/reports/testReport.jrxml");
-//	JasperReport compileReport = JasperCompileManager.compileReport(reportFile);
-//	
-//	Map<String, Object> map = new HashMap<>();
-//	JasperPrint report = JasperFillManager.fillReport(compileReport, map, beanColletionDataSource);
-//	
-//	byte[] data = JasperExportManager.exportReportToPdf(report);
-//	
-//	HttpHeaders headers = new HttpHeaders();
-//	headers.set(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=report.pdf");		
-//	return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(data);

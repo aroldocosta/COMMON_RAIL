@@ -39,7 +39,7 @@ public class SecurityConfiguration  {
         		.requestMatchers(antMatcher(HttpMethod.GET, 	"/vehicles")).hasRole("USER")
         		.requestMatchers(antMatcher(HttpMethod.GET, 	"/plans")).hasRole("USER")
         		.requestMatchers(antMatcher(HttpMethod.GET, 	"/tests")).hasRole("USER")
-        		.requestMatchers(antMatcher(HttpMethod.GET, 	"/report")).permitAll() //hasRole("ADMIN")
+        		.requestMatchers(antMatcher(HttpMethod.GET, 	"/report")).permitAll()
                 .requestMatchers(antMatcher(HttpMethod.GET, 	"/users")).hasRole("USER")
                 .requestMatchers(antMatcher(HttpMethod.POST, 	"/auth/login")).permitAll()
                 .anyRequest().authenticated()
