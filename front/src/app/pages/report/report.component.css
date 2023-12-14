@@ -1,0 +1,41 @@
+@import "../../../data-style.css";
+
+.container {
+    width: 60%;
+}
+
+.logo-img {
+    width: 100%;
+}
+
+.title {
+    color: grey;
+    margin-top: 1em;
+    text-align: center;
+    text-shadow: 3px 3px #eeeeee;
+}
+
+.sub-title {
+    text-align: center;
+}
+
+.components-img {
+    margin-top: 2em;
+    margin-left: 2.3em;
+    /* height: 14em; */
+    width: 80%;
+}
+
+.header {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: grey;
+    padding: 1em 2em;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 100%;
+    }
+}

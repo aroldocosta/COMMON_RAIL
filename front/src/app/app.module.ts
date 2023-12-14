@@ -23,8 +23,14 @@ import { InjectorTableComponent } from './components/injector-table/injector-tab
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { PlanFormComponent } from './components/plan-form/plan-form.component';
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
-import { InjectorFormComponent } from './components/injector-form/injector-form.component'
-
+import { InjectorFormComponent } from './components/injector-form/injector-form.component';
+import { PreInjectionTableComponent } from './components/pre-injection-table/pre-injection-table.component';
+import { MedElectricTableComponent } from './components/med-electric-table/med-electric-table.component';
+import { IdlingTableComponent } from './components/idling-table/idling-table.component';
+import { FullLoadTableComponent } from './components/full-load-table/full-load-table.component';
+import { HalfLoadTableComponent } from './components/half-load-table/half-load-table.component';
+import { CommentsComponent } from './components/comments/comments.component';
+import { ReportComponent } from './pages/report/report.component';
 
 registerLocaleData(ptBr);
 
@@ -47,6 +53,13 @@ registerLocaleData(ptBr);
     PlanFormComponent,
     VehicleFormComponent,
     InjectorFormComponent,
+    PreInjectionTableComponent,
+    MedElectricTableComponent,
+    IdlingTableComponent,
+    FullLoadTableComponent,
+    HalfLoadTableComponent,
+    CommentsComponent,
+    ReportComponent,
   ],
   imports: [
     FormsModule,

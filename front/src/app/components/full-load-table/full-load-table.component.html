@@ -1,0 +1,27 @@
+<h2 class="top-title">{{tabTitle}}<i>({{editingPlan.fullLoadPressure}}bar)</i></h2>
+<div class="table-responsive">
+  <table class="table table-sm  table-striped">
+      <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">MIN</th>
+            <th scope="col">LIDO</th>
+            <th scope="col">MAX</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
+          <td>{{editingPlan.minFullLoad 	| number: '1.2'}}</td>
+          <td>{{editingTest.fullLoad 		| number: '1.2'}}</td>
+          <td>{{editingPlan.maxFullLoad 	| number: '1.2'}}</td>
+      </tr>
+      <tr>
+          <th scope="row" title="RET:al faturado">RET(ml):</th>
+          <td>{{editingPlan.minFullLoadReturn 	| number: '1.2'}}</td>
+          <td>{{editingTest.fullLoadReturn 		| number: '1.2'}}</td>
+          <td>{{editingPlan.maxFullLoadReturn 	| number: '1.2'}}</td>
+      </tr>				  
+      </tbody>
+  </table>
+</div>

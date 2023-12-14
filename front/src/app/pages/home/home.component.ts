@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Test } from 'src/app/model/test.model';
 import { Plan } from 'src/app/model/plan.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -14,6 +13,7 @@ import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
 import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 import { User } from 'src/app/model/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit{
   removingAlertMessage01: string = '';
   removingAlertMessage02: string = '';
   currentModalLink: string = '';
+  serviceOrder: string = '';
 
   tabIndex = 0;
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit{
     private vehicleService: VehicleService,
     private injectorService: InjectorService
     ) {
-      let aside = new AsideComponent();
+      // let aside = new AsideComponent();
   }
 
   ngOnInit(): void {
@@ -397,6 +398,25 @@ export class HomeComponent implements OnInit{
         console.log("Error: ", err)
       }
     })
+  }
+
+
+  handleTestReport() {
+    // document.getElementById("testReportModalToggleCloseModalButton")?.click();  
+    // // this.router.navigate(['test-report'], { service_order: this.testReportServiceOrder});
+    // alert("Ordem de serviço a ser enviada: " + this.testReportServiceOrder);
+    // let extras: NavigationBehaviorOptions = {
+    //   state: {
+    //     os: '1111',
+    //     test: '22112212'
+    //   }
+
+    // };
+    //this.router.navigate(['report'], { state: {serviceOrder: 'bosta' }});
+    // this.router.navigateByUrl('/login');
+
+    this.router.navigateByUrl('report');
+
   }
 
   showNotImplementedAlert() {

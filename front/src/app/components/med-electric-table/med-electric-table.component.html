@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-3"><h2 class="top-title">INJETOR {{editingTest.injectorNumber}}</h2></div>
+    <div class="col-9"><h2 class="top-title">{{tabTitle}}</h2></div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-sm  table-striped">
+      <thead>
+      <tr>
+          <th scope="col"></th>
+          <th scope="col">MIN</th>
+          <th scope="col">LIDO</th>
+          <th scope="col">MAX</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+          <th scope="row" title="Medições elétricas">RES(m&#937;):</th>
+          <td>{{editingPlan.minResistance | number: '1.2'}}</td>
+          <td [style]="resColor">{{editingTest.resistance 	| number: '1.2'}}</td>
+          <td>{{editingPlan.maxResistance | number: '1.2'}}</td>
+      </tr>
+      <tr>
+          <th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
+          <th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
+          <td>{{editingPlan.minReactance | number: '1.2'}}</td>
+          <td [style]="rctColor">{{editingTest.reactance	   | number: '1.2'}}</td>
+          <td>{{editingPlan.maxReactance | number: '1.2'}}</td>
+      </tr>
+      <tr>
+          <th scope="row" title="RET:al faturado">ISO(M&#937;):</th>
+          <td>{{editingPlan.minIsolation 	| number: '1.2'}}</td>
+          <td [style]="isoColor">{{editingTest.isolation 	| number: '1.2'}}</td>
+          <td *ngIf="editingPlan.maxIsolation">{{editingPlan.maxIsolation  | number: '1.2'}}</td>
+          <td *ngIf="!editingPlan.maxIsolation" class="infinity">&infin;</td>
+      </tr>		  
+      </tbody>
+  </table>
+</div>

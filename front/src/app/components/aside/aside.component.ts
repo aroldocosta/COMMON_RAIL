@@ -18,9 +18,9 @@ export class AsideComponent implements OnInit {
   gaugeH = 0;
   gaugeY = 135;
 
-  res_color = ''; 
-  rct_color = '';
-  iso_color = '';
+  resColor = ''; 
+  rctColor = '';
+  isoColor = '';
 
   @Output() arrowEvent = new EventEmitter<string>();
   @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
@@ -163,9 +163,9 @@ export class AsideComponent implements OnInit {
     this.editingPlan = plan;
 
     if(tab.id == 'med_electric') {
-      this.res_color = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
-      this.rct_color = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
-      this.iso_color = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
+      this.resColor = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
+      this.rctColor = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
+      this.isoColor = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
     }else if(tab.id == 'half_load') {
       this.drawGauge(this.debContxt, test.halfLoad, plan.maxHalfLoad, plan.minHalfLoad);
       this.drawGauge(this.retContxt, test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);

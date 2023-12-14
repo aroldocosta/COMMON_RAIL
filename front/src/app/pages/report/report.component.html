@@ -1,0 +1,147 @@
+<div class="container">
+   <div class="row">
+        <div class="col-sm-3">
+            <img class="logo-img" src="assets/img/logo.png">
+        </div>
+        <div class="col-sm-6">
+            <h1 class="title">RAIL CONTROL</h1>
+            <h3 class="sub-title">Relatório de teste</h3>
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="row">
+            <div class="col-sm-6">
+                <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
+            </div>
+            <div class="col-sm-6">
+                <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
+            </div>
+        </div>
+    </div>
+    <fieldset class="header">
+        <div class="table-responsive">
+            <table class="table table-sm  table-striped">
+                <tbody>
+                <tr>
+                    <th scope="row">CLIENTE:</th>
+                    <td>{{testReport.customerName}}</td>
+                    <th scope="row">ORD SRV:</th>
+                    <td>{{testReport.customerName}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">VEÍCULO:</th>
+                    <td>{{testReport.vehiclePlate}}</td>
+                    <th scope="row">MOD INJ:</th>
+                    <td>{{testReport.injectorModel}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">QDE INJ:</th>
+                    <td>{{testReport.injectorQuantity}}</td>
+                    <th scope="row">TIPO INJ:</th>
+                    <td>{{testReport.injectorType}}</td>
+                </tr>		  
+                </tbody>
+            </table>
+        </div>  
+    </fieldset>
+    <div  *ngFor="let test of testList; index as i">
+        <br>
+        <br>
+        <hr>
+        <div class="row">
+            <div class="col-sm-8">
+                <app-med-electric-table
+                    tabTitle="MED ELÉTRICAS"
+                    [editingPlan]="editingPlan"
+                    [editingTest]="testList[i]"
+                ></app-med-electric-table> 
+            </div>  
+            <div class="col-sm-4">
+                <img class="components-img" src="../../../assets/img/componente.png">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <app-half-load-table
+                    tabTitle="CARGA PARCIAL"
+                    [editingPlan]="editingPlan"
+                    [editingTest]="testList[i]"
+                ></app-half-load-table> 
+            </div>  
+            <div class="col-sm-4" style="height: 15em;">
+                <div class="row">
+                    <div class="col-sm-6" style="width: 50%">
+                        <canvas id="debCanvasHalfLoad" #{{camvas[0].deb}}></canvas>
+                        <h4>DÉB</h4>
+                    </div>
+                    <div class="col-sm-6"  style="width: 50%">
+                        <canvas id="retCanvasHalfLoad" #retCanvasHalfLoad></canvas>
+                        <h4>RET</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <app-idling-table
+                    tabTitle="MARCHA LENTA"
+                    [editingPlan]="editingPlan"
+                    [editingTest]="testList[i]"
+                ></app-idling-table> 
+            </div>  
+            <div class="col-sm-4" style="height: 15em;">
+                <div class="row">
+                    <div class="col-sm-6" style="width: 50%">
+                        <canvas id="debCanvasIdling"></canvas>
+                        <h4>DÉB</h4>
+                    </div>
+                    <div class="col-sm-6"  style="width: 50%">
+                        <canvas id="retCanvasIdling"></canvas>
+                        <h4>RET</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <app-full-load-table
+                    tabTitle="CARGA PLENA"
+                    [editingPlan]="editingPlan"
+                    [editingTest]="testList[i]"
+                ></app-full-load-table> 
+            </div>  
+            <div class="col-sm-4" style="height: 15em;">
+                <div class="row">
+                    <div class="col-sm-6" style="width: 50%">
+                        <canvas id="debCanvasFullLoad"></canvas>
+                        <h4>DÉB</h4>
+                    </div>
+                    <div class="col-sm-6"  style="width: 50%">
+                        <canvas id="retCanvasFullLoad"></canvas>
+                        <h4>RET</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <app-pre-injection-table
+                    tabTitle="PRÉ INJEÇÃO"
+                    [editingPlan]="editingPlan"
+                    [editingTest]="testList[i]"
+                ></app-pre-injection-table> 
+            </div>  
+            <div class="col-sm-4" style="height: 15em;">
+                <div class="row">
+                    <div class="col-sm-6" style="width: 50%">
+                        <canvas id="debCanvasPreInjection"></canvas>
+                        <h4>DÉB</h4>
+                    </div>
+                    <div class="col-sm-6"  style="width: 50%">
+                        <canvas id="retCanvasPreInjection"></canvas>
+                        <h4>RET</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
