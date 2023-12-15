@@ -1,5 +1,13 @@
+
+<div id="command-bnt" class="row" style="margin-bottom: 0.5em;">
+    <div class="col-sm-6">
+        <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
+    </div>
+    <div class="col-sm-6">
+        <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
+    </div>
+</div>
 <div id="report" class="container">
-    <br><br><br><br>
     <div  *ngFor="let test of testList">    
         <div class="row">
             <div class="col-sm-3">
@@ -10,14 +18,6 @@
                 <h6 class="sub-title">Relatório de teste</h6>
             </div>
             <div class="col-sm-3"></div>
-            <div id="command-bnt" class="row" style="margin-bottom: 0.5em;">
-                <div class="col-sm-6">
-                    <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
-                </div>
-                <div class="col-sm-6">
-                    <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
-                </div>
-            </div>
         </div>
         <fieldset class="header">
             <div class="table-responsive">
@@ -134,8 +134,7 @@
                 ></app-canvas-graph>
             </div>
         </div>
-        <br><br><br>
+        <div id="footer">powered by <i><b>oficinabr.com</b></i></div>
         <hr>
-        <br><br><br><br><br><br><br><br><br><br>
     </div>
 </div>

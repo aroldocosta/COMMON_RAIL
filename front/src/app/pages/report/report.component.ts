@@ -74,37 +74,40 @@ export class ReportComponent {
 
   download() {
     window.scrollTo(0, 0);
+
     let buttons: any = document.getElementById('command-bnt');
     buttons.style.visibility = 'hidden';
-    let btn_height = buttons.style.height;
-    buttons.style.height = 0;
 
     setTimeout(() => {
       let now = new Date();
       let date = now.getDate().toLocaleString() + now.getMonth().toString() + now.getFullYear().toString();
       let fileName = 'OS_' + this.serviceOrder + '_' + date + '.pdf';
-        let toPrint: any = document.querySelector('#report');
-        html2canvas(toPrint).then(canvas => {
+      let toPrint: any = document.querySelector('#report');
+
+      html2canvas(toPrint).then(canvas => {
             const imgData = canvas.toDataURL('image/png');
-            const imgWidth = 190; 
-            const pageHeight = 290;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            const imgWidth = 210; 
+            const pageHeight = 297;
+            const imgHeight = pageHeight * this.testReport.injectorQuantity;
+
             let heightLeft = imgHeight;
-            const doc = new jsPDF('p', 'mm', 'a4');
+            const doc = new jsPDF('p', 'mm');
             let position = 0;
-            doc.addImage(imgData, 'PNG', 10, 0, imgWidth, imgHeight + 25);
+            doc.addImage(imgData, 'PNG', 10, position, imgWidth - 20, imgHeight);
             heightLeft -= pageHeight;
-            while (heightLeft >= 0) {
-                position = heightLeft - imgHeight;
+
+            let offset = 1;
+
+            do {
+                position = (heightLeft - imgHeight);
                 doc.addPage();
-                doc.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight + 25);
+                doc.addImage(imgData, 'PNG', 10, position + 2*offset++, imgWidth - 20, imgHeight);
                 heightLeft -= pageHeight;
-            }
+            } while (heightLeft >= pageHeight);
+
             doc.save(fileName);
         });
-    }, 1000);
-
-    buttons.style.visibility = 'visible';
-    buttons.style.height = btn_height;
+        buttons.style.visibility = 'visible';
+    }, 500);
   }
 }
