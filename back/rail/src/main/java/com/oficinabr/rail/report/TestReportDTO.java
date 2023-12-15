@@ -2,6 +2,7 @@ package com.oficinabr.rail.report;
 
 import java.util.List;
 
+import com.oficinabr.rail.dto.TestDTO;
 import com.oficinabr.rail.entity.Test;
 
 public class TestReportDTO {
@@ -12,7 +13,7 @@ public class TestReportDTO {
 	private String injectorModel;	
 	private String injectorType;
 	private Integer injectorQuantity;
-	private List<Test> testList;
+	private List<TestDTO> testList;
 	
 	public String getCustomerName() {
 		return customerName;
@@ -50,10 +51,10 @@ public class TestReportDTO {
 	public void setInjectorQuantity(Integer injectorQuantity) {
 		this.injectorQuantity = injectorQuantity;
 	}
-	public List<Test> getTestList() {
+	public List<TestDTO> getTestList() {
 		return testList;
 	}
-	public void setTestList(List<Test> testList) {
+	public void setTestList(List<TestDTO> testList) {
 		this.testList = testList;
 	}
 }

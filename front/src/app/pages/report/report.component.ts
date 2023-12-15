@@ -51,22 +51,10 @@ export class ReportComponent {
     let t = setTimeout(() => {
       this.reportService.getByServiceOrder(this.serviceOrder).subscribe({
         next: (report: TestReport) => {
-  
           this.testReport = report;
-  
-          this.testService.list().subscribe({
-            next: (list: Test[]) => {
-              this.testList = list.sort((a, b) => a.injectorNumber - b.injectorNumber);
-  
-              this.editingTest = list[0]
-  
-              this.planService.get(this.editingTest.planId).subscribe({
-                next: plan => {
-                  this.editingPlan = plan;
-                }
-              });
-            }
-          });
+          this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);
+          this.editingTest = this.testList[0];
+          this.editingPlan = this.editingTest.plan;
         }
       });
     }, 500);

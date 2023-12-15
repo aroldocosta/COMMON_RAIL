@@ -29,10 +29,9 @@
 }
 
 .components-img {
-    margin-top: 2em;
+    margin-top: 0;
     margin-left: 2.3em;
-    /* height: 14em; */
-    width: 80%;
+    width: 75%;
 }
 
 .header {
