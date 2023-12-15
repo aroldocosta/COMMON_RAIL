@@ -39,6 +39,7 @@
             <div class="col-sm-3"></div>
 >>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
         </div>
+<<<<<<< HEAD
         <div class="header" [ngClass]="reportClass">
             <div class="table-responsive" [ngClass]="reportClass">
                 <table class="table table-sm">
@@ -48,6 +49,17 @@
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.customerName}}</td>
                         <th class="striped-table" [ngClass]="reportClass" scope="row">ORD SRV:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
+=======
+        <fieldset class="header">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                    <tbody>
+                    <tr>
+                        <th class="striped-table"scope="row" >CLIENTE:</th>
+                        <td class="striped-table">{{testReport.customerName}}</td>
+                        <th class="striped-table" scope="row">ORD SRV:</th>
+                        <td class="striped-table">{{testReport.serviceOrder}}</td>
+>>>>>>> f578be1 (Ajustes cores de tabelas)
                     </tr>
                     <tr>
                         <th [ngClass]="reportClass" scope="row">VEÍCULO:</th>
@@ -56,10 +68,17 @@
                         <td [ngClass]="reportClass">{{testReport.injectorModel}}</td>
                     </tr>
                     <tr>
+<<<<<<< HEAD
                         <th class="striped-table" [ngClass]="reportClass" scope="row" >QDE INJ:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorQuantity}}</td>
                         <th class="striped-table" [ngClass]="reportClass" scope="row" >TIPO INJ:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorType}}</td>
+=======
+                        <th class="striped-table" scope="row" >QDE INJ:</th>
+                        <td class="striped-table">{{testReport.injectorQuantity}}</td>
+                        <th class="striped-table" scope="row" >TIPO INJ:</th>
+                        <td class="striped-table">{{testReport.injectorType}}</td>
+>>>>>>> f578be1 (Ajustes cores de tabelas)
                     </tr>
                     </tbody>
                 </table>
