@@ -1,6 +1,6 @@
 <h2 class="top-title">{{tabTitle}}({{editingPlan.preInjectionPressure}}bar)</h2>
 <div class="table-responsive">
-    <table class="table table-sm  table-striped">
+    <table class="table table-sm">
         <thead>
         <tr>
             <th scope="col"></th>
@@ -11,10 +11,10 @@
         </thead>
         <tbody>
         <tr>
-            <th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-            <td>{{editingPlan.minPreInjection 	| number: '1.2'}}</td>
-            <td>{{editingTest.preInjection 		| number: '1.2'}}</td>
-            <td>{{editingPlan.maxPreInjection 	| number: '1.2'}}</td>
+            <th class="striped-table" scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
+            <td class="striped-table">{{editingPlan.minPreInjection 	| number: '1.2'}}</td>
+            <td class="striped-table">{{editingTest.preInjection 		| number: '1.2'}}</td>
+            <td class="striped-table">{{editingPlan.maxPreInjection 	| number: '1.2'}}</td>
         </tr>
         <tr>
             <th scope="row" title="RET:al faturado">RET(ml):</th>

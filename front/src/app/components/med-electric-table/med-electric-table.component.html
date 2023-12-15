@@ -4,7 +4,7 @@
     </span>
 </div>
 <div class="table-responsive">
-  <table class="table table-sm table-striped">
+  <table class="table table-sm">
       <thead>
       <tr>
           <th scope="col"></th>
@@ -15,10 +15,10 @@
       </thead>
       <tbody>
       <tr>
-          <th scope="row" title="Medições elétricas">RES(m&#937;):</th>
-          <td>{{plan.minResistance | number: '1.2'}}</td>
-          <td [style]="resColor">{{test.resistance 	| number: '1.2'}}</td>
-          <td>{{plan.maxResistance | number: '1.2'}}</td>
+          <th class="striped-table" scope="row" title="Medições elétricas">RES(m&#937;):</th>
+          <td class="striped-table">{{plan.minResistance | number: '1.2'}}</td>
+          <td class="striped-table" [style]="resColor">{{test.resistance 	| number: '1.2'}}</td>
+          <td class="striped-table">{{plan.maxResistance | number: '1.2'}}</td>
       </tr>
       <tr>
           <th scope="row" title="RET:al faturado" *ngIf="plan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
@@ -28,11 +28,11 @@
           <td>{{plan.maxReactance | number: '1.2'}}</td>
       </tr>
       <tr>
-          <th scope="row" title="RET:al faturado">ISO(M&#937;):</th>
-          <td>{{plan.minIsolation 	| number: '1.2'}}</td>
-          <td [style]="isoColor">{{test.isolation 	| number: '1.2'}}</td>
-          <td *ngIf="plan.maxIsolation">{{plan.maxIsolation  | number: '1.2'}}</td>
-          <td *ngIf="!plan.maxIsolation" class="infinity">&infin;</td>
+          <th class="striped-table" scope="row" title="RET:al faturado">ISO(M&#937;):</th>
+          <td class="striped-table">{{plan.minIsolation 	| number: '1.2'}}</td>
+          <td class="striped-table" [style]="isoColor">{{test.isolation 	| number: '1.2'}}</td>
+          <td class="striped-table" *ngIf="plan.maxIsolation">{{plan.maxIsolation  | number: '1.2'}}</td>
+          <td class="striped-table infinity" *ngIf="!plan.maxIsolation">&infin;</td>
       </tr>		  
       </tbody>
   </table>

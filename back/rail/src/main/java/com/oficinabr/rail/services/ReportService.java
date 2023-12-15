@@ -34,9 +34,6 @@ public class ReportService {
 			testReport.setInjectorModel(testList.get(0).getInjector().getModel());
 			testReport.setInjectorQuantity(injectorQuantity);
 			
-						
-//			testReport.setTestList(testList);
-			
 			return ResponseEntity.ok(testReport);
 	
 		} catch (Exception e) {
