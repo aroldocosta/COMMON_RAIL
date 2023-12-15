@@ -1,23 +1,43 @@
+<<<<<<< HEAD
 <div id="command-bnt" class="row">
     <div class="col-sm-6 small" [ngClass]="reportClass">
         <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
     </div>
     <div class="col-sm-6 small" [ngClass]="reportClass">
+=======
+
+<div id="command-bnt" class="row" style="margin-bottom: 0.5em;">
+    <div class="col-sm-6">
+        <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
+    </div>
+    <div class="col-sm-6">
+>>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
         <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
     </div>
 </div>
 <div id="report" class="container">
+<<<<<<< HEAD
     <div class="loop" *ngFor="let test of testList">    
         <div class="row" [ngClass]="reportClass">
             <div class="col-sm-3" [ngClass]="reportClass">
                 <img class="logo-img" [ngClass]="reportClass" src="assets/img/logo.png">
+=======
+    <div  *ngFor="let test of testList">    
+        <div class="row">
+            <div class="col-sm-3">
+                <img class="logo-img" src="assets/img/logo.png">
+>>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
             </div>
             <div class="col-sm-6" [ngClass]="reportClass">
                 <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
                 <h6 class="sub-title" [ngClass]="reportClass">Relatório de teste por ordem de</h6>
             </div>
+<<<<<<< HEAD
             <div class="col-sm-3" [ngClass]="reportClass">
             </div>
+=======
+            <div class="col-sm-3"></div>
+>>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
         </div>
         <div class="header" [ngClass]="reportClass">
             <div class="table-responsive" [ngClass]="reportClass">
