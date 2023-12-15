@@ -50,8 +50,13 @@ export class ReportComponent extends CommonsComponent {
         next: (report: TestReport) => {
           this.testReport = report;
           this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);
+<<<<<<< HEAD
           this.test = this.testList[0];
           this.plan = this.test.plan;
+=======
+          this.editingTest = this.testList[0];
+          this.editingPlan = this.editingTest.plan;
+>>>>>>> a37cc2a (Ajustes na interface, otimização e refatoração de metrodos)
         }
       });
     }, 100);
