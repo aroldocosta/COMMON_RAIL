@@ -22,8 +22,8 @@
           <a id="injectorMenuLink" class="a-link nav-link px-2 text-secondary" data-bs-target="#injectModalToggle" data-bs-toggle="modal" (click)="emitRequestInjectorsEvent()">
             <i class="bi bi-droplet-half"></i> INJETORES</a>            
         </li>
-        <li class="nav-item" *ngIf="logged.role == 'ADMIN'">
-          <a class="a-link nav-link px-2 text-secondary" (click)="emitRequestReportEvent()">
+        <li class="nav-item" *ngIf="logged.role == 'ADMIN'">              
+          <a class="a-link nav-link px-2 text-secondary" data-bs-target="#reportModalToggle" data-bs-toggle="modal">
             <i class="bi bi-card-checklist"></i> RELATÓRIO</a>
         </li>
       </ul>
@@ -43,4 +43,37 @@
       </div>
     </div>
   </div>
+    <!-- ---------------------------------------------------------- -->
+    <div class="modal fade" id="reportModalToggle" aria-labelledby="reportModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="reportModalToggleLabel">RELATORIO POR ORDEM DE SERVIÇO</h1>
+          <button id="reportModalToggleCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div class="table-responsive filter-input">
+          <label for="">DIGITE A ORDEM DE SERVIÇO</label>
+          <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+              placeholder="Ordem de serviço"
+              aria-label="Sizing example input" 
+              aria-describedby="inputGroup-sizing-lg" 
+              [(ngModel)]="serviceOrder"
+            >
+          </div>
+          <app-alert-message 
+            [message]="alertMessage"
+            (clearEvent)="clearAlertMessage()"
+          ></app-alert-message>
+        </div>
+        </div>	
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
+          <button class="btn btn-outline-primary btn-modal" (click)="handleTestReport()">GERAR</button>
+          </div>	
+        </div>
+      </div>	
+      </div> 
+      <!-- ---------------------------------------------------------- -->
 </nav>

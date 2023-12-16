@@ -3,13 +3,14 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild }
 import { Plan } from 'src/app/model/plan.model';
 import { Test } from 'src/app/model/test.model';
 import { PlanService } from 'src/app/services/plan.service';
+import { CommonsComponent } from '../commons/commons.component';
 
 @Component({
   selector: 'app-aside',
   templateUrl: './aside.component.html',
   styleUrls: ['./aside.component.css']
 })
-export class AsideComponent implements OnInit {  
+export class AsideComponent extends CommonsComponent implements OnInit {  
 
   editingPlan: Plan = new Plan();
   editingTest: Test = new Test();
@@ -18,142 +19,187 @@ export class AsideComponent implements OnInit {
   gaugeH = 0;
   gaugeY = 135;
 
-  res_color = ''; 
-  rct_color = '';
-  iso_color = '';
+  resColor = ''; 
+  rctColor = '';
+  isoColor = '';
+
+  valDeb: string = '';
+  maxDeb: string = '';
+  minDeb: string = '';
+  valRet: string = '';
+  maxRet: string = '';
+  minRet: string = '';
 
   @Output() arrowEvent = new EventEmitter<string>();
-  @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
-  @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
-  public debContxt!: CanvasRenderingContext2D;
-  public retContxt!: CanvasRenderingContext2D;
+  // @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
+  // @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
+  // public debContxt!: CanvasRenderingContext2D;
+  // public retContxt!: CanvasRenderingContext2D;
 
   constructor() { 
+    super();
   }
 
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
-    this.debContxt = this.debCanvas.nativeElement.getContext('2d');
-    this.retContxt = this.retCanvas.nativeElement.getContext('2d');
+  // ngAfterViewInit(): void {
+  //   this.debContxt = this.debCanvas.nativeElement.getContext('2d');
+  //   this.retContxt = this.retCanvas.nativeElement.getContext('2d');
+  // }
+
+  // drawGauge(contxt: CanvasRenderingContext2D, value: string, maxValue: string, minValue: string) {
+  //   let colHeight = 130;
+  //   let val = Number(value);
+  //   let min = Number(minValue);
+  //   let max = Number(maxValue);
+  //   let ref = (max + min) / 2;
+
+  //   let n_val = 100*val/max;
+  //   let col  = (colHeight * n_val / 100);
+  //   let color = this.getColor(val, max, min);
+
+  //   this.gaugeY = colHeight - col+10;
+  //   this.gaugeH = col;
+
+  //   contxt.clearRect(0, 0, this.debCanvas.nativeElement.width, this.debCanvas.nativeElement.height);
+  //   contxt.clearRect(0, 0, this.retCanvas.nativeElement.width, this.retCanvas.nativeElement.height);
+  //   contxt.beginPath();
+  //   contxt.lineWidth = 6;
+  //   contxt.fillStyle = `rgb(${color.red}, ${color.grn}, ${color.blu})`;
+  //   contxt.fillRect(115, this.gaugeY, 76, this.gaugeH);
+  //   contxt.stroke();
+
+  //   let n_max = 100*max/max;
+  //   let n_min = 100*min/max;
+  //   let n_ref = 100*ref/max;
+
+  //   let c_max = colHeight - (colHeight * n_max / 100) + 10;
+  //   let c_min = colHeight - (colHeight * n_min / 100) + 10;
+  //   let c_ref = colHeight - (colHeight * n_ref / 100) + 10;
+
+  //   let x_1 = 205;
+  //   let x_2 = 225;
+
+  //   contxt.beginPath();
+  //   contxt.lineTo(x_1, c_min);
+  //   contxt.lineTo(x_2, c_min);
+  //   contxt.strokeStyle = "orange";
+  //   contxt.lineWidth = 1;
+  //   contxt.stroke();
+
+  //   contxt.beginPath();
+  //   contxt.lineTo(x_1, c_ref);
+  //   contxt.lineTo(x_2, c_ref);
+  //   contxt.strokeStyle = "green";
+  //   contxt.lineWidth = 1;
+  //   contxt.stroke();
+
+  //   contxt.beginPath();
+  //   contxt.lineTo(x_1, c_max);
+  //   contxt.lineTo(x_2, c_max);
+  //   contxt.strokeStyle = "red";
+  //   contxt.lineWidth = 1;
+  //   contxt.stroke();
+
+  //   contxt.font = "12px Monospace";
+  //   contxt.fillStyle = "darkblue";
+  //   contxt.fillText(min.toFixed(1), x_2+3, c_min);
+  //   contxt.fillText(ref.toFixed(1), x_2+3, c_ref);
+  //   contxt.fillText(max.toFixed(1), x_2+3, c_max);
+
+  // }
+
+
+  // requestTotals() {
+
+  // }
+
+  // getColor(val: number, max: number, min: number) {
+  //   let red = 0;
+  //   let grn = 0;
+  //   let blu = 0;   
+  //   let n_val = 100*val/max;
+  //   let n_min = 100*min/max;
+  //   let n_max = 100;
+  //   let n_ref = 100*((max+min)/2)/max;
+  //   let med1 = (n_ref + n_min)/2;
+  //   let med2 = (n_ref + n_max)/2;
+
+  //   if(val < min) {
+  //     red = 255;
+  //     grn = 255;
+  //     blu = 0;
+  //   } else if(val > max) {
+  //     red = 255;
+  //     grn = 0;
+  //     blu = 0;
+  //   } else { 
+  //     if(n_val < med1) {//greenyellow
+  //       red = 173;
+  //       grn = 255;
+  //       blu = 47;
+  //       //rrgb(173,255,47)
+  //     } else if(n_val < med2) { //green - rgb(0,255,0)
+  //       red = 0;
+  //       grn = 255;
+  //       blu = 0;
+  //     } else if(n_val <= n_max) {//orange - rgb(255,140,0)
+  //       red = 255;
+  //       grn = 140;
+  //       blu = 0;
+  //     }
+  //   }
+  //   let color = {red: red, grn: grn, blu: blu};
+  //   return color;
+  // }
+
+  // drawColor(value: string, maxValue: string, minValue: string) {
+  //   let val = Number(value);
+  //   let min = (minValue != null) ? Number(minValue) : 0;
+  //   let max = (maxValue != null) ? Number(maxValue) : 0;   
+  //   let color = this.getColor(val, max, min);
+
+  //   if(max <= min && val >= min) {color.red = 0; color.grn = 255; color.blu = 0}
+
+  //   return `text-shadow: 1px 1px 2px black; color: rgb(${color.red}, ${color.grn}, ${color.blu}); `;
+  // }
+
+  // setCurrentTab(tab: any, test: Test, plan: Plan) {
+  //   this.tabId = tab.id;
+  //   this.tabTitle = tab.heading;
+  //   this.editingTest = test;
+  //   this.editingPlan = plan;
+
+  //   if(tab.id == 'med_electric') {
+  //     this.resColor = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
+  //     this.rctColor = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
+  //     this.isoColor = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
+  //   }else if(tab.id == 'half_load') {
+  //     this.drawGauge(this.debContxt, test.halfLoad, plan.maxHalfLoad, plan.minHalfLoad);
+  //     this.drawGauge(this.retContxt, test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);
+  //   } else if(tab.id == 'full_load') {
+  //     this.drawGauge(this.debContxt, test.fullLoad, plan.maxFullLoad, plan.minFullLoad);
+  //     this.drawGauge(this.retContxt, test.fullLoadReturn, plan.maxFullLoadReturn, plan.minFullLoadReturn);
+  //   } else if(tab.id == 'idling') {
+  //     this.drawGauge(this.debContxt, test.idling, plan.maxIdling, plan.minIdling);
+  //     this.drawGauge(this.retContxt, test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);
+  //   } else if(tab.id == 'pre_injection') {
+  //     this.drawGauge(this.debContxt, test.preInjection, plan.maxPreInjection, plan.minPreInjection);
+  //     this.drawGauge(this.retContxt, test.preInjectionReturn, plan.maxPreInjectionReturn, plan.minPreInjectionReturn);
+  //   }
+  // }
+
+  setDebGraphValue(val: string, max: string, min: string) {
+    this.valDeb = val;
+    this.maxDeb = max;
+    this.minDeb = min;
   }
 
-  drawGauge(contxt: CanvasRenderingContext2D, value: string, maxValue: string, minValue: string) {
-    let colHeight = 130;
-    let val = Number(value);
-    let min = Number(minValue);
-    let max = Number(maxValue);
-    let ref = (max + min) / 2;
-
-    let n_val = 100*val/max;
-    let col  = (colHeight * n_val / 100);
-    let color = this.getColor(val, max, min);
-
-    this.gaugeY = colHeight - col+10;
-    this.gaugeH = col;
-
-    contxt.clearRect(0, 0, this.debCanvas.nativeElement.width, this.debCanvas.nativeElement.height);
-    contxt.clearRect(0, 0, this.retCanvas.nativeElement.width, this.retCanvas.nativeElement.height);
-    contxt.beginPath();
-    contxt.lineWidth = 6;
-    contxt.fillStyle = `rgb(${color.red}, ${color.grn}, ${color.blu})`;
-    contxt.fillRect(115, this.gaugeY, 76, this.gaugeH);
-    contxt.stroke();
-
-    let n_max = 100*max/max;
-    let n_min = 100*min/max;
-    let n_ref = 100*ref/max;
-
-    let c_max = colHeight - (colHeight * n_max / 100) + 10;
-    let c_min = colHeight - (colHeight * n_min / 100) + 10;
-    let c_ref = colHeight - (colHeight * n_ref / 100) + 10;
-
-    let x_1 = 205;
-    let x_2 = 225;
-
-    contxt.beginPath();
-    contxt.lineTo(x_1, c_min);
-    contxt.lineTo(x_2, c_min);
-    contxt.strokeStyle = "orange";
-    contxt.lineWidth = 1;
-    contxt.stroke();
-
-    contxt.beginPath();
-    contxt.lineTo(x_1, c_ref);
-    contxt.lineTo(x_2, c_ref);
-    contxt.strokeStyle = "green";
-    contxt.lineWidth = 1;
-    contxt.stroke();
-
-    contxt.beginPath();
-    contxt.lineTo(x_1, c_max);
-    contxt.lineTo(x_2, c_max);
-    contxt.strokeStyle = "red";
-    contxt.lineWidth = 1;
-    contxt.stroke();
-
-    contxt.font = "12px Monospace";
-    contxt.fillStyle = "darkblue";
-    contxt.fillText(min.toFixed(1), x_2+3, c_min);
-    contxt.fillText(ref.toFixed(1), x_2+3, c_ref);
-    contxt.fillText(max.toFixed(1), x_2+3, c_max);
-
-  }
-
-
-  requestTotals() {
-
-  }
-
-  getColor(val: number, max: number, min: number) {
-    let red = 0;
-    let grn = 0;
-    let blu = 0;   
-    let n_val = 100*val/max;
-    let n_min = 100*min/max;
-    let n_max = 100;
-    let n_ref = 100*((max+min)/2)/max;
-    let med1 = (n_ref + n_min)/2;
-    let med2 = (n_ref + n_max)/2;
-
-    if(val < min) {
-      red = 255;
-      grn = 255;
-      blu = 0;
-    } else if(val > max) {
-      red = 255;
-      grn = 0;
-      blu = 0;
-    } else { 
-      if(n_val < med1) {//greenyellow
-        red = 173;
-        grn = 255;
-        blu = 47;
-        //rrgb(173,255,47)
-      } else if(n_val < med2) { //green - rgb(0,255,0)
-        red = 0;
-        grn = 255;
-        blu = 0;
-      } else if(n_val <= n_max) {//orange - rgb(255,140,0)
-        red = 255;
-        grn = 140;
-        blu = 0;
-      }
-    }
-    let color = {red: red, grn: grn, blu: blu};
-    return color;
-  }
-
-  drawColor(value: string, maxValue: string, minValue: string) {
-    let val = Number(value);
-    let min = (minValue != null) ? Number(minValue) : 0;
-    let max = (maxValue != null) ? Number(maxValue) : 0;   
-    let color = this.getColor(val, max, min);
-
-    if(max <= min && val >= min) {color.red = 0; color.grn = 255; color.blu = 0}
-
-    return `text-shadow: 1px 1px 2px black; color: rgb(${color.red}, ${color.grn}, ${color.blu}); `;
+  setRetGraphValue(val: string, max: string, min: string) {
+    this.valRet = val;
+    this.maxRet = max;
+    this.minRet = min;
   }
 
   setCurrentTab(tab: any, test: Test, plan: Plan) {
@@ -163,23 +209,24 @@ export class AsideComponent implements OnInit {
     this.editingPlan = plan;
 
     if(tab.id == 'med_electric') {
-      this.res_color = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
-      this.rct_color = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
-      this.iso_color = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
+      this.resColor = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
+      this.rctColor = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
+      this.isoColor = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
     }else if(tab.id == 'half_load') {
-      this.drawGauge(this.debContxt, test.halfLoad, plan.maxHalfLoad, plan.minHalfLoad);
-      this.drawGauge(this.retContxt, test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);
+      this.setDebGraphValue(test.halfLoad, plan.maxHalfLoad, plan.minHalfLoad);
+      this.setRetGraphValue(test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);
     } else if(tab.id == 'full_load') {
-      this.drawGauge(this.debContxt, test.fullLoad, plan.maxFullLoad, plan.minFullLoad);
-      this.drawGauge(this.retContxt, test.fullLoadReturn, plan.maxFullLoadReturn, plan.minFullLoadReturn);
+      this.setDebGraphValue(test.fullLoad, plan.maxFullLoad, plan.minFullLoad);
+      this.setRetGraphValue(test.fullLoadReturn, plan.maxFullLoadReturn, plan.minFullLoadReturn);
     } else if(tab.id == 'idling') {
-      this.drawGauge(this.debContxt, test.idling, plan.maxIdling, plan.minIdling);
-      this.drawGauge(this.retContxt, test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);
+      this.setDebGraphValue(test.idling, plan.maxIdling, plan.minIdling);
+      this.setRetGraphValue(test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);
     } else if(tab.id == 'pre_injection') {
-      this.drawGauge(this.debContxt, test.preInjection, plan.maxPreInjection, plan.minPreInjection);
-      this.drawGauge(this.retContxt, test.preInjectionReturn, plan.maxPreInjectionReturn, plan.minPreInjectionReturn);
+      this.setDebGraphValue(test.preInjection, plan.maxPreInjection, plan.minPreInjection);
+      this.setRetGraphValue(test.preInjectionReturn, plan.maxPreInjectionReturn, plan.minPreInjectionReturn);
     }
   }
+
 
   emitArrowEvent(arrow: string) {
     this.arrowEvent.emit(arrow);

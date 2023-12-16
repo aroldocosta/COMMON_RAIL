@@ -10,8 +10,7 @@
 	</div>
 	<div>	
 		<div class="card">
-			<!-- <img id="gauge" class="card-img-top" src="assets/img/proveta.png" alt="Card image cap">  -->
-			<div [ngClass]="(tabId == 'med_electric') ? 'show' : 'hidden'">
+			<div class="components-img" [ngClass]="(tabId == 'med_electric') ? 'show' : 'hidden'">
 				<div class="row">
 					<div class="col-sm-12">
 						<img class="card-img-top" class="components" src="../../../assets/img/componente.png">
@@ -19,186 +18,61 @@
 				</div>
 			</div>
 			<div [class]="(tabId == 'med_electric' || tabId == 'comments') ? 'hidden' : 'show'">
-				<div class="row">
-					<div class="col-sm-6" style="width: 50%">
-						<canvas id="debCanvas" #debCanvas></canvas>
-						<h4>DÉB</h4>
-					</div>
-					<div class="col-sm-6"  style="width: 50%">
-						<canvas id="retCanvas" #retCanvas></canvas>
-						<h4>RET</h4>
-					</div>
-				</div>
+                <app-canvas-graph
+                    [valDeb]="valDeb"
+                    [maxDeb]="maxDeb"
+                    [minDeb]="minDeb"
+                    [valRet]="valRet"
+                    [maxRet]="maxRet"
+                    [minRet]="minRet"
+                ></app-canvas-graph>
 			</div>	
 			<div class="card-body" *ngIf="tabId == 'med_electric'">
-			  <h2 class="top-title">{{tabTitle}}</h2>
-			  <div class="table-responsive">
-				<table class="table table-sm  table-striped">
-					<thead>
-					<tr>
-						<th scope="col"></th>
-						<th scope="col">MIN</th>
-						<th scope="col">LIDO</th>
-						<th scope="col">MAX</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<th scope="row" title="Medições elétricas">RES(m&#937;):</th>
-						<td>{{editingPlan.minResistance | number: '1.2'}}</td>
-						<td [style]="res_color">{{editingTest.resistance 	| number: '1.2'}}</td>
-						<td>{{editingPlan.maxResistance | number: '1.2'}}</td>
-					</tr>
-					<tr>
-						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">CAP(nF):</th>
-						<th scope="row" title="RET:al faturado" *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">IND(mH):</th>
-						<td>{{editingPlan.minReactance | number: '1.2'}}</td>
-						<td [style]="rct_color">{{editingTest.reactance	   | number: '1.2'}}</td>
-						<td>{{editingPlan.maxReactance | number: '1.2'}}</td>
-					</tr>
-					<tr>
-						<th scope="row" title="RET:al faturado">ISO(M&#937;):</th>
-						<td>{{editingPlan.minIsolation 	| number: '1.2'}}</td>
-						<td [style]="iso_color">{{editingTest.isolation 	| number: '1.2'}}</td>
-						<td *ngIf="editingPlan.maxIsolation">{{editingPlan.maxIsolation  | number: '1.2'}}</td>
-						<td *ngIf="!editingPlan.maxIsolation" class="infinity">&infin;</td>
-					</tr>		  
-					</tbody>
-				</table>
-			  </div>
+				<app-med-electric-table
+					showSequence="false"
+					[resColor]="resColor"
+					[rctColor]="rctColor"
+					[isoColor]="isoColor"
+					[tabTitle]="tabTitle"
+					[plan]="editingPlan"
+					[test]="editingTest"
+				></app-med-electric-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'half_load'">
-			  <h2 class="top-title">{{tabTitle}}<i>({{editingPlan.halfLoadPressure}}bar)</i></h2>                               
-			  <!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.halfLoadPressure}})</i></b></h6> -->
-			  <div class="table-responsive">
-				<table class="table table-sm  table-striped">
-					<thead>
-						<tr>
-							<th scope="col"></th>
-							<th scope="col">MIN</th>
-							<th scope="col">LIDO</th>
-							<th scope="col">MAX</th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<th scope="row" title="Quantidade vendida em litros">DEB(ml):</th>
-						<td>{{editingPlan.minHalfLoad 	| number: '1.2'}}</td>
-						<td>{{editingTest.halfLoad 		| number: '1.2'}}</td>
-						<td>{{editingPlan.maxHalfLoad 	| number: '1.2'}}</td>
-					</tr>
-					<tr>
-						<th scope="row" title="RET:al faturado em Reais">RET(ml):</th>
-						<td>{{editingPlan.minHalfLoadReturn 	| number: '1.2'}}</td>
-						<td>{{editingTest.halfLoadReturn 		| number: '1.2'}}</td>
-						<td>{{editingPlan.maxHalfLoadReturn 	| number: '1.2'}}</td>
-					</tr>				  
-					</tbody>
-				</table>
-			  </div>
+				<app-half-load-table
+					[tabTitle]="tabTitle"
+					[editingPlan]="editingPlan"
+					[editingTest]="editingTest"
+				></app-half-load-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'idling'">
-			  <h2 class="top-title">{{tabTitle}}<i>({{editingPlan.idlingPressure}}bar)</i></h2>
-			  <!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.idlingPressure}}bar)</i></b></h6>	 -->
-			  <div class="table-responsive">
-				<table class="table table-sm  table-striped">
-					<thead>
-						<tr>
-							<th scope="col"></th>
-							<th scope="col">MIN</th>
-							<th scope="col">LIDO</th>
-							<th scope="col">MAX</th>
-						</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-						<td>{{editingPlan.minIdling 	| number: '1.2'}}</td>
-						<td>{{editingTest.idling 		| number: '1.2'}}</td>
-						<td>{{editingPlan.maxIdling 	| number: '1.2'}}</td>
-					</tr>
-					<tr>
-						<th scope="row" title="RET:al faturado">RET(ml):</th>
-						<td>{{editingPlan.minIdlingReturn 	| number: '1.2'}}</td>
-						<td>{{editingTest.idlingReturn 		| number: '1.2'}}</td>
-						<td>{{editingPlan.maxIdlingReturn 	| number: '1.2'}}</td>
-					</tr>				  
-					</tbody>
-				</table>
-			  </div>
+				<app-idling-table
+					[tabTitle]="tabTitle"
+					[editingPlan]="editingPlan"
+					[editingTest]="editingTest"
+				></app-idling-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'full_load'">
-				<h2 class="top-title">{{tabTitle}}<i>({{editingPlan.fullLoadPressure}}bar)</i></h2>
-				<!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.fullLoadPressure}}bar)</i></b></h6>	 -->
-				<div class="table-responsive">
-				  <table class="table table-sm  table-striped">
-					  <thead>
-						<tr>
-							<th scope="col"></th>
-							<th scope="col">MIN</th>
-							<th scope="col">LIDO</th>
-							<th scope="col">MAX</th>
-						</tr>
-					  </thead>
-					  <tbody>
-					  <tr>
-						  <th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-						  <td>{{editingPlan.minFullLoad 	| number: '1.2'}}</td>
-						  <td>{{editingTest.fullLoad 		| number: '1.2'}}</td>
-						  <td>{{editingPlan.maxFullLoad 	| number: '1.2'}}</td>
-					  </tr>
-					  <tr>
-						  <th scope="row" title="RET:al faturado">RET(ml):</th>
-						  <td>{{editingPlan.minFullLoadReturn 	| number: '1.2'}}</td>
-						  <td>{{editingTest.fullLoadReturn 		| number: '1.2'}}</td>
-						  <td>{{editingPlan.maxFullLoadReturn 	| number: '1.2'}}</td>
-					  </tr>				  
-					  </tbody>
-				  </table>
-				</div>
+				<app-full-load-table
+					[tabTitle]="tabTitle"
+					[editingPlan]="editingPlan"
+					[editingTest]="editingTest"
+				></app-full-load-table>
 			</div>	
 			<div class="card-body" *ngIf="tabId == 'pre_injection'">
-				<h2 class="top-title">{{tabTitle}}({{editingPlan.preInjectionPressure}}bar)</h2>
-				<!-- <h6 style="text-align: center; color: darkgrey"><b><i>({{editingPlan.preInjectionPressure}}bar)</i></b></h6>	 -->
-				<div class="table-responsive">
-					<table class="table table-sm  table-striped">
-						<thead>
-						<tr>
-							<th scope="col"></th>
-							<th scope="col">MIN</th>
-							<th scope="col">LIDO</th>
-							<th scope="col">MAX</th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-							<td>{{editingPlan.minPreInjection 	| number: '1.2'}}</td>
-							<td>{{editingTest.preInjection 		| number: '1.2'}}</td>
-							<td>{{editingPlan.maxPreInjection 	| number: '1.2'}}</td>
-						</tr>
-						<tr>
-							<th scope="row" title="RET:al faturado">RET(ml):</th>
-							<td>{{editingPlan.minPreInjectionReturn | number: '1.2'}}</td>
-							<td>{{editingTest.preInjectionReturn 	| number: '1.2'}}</td>
-							<td>{{editingPlan.maxPreInjectionReturn | number: '1.2'}}</td>
-						</tr>				  
-						</tbody>
-					</table>
-				</div>
+				<app-pre-injection-table
+					[tabTitle]="tabTitle"
+					[editingPlan]="editingPlan"
+					[editingTest]="editingTest"
+				></app-pre-injection-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'comments'">
-				<h2 class="top-title">{{tabTitle}}</h2>	
-				<div class="input-group input-group-lg">
-					<textarea type="text" class="form-control"
-						rows="13"
-						readonly
-						placeholder="Observções" 
-						aria-label="Sizing example input" 
-						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="editingTest.comments"
-					></textarea>
-				</div>
+				<app-comments
+					[tabTitle]="tabTitle"
+					[editingPlan]="editingPlan"
+					[editingTest]="editingTest"
+				>					
+				</app-comments>
 			</div>	
 			<div class="row hide-large">
 				<div class="col-6 arrow-left"><i class="bi bi-caret-left" (click)="emitArrowEvent('left')"></i></div>
@@ -206,5 +80,4 @@
 			</div>			  				
 		</div>
 	</div>
-	
 </div>		

@@ -2,13 +2,8 @@ import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core
 import { Router } from '@angular/router';
 import { Plan } from 'src/app/model/plan.model';
 import { LoginService } from 'src/app/services/login.service';
-import { PlanService } from 'src/app/services/plan.service';
-import { ReportService } from 'src/app/services/report.service';
-import { InjectorService } from 'src/app/services/injector.service';
 import { UserService } from 'src/app/services/user.service';
 import { CommonsComponent } from '../commons/commons.component';
-import { Vehicle } from 'src/app/model/vehicle.model';
-import { VehicleService } from 'src/app/services/vehicle.service';
 
 @Component({
   selector: 'app-header',
@@ -25,6 +20,10 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
   @Output() requestVehiclesEvent =  new EventEmitter();
   @Output() requestInjectorsEvent =  new EventEmitter();
   @Output() reportEvent = new EventEmitter<any>();
+
+  alertMessage = '';
+  serviceOrder = '';
+
 
   constructor(
     private userService: UserService,
@@ -65,11 +64,19 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
     this.requestInjectorsEvent.emit();
   }
 
-  emitRequestReportEvent() {
-    this.requestReportEvent.emit();
+  openReport() {
+    this.router.navigateByUrl('report');
   }
 
+  handleTestReport() {
+    console.log("Gerar pdf")
+    document.getElementById("reportModalToggleCloseModalButton")?.click();
+    this.router.navigate(['report'], { state: {serviceOrder: this.serviceOrder }});
+  }
 
+  clearAlertMessage() {
+
+  }
   
   //requestPlans() {
   //   this.planService.list().subscribe({

@@ -68,7 +68,7 @@
             >
                 <option value="0"selected>Selecione</option>
                 <option *ngFor="let n of numberList" [value]="n">{{n}}
-                    <span *ngIf="command == 'editing'"> ( sequência: {{editingTest.sequence}} )</span></option>
+                    <span *ngIf="command == 'editing'"> / [ {{editingTest.sequence}} ]</span></option>
             </select>
         </div>
     </div> 

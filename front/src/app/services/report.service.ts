@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginService } from './login.service';
 
@@ -10,14 +11,10 @@ export class ReportService {
 
   readonly baseUrl = environment.API_BASE_URL;
 
-  headers = new HttpHeaders({
-    'Authorization': `Bearer ${this.login.getAuthToken()}`
-  });
-
   constructor(private http: HttpClient, private login: LoginService) { }
 
-  report(serviceOrder: string) {
-    const url = `${this.baseUrl}report/${serviceOrder}`;
-    return this.http.get(url, { responseType: 'blob', headers: this.headers });
+  getByServiceOrder(serviceOrder: string): Observable<any> {
+    const url = `${this.baseUrl}reports/${serviceOrder}`;
+    return this.http.get(url, this.login.getHttpOptions());
   }
- }
+}

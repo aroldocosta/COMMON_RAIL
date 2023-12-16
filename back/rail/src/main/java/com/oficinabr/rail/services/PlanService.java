@@ -24,8 +24,7 @@ public class PlanService {
 		}
 	}
 	
-	public ResponseEntity<PlanDTO> get(String id) {	
-		
+	public ResponseEntity<PlanDTO> get(String id) {			
 		try {
 			PlanDTO resp = repository.findById(id).stream().map(PlanDTO::new).findAny().get();
 			return ResponseEntity.ok(resp);

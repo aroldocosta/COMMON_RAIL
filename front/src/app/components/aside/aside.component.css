@@ -1,21 +1,5 @@
-/* @media(max-width:768px) {
-	.sideMenu {
-		display: none;
-	}
-	.topMenu {
-		display: block;
-	}
-}
+@import "../../../data-style.css";
 
-@media(min-width:768px) {
-	.sideMenu {
-		display: block;
-		padding-right: 0 !important;
-	}
-	.topMenu {
-		display: none;
-	}
-} */
 
 .side-logo-img {
 	margin: 0.5em auto;
@@ -67,28 +51,6 @@ p {
 	padding-bottom: 0 !important;
 }
 
-#debCanvas {
-	background-image: url("../../../assets/img/proveta.png");
-	/* background: green; */
-	background-size: 100% 100%;
-	background-position-x: center;
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 12rem;
-	margin-top: 2em;
-}
-
-#retCanvas {
-	background-image: url("../../../assets/img/proveta.png");
-	/* background: blue; */
-	background-size: 100% 100%;
-	background-position-x: center;
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 12rem;
-	margin-top: 2em;
-}
-
 #comments {
 	background-color: #eeeeee;
 	border-radius: 10px;
@@ -104,8 +66,8 @@ p {
 }
 
 .components {
-	width: 65.7%;
-	margin: auto 18%
+	width: 56%;
+	margin: auto 22%
 }
 
 .arrow-left, .arrow-right {

@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    API_BASE_URL: 'http://microlet.com.br:8081/' 
+    API_BASE_URL: 'http://oficinabr.com:8081/' 
 };

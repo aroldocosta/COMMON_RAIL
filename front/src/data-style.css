@@ -1,0 +1,151 @@
+.top-title {
+	text-align: center;
+	color: darkgrey;
+	font-size: 1.4em;
+	margin-top: 1em;
+}
+
+h4 {
+	text-align: center;
+}
+
+th, td {
+	text-align: right;
+}
+
+h4, th {
+	color: #aaaaaa;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+td {
+	color: darkgray;
+	font-size: 1.5em;
+	font-weight: 500;
+}
+
+td.infinity {
+	padding-right: 0.5em;
+}
+
+
+.canvas {
+	background-image: url("assets/img/proveta.png");
+	background-size: 100% 100%;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 12rem;
+	margin-top: 2em;
+}
+
+.striped-table {
+    background: #f5f5f5;
+}
+
+/* ---------------------------------------- */
+
+th.report, td.report {
+	font-size: 1em;
+}
+h4.report {
+	font-size: 1em;
+}
+
+.table-responsive.report {
+	height: 80% !important;
+}
+
+.small.report {
+	width: 50% !important;
+}
+
+.header.report {
+	padding: 0.5em 0.5em 0 0.5em;
+	border-radius: 3px;
+}
+
+.logo-img.report {
+	margin-top: 0.5em;
+    width: 100%;
+}
+
+.col-sm-3.report {
+    width: 25%;
+}
+
+.col-sm-4.report {
+    width: 33.33333333334%;
+}
+
+.col-sm-5.report {
+    width: 41,66666666667%;
+}
+
+.col-sm-6.report {
+    width: 50%;
+}
+
+.col-sm-8.report {
+    width: 66.666666667%;
+}
+
+.col-sm-9.report {
+    width: 75%;
+}
+
+.col-sm-10.report {
+    width: 83.333333334%;
+}
+
+.col-sm-11.report {
+    width: 91.666666667%;
+}
+
+.col-sm-12.report {
+    width: 100%;
+}
+
+.title.report {
+    font-size: 0.8em;
+}
+
+.sub-title.report {
+    font-size: 0.3em;
+}
+
+.top-title {
+	font-size: 0.6em;
+}
+
+.canvas.report {
+	height: 5rem;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.components-img.report {
+	margin-top: 3em;
+    margin-left: 0.3em;
+    width: 75%
+}
+
+.rep-footer {
+    /* background: #eeeeee60; */
+    /* text-align: center; */
+    padding-top: 0.3em;
+    margin-top: 20px;
+    height: 20px !important;
+	font-size: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+	.small {
+        width: 50% !important;
+    }
+
+	.table {
+		font-size: 40%;
+	}
+}

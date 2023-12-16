@@ -1,4 +1,5 @@
 import { Injector } from "@angular/core";
+import { Plan } from "./plan.model";
 
 export class Test {
 
@@ -22,13 +23,15 @@ export class Test {
 	injectorId: string = '';
 	injectorType: string = '';
 	injectorModel: string = '';
+	injectorQuantity: number = 0;
 	planId: string = '';
 	vehicleId: string = '';
 	vehiclePlate: string = '';
 	imaCode: string = '';
 	serviceOrder: string = '';
 	customerName: string = '';
-
+	plan: Plan = new Plan();
+	
     constructor() {
 		this.planId = '0';
 		this.vehicleId = '0';

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Test } from 'src/app/model/test.model';
 import { Plan } from 'src/app/model/plan.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -14,6 +13,8 @@ import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
 import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 import { User } from 'src/app/model/user.model';
+import { Router } from '@angular/router';
+import { CommonsComponent } from 'src/app/components/commons/commons.component';
 import { ReportService } from 'src/app/services/report.service';
 
 @Component({
@@ -21,7 +22,7 @@ import { ReportService } from 'src/app/services/report.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent extends CommonsComponent implements OnInit{
 
   @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any
@@ -29,10 +30,6 @@ export class HomeComponent implements OnInit{
   @Input() vehicleList: Vehicle[] = [];
   @Input() planList: Plan[] = [];
   @Input() userList: User[] = [];
-  testCommand: string = 'listing';
-  modalCommand: string = 'listing';
-  testCommandButton = 'NOVO TESTE'
-  modalCommandButton = 'NOVO'
   report: any = 'Aguarde...';
   editingTest = new Test();
   editingPlan = new Plan();
@@ -68,6 +65,7 @@ export class HomeComponent implements OnInit{
   removingAlertMessage01: string = '';
   removingAlertMessage02: string = '';
   currentModalLink: string = '';
+  serviceOrder: string = '';
 
   tabIndex = 0;
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
@@ -90,7 +88,7 @@ export class HomeComponent implements OnInit{
     private vehicleService: VehicleService,
     private injectorService: InjectorService
     ) {
-      let aside = new AsideComponent();
+      super();
   }
 
   ngOnInit(): void {
@@ -401,45 +399,10 @@ export class HomeComponent implements OnInit{
     })
   }
 
-  handleReportLinkEvent() {
-    this.reportService.report('1111').subscribe({
-      next: resp => {
-        const file = new Blob([resp], {
-          type: resp.type
-        });
 
-        const blob = window.URL.createObjectURL(file);
-
-        const link = document.createElement('a');
-        link.href = blob;
-        link.download = 'report.pdf';
-        link.click();
-    
-        window.URL.revokeObjectURL(blob);
-        link.remove();
-
-      }
-    })
+  handleTestReport() {
+    this.router.navigateByUrl('report');
   }
-
-  /*
-    setReportFile(report: any) {
-    const file = new Blob([report], {
-      type: report.type
-    });
-
-    const blob = window.URL.createObjectURL(file);
-
-    const link = document.createElement('a');
-    link.href = blob;
-    link.download = 'report.pdf';
-    link.click();
-
-    window.URL.revokeObjectURL(blob);
-    link.remove();
-  }
-  */
-
 
   showNotImplementedAlert() {
     this.alertMessage = 'Função ainda não implementada neste MVP!';
