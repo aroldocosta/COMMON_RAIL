@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div id="command-bnt" class="row">
     <div class="col-sm-6 small" [ngClass]="reportClass">
         <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
@@ -40,19 +41,71 @@
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorQuantity}}</td>
                         <th class="striped-table" [ngClass]="reportClass" scope="row" >TIPO INJ:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorType}}</td>
+=======
+<div id="report" class="container">
+    <br><br><br><br>
+    <div  *ngFor="let test of testList">    
+        <div class="row">
+            <div class="col-sm-3">
+                <img class="logo-img" src="assets/img/logo.png">
+            </div>
+            <div class="col-sm-6">
+                <h1 class="title">RAIL CONTROL</h1>
+                <h6 class="sub-title">Relatório de teste</h6>
+            </div>
+            <div class="col-sm-3"></div>
+            <div id="command-bnt" class="row" style="margin-bottom: 0.5em;">
+                <div class="col-sm-6">
+                    <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
+                </div>
+                <div class="col-sm-6">
+                    <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
+                </div>
+            </div>
+        </div>
+        <fieldset class="header">
+            <div class="table-responsive">
+                <table class="table table-sm table-striped">
+                    <tbody>
+                    <tr>
+                        <th scope="row">CLIENTE:</th>
+                        <td>{{testReport.customerName}}</td>
+                        <th scope="row">ORD SRV:</th>
+                        <td>{{testReport.serviceOrder}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">VEÍCULO:</th>
+                        <td>{{testReport.vehiclePlate}}</td>
+                        <th scope="row">MOD INJ:</th>
+                        <td>{{testReport.injectorModel}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">QDE INJ:</th>
+                        <td>{{testReport.injectorQuantity}}</td>
+                        <th scope="row">TIPO INJ:</th>
+                        <td>{{testReport.injectorType}}</td>
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                     </tr>
                     </tbody>
                 </table>
             </div>  
+<<<<<<< HEAD
         </div>
         <div class="header">
+=======
+        </fieldset>
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
         <div class="row">
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-med-electric-table
                     tabTitle="MED ELÉTRICAS"
                     showSequence="true"
+<<<<<<< HEAD
                     [reportClass]="reportClass"
                     [plan]="plan"
+=======
+                    [plan]="editingPlan"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                     [test]="test"
                 ></app-med-electric-table> 
             </div>  
@@ -64,20 +117,33 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-half-load-table
                     tabTitle="CARGA PARCIAL"
+<<<<<<< HEAD
                     [reportClass]="reportClass"
                     [plan]="plan"
                     [test]="test"
+=======
+                    [editingPlan]="editingPlan"
+                    [editingTest]="test"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-half-load-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.halfLoad"
+<<<<<<< HEAD
                     [maxDeb]="plan.maxHalfLoad"
                     [minDeb]="plan.minHalfLoad"
                     [valRet]="test.halfLoadReturn"
                     [maxRet]="plan.maxHalfLoadReturn"
                     [minRet]="plan.minHalfLoadReturn"
                     [reportClass]="reportClass"
+=======
+                    [maxDeb]="editingPlan.maxHalfLoad"
+                    [minDeb]="editingPlan.minHalfLoad"
+                    [valRet]="test.halfLoadReturn"
+                    [maxRet]="editingPlan.maxHalfLoadReturn"
+                    [minRet]="editingPlan.minHalfLoadReturn"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-canvas-graph>
             </div> 
         </div>
@@ -85,19 +151,32 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-idling-table
                     tabTitle="MARCHA LENTA"
+<<<<<<< HEAD
                     [plan]="plan"
                     [test]="test"
+=======
+                    [editingPlan]="editingPlan"
+                    [editingTest]="test"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-idling-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.idling"
+<<<<<<< HEAD
                     [maxDeb]="plan.maxIdling"
                     [minDeb]="plan.minIdling"
                     [valRet]="test.idlingReturn"
                     [maxRet]="plan.maxIdlingReturn"
                     [minRet]="plan.minIdlingReturn"
                     [reportClass]="reportClass"
+=======
+                    [maxDeb]="editingPlan.maxIdling"
+                    [minDeb]="editingPlan.minIdling"
+                    [valRet]="test.idlingReturn"
+                    [maxRet]="editingPlan.maxIdlingReturn"
+                    [minRet]="editingPlan.minIdlingReturn"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-canvas-graph>
             </div>
         </div>
@@ -105,19 +184,32 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-full-load-table
                     tabTitle="CARGA PLENA"
+<<<<<<< HEAD
                     [plan]="plan"
                     [test]="test"
+=======
+                    [editingPlan]="editingPlan"
+                    [editingTest]="test"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-full-load-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.fullLoad"
+<<<<<<< HEAD
                     [maxDeb]="plan.maxFullLoad"
                     [minDeb]="plan.minFullLoad"
                     [valRet]="test.fullLoadReturn"
                     [maxRet]="plan.maxFullLoadReturn"
                     [minRet]="plan.minFullLoadReturn"
                     [reportClass]="reportClass"
+=======
+                    [maxDeb]="editingPlan.maxFullLoad"
+                    [minDeb]="editingPlan.minFullLoad"
+                    [valRet]="test.fullLoadReturn"
+                    [maxRet]="editingPlan.maxFullLoadReturn"
+                    [minRet]="editingPlan.minFullLoadReturn"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-canvas-graph>
             </div>
         </div>
@@ -125,13 +217,19 @@
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-pre-injection-table
                     tabTitle="PRÉ INJEÇÃO"
+<<<<<<< HEAD
                     [plan]="plan"
                     [test]="test"
+=======
+                    [editingPlan]="editingPlan"
+                    [editingTest]="test"
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
                 ></app-pre-injection-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.preInjection"
+<<<<<<< HEAD
                     [maxDeb]="plan.maxHalfLoad"
                     [minDeb]="plan.minPreInjection"
                     [valRet]="test.preInjectionReturn"
@@ -144,5 +242,18 @@
         </div>
         <div class="rep-footer">powered by <i><b>oficinabr.com</b></i></div>
         <hr>
+=======
+                    [maxDeb]="editingPlan.maxHalfLoad"
+                    [minDeb]="editingPlan.minPreInjection"
+                    [valRet]="test.preInjectionReturn"
+                    [maxRet]="editingPlan.maxPreInjectionReturn"
+                    [minRet]="editingPlan.minPreInjectionReturn"
+                ></app-canvas-graph>
+            </div>
+        </div>
+        <br><br><br>
+        <hr>
+        <br><br><br><br><br><br><br><br><br><br>
+>>>>>>> 6718745 (Implementada quebra de paginas em relatório)
     </div>
 </div>
