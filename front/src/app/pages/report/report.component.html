@@ -9,18 +9,18 @@
 </div>
 <div id="report" class="container">
     <div class="loop" *ngFor="let test of testList">    
-        <div class="row" [ngClass]="reportClass">
-            <div class="col-sm-3" [ngClass]="reportClass">
-                <img class="logo-img" [ngClass]="reportClass" src="assets/img/logo.png">
-            </div>
-            <div class="col-sm-6" [ngClass]="reportClass">
+        <header class="header">
+            <div class="wrapper">
+              <div class="logo">
+                <img src="assets/img/logo.png">
+              </div>
+              <div class="header-text">
                 <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
-                <h6 class="sub-title" [ngClass]="reportClass">Relatório de teste por ordem de</h6>
+                <p class="sub-title" [ngClass]="reportClass">Relatório de teste por ordem de</p>
+              </div>
             </div>
-            <div class="col-sm-3" [ngClass]="reportClass">
-            </div>
-        </div>
-        <div class="header" [ngClass]="reportClass">
+        </header>
+        <div class="session-box" [ngClass]="reportClass">
             <div class="table-responsive" [ngClass]="reportClass">
                 <table class="table table-sm">
                     <tbody>
@@ -46,7 +46,7 @@
                 </table>
             </div>  
         </div>
-        <div class="header">
+        <div class="session-box">
         <div class="row">
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-med-electric-table
@@ -55,6 +55,7 @@
                     [reportClass]="reportClass"
                     [plan]="plan"
                     [test]="test"
+                    [reportClass]="reportClass"
                 ></app-med-electric-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
@@ -68,6 +69,7 @@
                     [reportClass]="reportClass"
                     [plan]="plan"
                     [test]="test"
+                    [reportClass]="reportClass"
                 ></app-half-load-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
@@ -88,6 +90,7 @@
                     tabTitle="MARCHA LENTA"
                     [plan]="plan"
                     [test]="test"
+                    [reportClass]="reportClass"
                 ></app-idling-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
@@ -108,6 +111,7 @@
                     tabTitle="CARGA PLENA"
                     [plan]="plan"
                     [test]="test"
+                    [reportClass]="reportClass"
                 ></app-full-load-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
@@ -128,6 +132,7 @@
                     tabTitle="PRÉ INJEÇÃO"
                     [plan]="plan"
                     [test]="test"
+                    [reportClass]="reportClass"
                 ></app-pre-injection-table> 
             </div>  
             <div class="col-sm-4" [ngClass]="reportClass">
@@ -142,7 +147,7 @@
                 ></app-canvas-graph>
             </div>
         </div>
-        <div class="rep-footer">powered by <i><b>oficinabr.com</b></i></div>
-        <hr>
     </div>
+    <div class="rep-footer">powered by <i><b>oficinabr.com</b></i></div>
+    <hr>
 </div>

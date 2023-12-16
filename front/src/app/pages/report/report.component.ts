@@ -20,12 +20,8 @@ export class ReportComponent extends CommonsComponent {
   gaugeY = 135;
 
   serviceOrder: string = '';
-  // plan: Plan = new Plan();
-  // test: Test = new Test();
   testReport: TestReport = new TestReport();
   testList: Test[] = [];
-
-  //test = 1;
 
   @Input() tabId: string = 'med_electric';
 
@@ -79,16 +75,16 @@ export class ReportComponent extends CommonsComponent {
 
             let heightLeft = imgHeight;
             const doc = new jsPDF('p', 'mm');
-            let position = 0;
+            let position = 5;
             doc.addImage(imgData, 'PNG', 10, position, imgWidth - 20, imgHeight);
             heightLeft -= pageHeight;
 
-            let offset = (window.innerWidth < 768) ? 2.7 : 1;
+            let offset = (window.innerWidth < 768) ? 2.7 : 0;
 
             do {
                 position = (heightLeft - imgHeight);
                 doc.addPage();
-                doc.addImage(imgData, 'PNG', 10, position + 2*offset++, imgWidth - 20, imgHeight);
+                doc.addImage(imgData, 'PNG', 10, position, imgWidth - 20, imgHeight);
                 heightLeft -= pageHeight;
             } while (heightLeft >= pageHeight);
 

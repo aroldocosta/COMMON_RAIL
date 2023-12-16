@@ -1,11 +1,11 @@
 .top-title {
 	text-align: center;
-	color: darkgrey;
+	color: #555555;
 	font-size: 1.4em;
 	margin-top: 1em;
 }
 
-h4 {
+h1, h4 {
 	text-align: center;
 }
 
@@ -36,7 +36,7 @@ td.infinity {
 	background-position-x: center;
 	background-repeat: no-repeat;
 	width: 100%;
-	height: 12rem;
+	height: 10em;
 	margin-top: 2em;
 }
 
