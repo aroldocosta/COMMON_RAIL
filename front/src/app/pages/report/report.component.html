@@ -24,49 +24,24 @@
             <div class="table-responsive" [ngClass]="reportClass">
                 <table class="table table-sm">
                     <tbody>
-                    <tr>
-                        <th class="striped-table" [ngClass]="reportClass" scope="row" >CLIENTE:</th>
-                        <td class="striped-table" [ngClass]="reportClass">{{testReport.customerName}}</td>
-                        <th class="striped-table" [ngClass]="reportClass" scope="row">ORD SRV:</th>
-                        <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
-                    </tr>
-                    <tr>
-                        <th [ngClass]="reportClass" scope="row">VEÍCULO:</th>
-                        <td [ngClass]="reportClass">{{testReport.vehiclePlate}}</td>
-                        <th [ngClass]="reportClass" scope="row">MOD INJ:</th>
-                        <td [ngClass]="reportClass">{{testReport.injectorModel}}</td>
-                    </tr>    
-                </table>               
-            </div>
-            <div class="col-sm-6" [ngClass]="reportClass">
-                <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
-                <h6 class="sub-title" [ngClass]="reportClass">Relatório de teste por ordem de</h6>
-            </div>
-            <div class="col-sm-3" [ngClass]="reportClass">
-            </div>
-        </div>
-        <div class="header" [ngClass]="reportClass">
-            <div class="table-responsive" [ngClass]="reportClass">
-                <table class="table table-sm">
-                    <tbody>
-                    <tr>
-                        <th class="striped-table" [ngClass]="reportClass" scope="row" >CLIENTE:</th>
-                        <td class="striped-table" [ngClass]="reportClass">{{testReport.customerName}}</td>
-                        <th class="striped-table" [ngClass]="reportClass" scope="row">ORD SRV:</th>
-                        <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
-                    </tr>
-                    <tr>
-                        <th class="report" scope="row">VEÍCULO:</th>
-                        <td class="report">{{testReport.vehiclePlate}}</td>
-                        <th class="report" scope="row">MOD INJ:</th>
-                        <td class="report">{{testReport.injectorModel}}</td>
-                    </tr>
-                    <tr>
-                        <th class="striped-table" [ngClass]="reportClass" scope="row" >QDE INJ:</th>
-                        <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorQuantity}}</td>
-                        <th class="striped-table" [ngClass]="reportClass" scope="row" >TIPO INJ:</th>
-                        <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorType}}</td>
-                    </tr>
+                        <tr>
+                            <th class="striped-table" [ngClass]="reportClass" scope="row" >CLIENTE:</th>
+                            <td class="striped-table" [ngClass]="reportClass">{{testReport.customerName}}</td>
+                            <th class="striped-table" [ngClass]="reportClass" scope="row">ORD SRV:</th>
+                            <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
+                        </tr>
+                        <tr>
+                            <th [ngClass]="reportClass" scope="row">VEÍCULO:</th>
+                            <td [ngClass]="reportClass">{{testReport.vehiclePlate}}</td>
+                            <th [ngClass]="reportClass" scope="row">MOD INJ:</th>
+                            <td [ngClass]="reportClass">{{testReport.injectorModel}}</td>
+                        </tr>    
+                        <tr>
+                            <th class="striped-table" [ngClass]="reportClass" scope="row" >QDE INJ:</th>
+                            <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorQuantity}}</td>
+                            <th class="striped-table" [ngClass]="reportClass" scope="row" >TIPO INJ:</th>
+                            <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorType}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>  
