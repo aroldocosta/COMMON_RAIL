@@ -1,63 +1,25 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div id="command-bnt" class="row">
     <div class="col-sm-6 small" [ngClass]="reportClass">
         <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
     </div>
     <div class="col-sm-6 small" [ngClass]="reportClass">
-=======
 
-<div id="command-bnt" class="row" style="margin-bottom: 0.5em;">
-    <div class="col-sm-6">
-        <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
-    </div>
-    <div class="col-sm-6">
->>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
-=======
-<div id="command-bnt" class="row">
-    <div class="col-sm-6 small" [ngClass]="reportClass">
-        <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
-    </div>
-    <div class="col-sm-6 small" [ngClass]="reportClass">
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
         <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
     </div>
 </div>
 <div id="report" class="container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
     <div class="loop" *ngFor="let test of testList">    
         <div class="row" [ngClass]="reportClass">
             <div class="col-sm-3" [ngClass]="reportClass">
                 <img class="logo-img" [ngClass]="reportClass" src="assets/img/logo.png">
-<<<<<<< HEAD
-=======
-    <div  *ngFor="let test of testList">    
-        <div class="row">
-            <div class="col-sm-3">
-                <img class="logo-img" src="assets/img/logo.png">
->>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
             </div>
-<<<<<<< HEAD
             <div class="col-sm-6" [ngClass]="reportClass">
                 <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
                 <h6 class="sub-title" [ngClass]="reportClass">Relatório de teste por ordem de</h6>
-=======
-            <div class="col-sm-6">
-                <h1 class="title">RAIL CONTROL</h1>
-                <h6 class="sub-title">Relatório de teste por ordem de serviço</h6>
->>>>>>> a37cc2a (Ajustes na interface, otimização e refatoração de metrodos)
             </div>
-<<<<<<< HEAD
             <div class="col-sm-3" [ngClass]="reportClass">
             </div>
-=======
-            <div class="col-sm-3"></div>
->>>>>>> 0ad21c1 (Ajustes na formatação do relatorio de testes)
         </div>
-<<<<<<< HEAD
         <div class="header" [ngClass]="reportClass">
             <div class="table-responsive" [ngClass]="reportClass">
                 <table class="table table-sm">
@@ -67,27 +29,14 @@
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.customerName}}</td>
                         <th class="striped-table" [ngClass]="reportClass" scope="row">ORD SRV:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
-=======
-        <fieldset class="header">
-            <div class="table-responsive">
-                <table class="table table-sm">
-                    <tbody>
-                    <tr>
-                        <th class="striped-table"scope="row" >CLIENTE:</th>
-                        <td class="striped-table">{{testReport.customerName}}</td>
-                        <th class="striped-table" scope="row">ORD SRV:</th>
-                        <td class="striped-table">{{testReport.serviceOrder}}</td>
->>>>>>> f578be1 (Ajustes cores de tabelas)
                     </tr>
                     <tr>
                         <th [ngClass]="reportClass" scope="row">VEÍCULO:</th>
                         <td [ngClass]="reportClass">{{testReport.vehiclePlate}}</td>
                         <th [ngClass]="reportClass" scope="row">MOD INJ:</th>
                         <td [ngClass]="reportClass">{{testReport.injectorModel}}</td>
-                    </tr>
-                    <tr>
-<<<<<<< HEAD
-=======
+                    </tr>    
+                </table>               
             </div>
             <div class="col-sm-6" [ngClass]="reportClass">
                 <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
@@ -113,29 +62,16 @@
                         <td class="report">{{testReport.injectorModel}}</td>
                     </tr>
                     <tr>
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
                         <th class="striped-table" [ngClass]="reportClass" scope="row" >QDE INJ:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorQuantity}}</td>
                         <th class="striped-table" [ngClass]="reportClass" scope="row" >TIPO INJ:</th>
                         <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorType}}</td>
-<<<<<<< HEAD
-=======
-                        <th class="striped-table" scope="row" >QDE INJ:</th>
-                        <td class="striped-table">{{testReport.injectorQuantity}}</td>
-                        <th class="striped-table" scope="row" >TIPO INJ:</th>
-                        <td class="striped-table">{{testReport.injectorType}}</td>
->>>>>>> f578be1 (Ajustes cores de tabelas)
-=======
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
                     </tr>
                     </tbody>
                 </table>
             </div>  
         </div>
-<<<<<<< HEAD
         <div class="header">
-=======
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
         <div class="row">
             <div class="col-sm-8" [ngClass]="reportClass">
                 <app-med-electric-table
@@ -185,13 +121,8 @@
                     [maxDeb]="plan.maxIdling"
                     [minDeb]="plan.minIdling"
                     [valRet]="test.idlingReturn"
-<<<<<<< HEAD
                     [maxRet]="plan.maxIdlingReturn"
                     [minRet]="plan.minIdlingReturn"
-=======
-                    [maxRet]="editingPlan.maxIdlingReturn"
-                    [minRet]="editingPlan.minIdlingReturn"
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
@@ -210,13 +141,8 @@
                     [maxDeb]="plan.maxFullLoad"
                     [minDeb]="plan.minFullLoad"
                     [valRet]="test.fullLoadReturn"
-<<<<<<< HEAD
                     [maxRet]="plan.maxFullLoadReturn"
                     [minRet]="plan.minFullLoadReturn"
-=======
-                    [maxRet]="editingPlan.maxFullLoadReturn"
-                    [minRet]="editingPlan.minFullLoadReturn"
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
@@ -235,21 +161,12 @@
                     [maxDeb]="plan.maxHalfLoad"
                     [minDeb]="plan.minPreInjection"
                     [valRet]="test.preInjectionReturn"
-<<<<<<< HEAD
                     [maxRet]="plan.maxPreInjectionReturn"
                     [minRet]="plan.minPreInjectionReturn"
-=======
-                    [maxRet]="editingPlan.maxPreInjectionReturn"
-                    [minRet]="editingPlan.minPreInjectionReturn"
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
                     [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
         </div>
-<<<<<<< HEAD
-        </div>
-=======
->>>>>>> 2d58713 (Adaptações para gerar relatorios pdf em dispositivos moveis)
         <div class="rep-footer">powered by <i><b>oficinabr.com</b></i></div>
         <hr>
     </div>
