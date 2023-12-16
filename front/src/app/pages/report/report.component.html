@@ -1,52 +1,52 @@
-
-<div id="command-bnt" class="row" style="margin-bottom: 0.5em;">
-    <div class="col-sm-6">
+<div id="command-bnt" class="row">
+    <div class="col-sm-6 small" [ngClass]="reportClass">
         <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 small" [ngClass]="reportClass">
         <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
     </div>
 </div>
 <div id="report" class="container">
-    <div  *ngFor="let test of testList">    
-        <div class="row">
-            <div class="col-sm-3">
-                <img class="logo-img" src="assets/img/logo.png">
+    <div class="loop" *ngFor="let test of testList">    
+        <div class="row" [ngClass]="reportClass">
+            <div class="col-sm-3" [ngClass]="reportClass">
+                <img class="logo-img" [ngClass]="reportClass" src="assets/img/logo.png">
             </div>
-            <div class="col-sm-6">
-                <h1 class="title">RAIL CONTROL</h1>
-                <h6 class="sub-title">Relatório de teste por ordem de serviço</h6>
+            <div class="col-sm-6" [ngClass]="reportClass">
+                <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
+                <h6 class="sub-title" [ngClass]="reportClass">Relatório de teste por ordem de</h6>
             </div>
-            <div class="col-sm-3"></div>
+            <div class="col-sm-3" [ngClass]="reportClass">
+            </div>
         </div>
-        <fieldset class="header">
-            <div class="table-responsive">
+        <div class="header" [ngClass]="reportClass">
+            <div class="table-responsive" [ngClass]="reportClass">
                 <table class="table table-sm">
                     <tbody>
                     <tr>
-                        <th class="striped-table"scope="row" >CLIENTE:</th>
-                        <td class="striped-table">{{testReport.customerName}}</td>
-                        <th class="striped-table" scope="row">ORD SRV:</th>
-                        <td class="striped-table">{{testReport.serviceOrder}}</td>
+                        <th class="striped-table" [ngClass]="reportClass" scope="row" >CLIENTE:</th>
+                        <td class="striped-table" [ngClass]="reportClass">{{testReport.customerName}}</td>
+                        <th class="striped-table" [ngClass]="reportClass" scope="row">ORD SRV:</th>
+                        <td class="striped-table" [ngClass]="reportClass">{{testReport.serviceOrder}}</td>
                     </tr>
                     <tr>
-                        <th scope="row">VEÍCULO:</th>
-                        <td>{{testReport.vehiclePlate}}</td>
-                        <th scope="row">MOD INJ:</th>
-                        <td>{{testReport.injectorModel}}</td>
+                        <th class="report" scope="row">VEÍCULO:</th>
+                        <td class="report">{{testReport.vehiclePlate}}</td>
+                        <th class="report" scope="row">MOD INJ:</th>
+                        <td class="report">{{testReport.injectorModel}}</td>
                     </tr>
                     <tr>
-                        <th class="striped-table" scope="row" >QDE INJ:</th>
-                        <td class="striped-table">{{testReport.injectorQuantity}}</td>
-                        <th class="striped-table" scope="row" >TIPO INJ:</th>
-                        <td class="striped-table">{{testReport.injectorType}}</td>
+                        <th class="striped-table" [ngClass]="reportClass" scope="row" >QDE INJ:</th>
+                        <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorQuantity}}</td>
+                        <th class="striped-table" [ngClass]="reportClass" scope="row" >TIPO INJ:</th>
+                        <td class="striped-table" [ngClass]="reportClass">{{testReport.injectorType}}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>  
-        </fieldset>
+        </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" [ngClass]="reportClass">
                 <app-med-electric-table
                     tabTitle="MED ELÉTRICAS"
                     showSequence="true"
@@ -54,19 +54,19 @@
                     [test]="test"
                 ></app-med-electric-table> 
             </div>  
-            <div class="col-sm-4">
-                <img class="components-img" src="../../../assets/img/componente.png">
+            <div class="col-sm-4" [ngClass]="reportClass">
+                <img class="components-img" [ngClass]="reportClass" src="../../../assets/img/componente.png">
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" [ngClass]="reportClass">
                 <app-half-load-table
                     tabTitle="CARGA PARCIAL"
                     [editingPlan]="editingPlan"
                     [editingTest]="test"
                 ></app-half-load-table> 
             </div>  
-            <div class="col-sm-4" style="height: 15em;">
+            <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.halfLoad"
                     [maxDeb]="editingPlan.maxHalfLoad"
@@ -74,18 +74,19 @@
                     [valRet]="test.halfLoadReturn"
                     [maxRet]="editingPlan.maxHalfLoadReturn"
                     [minRet]="editingPlan.minHalfLoadReturn"
+                    [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div> 
         </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" [ngClass]="reportClass">
                 <app-idling-table
                     tabTitle="MARCHA LENTA"
                     [editingPlan]="editingPlan"
                     [editingTest]="test"
                 ></app-idling-table> 
             </div>  
-            <div class="col-sm-4" style="height: 15em;">
+            <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.idling"
                     [maxDeb]="editingPlan.maxIdling"
@@ -93,18 +94,19 @@
                     [valRet]="test.idlingReturn"
                     [maxRet]="editingPlan.maxIdlingReturn"
                     [minRet]="editingPlan.minIdlingReturn"
+                    [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" [ngClass]="reportClass">
                 <app-full-load-table
                     tabTitle="CARGA PLENA"
                     [editingPlan]="editingPlan"
                     [editingTest]="test"
                 ></app-full-load-table> 
             </div>  
-            <div class="col-sm-4" style="height: 15em;">
+            <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.fullLoad"
                     [maxDeb]="editingPlan.maxFullLoad"
@@ -112,18 +114,19 @@
                     [valRet]="test.fullLoadReturn"
                     [maxRet]="editingPlan.maxFullLoadReturn"
                     [minRet]="editingPlan.minFullLoadReturn"
+                    [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-8" [ngClass]="reportClass">
                 <app-pre-injection-table
                     tabTitle="PRÉ INJEÇÃO"
                     [editingPlan]="editingPlan"
                     [editingTest]="test"
                 ></app-pre-injection-table> 
             </div>  
-            <div class="col-sm-4" style="height: 15em;">
+            <div class="col-sm-4" [ngClass]="reportClass">
                 <app-canvas-graph
                     [valDeb]="test.preInjection"
                     [maxDeb]="editingPlan.maxHalfLoad"
@@ -131,10 +134,11 @@
                     [valRet]="test.preInjectionReturn"
                     [maxRet]="editingPlan.maxPreInjectionReturn"
                     [minRet]="editingPlan.minPreInjectionReturn"
+                    [reportClass]="reportClass"
                 ></app-canvas-graph>
             </div>
         </div>
-        <div id="footer">powered by <i><b>oficinabr.com</b></i></div>
+        <div class="rep-footer">powered by <i><b>oficinabr.com</b></i></div>
         <hr>
     </div>
 </div>

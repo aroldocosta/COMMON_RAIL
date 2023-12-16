@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-#footer {
+.rep-footer {
     background: #eeeeee60;
     text-align: center;
     padding-top: 0.5em;
@@ -40,10 +40,4 @@
     border-radius: 10px;
     border-color: grey;
     padding: 1em 2em;
-}
-
-@media screen and (max-width: 768px) {
-    .container {
-        width: 100%;
-    }
 }

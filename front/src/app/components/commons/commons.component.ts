@@ -20,6 +20,8 @@ export class CommonsComponent {
   testCommandButton = 'NOVO TESTE'
   modalCommandButton = 'NOVO'
 
+  @Input() reportClass = '';
+
   constructor() {
 
   }
