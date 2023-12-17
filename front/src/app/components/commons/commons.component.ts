@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Plan } from 'src/app/model/plan.model';
+import { TestReport } from 'src/app/model/test-report.model';
 import { Test } from 'src/app/model/test.model';
 import { User } from 'src/app/model/user.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -17,19 +18,22 @@ export class CommonsComponent {
   errors = "";
   DUPLICATED_KEY = "DUPLICATED_KEY";
   UNKNOWN_ERROR  = "UNKNOWN_ERROR";
-  testCommand: string = 'listing';
   modalCommand: string = 'listing';
   testCommandButton = 'NOVO TESTE'
   modalCommandButton = 'NOVO'
 
+  @Input() plan: Plan = new Plan();
+  @Input() test: Test = new Test();
   @Input() resColor = ''; 
   @Input() rctColor = '';
   @Input() isoColor = '';
-  @Input() reportClass = '';
   @Input() tabTitle: string = 'TITLE';
-  @Input() plan: Plan = new Plan();
-  @Input() test: Test = new Test();
-
+  @Input() testList: Test[] = [];
+  @Input() reportType = 'service-order';
+  @Input() testReport: TestReport = new TestReport();
+  @Input() reportClass = '';
+  @Input() testCommand: string = 'listing';
+  
   constructor() {
 
   }

@@ -14,7 +14,12 @@ export class ReportService {
   constructor(private http: HttpClient, private login: LoginService) { }
 
   getByServiceOrder(serviceOrder: string): Observable<any> {
-    const url = `${this.baseUrl}reports/${serviceOrder}`;
+    const url = `${this.baseUrl}reports/service-order/${serviceOrder}`;
+    return this.http.get(url, this.login.getHttpOptions());
+  }
+
+  getByInjectorNumber(serviceOrder: string, injectorNumber: number): Observable<any> {
+    const url = `${this.baseUrl}reports/service-order/${serviceOrder}/injector-number/${injectorNumber}`;
     return this.http.get(url, this.login.getHttpOptions());
   }
 }

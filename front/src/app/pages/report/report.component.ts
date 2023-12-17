@@ -20,8 +20,7 @@ export class ReportComponent extends CommonsComponent {
   gaugeY = 135;
 
   serviceOrder: string = '';
-  testReport: TestReport = new TestReport();
-  testList: Test[] = [];
+  injectorNumber: string = '';
 
   @Input() tabId: string = 'med_electric';
 
@@ -34,15 +33,36 @@ export class ReportComponent extends CommonsComponent {
   }
 
   ngOnInit() {
+    this.reportType = history.state.report;
+    this.serviceOrder = history.state.serviceOrder;
+    this.injectorNumber = history.state.injectorNumber;
 
+    this.testCommand = 'reporting';
+     
+    if(this.reportType == 'service-order') {
+      this.requestTestsByServiceOrder(this.serviceOrder);
+    } else if(this.reportType == 'injector-number') {
+      this.requestTestsByInjectorNumber(this.serviceOrder, this.injectorNumber);
+    }
   }
 
-  ngAfterViewInit() {
-    this.serviceOrder = history.state.serviceOrder;
-    this.testCommand = 'reporting';
-    
+  requestTestsByServiceOrder(serviceOrder: string) {
     let t = setTimeout(() => {
-      this.reportService.getByServiceOrder(this.serviceOrder).subscribe({
+      this.reportService.getByServiceOrder(serviceOrder).subscribe({
+        next: (report: TestReport) => {
+          this.testReport = report;
+          this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);
+          this.test = this.testList[0];
+          this.plan = this.test.plan;
+        }
+      });
+    }, 1000);
+  }
+
+
+  requestTestsByInjectorNumber(serviceOrder: string, injectorNumber: string) {
+    let t = setTimeout(() => {
+      this.reportService.getByInjectorNumber(serviceOrder, Number(injectorNumber)).subscribe({
         next: (report: TestReport) => {
           this.testReport = report;
           this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);

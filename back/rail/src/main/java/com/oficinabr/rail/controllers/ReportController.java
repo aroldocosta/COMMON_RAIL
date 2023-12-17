@@ -22,9 +22,16 @@ public class ReportController {
 	
 	@Autowired
 	private ReportService service;
-	@GetMapping("/{serviceOrder}")
+	
+	@GetMapping("/service-order/{serviceOrder}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<TestReportDTO> getTestReportByServiceOrder(@PathVariable("serviceOrder") String serviceOrder) throws FileNotFoundException, JRException {
 		return service.getReportByServiceOrder(serviceOrder);
+	}
+	
+	@GetMapping("/service-order/{serviceOrder}/injector-number/{injectorNumber}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<TestReportDTO> getTestReportByInjectorNumber(@PathVariable("serviceOrder") String serviceOrder, @PathVariable("injectorNumber") Integer injectorNumber) throws FileNotFoundException, JRException {
+		return service.getReportByInjectorNumber(serviceOrder, injectorNumber);
 	}
 }

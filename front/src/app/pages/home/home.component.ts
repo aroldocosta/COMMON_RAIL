@@ -38,7 +38,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   testDate = '';
   testQuantity = '0';
   alertMessage: string = '';
-  testList: Test[] = [];
   filteredList: Test[] = [];
   enabledDateIni: boolean = true;
   enabledDateEnd: boolean = true;

@@ -32,6 +32,8 @@ import { HalfLoadTableComponent } from './components/half-load-table/half-load-t
 import { CommentsComponent } from './components/comments/comments.component';
 import { ReportComponent } from './pages/report/report.component';
 import { CanvasGraphComponent } from './components/canvas-graph/canvas-graph.component';
+import { ServiceOrderReportComponent } from './components/service-order-report/service-order-report.component';
+import { InjectorNumberReportComponent } from './components/injector-number-report/injector-number-report.component';
 
 registerLocaleData(ptBr);
 
@@ -62,6 +64,8 @@ registerLocaleData(ptBr);
     CommentsComponent,
     ReportComponent,
     CanvasGraphComponent,
+    ServiceOrderReportComponent,
+    InjectorNumberReportComponent,
   ],
   imports: [
     FormsModule,

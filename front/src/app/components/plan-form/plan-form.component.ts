@@ -13,7 +13,6 @@ export class PlanFormComponent extends CommonsComponent{
   @Input() planCommand: string = '';
   @Input() message: string = '';
   @Input() testDate: string = '';
-  @Input() testList: any = [];
   @Input() planList: any = [];
   @Input() vehicleList: any = [];
   @Input() injectorList: any = [];

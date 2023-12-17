@@ -3,23 +3,22 @@ import { BootstrapOptions, Component, EventEmitter, Input, Output, ViewChild } f
 import { Test } from 'src/app/model/test.model';
 import { FormatService } from 'src/app/services/format.service';
 import { AsideComponent } from '../aside/aside.component';
+import { CommonsComponent } from '../commons/commons.component';
 
 @Component({
   selector: 'app-test-form',
   templateUrl: './test-form.component.html',
   styleUrls: ['./test-form.component.css']
 })
-export class TestFormComponent {
+export class TestFormComponent extends CommonsComponent {
    
     @Input() command: string = '';
     @Input() message: string = '';
     @Input() testDate: string = '';
-    @Input() testList: any = [];
     @Input() planList: any = [];
     @Input() vehicleList: any = [];
     @Input() injectorType: string = '';
     @Input() injectorList: any = [];
-    @Input() test: Test = new Test();
         
     @Output() tabbingEvent = new EventEmitter<any>();
     @Output() updateEvent = new EventEmitter<Test>();
@@ -33,6 +32,7 @@ export class TestFormComponent {
     constructor(
       private formatter: FormatService
     ) {
+      super();
     }
 
     ngOnInit() {

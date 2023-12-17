@@ -46,6 +46,31 @@ public class ReportService {
 			return ResponseEntity.noContent().build();
 		}
 	}
+	
+	public ResponseEntity<TestReportDTO> getReportByInjectorNumber(String serviceOrder, Integer injectorNumber) {	
+		
+		try {
+			
+			TestReportDTO reportByInjectorNumber = new TestReportDTO();
+
+			List<TestDTO> testList = repository.findByServiceOrderAndInjectorNumber(serviceOrder, injectorNumber).stream().map(TestDTO::new).toList();	
+		
+			
+			reportByInjectorNumber.setServiceOrder(testList.get(0).serviceOrder());
+			reportByInjectorNumber.setCustomerName(testList.get(0).customerName());			
+			reportByInjectorNumber.setInjectorType(testList.get(0).injectorType());
+			reportByInjectorNumber.setVehiclePlate(testList.get(0).vehiclePlate());
+			reportByInjectorNumber.setInjectorModel(testList.get(0).injectorModel());
+			reportByInjectorNumber.setInjectorQuantity(1);
+			reportByInjectorNumber.setTestList(testList);
+			
+			return ResponseEntity.ok(reportByInjectorNumber);
+	
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+
 
 
 	private Integer getInjectorQuantity(List<Test> testList) {
