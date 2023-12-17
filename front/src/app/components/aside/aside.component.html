@@ -34,43 +34,43 @@
 					[rctColor]="rctColor"
 					[isoColor]="isoColor"
 					[tabTitle]="tabTitle"
-					[plan]="editingPlan"
-					[test]="editingTest"
+					[plan]="plan"
+					[test]="test"
 				></app-med-electric-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'half_load'">
 				<app-half-load-table
 					[tabTitle]="tabTitle"
-					[editingPlan]="editingPlan"
-					[editingTest]="editingTest"
+					[plan]="plan"
+					[test]="test"
 				></app-half-load-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'idling'">
 				<app-idling-table
 					[tabTitle]="tabTitle"
-					[editingPlan]="editingPlan"
-					[editingTest]="editingTest"
+					[plan]="plan"
+					[test]="test"
 				></app-idling-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'full_load'">
 				<app-full-load-table
 					[tabTitle]="tabTitle"
-					[editingPlan]="editingPlan"
-					[editingTest]="editingTest"
+					[plan]="plan"
+					[test]="test"
 				></app-full-load-table>
 			</div>	
 			<div class="card-body" *ngIf="tabId == 'pre_injection'">
 				<app-pre-injection-table
 					[tabTitle]="tabTitle"
-					[editingPlan]="editingPlan"
-					[editingTest]="editingTest"
+					[plan]="plan"
+					[test]="test"
 				></app-pre-injection-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'comments'">
 				<app-comments
 					[tabTitle]="tabTitle"
-					[editingPlan]="editingPlan"
-					[editingTest]="editingTest"
+					[plan]="plan"
+					[test]="test"
 				>					
 				</app-comments>
 			</div>	

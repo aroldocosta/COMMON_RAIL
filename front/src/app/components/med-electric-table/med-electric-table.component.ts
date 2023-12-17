@@ -11,12 +11,6 @@ import { CommonsComponent } from '../commons/commons.component';
 export class MedElectricTableComponent extends CommonsComponent {
   
   @Input() showSequence: string = 'false';
-  @Input() resColor = ''; 
-  @Input() rctColor = '';
-  @Input() isoColor = '';
-  @Input() tabTitle: string = 'TITLE';
-  @Input() plan: Plan = new Plan();
-  @Input() test: Test = new Test();
 
   constructor(){
     super()

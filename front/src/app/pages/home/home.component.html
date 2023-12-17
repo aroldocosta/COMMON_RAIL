@@ -1,4 +1,6 @@
 <app-header 
+	[test]="test"
+	[testCommand]="testCommand"
 	(requestPlansEvent)="handlePlanLinkEvent()"
 	(requestVehiclesEvent)="handleVehicleLinkEvent()"
 	(requestInjectorsEvent)="handleInjectorLinkEvent()"
@@ -70,10 +72,10 @@
 					<app-test-form
 						*ngIf="testCommand == 'editing' || testCommand == 'creating'" 
 						[command]='testCommand'	
-						[injectorType]='editingTest.injectorType'					
+						[injectorType]='test.injectorType'					
 						[planList]='planList'
 						[vehicleList]='vehicleList'						
-						[editingTest]='editingTest'
+						[test]='test'
 						[injectorList]='injectorList'						
 						(createEvent)='handleCreateTestEvent($event)'
 						(updateEvent)='handleUpdateTestEvent($event)'
@@ -114,7 +116,7 @@
 			<hr class="colorgraph">
 			<app-plan-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
-				[editingPlan]="editingPlan"
+				[plan]="plan"
 				(updateEvent)="handleUpdatePlanEvent($event)"
 			>
 			</app-plan-form>

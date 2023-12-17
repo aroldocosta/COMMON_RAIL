@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Plan } from 'src/app/model/plan.model';
+import { Test } from 'src/app/model/test.model';
 import { LoginService } from 'src/app/services/login.service';
+import { ReportService } from 'src/app/services/report.service';
 import { UserService } from 'src/app/services/user.service';
 import { CommonsComponent } from '../commons/commons.component';
 
@@ -12,9 +14,6 @@ import { CommonsComponent } from '../commons/commons.component';
 })
 export class HeaderComponent extends CommonsComponent implements OnInit{
  
-  //@Output() injectorEvent = new EventEmitter<Injector[]>();
-  //@Output() vehicleEvent  = new EventEmitter<Vehicle[]>();
-  // @Output() planEvent   = new EventEmitter<Plan[]>();
   @Output() requestPlansEvent =  new EventEmitter();
   @Output() requestReportEvent = new EventEmitter();
   @Output() requestVehiclesEvent =  new EventEmitter();
@@ -22,11 +21,12 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
   @Output() reportEvent = new EventEmitter<any>();
 
   alertMessage = '';
-  serviceOrder = '';
-
+  serviceOrder = this.test.serviceOrder;
+  injectorNumber = '';
 
   constructor(
     private userService: UserService,
+    private reportService: ReportService,
     private router: Router,
     private login: LoginService) {
       super();
@@ -68,48 +68,19 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
     this.router.navigateByUrl('report');
   }
 
-  handleTestReport() {
+  handleServiceOrderReport() {
     console.log("Gerar pdf")
-    document.getElementById("reportModalToggleCloseModalButton")?.click();
-    this.router.navigate(['report'], { state: {serviceOrder: this.serviceOrder }});
+    this.router.navigate(['report'], { state: {serviceOrder: this.test.serviceOrder, report: 'service-order' }});
+  }
+
+  handleInjectorNumberReport() {
+    this.router.navigate(['report'], { state: {serviceOrder: this.test.serviceOrder, injectorNumber: this.test.injectorNumber, report: 'injector-number' }});
   }
 
   clearAlertMessage() {
 
   }
-  
-  //requestPlans() {
-  //   this.planService.list().subscribe({
-  //     next: list => {
-  //       this.planEvent.emit(list);
-  //     },
-  //     error: err => {
-  //       this.goToLink('/login', this.login, this.router);
-  //     }
-  //   })
-   //}
-
-  //requestVeiculos() {
-  //   // this.vehicleService.list().subscribe(list => {
-  //   //   this.vehicleEvent.emit(list);
-  //   // })
-  //}
-
-  //requestInjectors() {
-  //   // this.injectorService.list().subscribe(list => {
-  //   //   this.injectorEvent.emit(list);
-  //   // })
-  //}
-
-  requestReport(){
-  //   this.reportService.report().subscribe(report => {
-  //     this.reportEvent.emit(report);
-  //   })
-  }
-
-  // openModalEvent() {
-  //   this.modalEvent.emit();
-  // }
+ 
 
   getId() {
     return this.login.getAuthId();

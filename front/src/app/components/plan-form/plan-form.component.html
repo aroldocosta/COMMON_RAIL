@@ -9,7 +9,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.code"
+                        [(ngModel)]="plan.code"
                     >
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <div class="input-group input-group-lg">
                     <select class="form-select" aria-label="Default select example" 
                         [disabled]="planCommand == 'editing'"
-                        [(ngModel)]="editingPlan.type" 
+                        [(ngModel)]="plan.type" 
                     >
                         <option value="" selected>Selecione o tipo</option>
                         <option value="INDUTIVO">INDUTIVO</option>
@@ -36,7 +36,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.description"
+                        [(ngModel)]="plan.description"
                     ></textarea>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                         (input)="handleMinResistanceFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minResistance"
+                        [(ngModel)]="plan.minResistance"
                     >
                 </div>
             </div>
@@ -66,43 +66,43 @@
                         (input)="handleMaxResistanceFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxResistance"
+                        [(ngModel)]="plan.maxResistance"
                     >
                 </div>
             </div>
         </div>  
         <div class="row" style="padding: 2em 0">  
             <div class="col-sm-12 col-md-6">
-                <label *ngIf="editingPlan.type != 'PIEZO_ELETRICO'" class="input" for="">MIN INDUTÂNCIA</label>
-                <label *ngIf="editingPlan.type == 'PIEZO_ELETRICO'" class="input" for="">MIN CAPACITÂNCIA</label>
+                <label *ngIf="plan.type != 'PIEZO_ELETRICO'" class="input" for="">MIN INDUTÂNCIA</label>
+                <label *ngIf="plan.type == 'PIEZO_ELETRICO'" class="input" for="">MIN CAPACITÂNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i>
-                        <b *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">mH</b>
-                        <b *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">nF</b>
+                        <b *ngIf="plan.type != 'PIEZO_ELETRICO'">mH</b>
+                        <b *ngIf="plan.type == 'PIEZO_ELETRICO'">nF</b>
                     </i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
                         (input)="handleMinReactanceFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minReactance"
+                        [(ngModel)]="plan.minReactance"
                     >
                 </div>
             </div>
             <div class="col-sm-12 col-md-6">
-                <label *ngIf="editingPlan.type != 'PIEZO_ELETRICO'" class="input" for="">MAX INDUTÂNCIA</label>
-                <label *ngIf="editingPlan.type == 'PIEZO_ELETRICO'" class="input" for="">MAX CAPACITÂNCIA</label>
+                <label *ngIf="plan.type != 'PIEZO_ELETRICO'" class="input" for="">MAX INDUTÂNCIA</label>
+                <label *ngIf="plan.type == 'PIEZO_ELETRICO'" class="input" for="">MAX CAPACITÂNCIA</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i>
-                        <b *ngIf="editingPlan.type != 'PIEZO_ELETRICO'">mH</b>
-                        <b *ngIf="editingPlan.type == 'PIEZO_ELETRICO'">nF</b>
+                        <b *ngIf="plan.type != 'PIEZO_ELETRICO'">mH</b>
+                        <b *ngIf="plan.type == 'PIEZO_ELETRICO'">nF</b>
                     </i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
                         (input)="handleMaxReactanceFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxReactance"
+                        [(ngModel)]="plan.maxReactance"
                     >
                 </div>
             </div>
@@ -117,7 +117,7 @@
                         (input)="handleMinIsolationFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minIsolation"
+                        [(ngModel)]="plan.minIsolation"
                     >
                 </div>
             </div>  
@@ -130,7 +130,7 @@
                         (input)="handleMaxIsolationFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxIsolation"
+                        [(ngModel)]="plan.maxIsolation"
                     >
                 </div>
             </div>          
@@ -147,7 +147,7 @@
                         (input)="handleMinHalfLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minHalfLoad"
+                        [(ngModel)]="plan.minHalfLoad"
                     >
                 </div>
             </div>
@@ -160,7 +160,7 @@
                         (input)="handleMaxHalfLoadFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxHalfLoad"
+                        [(ngModel)]="plan.maxHalfLoad"
                     >
                 </div>
             </div>
@@ -173,7 +173,7 @@
                         (input)="handleHalfLoadPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.halfLoadPressure"
+                        [(ngModel)]="plan.halfLoadPressure"
                     >
                 </div>
             </div>
@@ -188,7 +188,7 @@
                         (input)="handleMinHalfLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minHalfLoadReturn"
+                        [(ngModel)]="plan.minHalfLoadReturn"
                     >
                 </div>
             </div>
@@ -201,7 +201,7 @@
                         (input)="handleMaxHalfLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxHalfLoadReturn"
+                        [(ngModel)]="plan.maxHalfLoadReturn"
                     >
                 </div>
             </div>
@@ -220,7 +220,7 @@
                         (input)="handleMinIdlingFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minIdling"
+                        [(ngModel)]="plan.minIdling"
                     >
                 </div>
             </div>
@@ -233,7 +233,7 @@
                         (input)="handleMaxIdlingFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxIdling"
+                        [(ngModel)]="plan.maxIdling"
                     >
                 </div>
             </div>
@@ -246,7 +246,7 @@
                         (input)="handleIdlingPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.idlingPressure"
+                        [(ngModel)]="plan.idlingPressure"
                     >
                 </div>
             </div>
@@ -261,7 +261,7 @@
                         (input)="handleMinIdlingReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minIdlingReturn"
+                        [(ngModel)]="plan.minIdlingReturn"
                     >
                 </div>
             </div>
@@ -274,7 +274,7 @@
                         (input)="handleMaxIdlingReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxIdlingReturn"
+                        [(ngModel)]="plan.maxIdlingReturn"
                     >
                 </div>
             </div>
@@ -293,7 +293,7 @@
                         (input)="handleMinFullLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minFullLoad"
+                        [(ngModel)]="plan.minFullLoad"
                     >
                 </div>
             </div>
@@ -306,7 +306,7 @@
                         (input)="handleMaxFullLoadFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxFullLoad"
+                        [(ngModel)]="plan.maxFullLoad"
                     >
                 </div>
             </div>
@@ -319,7 +319,7 @@
                         (input)="handleFullLoadPressureFormat()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.fullLoadPressure"
+                        [(ngModel)]="plan.fullLoadPressure"
                     >
                 </div>
             </div>
@@ -334,7 +334,7 @@
                         (input)="handleMinFullLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minFullLoadReturn"
+                        [(ngModel)]="plan.minFullLoadReturn"
                     >
                 </div>
             </div>
@@ -347,7 +347,7 @@
                         (input)="handleMaxFullLoadReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxFullLoadReturn"
+                        [(ngModel)]="plan.maxFullLoadReturn"
                     >
                 </div>
             </div>
@@ -366,7 +366,7 @@
                         (input)="handleMinPreInjectionFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minPreInjection"
+                        [(ngModel)]="plan.minPreInjection"
                     >
                 </div>
             </div>
@@ -379,7 +379,7 @@
                         (input)="handleMaxPreInjectionFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxPreInjection"
+                        [(ngModel)]="plan.maxPreInjection"
                     >
                 </div>
             </div>
@@ -392,7 +392,7 @@
                         (input)="handlePreInjectionPressureFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.preInjectionPressure"
+                        [(ngModel)]="plan.preInjectionPressure"
                     >
                 </div>
             </div>
@@ -407,7 +407,7 @@
                         (input)="handleMinPreInjectionReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.minPreInjectionReturn"
+                        [(ngModel)]="plan.minPreInjectionReturn"
                     >
                 </div>
             </div>            
@@ -420,7 +420,7 @@
                         (input)="handleMaxPreInjectionReturnFormat()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="editingPlan.maxPreInjectionReturn"
+                        [(ngModel)]="plan.maxPreInjectionReturn"
                     >
                 </div>
             </div>

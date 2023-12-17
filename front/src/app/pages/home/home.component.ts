@@ -31,8 +31,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   @Input() planList: Plan[] = [];
   @Input() userList: User[] = [];
   report: any = 'Aguarde...';
-  editingTest = new Test();
-  editingPlan = new Plan();
   editingVehicle = new Vehicle();
   editingInjector = new Injector();
   testPayment = '';
@@ -41,7 +39,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   testDate = '';
   testQuantity = '0';
   alertMessage: string = '';
-  testList: Test[] = [];
   filteredList: Test[] = [];
   enabledDateIni: boolean = true;
   enabledDateEnd: boolean = true;
@@ -103,9 +100,9 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.filteredDateIni = this.getFormattedDate(new Date());
       this.filteredDateEnd = this.getFormattedDate(new Date()); 
       // this.filteredDateTest = this.getFormattedDate(new Date());
-      this.editingTest.planId = '0';
-      this.editingTest.vehiclePlate = '0';
-      this.editingTest.injectorModel = '0';
+      this.test.planId = '0';
+      this.test.vehiclePlate = '0';
+      this.test.injectorModel = '0';
     }
 
     //let modal = document.getElementById('planModalToggle');
@@ -131,7 +128,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(this.testCommand == 'listing') {
       button = 'SALVAR';
       command = 'creating';
-      this.editingTest = new Test();
+      this.test = new Test();
       this.requestPlans();
       this.requestVehicles();
       this.requestInjectors();
@@ -163,7 +160,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingPlan = new Plan();
+      this.plan = new Plan();
     } else if(this.modalCommand == 'creating') {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO';
@@ -435,8 +432,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   saveTest() {
     let today = new Date();
-    this.editingTest.date = this.getFormattedDate(today);
-    this.testService.create(this.editingTest).subscribe({
+    this.test.date = this.getFormattedDate(today);
+    this.testService.create(this.test).subscribe({
       next: resp => {
         //document.getElementById("newCloseModalButton")?.click();
         this.requestTests();
@@ -448,7 +445,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateTest() { 
-    this.testService.update(this.editingTest).subscribe({
+    this.testService.update(this.test).subscribe({
       next: resp => {
         this.handleTabbingTestEvent(this.currentTab);
         this.requestTests();
@@ -460,7 +457,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   savePlan() {
-    this.planService.create(this.editingPlan).subscribe({
+    this.planService.create(this.plan).subscribe({
       next: resp => {
         this.planService.list().subscribe({
           next: list => {
@@ -475,7 +472,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updatePlan() {
-    this.planService.update(this.editingPlan).subscribe({
+    this.planService.update(this.plan).subscribe({
       next: resp => {
         this.planService.list().subscribe({
           next: list => {
@@ -629,10 +626,10 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(event.command == 'editing') {
       this.planService.get(event.object.planId).subscribe({
         next: plan => {
-          this.editingPlan = plan
+          this.plan = plan
           this.testCommandButton = 'SALVAR';
-          this.editingTest = event.object;
-          this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan, this.editingInjector);
+          this.test = event.object;
+          this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
         }
       })
 
@@ -652,7 +649,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     this.modalCommand = event.command;
     if(event.command == 'editing') {
       this.modalCommandButton = 'SALVAR';
-      this.editingPlan = event.object;
+      this.plan = event.object;
     } else if(event.command == 'saving') {
 
     } else if(event.command == 'removing') {
@@ -717,22 +714,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   handleTabbingTestEvent(tab: any) {
     this.currentTab = tab;
-    this.aside.setCurrentTab(this.currentTab, this.editingTest, this.editingPlan, this.editingInjector);
+    this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
   }
 
   handleUpdateTestEvent(test: Test) {
-    this.editingTest = test;  
+    this.test = test;  
     this.handleTabbingTestEvent(this.currentTab);
   }
 
   handleUpdateTestPlanEvent(test: Test) {
-    this.editingTest = test; 
-    let planId = this.editingTest.planId;
+    this.test = test; 
+    let planId = this.test.planId;
     
     this.planService.get(planId).subscribe({
       next: plan => {
-        this.editingPlan = plan;
-        let planType = (this.editingPlan != null) ? this.editingPlan.type : '';
+        this.plan = plan;
+        let planType = (this.plan != null) ? this.plan.type : '';
         let injectorType = (this.editingInjector != null) ? this.editingInjector.type : '';
         let injectorTypeSelected = (this.editingInjector != null && this.editingInjector.type.length > 0);
 
@@ -748,16 +745,16 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   handleUpdateTestInjectorEvent(test: Test) {
-    this.editingTest = test;
-    let injectorId = this.editingTest.injectorId;
+    this.test = test;
+    let injectorId = this.test.injectorId;
     
     this.injectorService.get(injectorId).subscribe({
       next: injector => {
         this.editingInjector = injector;
-        this.editingTest.planId = injector.planId;
+        this.test.planId = injector.planId;
         this.planService.get(injector.planId).subscribe({
           next: plan => {
-            this.editingPlan = plan;
+            this.plan = plan;
             this.currentTab = {id:'med_electric', heading:  'MED ELETRICAS'};
             this.handleTabbingTestEvent(this.currentTab);
           }
@@ -772,11 +769,11 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   handleCreateTestEvent(test: Test){
     this.testCommand = 'creating';
     this.testCommandButton = "SALVAR";
-    this.editingTest = test;
+    this.test = test;
   }
 
   handleUpdatePlanEvent(plan: Plan) {
-    this.editingPlan = plan;
+    this.plan = plan;
   }
 
   handleUpdateVehicleEvent(vehicle: Vehicle) {

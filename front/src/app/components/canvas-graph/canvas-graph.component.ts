@@ -19,10 +19,6 @@ export class CanvasGraphComponent extends CommonsComponent {
   gaugeH = 0;
   gaugeY = 135;
 
-  resColor = ''; 
-  rctColor = '';
-  isoColor = '';
-
   @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
   @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
   deb_Contxt!: CanvasRenderingContext2D;
