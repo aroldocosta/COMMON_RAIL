@@ -552,12 +552,14 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     this.testService.list().subscribe({
       next: list => {        
         this.testList = list;
+
         this.filteredList = this.testList.sort((a, b) => {
           if(a.serviceOrder  == b.serviceOrder) {
             return a.injectorNumber - b.injectorNumber;
           } 
           return a.serviceOrder > b.serviceOrder ?  -1 : 1;
         });
+        this.doTestFieldFilters();
       }
     });
   }
@@ -571,52 +573,75 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   //     .filter(t => t.serviceOrder == this.filteredServiceOrder);
   // }
 
+  doTestFieldFilters() {
+    if(this.filteredField !== '') {
+      this.doTestDateFilter();
+      this.doTestVehicleFilter();
+      this.doTestInjectorFilter();      
+      this.doTestInjectorFilter();
+      this.doTestSequenceFilter();
+      this.doTestFilteredOrderFilter();
+      this.doTestInjectorNumberFilter();
+    }
+  }
+
   doTestCombinedFilter() {
 
   }
 
   doTestInjectorNumberFilter() {
-    this.filteredField = 'injectorNumber';
-    this.filteredList = this.testList
-      .filter(t => t.injectorNumber == Number(this.filteredTestInjectorNumber));
-    document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
-                               
+    if(this.filteredTestInjectorNumber != '') {
+      this.filteredField = 'injectorNumber';
+      this.filteredList = this.testList
+        .filter(t => t.injectorNumber == Number(this.filteredTestInjectorNumber));
+      document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
+    }                               
   }
 
   doTestSequenceFilter() {
-    this.filteredField = 'sequence';
-    this.filteredList = this.testList
-      .filter(t => t.sequence == this.filteredTestSequence);
-    document.getElementById("sequenceFilterCloseModalButton")?.click();  
+    if(this.filteredTestSequence != '') {
+      this.filteredField = 'sequence';
+      this.filteredList = this.testList
+        .filter(t => t.sequence == this.filteredTestSequence);
+      document.getElementById("sequenceFilterCloseModalButton")?.click(); 
+    } 
   }
  
   doTestDateFilter() {
-    this.filteredField = 'date';
-    this.filteredList = this.testList
-      .filter(t => t.date == this.filteredTestDate);
-    document.getElementById("dateFilterCloseModalButton")?.click();  
+    if(this.filteredTestDate != '') {
+      this.filteredField = 'date';
+      this.filteredList = this.testList
+        .filter(t => t.date == this.filteredTestDate);
+      document.getElementById("dateFilterCloseModalButton")?.click();  
+    }
   }
 
   doTestInjectorFilter() {
-    this.filteredField = 'injectorModel';
-    this.filteredList = this.testList
-    .filter(t => t.injectorModel == this.filteredInjectorModel)
-    document.getElementById("injectorFilterCloseModalButton")?.click(); 
+    if(this.filteredInjectorModel != '') {
+      this.filteredField = 'injectorModel';
+      this.filteredList = this.testList
+      .filter(t => t.injectorModel == this.filteredInjectorModel)
+      document.getElementById("injectorFilterCloseModalButton")?.click(); 
+    }
   }
 
   doTestVehicleFilter() {
-    this.filteredField = 'vehicle';
-    this.filteredList = this.testList
-    .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
-    document.getElementById("vehicleFilterCloseModalButton")?.click(); 
+    if(this.filteredVechiclePlate != '') {
+      this.filteredField = 'vehicle';
+      this.filteredList = this.testList
+      .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
+      document.getElementById("vehicleFilterCloseModalButton")?.click(); 
+    }
   }
 
   doTestFilteredOrderFilter() {
-    this.filteredField = 'serviceOrder';
-    this.filteredList = this.testList
-    .filter(t => t.serviceOrder == this.filteredServiceOrder)
-    .sort((a, b) => a.injectorNumber - b.injectorNumber)
-    document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
+    if(this.filteredServiceOrder != '') {
+      this.filteredField = 'serviceOrder';
+      this.filteredList = this.testList
+      .filter(t => t.serviceOrder == this.filteredServiceOrder)
+      .sort((a, b) => a.injectorNumber - b.injectorNumber)
+      document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
+    }
   }
 
   handleTestCommandEvent(event: any) {  
