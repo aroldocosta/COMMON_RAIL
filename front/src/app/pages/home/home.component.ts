@@ -32,6 +32,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   report: any = 'Aguarde...';
   editingVehicle = new Vehicle();
   editingInjector = new Injector();
+  editingUser = new User();
   testPayment = '';
   testPlanId = '';
   testInjectorId = '';
@@ -207,6 +208,33 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   /* ------------ Injector Command Button Handlers ------------- */
+  handleUserCommandButton() {
+    if(this.modalCommand == 'listing') {
+      this.modalCommand = 'creating';
+      this.modalCommandButton = 'SALVAR';
+      this.editingUser = new User();
+      this.requestUsers();
+    } else if(this.modalCommand == 'creating') {
+      this.modalCommand = 'listing';
+      this.modalCommandButton = 'NOVO';
+      this.saveUser();
+    } else if(this.modalCommand == 'editing') {
+      this.modalCommand = 'listing';   
+      this.modalCommandButton = 'NOVO';
+      this.updateUser();
+    }
+  }
+
+  cancelUserCommandButton() {
+    if(this.modalCommand == 'listing') {
+      document.getElementById('userModalCloseButton')?.click();
+      this.currentModalLink = '';
+    } else {
+      this.modalCommand = 'listing';
+      this.modalCommandButton = 'NOVO'
+    }
+  }
+  /*------------------------------------------------------------*/
   handleInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
@@ -269,7 +297,9 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     } else if(objectClass == 'Injector') {
       link = document.getElementById("injectorMenuLink");
       service = <InjectorService>this.injectorService;
-    } 
+    }  else if(objectClass == 'User') {
+      service = <UserService>this.userService;
+    }
 
     service.remove(objectId).subscribe({
       next: (resp: any) => {
@@ -339,15 +369,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     //   (f.injectorName == this.filteredInjector || this.filteredInjector == 'ALL') 
     // );
   }
-
-  requestUsers() {
-    this.userService.list().subscribe({
-      next: list => {
-        this.userList = list;
-      }
-    })
-  }
   
+  // --------------------------------------------------------
   handlePlanLinkEvent() {
     this.currentModalLink = 'planMenuLink';
     this.requestPlans();
@@ -392,6 +415,21 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       }
     })
   }
+
+  handleUserLinkEvent() {
+    this.currentModalLink = 'userMenuLink';
+    this.requestUsers();
+  }
+
+  requestUsers() {
+    this.userService.list().subscribe({
+      next: list => {
+        this.userList = list;
+      }
+    })
+  }
+
+  // --------------------------------------------------------
 
 
   handleTestReport() {
@@ -534,6 +572,36 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.injectorService.list().subscribe({
           next: list => {
             this.injectorList = list;
+          }
+        })
+      },
+      error: err => {
+        console.log("Error: ", err);
+      }
+    })
+  }
+
+  saveUser() {
+    this.userService.create(this.editingUser).subscribe({
+      next: resp => {
+        this.userService.list().subscribe({
+          next: list => {
+            this.userList = list;
+          }
+        })
+      },
+      error: err => {
+        console.log("Error: ", err);
+      }
+    })
+  }
+
+  updateUser() {
+    this.userService.update(this.editingUser).subscribe({
+      next: resp => {
+        this.userService.list().subscribe({
+          next: list => {
+            this.userList = list;
           }
         })
       },
@@ -731,6 +799,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     }
   }
 
+  handleUserCommandEvent(event: any) {  
+    if(event.command == 'editing') {
+      this.modalCommand = event.command;
+      this.modalCommandButton = 'SALVAR';
+      this.editingUser = event.object;
+    } else if(event.command == 'saving') {
+
+    } else if(event.command == 'removing') {
+      this.removingObjects = '';
+      this.removingName = event.object.name;
+      this.removingEvent = event;
+      this.removingAlertMessage01 = "Deseja remover o usuário ";
+      this.removingAlertTopTitle = "REMOVER USUÁRIO";
+    }
+  }
+
   handleArrowEvent(arrow: string) {
     if(arrow == 'right') {
       this.tabIndex++;
@@ -813,6 +897,10 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   handleUpdateInjectorEvent(injector: Injector) {
     this.editingInjector = injector;
+  }
+
+  handleUpdateUserEvent(user: any) {
+    this.editingUser = user;
   }
 
   handleResetFilterEvent() {

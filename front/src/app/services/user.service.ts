@@ -26,18 +26,18 @@ export class UserService {
     return this.http.get<User>(url, this.login.getHttpOptions());
   }
 
-  // create(user: any): Observable<any> {
-  //   const url = `${this.baseUrl}users`;
-  //   return this.http.post(url, user, this.login.getHttpOptions());
-  // }
+  create(user: any): Observable<any> {
+    const url = `${this.baseUrl}users`;
+    return this.http.post(url, user, this.login.getHttpOptions());
+  }
 
-  // update(user: any): Observable<any> {
-  //   const url = `${this.baseUrl}users`;
-  //   return this.http.put(url, user, this.login.getHttpOptions());
-  // }
+  update(user: any): Observable<any> {
+    const url = `${this.baseUrl}users`;
+    return this.http.put(url, user, this.login.getHttpOptions());
+  }
 
-  // remove(id: any): Observable<any> {
-  //   const url = `${this.baseUrl}users/${id}`;
-  //   return this.http.delete(url, this.login.getHttpOptions());
-  // }
+  remove(id: any): Observable<any> {
+    const url = `${this.baseUrl}users/${id}`;
+    return this.http.delete(url, this.login.getHttpOptions());
+  }
 }

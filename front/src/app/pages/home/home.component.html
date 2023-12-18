@@ -4,6 +4,7 @@
 	(requestPlansEvent)="handlePlanLinkEvent()"
 	(requestVehiclesEvent)="handleVehicleLinkEvent()"
 	(requestInjectorsEvent)="handleInjectorLinkEvent()"
+	(requestUsersEvent)="handleUserLinkEvent()"
 	(reportEvent)="setReportFile($event)"
 ></app-header>
  <div class="container-fluid">
@@ -196,6 +197,35 @@
 	  </div>
 	</div>
   </div>  
+  <div class="modal fade" id="userModalToggle" aria-labelledby="userModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="injectModalToggleLabel">USUÁRIOS</h1>
+		  <button (click)="cancelUserCommandButton()" id="userModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<hr class="colorgraph">
+			<app-user-form
+				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
+				[editingUser]="editingUser"
+				(updateEvent)="handleUpdateUserEvent($event)"
+			>
+			</app-user-form>
+			<app-user-table
+				*ngIf="modalCommand == 'listing'"
+				[list] = 'userList'
+				(commandEvent)="handleUserCommandEvent($event)"
+			></app-user-table>
+			<hr class="colorgraph">
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelUserCommandButton()">FECHAR</button>
+		  	<button class="btn btn-outline-primary btn-modal" (click)="handleUserCommandButton()">{{modalCommandButton}}</button>
+		</div>
+	  </div>
+	</div>
+  </div>
   <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
