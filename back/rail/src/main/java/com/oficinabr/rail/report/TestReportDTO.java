@@ -12,6 +12,7 @@ public class TestReportDTO {
 	private String vehiclePlate;
 	private String injectorModel;	
 	private String injectorType;
+	private Integer injectorNumber;
 	private Integer injectorQuantity;
 	private List<TestDTO> testList;
 	
@@ -44,6 +45,12 @@ public class TestReportDTO {
 	}
 	public void setInjectorType(String injectorType) {
 		this.injectorType = injectorType;
+	}
+	public Integer getInjectorNumber() {
+		return injectorNumber;
+	}
+	public void setInjectorNumber(Integer injectorNumber) {
+		this.injectorNumber = injectorNumber;
 	}
 	public Integer getInjectorQuantity() {
 		return injectorQuantity;

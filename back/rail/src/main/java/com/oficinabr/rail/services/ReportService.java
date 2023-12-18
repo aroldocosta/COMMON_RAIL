@@ -61,6 +61,7 @@ public class ReportService {
 			reportByInjectorNumber.setInjectorType(testList.get(0).injectorType());
 			reportByInjectorNumber.setVehiclePlate(testList.get(0).vehiclePlate());
 			reportByInjectorNumber.setInjectorModel(testList.get(0).injectorModel());
+			reportByInjectorNumber.setInjectorNumber(testList.get(0).injectorNumber());
 			reportByInjectorNumber.setInjectorQuantity(1);
 			reportByInjectorNumber.setTestList(testList);
 			

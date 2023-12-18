@@ -9,6 +9,7 @@ import { CommonsComponent } from '../commons/commons.component';
 export class InjectorNumberReportComponent extends CommonsComponent {
   @Input() halfLoadSequence: any;
   @Input() idlingSequence: any;
+  @Input() injectorNumber: any;
   @Input() fullLoadSequence: any;
   @Input() preInjectionSequence: any;
 
