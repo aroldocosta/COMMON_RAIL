@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonsComponent } from '../commons/commons.component';
 
 @Component({
@@ -12,11 +12,13 @@ export class InjectorNumberReportComponent extends CommonsComponent {
   @Input() fullLoadSequence: any;
   @Input() preInjectionSequence: any;
 
+  @Output() downloadEvent = new EventEmitter();
+
   constructor() {
     super()
   }
 
   download() {
-    
+    this.downloadEvent.emit();
   }
 }

@@ -5,8 +5,8 @@
         [reportType]="reportType"
         [testReport]="testReport"
         [reportClass]="reportClass"
-    >
-    </app-service-order-report>
+        (downloadEvent)="handleDownloadEvent()"
+    ></app-service-order-report>
 </div>
 
 <div *ngIf="reportType == 'injector-number' && preInjectionSequence">
@@ -20,5 +20,6 @@
         [idlingSequence]="idlingSequence"
         [fullLoadSequence]="fullLoadSequence"
         [preInjectionSequence]="preInjectionSequence"
+        (downloadEvent)="handleDownloadEvent()"
     ></app-injector-number-report>
 </div>

@@ -134,6 +134,10 @@ export class ReportComponent extends CommonsComponent {
     }, 300);
   }
 
+  handleDownloadEvent() {
+    this.download();
+  }
+
   download() {
     window.scrollTo(0, 0);
 
@@ -162,12 +166,12 @@ export class ReportComponent extends CommonsComponent {
 
             let offset = (window.innerWidth < 768) ? 2.7 : 0;
 
-            do {
+            while (heightLeft >= pageHeight) {
                 position = (heightLeft - imgHeight);
                 doc.addPage();
                 doc.addImage(imgData, 'PNG', 10, position, imgWidth - 20, imgHeight);
                 heightLeft -= pageHeight;
-            } while (heightLeft >= pageHeight);
+            } 
 
             doc.save(fileName);
         });
