@@ -8,6 +8,8 @@ import { PlanService } from 'src/app/services/plan.service';
 import { ReportService } from 'src/app/services/report.service';
 import { TestService } from 'src/app/services/test.service';
 import { CommonsComponent } from 'src/app/components/commons/commons.component';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-report',
@@ -22,27 +24,34 @@ export class ReportComponent extends CommonsComponent {
   serviceOrder: string = '';
   injectorNumber: string = '';
 
-  @Input() tabId: string = 'med_electric';
+  halfLoadSequence: any = [];
+  idlingSequence: any = [];
+  fullLoadSequence: any = [];
+  preInjectionSequence: any = [];
 
   constructor(
+    private router: Router,
     private reportService: ReportService,
-    private testService: TestService,
-    private planService: PlanService
+    private loginService: LoginService,
   ) {
     super();
   }
 
   ngOnInit() {
-    this.reportType = history.state.report;
-    this.serviceOrder = history.state.serviceOrder;
-    this.injectorNumber = history.state.injectorNumber;
+    if(!this.loginService.isAuthenticated()) {
+      this.router.navigateByUrl('/login');
+    } else {
+      this.reportType = history.state.report;
+      this.serviceOrder = history.state.serviceOrder;
+      this.injectorNumber = history.state.injectorNumber;
 
-    this.testCommand = 'reporting';
-     
-    if(this.reportType == 'service-order') {
-      this.requestTestsByServiceOrder(this.serviceOrder);
-    } else if(this.reportType == 'injector-number') {
-      this.requestTestsByInjectorNumber(this.serviceOrder, this.injectorNumber);
+      this.testCommand = 'reporting';
+      
+      if(this.reportType == 'service-order') {
+        this.requestTestsByServiceOrder(this.serviceOrder);
+      } else if(this.reportType == 'injector-number') {
+        this.requestTestsByInjectorNumber(this.serviceOrder, this.injectorNumber);
+      }
     }
   }
 
@@ -56,7 +65,7 @@ export class ReportComponent extends CommonsComponent {
           this.plan = this.test.plan;
         }
       });
-    }, 1000);
+    }, 300);
   }
 
 
@@ -68,9 +77,65 @@ export class ReportComponent extends CommonsComponent {
           this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);
           this.test = this.testList[0];
           this.plan = this.test.plan;
+
+          for(let t of this.testList) {
+            console.log("Test Sequence: \n", t);
+            let p = t.plan
+            this.halfLoadSequence.push(
+              {
+                step: 'half_load',      
+                deb: t.halfLoad,
+                maxDeb: p.maxHalfLoad,      
+                minDeb: p.minHalfLoad,                          
+                maxRet: p.maxHalfLoadReturn,      
+                minRet: p.minHalfLoadReturn, 
+                ret: t.halfLoadReturn 
+              },
+            );
+
+            this.idlingSequence.push(
+              {
+                step: 'idling',         
+                maxDeb: p.maxIdling,        
+                minDeb: p.minIdling,       
+                deb: t.idling, 
+                maxRet: p.maxIdlingReturn,        
+                minRet: p.minIdlingReturn,       
+                ret: t.idlingReturn
+              }
+            );
+
+            this.fullLoadSequence.push(
+              {
+                step: 'full_load',      
+                maxDeb: p.maxFullLoad,      
+                minDeb: p.minFullLoad,     
+                deb: t.fullLoad,
+                maxRet: p.maxFullLoadReturn,      
+                minRet: p.minFullLoadReturn,
+                ret: t.fullLoadReturn 
+              }
+            );
+
+            this.preInjectionSequence.push(
+              {
+                step: 'pre_injectrion', 
+                maxDeb: p.maxPreInjection,  
+                minDeb: p.minPreInjection, 
+                deb: t.preInjection,                 
+                maxRet: p.maxPreInjectionReturn,  
+                minRet: p.minPreInjectionReturn,
+                ret: t.preInjectionReturn 
+              },
+            );
+          }
         }
       });
-    }, 100);
+    }, 300);
+  }
+
+  handleDownloadEvent() {
+    this.download();
   }
 
   download() {
@@ -101,12 +166,12 @@ export class ReportComponent extends CommonsComponent {
 
             let offset = (window.innerWidth < 768) ? 2.7 : 0;
 
-            do {
+            while (heightLeft >= pageHeight) {
                 position = (heightLeft - imgHeight);
                 doc.addPage();
                 doc.addImage(imgData, 'PNG', 10, position, imgWidth - 20, imgHeight);
                 heightLeft -= pageHeight;
-            } while (heightLeft >= pageHeight);
+            } 
 
             doc.save(fileName);
         });

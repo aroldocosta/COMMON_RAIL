@@ -11,6 +11,7 @@ import { CommonsComponent } from '../commons/commons.component';
 export class MedElectricTableComponent extends CommonsComponent {
   
   @Input() showSequence: string = 'false';
+  @Input() injectorNumber: string = '';
 
   constructor(){
     super()

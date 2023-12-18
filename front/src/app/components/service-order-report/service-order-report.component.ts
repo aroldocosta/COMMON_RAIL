@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonsComponent } from '../commons/commons.component';
 
 @Component({
@@ -8,11 +8,13 @@ import { CommonsComponent } from '../commons/commons.component';
 })
 export class ServiceOrderReportComponent extends CommonsComponent {
 
+  @Output() downloadEvent = new EventEmitter();
+
   constructor() {
     super()
   }
 
   download() {
-    
+    this.downloadEvent.emit();
   }
 }

@@ -7,6 +7,7 @@ export class TestReport {
 	vehiclePlate: string = '';
 	injectorModel: string = '';	
 	injectorType: string = '';
+	injectorNumber: string = '';
 	injectorQuantity: number = 0;
 	testList: Test[] = [];
 

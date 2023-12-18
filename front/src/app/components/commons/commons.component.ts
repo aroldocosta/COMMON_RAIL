@@ -22,6 +22,7 @@ export class CommonsComponent {
   testCommandButton = 'NOVO TESTE'
   modalCommandButton = 'NOVO'
 
+  @Input() tabId: string = 'med_electric';
   @Input() plan: Plan = new Plan();
   @Input() test: Test = new Test();
   @Input() resColor = ''; 
@@ -29,6 +30,7 @@ export class CommonsComponent {
   @Input() isoColor = '';
   @Input() tabTitle: string = 'TITLE';
   @Input() testList: Test[] = [];
+  @Input() sequence: any = [];
   @Input() reportType = 'service-order';
   @Input() testReport: TestReport = new TestReport();
   @Input() reportClass = '';

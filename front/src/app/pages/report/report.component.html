@@ -5,16 +5,21 @@
         [reportType]="reportType"
         [testReport]="testReport"
         [reportClass]="reportClass"
-    >
-    </app-service-order-report>
+        (downloadEvent)="handleDownloadEvent()"
+    ></app-service-order-report>
 </div>
 
-<div *ngIf="reportType == 'injector-number'">
+<div *ngIf="reportType == 'injector-number' && preInjectionSequence">
     <app-injector-number-report
         [plan]="plan"
         [testList]="testList"
         [reportType]="reportType"
         [testReport]="testReport"
         [reportClass]="reportClass"
+        [halfLoadSequence]="halfLoadSequence"
+        [idlingSequence]="idlingSequence"
+        [fullLoadSequence]="fullLoadSequence"
+        [preInjectionSequence]="preInjectionSequence"
+        (downloadEvent)="handleDownloadEvent()"
     ></app-injector-number-report>
 </div>

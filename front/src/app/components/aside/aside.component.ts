@@ -12,7 +12,6 @@ import { CommonsComponent } from '../commons/commons.component';
 })
 export class AsideComponent extends CommonsComponent implements OnInit {  
 
-  tabId: string = 'med_electric';
   gaugeH = 0;
   gaugeY = 135;
   valDeb: string = '';
@@ -23,11 +22,6 @@ export class AsideComponent extends CommonsComponent implements OnInit {
   minRet: string = '';
 
   @Output() arrowEvent = new EventEmitter<string>();
-  // @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
-  // @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
-  // public debContxt!: CanvasRenderingContext2D;
-  // public retContxt!: CanvasRenderingContext2D;
-
   constructor() { 
     super();
   }
