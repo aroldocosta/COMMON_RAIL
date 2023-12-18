@@ -44,15 +44,14 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   filteredField = '';
   filteredDateIni: string = '';
   filteredDateEnd: string = '';
-  filteredTestDate: string = '';
-  filteredTestSequence: string = '';
-  filteredTestInjectorNumber: string = '';
+  filteredDate: string = '';
+  filteredInjectorNumber: string = '';
   filteredTest: any;
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
   filteredInjectorModel: string = '';
   filteredVechiclePlate: string = '';
-  filteredSequence: number = 1;
+  filteredSequence: string = '';
   filteredServiceOrder: string = '';
   removingName: string = '';
   removingEvent: any;
@@ -573,6 +572,15 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   //     .filter(t => t.serviceOrder == this.filteredServiceOrder);
   // }
 
+  clearTestFilterFields() {
+    this.filteredInjectorNumber = '';
+    this.filteredSequence = '';
+    this.filteredDate = '';
+    this.filteredInjectorModel = '';
+    this.filteredInjectorModel = '';
+    this.filteredServiceOrder = '';
+  }
+
   doTestFieldFilters() {
     if(this.filteredField !== '') {
       this.doTestDateFilter();
@@ -590,28 +598,28 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   doTestInjectorNumberFilter() {
-    if(this.filteredTestInjectorNumber != '') {
+    if(this.filteredInjectorNumber != '') {
       this.filteredField = 'injectorNumber';
       this.filteredList = this.testList
-        .filter(t => t.injectorNumber == Number(this.filteredTestInjectorNumber));
+        .filter(t => t.injectorNumber == Number(this.filteredInjectorNumber));
       document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
     }                               
   }
 
   doTestSequenceFilter() {
-    if(this.filteredTestSequence != '') {
+    if(this.filteredSequence != '') {
       this.filteredField = 'sequence';
       this.filteredList = this.testList
-        .filter(t => t.sequence == this.filteredTestSequence);
+        .filter(t => t.sequence == this.filteredSequence);
       document.getElementById("sequenceFilterCloseModalButton")?.click(); 
     } 
   }
  
   doTestDateFilter() {
-    if(this.filteredTestDate != '') {
+    if(this.filteredDate != '') {
       this.filteredField = 'date';
       this.filteredList = this.testList
-        .filter(t => t.date == this.filteredTestDate);
+        .filter(t => t.date == this.filteredDate);
       document.getElementById("dateFilterCloseModalButton")?.click();  
     }
   }
