@@ -1,10 +1,22 @@
-<div class="row">
-    <div class="col-canvas" [ngClass]="reportClass">
-        <canvas class="canvas" [ngClass]="reportClass" #debCanvas></canvas>
-        <h4 class="report">DÉB</h4>
-    </div>
-    <div class="col-canvas" [ngClass]="reportClass">
-        <canvas class="canvas" [ngClass]="reportClass" #retCanvas></canvas>
-        <h4 class="report">RET</h4>
+<div *ngIf="reportType == 'service-order'">
+    <div class="row">
+        <div class="col-canvas" [ngClass]="reportClass">
+            <canvas class="canvas" [ngClass]="reportClass" #debCanvas></canvas>
+            <h4 class="report">DÉB</h4>
+        </div>
+        <div class="col-canvas" [ngClass]="reportClass">
+            <canvas class="canvas" [ngClass]="reportClass" #retCanvas></canvas>
+            <h4 class="report">RET</h4>
+        </div>
     </div>
 </div>
+<div *ngIf="reportType == 'injector-number'">
+    <div class="row">
+        <div class="col-12" [ngClass]="reportClass">
+            <canvas class="canvas-line" [ngClass]="reportClass" #lineGraphCanvas></canvas>
+        </div>
+        <span class="green-line"></span>Débito <span class="blue-line"></span>Retorno
+    </div>
+</div>
+
+

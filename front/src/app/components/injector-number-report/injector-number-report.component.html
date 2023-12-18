@@ -8,6 +8,7 @@
     </div>
 </div>
 <div id="report" class="container">
+
     <div class="loop">        
         <header class="header">
             <div class="wrapper">
@@ -82,7 +83,10 @@
                         [valRet]="test.halfLoadReturn"
                         [maxRet]="plan.maxHalfLoadReturn"
                         [minRet]="plan.minHalfLoadReturn"
+                        [testList]="testList"
+                        [reportType]="reportType"
                         [reportClass]="reportClass"
+                        [sequence]="halfLoadSequence"
                     ></app-canvas-graph>
                 </div> 
             </div>
@@ -105,7 +109,10 @@
                         [valRet]="test.idlingReturn"
                         [maxRet]="plan.maxIdlingReturn"
                         [minRet]="plan.minIdlingReturn"
+                        [reportType]="reportType"
+                        [testList]="testList"
                         [reportClass]="reportClass"
+                        [sequence]="idlingSequence"
                     ></app-canvas-graph>
                 </div>
             </div>
@@ -128,7 +135,10 @@
                         [valRet]="test.fullLoadReturn"
                         [maxRet]="plan.maxFullLoadReturn"
                         [minRet]="plan.minFullLoadReturn"
+                        [testList]="testList"
+                        [reportType]="reportType"
                         [reportClass]="reportClass"
+                        [sequence]="fullLoadSequence"                        
                     ></app-canvas-graph>
                 </div>
             </div>
@@ -151,7 +161,10 @@
                         [valRet]="test.preInjectionReturn"
                         [maxRet]="plan.maxPreInjectionReturn"
                         [minRet]="plan.minPreInjectionReturn"
+                        [testList]="testList"
+                        [reportType]="reportType"
                         [reportClass]="reportClass"
+                        [sequence]="preInjectionSequence"
                     ></app-canvas-graph>
                 </div>
             </div>

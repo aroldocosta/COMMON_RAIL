@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonsComponent } from '../commons/commons.component';
 
 @Component({
@@ -7,6 +7,11 @@ import { CommonsComponent } from '../commons/commons.component';
   styleUrls: ['./injector-number-report.component.css']
 })
 export class InjectorNumberReportComponent extends CommonsComponent {
+  @Input() halfLoadSequence: any;
+  @Input() idlingSequence: any;
+  @Input() fullLoadSequence: any;
+  @Input() preInjectionSequence: any;
+
   constructor() {
     super()
   }
