@@ -55,6 +55,8 @@ public class VehicleService {
 			Vehicle v = new Vehicle(dto);
 			VehicleDTO resp = new VehicleDTO(repository.save(v));
 			return ResponseEntity.ok(resp);
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}

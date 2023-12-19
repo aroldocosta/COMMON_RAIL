@@ -140,14 +140,14 @@
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="vehicleModalToggleLabel">VEÍCULOS {{modalCommand}}</h1>
+		  <h1 class="modal-title fs-5" id="vehicleModalToggleLabel">VEÍCULOS</h1>
 		  <button (click)="cancelVehicleCommandButton()" id="vehicleModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
 			<hr class="colorgraph">
 			<app-vehicle-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[userList]="userList"		
+				[editingVehicle]="editingVehicle"		
 				[alertMessage]="alertMessage"		
 				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateVehicleEvent($event)"

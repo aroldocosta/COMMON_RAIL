@@ -19,7 +19,6 @@ export class VehicleFormComponent extends CommonsComponent {
   
   constructor() {
     super();
-    this.editingVehicle.owner = '';
   }
 
   emitClearMessage() {
@@ -27,6 +26,7 @@ export class VehicleFormComponent extends CommonsComponent {
   }
 
   emitUpdateVehicleEvent() {
+  
     this.updateEvent.emit(this.editingVehicle);
   }
 }

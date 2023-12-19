@@ -60,27 +60,22 @@ public class UserService {
 		}
 	}
 	
-	/*
-	
+	public ResponseEntity<UserDTO> update(UserDTO dto) {
 		try {
-			Injector injector = new Injector(dto);
-			Plan plan = planRepository.findById(dto.planId()).get();
-			injector.setPlan(plan);
-			InjectorDTO resp = new InjectorDTO(repository.save(injector));
-			return ResponseEntity.ok(resp);
-		} catch(DataIntegrityViolationException e) {
+
+			User user = new User(dto);
+
+			if(!dto.password().equals(user.getPassword())) {
+				String encryptedPass = security.passwordEncoder().encode(dto.password());
+				user.setPassword(encryptedPass);
+			}
+			UserDTO resp = new UserDTO(repository.save(user));
+			return ResponseEntity.ok(resp);	
+		} catch (DataIntegrityViolationException e) {
 			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}
-	 */
-	
-	public ResponseEntity<UserDTO> update(UserDTO dto) {
-		User user = repository.findById(dto.id()).get();
-		String encryptedPass = security.passwordEncoder().encode(dto.password());
-		user.setPassword(encryptedPass);
-		UserDTO resp = new UserDTO(repository.save(user));
-		return ResponseEntity.ok(resp);		
 	}
 	
 	public ResponseEntity<UserDTO> delete(String id) {	
