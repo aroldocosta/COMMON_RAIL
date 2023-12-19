@@ -1,19 +1,12 @@
 package com.oficinabr.rail.entity;
 
-import java.util.List;
-
 import com.oficinabr.rail.dto.VehicleDTO;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Table(name = "vehicle")
@@ -33,13 +26,8 @@ public class Vehicle {
 	@Column(name = "year_model")
 	private String yearModel;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "owner_id")
-	private User owner;
-	
-	@OneToMany(mappedBy = "vehicle", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Test> testList;
-	
+	private String owner;
+		
 	public Vehicle() {
 		
 	}
@@ -53,7 +41,7 @@ public class Vehicle {
 		this.setModel(dto.model());
 		this.setYearModel(dto.yearModel());
 		this.setPlate(dto.plate());
-		this.setOwner(owner);
+		this.setOwner(dto.owner());
 	}
 	
 	public String getId() {
@@ -88,11 +76,11 @@ public class Vehicle {
 		this.yearModel = yearModel;
 	}
 
-	public User getOwner() {
+	public String getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(User owner) {
+	public void setOwner(String owner) {
 		this.owner = owner;
 	}
 }
