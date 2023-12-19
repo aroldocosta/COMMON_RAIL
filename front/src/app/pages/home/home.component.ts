@@ -661,6 +661,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   requestTests() {
+    this.currentModalLink = '';
     this.testService.list().subscribe({
       next: list => {        
         this.testList = list;
