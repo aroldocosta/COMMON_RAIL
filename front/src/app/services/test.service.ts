@@ -21,7 +21,7 @@ export class TestService {
 
   get(id: number) {
     const url = `${this.baseUrl}tests/${id}`;
-    return this.http.get<Test>(url, {});
+    return this.http.get<Test>(url, this.login.getHttpOptions());
   }
   
   create(test: Test): Observable<any> {

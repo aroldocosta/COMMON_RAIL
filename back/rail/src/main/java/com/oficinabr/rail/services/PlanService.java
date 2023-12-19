@@ -54,6 +54,8 @@ public class PlanService {
 			Plan plan = new Plan(dto);	
 			PlanDTO resp = new PlanDTO(repository.save(plan));
 			return ResponseEntity.ok(resp);
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}

@@ -163,8 +163,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     } else if(this.modalCommand == 'creating') {
       this.savePlan();
     } else if(this.modalCommand == 'editing') {
-      this.modalCommand = 'listing';   
-      this.modalCommandButton = 'NOVO';
       this.updatePlan();
     }
   }
@@ -180,7 +178,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   /* -------------- Vehicle Command Button Handlers --------------- */
-  handleVehicleCommandButton() {
+  handleVehicleCommandButton() {   
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
@@ -235,8 +233,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     } else if(this.modalCommand == 'creating') {
       this.saveInjector();
     } else if(this.modalCommand == 'editing') {
-      this.modalCommand = 'listing';   
-      this.modalCommandButton = 'NOVO';
       this.updateInjector();
     }
   }
@@ -554,6 +550,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.vehicleService.list().subscribe({
           next: list => {
             this.vehicleList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
@@ -596,6 +594,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.injectorService.list().subscribe({
           next: list => {
             this.injectorList = list;
+            this.modalCommand = 'listing';   
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
@@ -633,16 +633,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateUser() {
+    debugger
     this.userService.update(this.editingUser).subscribe({
       next: resp => {
+        debugger
         this.userService.list().subscribe({
           next: list => {
+            debugger
             this.userList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
         console.log("Error: ", err);
+        debugger
         if(err.status == 401) {
           this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
         } else if(err.status == 409) {
@@ -764,23 +770,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   handleTestCommandEvent(event: any) {  
     this.testCommand = event.command;
     if(event.command == 'editing') {
-      this.planService.get(event.object.planId).subscribe({
-        next: plan => {
-          this.plan = plan
+      this.testService.get(event.object.id).subscribe({
+        next: test => {
+          this.test = test;
+          this.plan = test.plan
           this.testCommandButton = 'SALVAR';
-          this.test = event.object;
           this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
+        },
+        error: err => {
+          console.log("Error: ", err);
         }
       })
-
-    } else if(event.command == 'saving') {
-
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingEvent = event;
       this.removingAlertMessage01 = `Deseja remover o teste da OS ${event.object.serviceOrder}, 
       injetor ${event.object.injectorNumber} e sequência ${event.object.sequence}`  
-      // this.removingAlertMessage02 = "Esta ação também removerá o(s) injetor(es) a seguir: ";
       this.removingAlertTopTitle = "REMOVER TESTE";
     }
   }
@@ -790,8 +795,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(event.command == 'editing') {
       this.modalCommandButton = 'SALVAR';
       this.plan = event.object;
-    } else if(event.command == 'saving') {
-
     } else if(event.command == 'removing') {
         this.injectorService.getByPlanId(event.object.id).subscribe({
           next: list => {
@@ -808,13 +811,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     }
   }
 
+  
   handleVehicleCommandEvent(event: any) {  
     if(event.command == 'editing') {
-      this.modalCommand = event.command;
-      this.modalCommandButton = 'SALVAR';
-      this.editingVehicle = event.object;
-    } else if(event.command == 'saving') {
-
+      // this.modalCommand = event.command;
+      // this.modalCommandButton = 'SALVAR';
+      // this.editingVehicle = event.object;
+      this.vehicleService.get(event.object.id).subscribe({
+        next: vehicle => {
+          this.editingVehicle = vehicle;
+          this.modalCommand = event.command;
+          this.modalCommandButton = 'SALVAR';
+        },
+        error: err => {
+          this.alertMessage = err.status + ": " + err.message;
+        }
+      })
     } else if(event.command == 'removing') {
       this.removingObjects = ''; 
       this.removingName = event.object.plate;
@@ -829,8 +841,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
       this.editingInjector = event.object;
-    } else if(event.command == 'saving') {
-
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingName = event.object.model;
@@ -845,8 +855,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
       this.editingUser = event.object;
-    } else if(event.command == 'saving') {
-
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingName = event.object.name;

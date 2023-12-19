@@ -20,7 +20,7 @@ export class VehicleService {
 
   get(id: number) {
     const url = `${this.baseUrl}vehicles/${id}`;
-    return this.http.get<Vehicle>(url, {});
+    return this.http.get<Vehicle>(url, this.login.getHttpOptions());
   }
   
   create(vehicle: any): Observable<any> {

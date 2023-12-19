@@ -73,6 +73,8 @@ public class InjectorService {
 			injector.setPlan(plan);
 			InjectorDTO resp = new InjectorDTO(repository.save(injector));
 			return ResponseEntity.ok(resp);
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}
