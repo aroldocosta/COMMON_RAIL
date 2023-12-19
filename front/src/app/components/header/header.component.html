@@ -22,7 +22,7 @@
           <a id="injectorMenuLink" class="a-link nav-link px-2 text-secondary" data-bs-target="#injectModalToggle" data-bs-toggle="modal" (click)="emitRequestInjectorsEvent()">
             <i class="bi bi-droplet-half"></i> INJETORES</a>            
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="logged.role == 'ADMIN'">
           <a id="userMenuLink" class="a-link nav-link px-2 text-secondary" data-bs-target="#userModalToggle" data-bs-toggle="modal" (click)="emitRequestUsersEvent()">
             <i class="bi bi-person"></i> USUÁRIOS</a>            
         </li>
