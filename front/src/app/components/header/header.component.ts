@@ -19,8 +19,7 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
   @Output() requestPlansEvent = new EventEmitter();
   @Output() requestVehiclesEvent = new EventEmitter();
   @Output() requestInjectorsEvent = new EventEmitter();
-  
-  alertMessage = '';
+
   serviceOrder = this.test.serviceOrder;
   injectorNumber = '';
 

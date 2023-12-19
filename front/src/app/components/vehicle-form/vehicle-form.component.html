@@ -2,13 +2,13 @@
     <div class="col-6">
         <label class="input" for="">PROPRIETÁRIO</label>
         <div class="input-group input-group-lg">
-            <select class="form-select" aria-label="Default select example" 
-                (change)="emitUpdateVehicleEvent()"
-                [(ngModel)]="editingVehicle.ownerId" 
+            <input type="text" class="form-control" 
+                placeholder="Digite o proprietário"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="editingVehicle.owner"
             >
-                <option value="" selected>Selecione</option>
-                <option *ngFor="let u of userList" [value]="u.id">{{u.name}}</option>
-            </select>
         </div>
     </div>
     <div class="col-6">
@@ -50,3 +50,7 @@
         </div>
     </div> 
 </div>
+<app-alert-message 
+    [message]="alertMessage"
+    (clearEvent)="emitClearMessage()"
+></app-alert-message>

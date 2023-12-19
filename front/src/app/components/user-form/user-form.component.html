@@ -51,3 +51,7 @@
         </div>
     </div> 
 </div>
+<app-alert-message 
+    [message]="alertMessage"
+    (clearEvent)="emitClearMessage()"
+></app-alert-message>

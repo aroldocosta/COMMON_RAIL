@@ -429,3 +429,7 @@
         </div>
     </tab>
 </tabset>
+<app-alert-message 
+    [message]="alertMessage"
+    (clearEvent)="emitClearMessage()"
+></app-alert-message>

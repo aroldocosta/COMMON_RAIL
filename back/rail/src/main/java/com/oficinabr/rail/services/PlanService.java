@@ -2,7 +2,10 @@ package com.oficinabr.rail.services;
 
 import java.util.List;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +42,8 @@ public class PlanService {
 			Plan plan = new Plan(dto);			
 			PlanDTO resp = new PlanDTO(repository.save(plan));
 			return ResponseEntity.ok(resp);
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}

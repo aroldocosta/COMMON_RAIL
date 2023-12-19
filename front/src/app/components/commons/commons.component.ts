@@ -35,7 +35,8 @@ export class CommonsComponent {
   @Input() testReport: TestReport = new TestReport();
   @Input() reportClass = '';
   @Input() testCommand: string = 'listing';
-  
+  @Input() alertMessage: string = '';
+
   constructor() {
 
   }

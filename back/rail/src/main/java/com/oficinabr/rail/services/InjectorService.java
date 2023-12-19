@@ -3,6 +3,8 @@ package com.oficinabr.rail.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +59,8 @@ public class InjectorService {
 			injector.setPlan(plan);
 			InjectorDTO resp = new InjectorDTO(repository.save(injector));
 			return ResponseEntity.ok(resp);
+		} catch(DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}

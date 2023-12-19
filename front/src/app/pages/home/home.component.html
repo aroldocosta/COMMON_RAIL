@@ -118,15 +118,15 @@
 			<app-plan-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
 				[plan]="plan"
+				[alertMessage]="alertMessage"
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdatePlanEvent($event)"
-			>
-			</app-plan-form>
+			></app-plan-form>
 			<app-plan-table
 				*ngIf="modalCommand == 'listing'" 
 				[list]="planList"
 				(commandEvent)="handlePlanCommandEvent($event)"
-			>
-			</app-plan-table>
+			></app-plan-table>
 			<hr class="colorgraph">
 		</div>
 		<div class="modal-footer">
@@ -147,8 +147,9 @@
 			<hr class="colorgraph">
 			<app-vehicle-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[userList]="userList"
-				[editingVehicle]="editingVehicle"
+				[userList]="userList"		
+				[alertMessage]="alertMessage"		
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateVehicleEvent($event)"
 			>
 			</app-vehicle-form>
@@ -179,7 +180,9 @@
 			<app-injector-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
 				[planList]="planList"
+				[alertMessage]="alertMessage"
 				[editingInjector]="editingInjector"
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateInjectorEvent($event)"
 			>
 			</app-injector-form>
@@ -209,6 +212,8 @@
 			<app-user-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
 				[editingUser]="editingUser"
+				[alertMessage]="alertMessage"
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateUserEvent($event)"
 			>
 			</app-user-form>

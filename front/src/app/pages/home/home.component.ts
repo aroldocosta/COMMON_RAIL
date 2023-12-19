@@ -38,7 +38,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   testInjectorId = '';
   testDate = '';
   testQuantity = '0';
-  alertMessage: string = '';
   filteredList: Test[] = [];
   enabledDateIni: boolean = true;
   enabledDateEnd: boolean = true;
@@ -160,8 +159,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommandButton = 'SALVAR';
       this.plan = new Plan();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.savePlan();
     } else if(this.modalCommand == 'editing') {
       this.modalCommand = 'listing';   
@@ -187,12 +184,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommandButton = 'SALVAR';
       this.editingVehicle = new Vehicle();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.saveVehicle();
     } else if(this.modalCommand == 'editing') {
-      this.modalCommand = 'listing';   
-      this.modalCommandButton = 'NOVO';
       this.updateVehicle();
     }
   }
@@ -215,12 +208,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.editingUser = new User();
       this.requestUsers();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.saveUser();
     } else if(this.modalCommand == 'editing') {
-      this.modalCommand = 'listing';   
-      this.modalCommandButton = 'NOVO';
       this.updateUser();
     }
   }
@@ -242,8 +231,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.editingInjector = new Injector();
       this.requestPlans();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.saveInjector();
     } else if(this.modalCommand == 'editing') {
       this.modalCommand = 'listing';   
@@ -492,16 +479,24 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   savePlan() {
-    this.planService.create(this.plan).subscribe({
+     return this.planService.create(this.plan).subscribe({
       next: resp => {
         this.planService.list().subscribe({
           next: list => {
             this.planList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
-        console.log("Error: ", err);
+        console.log("Error: " + typeof(err.status));
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+          console.log("Alert Message: " + this.alertMessage);
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Código Já cadastrado!'
+        }                              
       }
     })
   }
@@ -512,11 +507,19 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.planService.list().subscribe({
           next: list => {
             this.planList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+          console.log("Alert Message: " + this.alertMessage);
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Código Já cadastrado!'
+        }
       }
     })
   }
@@ -527,11 +530,18 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.vehicleService.list().subscribe({
           next: list => {
             this.vehicleList = list;
+            this.modalCommand = 'listing';   
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Placa já cadastrada!'
+        }
       }
     })
   }
@@ -547,6 +557,11 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Placa já cadastrada!'
+        }
       }
     })
   }
@@ -557,11 +572,18 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.injectorService.list().subscribe({
           next: list => {
             this.injectorList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
-      error: err => {
+      error: err => {      
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Modelo já cadastrado!'
+        }
       }
     })
   }
@@ -577,6 +599,11 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Modelo já cadastrado!'
+        }
       }
     })
   }
@@ -587,11 +614,18 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.userService.list().subscribe({
           next: list => {
             this.userList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Login já cadastrado!'
+        }
       }
     })
   }
@@ -607,6 +641,11 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Login já cadastrado!'
+        }
       }
     })
   }

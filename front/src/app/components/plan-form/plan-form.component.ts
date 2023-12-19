@@ -8,10 +8,9 @@ import { CommonsComponent } from '../commons/commons.component';
   templateUrl: './plan-form.component.html',
   styleUrls: ['./plan-form.component.css']
 })
-export class PlanFormComponent extends CommonsComponent{
+export class PlanFormComponent extends CommonsComponent {
 
   @Input() planCommand: string = '';
-  @Input() message: string = '';
   @Input() testDate: string = '';
   @Input() planList: any = [];
   @Input() vehicleList: any = [];
