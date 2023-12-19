@@ -4,6 +4,7 @@
 	(requestPlansEvent)="handlePlanLinkEvent()"
 	(requestVehiclesEvent)="handleVehicleLinkEvent()"
 	(requestInjectorsEvent)="handleInjectorLinkEvent()"
+	(requestUsersEvent)="handleUserLinkEvent()"
 	(reportEvent)="setReportFile($event)"
 ></app-header>
  <div class="container-fluid">
@@ -117,15 +118,15 @@
 			<app-plan-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
 				[plan]="plan"
+				[alertMessage]="alertMessage"
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdatePlanEvent($event)"
-			>
-			</app-plan-form>
+			></app-plan-form>
 			<app-plan-table
 				*ngIf="modalCommand == 'listing'" 
 				[list]="planList"
 				(commandEvent)="handlePlanCommandEvent($event)"
-			>
-			</app-plan-table>
+			></app-plan-table>
 			<hr class="colorgraph">
 		</div>
 		<div class="modal-footer">
@@ -146,8 +147,9 @@
 			<hr class="colorgraph">
 			<app-vehicle-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[userList]="userList"
-				[editingVehicle]="editingVehicle"
+				[userList]="userList"		
+				[alertMessage]="alertMessage"		
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateVehicleEvent($event)"
 			>
 			</app-vehicle-form>
@@ -178,7 +180,9 @@
 			<app-injector-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
 				[planList]="planList"
+				[alertMessage]="alertMessage"
 				[editingInjector]="editingInjector"
+				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateInjectorEvent($event)"
 			>
 			</app-injector-form>
@@ -196,6 +200,37 @@
 	  </div>
 	</div>
   </div>  
+  <div class="modal fade" id="userModalToggle" aria-labelledby="userModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="injectModalToggleLabel">USUÁRIOS</h1>
+		  <button (click)="cancelUserCommandButton()" id="userModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<hr class="colorgraph">
+			<app-user-form
+				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
+				[editingUser]="editingUser"
+				[alertMessage]="alertMessage"
+				(clearEvent)="clearAlertMessage()"
+				(updateEvent)="handleUpdateUserEvent($event)"
+			>
+			</app-user-form>
+			<app-user-table
+				*ngIf="modalCommand == 'listing'"
+				[list] = 'userList'
+				(commandEvent)="handleUserCommandEvent($event)"
+			></app-user-table>
+			<hr class="colorgraph">
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelUserCommandButton()">FECHAR</button>
+		  	<button class="btn btn-outline-primary btn-modal" (click)="handleUserCommandButton()">{{modalCommandButton}}</button>
+		</div>
+	  </div>
+	</div>
+  </div>
   <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
@@ -269,7 +304,7 @@
 						placeholder="Número do injetor"
 						aria-label="Sizing example input" 
 						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="filteredTestInjectorNumber"
+						[(ngModel)]="filteredInjectorNumber"
 					>
 				</div>
 				<app-alert-message 
@@ -300,7 +335,7 @@
 						placeholder="Número de sequência"
 						aria-label="Sizing example input" 
 						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="filteredTestSequence"
+						[(ngModel)]="filteredSequence"
 					>
 				</div>
 				<app-alert-message 
@@ -331,7 +366,7 @@
 					placeholder="Data do teste"
 					aria-label="Sizing example input" 
 					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredTestDate"
+					[(ngModel)]="filteredDate"
 				>
 			</div>
 			<app-alert-message 

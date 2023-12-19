@@ -37,7 +37,9 @@
 
 ### ‐---------‐-----------13/12/23‐-----------------------------
 - 12 () Ao selecionar sequencia 1 ou sequencia 2 de um teste precisa selecionar duas vezes
-
+- 13 () inserir filtros em mais de uma coluna au mesmo tempo
+- 14 () Substituir a cor laranja pela cor verde escuro 41AE1E
+- 15 () Ao filtrar uma OS manter o filtro ate que solicite remover filtro
 
 ### SOLUCOES DE USABILIDADES
 - 1 (x) Selecionar edicao do bico pela linha toda

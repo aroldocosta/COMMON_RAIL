@@ -8,16 +8,15 @@ CREATE TABLE users (
 
 CREATE TABLE vehicle (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
-	plate TEXT NOT NULL,
+	plate TEXT UNIQUE NOT NULL,
 	model TEXT NOT NULL,
 	year_model TEXT NOT NULL,
-	owner_id TEXT NOT NULL
+	owner TEXT NOT NULL
 );
 
 CREATE TABLE injector (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
-	code TEXT,
-	model TEXT NOT NULL,
+	model TEXT UNIQUE NOT NULL,
 	plan_id TEXT NOT NULL,
 	description TEXT
 );
@@ -50,7 +49,7 @@ CREATE TABLE test (
 
 CREATE TABLE plan (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
-	code TEXT NOT NULL,
+	code TEXT UNIQUE NOT NULL,
 	type TEXT NOT NULL,
 	description TEXT,
 	max_resistance NUMERIC,

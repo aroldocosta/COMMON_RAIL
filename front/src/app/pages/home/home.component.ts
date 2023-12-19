@@ -33,27 +33,26 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   report: any = 'Aguarde...';
   editingVehicle = new Vehicle();
   editingInjector = new Injector();
+  editingUser = new User();
   testPayment = '';
   testPlanId = '';
   testInjectorId = '';
   testDate = '';
   testQuantity = '0';
-  alertMessage: string = '';
   filteredList: Test[] = [];
   enabledDateIni: boolean = true;
   enabledDateEnd: boolean = true;
   filteredField = '';
   filteredDateIni: string = '';
   filteredDateEnd: string = '';
-  filteredTestDate: string = '';
-  filteredTestSequence: string = '';
-  filteredTestInjectorNumber: string = '';
+  filteredDate: string = '';
+  filteredInjectorNumber: string = '';
   filteredTest: any;
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
   filteredInjectorModel: string = '';
   filteredVechiclePlate: string = '';
-  filteredSequence: number = 1;
+  filteredSequence: string = '';
   filteredServiceOrder: string = '';
   removingName: string = '';
   removingEvent: any;
@@ -162,8 +161,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommandButton = 'SALVAR';
       this.plan = new Plan();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.savePlan();
     } else if(this.modalCommand == 'editing') {
       this.modalCommand = 'listing';   
@@ -189,12 +186,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommandButton = 'SALVAR';
       this.editingVehicle = new Vehicle();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.saveVehicle();
     } else if(this.modalCommand == 'editing') {
-      this.modalCommand = 'listing';   
-      this.modalCommandButton = 'NOVO';
       this.updateVehicle();
     }
   }
@@ -210,6 +203,29 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   /* ------------ Injector Command Button Handlers ------------- */
+  handleUserCommandButton() {
+    if(this.modalCommand == 'listing') {
+      this.modalCommand = 'creating';
+      this.modalCommandButton = 'SALVAR';
+      this.editingUser = new User();
+      this.requestUsers();
+    } else if(this.modalCommand == 'creating') {
+      this.saveUser();
+    } else if(this.modalCommand == 'editing') {
+      this.updateUser();
+    }
+  }
+
+  cancelUserCommandButton() {
+    if(this.modalCommand == 'listing') {
+      document.getElementById('userModalCloseButton')?.click();
+      this.currentModalLink = '';
+    } else {
+      this.modalCommand = 'listing';
+      this.modalCommandButton = 'NOVO'
+    }
+  }
+  /*------------------------------------------------------------*/
   handleInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
@@ -217,8 +233,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.editingInjector = new Injector();
       this.requestPlans();
     } else if(this.modalCommand == 'creating') {
-      this.modalCommand = 'listing';
-      this.modalCommandButton = 'NOVO';
       this.saveInjector();
     } else if(this.modalCommand == 'editing') {
       this.modalCommand = 'listing';   
@@ -272,7 +286,9 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     } else if(objectClass == 'Injector') {
       link = document.getElementById("injectorMenuLink");
       service = <InjectorService>this.injectorService;
-    } 
+    }  else if(objectClass == 'User') {
+      service = <UserService>this.userService;
+    }
 
     service.remove(objectId).subscribe({
       next: (resp: any) => {
@@ -342,15 +358,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     //   (f.injectorName == this.filteredInjector || this.filteredInjector == 'ALL') 
     // );
   }
-
-  requestUsers() {
-    this.userService.list().subscribe({
-      next: list => {
-        this.userList = list;
-      }
-    })
-  }
   
+  // --------------------------------------------------------
   handlePlanLinkEvent() {
     this.currentModalLink = 'planMenuLink';
     this.requestPlans();
@@ -395,6 +404,21 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       }
     })
   }
+
+  handleUserLinkEvent() {
+    this.currentModalLink = 'userMenuLink';
+    this.requestUsers();
+  }
+
+  requestUsers() {
+    this.userService.list().subscribe({
+      next: list => {
+        this.userList = list;
+      }
+    })
+  }
+
+  // --------------------------------------------------------
 
 
   handleTestReport() {
@@ -457,16 +481,24 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   savePlan() {
-    this.planService.create(this.plan).subscribe({
+     return this.planService.create(this.plan).subscribe({
       next: resp => {
         this.planService.list().subscribe({
           next: list => {
             this.planList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
-        console.log("Error: ", err);
+        console.log("Error: " + typeof(err.status));
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+          console.log("Alert Message: " + this.alertMessage);
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Código Já cadastrado!'
+        }                              
       }
     })
   }
@@ -477,11 +509,19 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.planService.list().subscribe({
           next: list => {
             this.planList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+          console.log("Alert Message: " + this.alertMessage);
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Código Já cadastrado!'
+        }
       }
     })
   }
@@ -492,11 +532,18 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.vehicleService.list().subscribe({
           next: list => {
             this.vehicleList = list;
+            this.modalCommand = 'listing';   
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Placa já cadastrada!'
+        }
       }
     })
   }
@@ -512,6 +559,11 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Placa já cadastrada!'
+        }
       }
     })
   }
@@ -522,11 +574,18 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.injectorService.list().subscribe({
           next: list => {
             this.injectorList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
           }
         })
       },
-      error: err => {
+      error: err => {      
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Modelo já cadastrado!'
+        }
       }
     })
   }
@@ -542,6 +601,53 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Modelo já cadastrado!'
+        }
+      }
+    })
+  }
+
+  saveUser() {
+    this.userService.create(this.editingUser).subscribe({
+      next: resp => {
+        this.userService.list().subscribe({
+          next: list => {
+            this.userList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
+          }
+        })
+      },
+      error: err => {
+        console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Login já cadastrado!'
+        }
+      }
+    })
+  }
+
+  updateUser() {
+    this.userService.update(this.editingUser).subscribe({
+      next: resp => {
+        this.userService.list().subscribe({
+          next: list => {
+            this.userList = list;
+          }
+        })
+      },
+      error: err => {
+        console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Login já cadastrado!'
+        }
       }
     })
   }
@@ -554,12 +660,14 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     this.testService.list().subscribe({
       next: list => {        
         this.testList = list;
+
         this.filteredList = this.testList.sort((a, b) => {
           if(a.serviceOrder  == b.serviceOrder) {
             return a.injectorNumber - b.injectorNumber;
           } 
           return a.serviceOrder > b.serviceOrder ?  -1 : 1;
         });
+        this.doTestFieldFilters();
       }
     });
   }
@@ -573,52 +681,84 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   //     .filter(t => t.serviceOrder == this.filteredServiceOrder);
   // }
 
+  clearTestFilterFields() {
+    this.filteredInjectorNumber = '';
+    this.filteredSequence = '';
+    this.filteredDate = '';
+    this.filteredInjectorModel = '';
+    this.filteredInjectorModel = '';
+    this.filteredServiceOrder = '';
+  }
+
+  doTestFieldFilters() {
+    if(this.filteredField !== '') {
+      this.doTestDateFilter();
+      this.doTestVehicleFilter();
+      this.doTestInjectorFilter();      
+      this.doTestInjectorFilter();
+      this.doTestSequenceFilter();
+      this.doTestFilteredOrderFilter();
+      this.doTestInjectorNumberFilter();
+    }
+  }
+
   doTestCombinedFilter() {
 
   }
 
   doTestInjectorNumberFilter() {
-    this.filteredField = 'injectorNumber';
-    this.filteredList = this.testList
-      .filter(t => t.injectorNumber == Number(this.filteredTestInjectorNumber));
-    document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
-                               
+    if(this.filteredInjectorNumber != '') {
+      this.filteredField = 'injectorNumber';
+      this.filteredList = this.testList
+        .filter(t => t.injectorNumber == Number(this.filteredInjectorNumber));
+      document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
+    }                               
   }
 
   doTestSequenceFilter() {
-    this.filteredField = 'sequence';
-    this.filteredList = this.testList
-      .filter(t => t.sequence == this.filteredTestSequence);
-    document.getElementById("sequenceFilterCloseModalButton")?.click();  
+    if(this.filteredSequence != '') {
+      this.filteredField = 'sequence';
+      this.filteredList = this.testList
+        .filter(t => t.sequence == this.filteredSequence);
+      document.getElementById("sequenceFilterCloseModalButton")?.click(); 
+    } 
   }
  
   doTestDateFilter() {
-    this.filteredField = 'date';
-    this.filteredList = this.testList
-      .filter(t => t.date == this.filteredTestDate);
-    document.getElementById("dateFilterCloseModalButton")?.click();  
+    if(this.filteredDate != '') {
+      this.filteredField = 'date';
+      this.filteredList = this.testList
+        .filter(t => t.date == this.filteredDate);
+      document.getElementById("dateFilterCloseModalButton")?.click();  
+    }
   }
 
   doTestInjectorFilter() {
-    this.filteredField = 'injectorModel';
-    this.filteredList = this.testList
-    .filter(t => t.injectorModel == this.filteredInjectorModel)
-    document.getElementById("injectorFilterCloseModalButton")?.click(); 
+    if(this.filteredInjectorModel != '') {
+      this.filteredField = 'injectorModel';
+      this.filteredList = this.testList
+      .filter(t => t.injectorModel == this.filteredInjectorModel)
+      document.getElementById("injectorFilterCloseModalButton")?.click(); 
+    }
   }
 
   doTestVehicleFilter() {
-    this.filteredField = 'vehicle';
-    this.filteredList = this.testList
-    .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
-    document.getElementById("vehicleFilterCloseModalButton")?.click(); 
+    if(this.filteredVechiclePlate != '') {
+      this.filteredField = 'vehicle';
+      this.filteredList = this.testList
+      .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
+      document.getElementById("vehicleFilterCloseModalButton")?.click(); 
+    }
   }
 
   doTestFilteredOrderFilter() {
-    this.filteredField = 'serviceOrder';
-    this.filteredList = this.testList
-    .filter(t => t.serviceOrder == this.filteredServiceOrder)
-    .sort((a, b) => a.injectorNumber - b.injectorNumber)
-    document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
+    if(this.filteredServiceOrder != '') {
+      this.filteredField = 'serviceOrder';
+      this.filteredList = this.testList
+      .filter(t => t.serviceOrder == this.filteredServiceOrder)
+      .sort((a, b) => a.injectorNumber - b.injectorNumber)
+      document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
+    }
   }
 
   handleTestCommandEvent(event: any) {  
@@ -697,6 +837,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.removingEvent = event;
       this.removingAlertMessage01 = "Deseja remover o injetor ";
       this.removingAlertTopTitle = "REMOVER INJETOR";
+    }
+  }
+
+  handleUserCommandEvent(event: any) {  
+    if(event.command == 'editing') {
+      this.modalCommand = event.command;
+      this.modalCommandButton = 'SALVAR';
+      this.editingUser = event.object;
+    } else if(event.command == 'saving') {
+
+    } else if(event.command == 'removing') {
+      this.removingObjects = '';
+      this.removingName = event.object.name;
+      this.removingEvent = event;
+      this.removingAlertMessage01 = "Deseja remover o usuário ";
+      this.removingAlertTopTitle = "REMOVER USUÁRIO";
     }
   }
 
@@ -782,6 +938,10 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   handleUpdateInjectorEvent(injector: Injector) {
     this.editingInjector = injector;
+  }
+
+  handleUpdateUserEvent(user: any) {
+    this.editingUser = user;
   }
 
   handleResetFilterEvent() {

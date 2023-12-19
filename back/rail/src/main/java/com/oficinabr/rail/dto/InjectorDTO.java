@@ -4,7 +4,6 @@ import com.oficinabr.rail.entity.Injector;
 
 public record InjectorDTO(
 		String id, 
-		String code, 
 		String type, 
 		String planId, 
 		String planCode, 
@@ -14,7 +13,6 @@ public record InjectorDTO(
 	public InjectorDTO(Injector injector) {
 		this(
 			injector.getId(), 
-			injector.getCode(), 
 			injector.getPlan().getType(), 
 			injector.getPlan().getId(), 
 			injector.getPlan().getCode(), 

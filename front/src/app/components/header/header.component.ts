@@ -14,13 +14,12 @@ import { CommonsComponent } from '../commons/commons.component';
 })
 export class HeaderComponent extends CommonsComponent implements OnInit{
  
-  @Output() requestPlansEvent =  new EventEmitter();
-  @Output() requestReportEvent = new EventEmitter();
-  @Output() requestVehiclesEvent =  new EventEmitter();
-  @Output() requestInjectorsEvent =  new EventEmitter();
   @Output() reportEvent = new EventEmitter<any>();
+  @Output() requestUsersEvent = new EventEmitter();
+  @Output() requestPlansEvent = new EventEmitter();
+  @Output() requestVehiclesEvent = new EventEmitter();
+  @Output() requestInjectorsEvent = new EventEmitter();
 
-  alertMessage = '';
   serviceOrder = this.test.serviceOrder;
   injectorNumber = '';
 
@@ -62,6 +61,10 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
 
   emitRequestInjectorsEvent() {
     this.requestInjectorsEvent.emit();
+  }
+
+  emitRequestUsersEvent() {
+    this.requestUsersEvent.emit();
   }
 
   openReport() {

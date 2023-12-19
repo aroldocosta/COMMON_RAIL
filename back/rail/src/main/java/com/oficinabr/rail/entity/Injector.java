@@ -24,9 +24,6 @@ public class Injector {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private String id;
 	
-	@Column(name = "code")
-	private String code;
-	
 	@Column(name = "model")
 	private String model;
 	
@@ -46,7 +43,6 @@ public class Injector {
 	
 	public Injector(InjectorDTO dto) {
 		this.setId(dto.id());
-		this.setCode(dto.code());
 		this.setModel(dto.model());
 		this.setDescription(dto.description());
 		//this.setTestList(new ArrayList<Test>());
@@ -60,14 +56,6 @@ public class Injector {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-	
 	public String getModel() {
 		return model;
 	}

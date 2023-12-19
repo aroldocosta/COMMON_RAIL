@@ -34,6 +34,8 @@ import { ReportComponent } from './pages/report/report.component';
 import { CanvasGraphComponent } from './components/canvas-graph/canvas-graph.component';
 import { ServiceOrderReportComponent } from './components/service-order-report/service-order-report.component';
 import { InjectorNumberReportComponent } from './components/injector-number-report/injector-number-report.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserTableComponent } from './components/user-table/user-table.component';
 
 registerLocaleData(ptBr);
 
@@ -66,6 +68,8 @@ registerLocaleData(ptBr);
     CanvasGraphComponent,
     ServiceOrderReportComponent,
     InjectorNumberReportComponent,
+    UserFormComponent,
+    UserTableComponent,
   ],
   imports: [
     FormsModule,

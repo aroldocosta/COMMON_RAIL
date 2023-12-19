@@ -35,7 +35,8 @@ export class CommonsComponent {
   @Input() testReport: TestReport = new TestReport();
   @Input() reportClass = '';
   @Input() testCommand: string = 'listing';
-  
+  @Input() alertMessage: string = '';
+
   constructor() {
 
   }
@@ -69,11 +70,11 @@ export class CommonsComponent {
     let med1 = (n_ref + n_min)/2;
     let med2 = (n_ref + n_max)/2;
 
-    if(val < min) {
+    if(val < min) {//yellow
       red = 255;
       grn = 255;
       blu = 0;
-    } else if(val > max) {
+    } else if(val > max) {//red
       red = 255;
       grn = 0;
       blu = 0;
@@ -82,15 +83,14 @@ export class CommonsComponent {
         red = 173;
         grn = 255;
         blu = 47;
-        //rrgb(173,255,47)
       } else if(n_val < med2) { //green - rgb(0,255,0)
         red = 0;
         grn = 255;
         blu = 0;
-      } else if(n_val <= n_max) {//orange - rgb(255,140,0)
-        red = 255;
-        grn = 140;
-        blu = 0;
+      } else if(n_val <= n_max) {//dark green - rgb(65,174, 30)
+        red = 65;
+        grn = 174;
+        blu = 30;
       }
     }
     let color = {red: red, grn: grn, blu: blu};
