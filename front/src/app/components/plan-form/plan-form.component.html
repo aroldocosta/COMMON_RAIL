@@ -50,7 +50,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
-                        (input)="handleMinResistanceFormat()" 
+                        (input)="emitUpdatePlanEvent()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minResistance"
@@ -63,7 +63,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxResistanceFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxResistance"
@@ -82,7 +82,7 @@
                     </i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMinReactanceFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minReactance"
@@ -99,7 +99,7 @@
                     </i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
-                        (input)="handleMaxReactanceFormat()" 
+                        (input)="emitUpdatePlanEvent()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxReactance"
@@ -114,7 +114,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>M&#937;</b></i></span>
                     <input type="number" class="form-control" 
                         step="0.1" min="0"
-                        (input)="handleMinIsolationFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minIsolation"
@@ -127,7 +127,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>M&#937;</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxIsolationFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxIsolation"
@@ -144,7 +144,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
-                        (input)="handleMinHalfLoadFormat()" 
+                        (input)="emitUpdatePlanEvent()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minHalfLoad"
@@ -157,7 +157,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control" 
                         step="0.1" min="0"
-                        (input)="handleMaxHalfLoadFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxHalfLoad"
@@ -170,7 +170,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleHalfLoadPressureFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.halfLoadPressure"
@@ -185,7 +185,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMinHalfLoadReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minHalfLoadReturn"
@@ -198,7 +198,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxHalfLoadReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxHalfLoadReturn"
@@ -217,7 +217,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMinIdlingFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minIdling"
@@ -230,7 +230,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxIdlingFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxIdling"
@@ -243,7 +243,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleIdlingPressureFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.idlingPressure"
@@ -258,7 +258,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMinIdlingReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minIdlingReturn"
@@ -271,7 +271,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control" 
                         step="0.1" min="0"
-                        (input)="handleMaxIdlingReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxIdlingReturn"
@@ -290,7 +290,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
-                        (input)="handleMinFullLoadFormat()" 
+                        (input)="emitUpdatePlanEvent()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minFullLoad"
@@ -303,7 +303,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
-                        (input)="handleMaxFullLoadFormat()" 
+                        (input)="emitUpdatePlanEvent()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxFullLoad"
@@ -316,7 +316,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0"
-                        (input)="handleFullLoadPressureFormat()" 
+                        (input)="emitUpdatePlanEvent()" 
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.fullLoadPressure"
@@ -331,7 +331,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control" 
                         step="0.1" min="0"
-                        (input)="handleMinFullLoadReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minFullLoadReturn"
@@ -344,7 +344,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxFullLoadReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxFullLoadReturn"
@@ -363,7 +363,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMinPreInjectionFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minPreInjection"
@@ -376,7 +376,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxPreInjectionFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxPreInjection"
@@ -389,7 +389,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
                     <input type="number" class="form-control" 
                         step="0.1" min="0"
-                        (input)="handlePreInjectionPressureFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.preInjectionPressure"
@@ -404,7 +404,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control" 
                         step="0.1" min="0"
-                        (input)="handleMinPreInjectionReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.minPreInjectionReturn"
@@ -417,7 +417,7 @@
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
                         step="0.1" min="0" 
-                        (input)="handleMaxPreInjectionReturnFormat()"
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxPreInjectionReturn"
