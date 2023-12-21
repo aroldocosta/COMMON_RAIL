@@ -1,1 +1,5 @@
-@import "../../../data-style.css"
+@import "../../../data-style.css";
+
+textarea {
+    margin-bottom: 2em;
+}

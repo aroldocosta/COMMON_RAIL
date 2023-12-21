@@ -1,9 +1,14 @@
 <div *ngIf="reportType == 'service-order'">
     <div class="row">
-        <span *ngIf="showSequence == 'true'">
-            <div class="col-12"><h2 class="top-title" [ngClass]="reportClass">{{tabTitle}} ( INJ_{{test.injectorNumber}} [ {{test.sequence}} ] )</h2></div>
-        </span>
-    </div>
+        <div class="col-12">
+            <h2 class="top-title" [ngClass]="reportClass">
+                {{tabTitle}} 
+                <span *ngIf="showSequence == 'true'">
+                    ( INJ_{{test.injectorNumber}} [ {{test.sequence}} ] )
+                </span>
+            </h2>
+        </div>
+   </div>
     <div class="table-responsive">
         <table class="table table-sm">
             <thead>
@@ -43,7 +48,7 @@
 <div *ngIf="reportType == 'injector-number'">
     <div class="row">
         <span *ngIf="showSequence == 'true'">
-            <div class="col-12"><h2 class="top-title" [ngClass]="reportClass">{{tabTitle}} ( INJ_{{injectorNumber}} )</h2></div>
+            <div class="col-12"><h2 class="top-title" [ngClass]="reportClass">hlkjhlkjh{{tabTitle}} ( INJ_{{injectorNumber}} )</h2></div>
         </span>
     </div>
     <div class="table-responsive">

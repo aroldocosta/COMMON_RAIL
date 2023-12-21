@@ -28,7 +28,7 @@ export class CommonsComponent {
   @Input() resColor = ''; 
   @Input() rctColor = '';
   @Input() isoColor = '';
-  @Input() tabTitle: string = 'TITLE';
+  @Input() tabTitle: string = 'MED ELÉTRICAS';
   @Input() testList: Test[] = [];
   @Input() sequence: any = [];
   @Input() reportType = 'service-order';
