@@ -74,7 +74,7 @@ export class ReportComponent extends CommonsComponent {
       this.reportService.getByInjectorNumber(serviceOrder, Number(injectorNumber)).subscribe({
         next: (report: TestReport) => {
           this.testReport = report;
-          this.testList   =  this.testReport.testList.sort((a, b) => a.injectorNumber - b.injectorNumber);
+          this.testList   =  this.testReport.testList.sort((a, b) => Number(a.sequence) - Number(b.sequence));
           this.test = this.testList[0];
           this.plan = this.test.plan;
 
