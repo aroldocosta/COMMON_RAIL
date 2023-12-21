@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oficinabr.rail.dto.InjectorDTO;
 import com.oficinabr.rail.dto.UserDTO;
 import com.oficinabr.rail.services.UserService;
 

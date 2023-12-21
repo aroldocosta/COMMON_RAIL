@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.oficinabr.rail.dto.InjectorDTO;
 import com.oficinabr.rail.dto.UserDTO;
-import com.oficinabr.rail.entity.Injector;
-import com.oficinabr.rail.entity.Plan;
 import com.oficinabr.rail.entity.User;
 import com.oficinabr.rail.entity.infra.security.SecurityConfiguration;
 import com.oficinabr.rail.repository.UserRepository;
