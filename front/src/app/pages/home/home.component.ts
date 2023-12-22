@@ -32,6 +32,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   @Input() vehicleList: Vehicle[] = [];
   @Input() planList: Plan[] = [];
   @Input() userList: User[] = [];
+
   report: any = 'Aguarde...';
   editingInjector = new Injector();
   editingWorkshop = new Workshop();
@@ -79,10 +80,10 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   constructor(
     private router: Router,
+    private login: LoginService,
     private userService: UserService,
     private testService: TestService,      
     private planService: PlanService,
-    private loginService: LoginService,
     private vehicleService: VehicleService,
     private injectorService: InjectorService,
     private workshopService: WorkshopService
@@ -91,23 +92,32 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(!this.loginService.isAuthenticated()) {
-      this.router.navigateByUrl('/login');
-    } else {
-      this.requestUsers();
-      this.requestTests();
-      this.requestPlans();
-      this.requestVehicles();
-      this.requestInjectors();
-      this.filteredDateIni = this.getFormattedDate(new Date());
-      this.filteredDateEnd = this.getFormattedDate(new Date()); 
-      // this.filteredDateTest = this.getFormattedDate(new Date());
-      this.test.planId = '0';
-      this.test.vehiclePlate = '0';
-      this.test.injectorModel = '0';
-    }
+    const userId = this.login.getAuthId();
 
-    //let modal = document.getElementById('planModalToggle');
+    if(this.login.getAuthData() != null) {
+      this.userService.get(userId).subscribe({
+        next: user => {
+          this.logged = user;
+          this.requestUsers();
+          this.requestTests();
+          this.requestPlans();
+          this.requestVehicles();
+          this.requestInjectors();
+          this.filteredDateIni = this.getFormattedDate(new Date());
+          this.filteredDateEnd = this.getFormattedDate(new Date()); 
+          this.test.planId = '0';
+          this.test.vehiclePlate = '0';
+          this.test.injectorModel = '0';
+        },
+        error: err => {
+          this.login.setAuthData(null);
+          this.goToLink('/login', this.login, this.router);
+        }
+      })
+    } else {
+      this.login.setAuthData(null);
+      this.goToLink('/login', this.login, this.router);
+    }
   }
 
   /* ---------------- Remove Command Button Handlers ----------------- */
@@ -500,8 +510,10 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   saveTest() {
+    debugger
     let today = new Date();
     this.test.date = this.getFormattedDate(today);
+    this.test.workshop = this.logged.workshop;
     this.testService.create(this.test).subscribe({
       next: resp => {
         //document.getElementById("newCloseModalButton")?.click();

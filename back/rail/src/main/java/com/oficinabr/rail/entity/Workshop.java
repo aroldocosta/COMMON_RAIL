@@ -31,6 +31,9 @@ public class Workshop {
 	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<User> userList;
 	
+	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Test> testList;
+	
 	public Workshop() {
 		
 	}
@@ -70,5 +73,13 @@ public class Workshop {
 
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
+	}
+
+	public List<Test> getTestList() {
+		return testList;
+	}
+
+	public void setTestList(List<Test> testList) {
+		this.testList = testList;
 	}
 }

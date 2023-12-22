@@ -1,6 +1,7 @@
 package com.oficinabr.rail.dto;
 
 import com.oficinabr.rail.entity.Test;
+import com.oficinabr.rail.entity.Workshop;
 
 public record TestDTO(
 		String id, 
@@ -30,7 +31,8 @@ public record TestDTO(
 		String serviceOrder, 
 		String customerName, 
 		Integer injectorQuantity, 
-		PlanDTO plan
+		PlanDTO plan, 
+		WorkshopDTO workshop
 	) {
 	
 		public TestDTO(Test t) {
@@ -62,7 +64,8 @@ public record TestDTO(
 				t.getServiceOrder(), 
 				t.getCustomerName(), 
 				1, 
-				new PlanDTO(t.getPlan())
+				new PlanDTO(t.getPlan()),
+				new WorkshopDTO(t.getWorkshop())
 			);
 	}
 }

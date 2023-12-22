@@ -51,7 +51,8 @@ CREATE TABLE test (
 	vehicle_id TEXT,
 	ima_code TEXT,
 	service_order TEXT,
-	customer_name TEXT
+	customer_name TEXT,
+	workshop_id TEXT NOT NULL
 );
 
 CREATE TABLE plan (
