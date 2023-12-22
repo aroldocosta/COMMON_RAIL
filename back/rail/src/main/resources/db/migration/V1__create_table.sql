@@ -3,7 +3,14 @@ CREATE TABLE users (
 	name TEXT NOT NULL, 
 	login TEXT NOT NULL UNIQUE,
 	password TEXT NOT NULL,
-	role TEXT NOT NULL
+	role TEXT NOT NULL,
+	workshop_id TEXT NOT NULL
+);
+
+CREATE TABLE workshop (
+	id TEXT PRIMARY KEY UNIQUE NOT NULL,
+	name TEXT NOT NULL,
+	description TEXT 
 );
 
 CREATE TABLE vehicle (

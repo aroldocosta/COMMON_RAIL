@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>NOME</th>
+            <th>OFICINA</th>
             <th>FUNÇÃO</th>
             <th>EDT</th>
             <th>REM</th>
@@ -10,6 +11,7 @@
     <tbody>
         <tr *ngFor="let u of list" (click)="emitEditingEvent(u)">
             <td>{{u.name}}</td>
+            <td>{{u.workshop.name}}</td>
             <td>{{u.role}}</td>
             <td slot="right"><a href="#" onclick="return null" (click)="emitEditingEvent(u)"><i class="bi bi-pencil-square icon"></i></a></td>
             <td slot="right"><a href="#" onclick="return null" (click)="emitRemovingEvent(u)" title="Excluir" title="Excluir"  

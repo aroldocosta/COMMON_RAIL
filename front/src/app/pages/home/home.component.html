@@ -3,6 +3,7 @@
 	[testCommand]="testCommand"
 	(requestPlansEvent)="handlePlanLinkEvent()"
 	(requestVehiclesEvent)="handleVehicleLinkEvent()"
+	(requestWorkshopsEvent)="handleWorkshopLinkEvent()"
 	(requestInjectorsEvent)="handleInjectorLinkEvent()"
 	(requestUsersEvent)="handleUserLinkEvent()"
 	(reportEvent)="setReportFile($event)"
@@ -204,7 +205,7 @@
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="injectModalToggleLabel">USUÁRIOS</h1>
+		  <h1 class="modal-title fs-5" id="userModalToggleLabel">USUÁRIOS</h1>
 		  <button (click)="cancelUserCommandButton()" id="userModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
@@ -212,6 +213,7 @@
 			<app-user-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
 				[editingUser]="editingUser"
+				[workshopList]="workshopList"
 				[alertMessage]="alertMessage"
 				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateUserEvent($event)"
@@ -227,6 +229,36 @@
 		<div class="modal-footer">
 			<button class="btn btn-outline-secondary btn-modal" (click)="cancelUserCommandButton()">FECHAR</button>
 		  	<button class="btn btn-outline-primary btn-modal" (click)="handleUserCommandButton()">{{modalCommandButton}}</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <div class="modal fade" id="workshopModalToggle" aria-labelledby="workshopModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="workshopModalToggleLabel">OFICINAS</h1>
+		  <button (click)="cancelWorkshopCommandButton()" id="workshopModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<hr class="colorgraph">
+			<app-workshop-form
+				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
+				[editingWorkshop]="editingWorkshop"
+				[alertMessage]="alertMessage"
+				(clearEvent)="clearAlertMessage()"
+				(updateEvent)="handleUpdateWorkshopEvent($event)"
+			></app-workshop-form>
+			<app-workshop-table
+				*ngIf="modalCommand == 'listing'"
+				[list] = 'workshopList'
+				(commandEvent)="handleWorkshopCommandEvent($event)"
+			></app-workshop-table>
+			<hr class="colorgraph">
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" (click)="cancelWorkshopCommandButton()">FECHAR</button>
+		  	<button class="btn btn-outline-primary btn-modal" (click)="handleWorkshopCommandButton()">{{modalCommandButton}}</button>
 		</div>
 	  </div>
 	</div>

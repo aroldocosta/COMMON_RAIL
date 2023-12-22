@@ -15,6 +15,8 @@ import { TopMessageComponent } from 'src/app/components/top-message/top-message.
 import { User } from 'src/app/model/user.model';
 import { Router } from '@angular/router';
 import { CommonsComponent } from 'src/app/components/commons/commons.component';
+import { Workshop } from 'src/app/model/workshop.model';
+import { WorkshopService } from 'src/app/services/workshop.service';
 
 @Component({
   selector: 'app-home',
@@ -26,12 +28,14 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any
   @Input() injectorList: Injector[] = [];
+  @Input() workshopList: Workshop[] = [];
   @Input() vehicleList: Vehicle[] = [];
   @Input() planList: Plan[] = [];
   @Input() userList: User[] = [];
   report: any = 'Aguarde...';
-  editingVehicle = new Vehicle();
   editingInjector = new Injector();
+  editingWorkshop = new Workshop();
+  editingVehicle = new Vehicle();  
   editingUser = new User();
   testPayment = '';
   testPlanId = '';
@@ -80,7 +84,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     private planService: PlanService,
     private loginService: LoginService,
     private vehicleService: VehicleService,
-    private injectorService: InjectorService
+    private injectorService: InjectorService,
+    private workshopService: WorkshopService
     ) {
       super();
   }
@@ -198,17 +203,19 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     }
   }
 
-  /* ------------ Injector Command Button Handlers ------------- */
+  /* ------------ User Command Button Handlers ------------- */
   handleUserCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
       this.editingUser = new User();
-      this.requestUsers();
+      this.requestWorkshops();
     } else if(this.modalCommand == 'creating') {
       this.saveUser();
+      this.requestUsers();
     } else if(this.modalCommand == 'editing') {
       this.updateUser();
+      this.requestUsers();
     }
   }
 
@@ -221,7 +228,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommandButton = 'NOVO'
     }
   }
-  /*------------------------------------------------------------*/
+  /* ------------ Injector Command Button Handlers ------------- */
   handleInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
@@ -238,6 +245,28 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   cancelInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       document.getElementById('injectorModalCloseButton')?.click();
+      this.currentModalLink = '';
+    } else {
+      this.modalCommand = 'listing';
+      this.modalCommandButton = 'NOVO'
+    }
+  }
+  /* ------------ Workshop Command Button Handlers ------------- */
+  handleWorkshopCommandButton() {
+    if(this.modalCommand == 'listing') {
+      this.modalCommand = 'creating';
+      this.modalCommandButton = 'SALVAR';
+      this.editingWorkshop = new Workshop();
+    } else if(this.modalCommand == 'creating') {
+      this.saveWorkshop();
+    } else if(this.modalCommand == 'editing') {
+      this.updateWorkshop();
+    }
+  }
+
+  cancelWorkshopCommandButton() {
+    if(this.modalCommand == 'listing') {
+      document.getElementById('workshopModalCloseButton')?.click();
       this.currentModalLink = '';
     } else {
       this.modalCommand = 'listing';
@@ -262,39 +291,45 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   handleModalRemoveConfirm() {
-    let link: any;
-    let service: any;
+    let currentMenulink: any;
+    let currentService: any;
+
+    debugger
 
     let objectId = this.removingEvent.object.id;
     let objectClass = this.removingEvent.objClass;
  
     if(objectClass == 'Plan') {
-      service = <PlanService>this.planService;
-      link = document.getElementById("planMenuLink");
+      currentService = <PlanService>this.planService;
+      currentMenulink = document.getElementById("planMenuLink");
     } else if(objectClass == 'Test') {
       this.handleTestRemoveConfirm(this.removingEvent.object);
       return;
     } else if(objectClass == 'Vehicle') {
-      link = document.getElementById("vehicleMenuLink");
-      service = <VehicleService>this.vehicleService;
+      currentMenulink = document.getElementById("vehicleMenuLink");
+      currentService = <VehicleService>this.vehicleService;
     } else if(objectClass == 'Injector') {
-      link = document.getElementById("injectorMenuLink");
-      service = <InjectorService>this.injectorService;
-    }  else if(objectClass == 'User') {
-      service = <UserService>this.userService;
+      currentMenulink = document.getElementById("injectorMenuLink");
+      currentService = <InjectorService>this.injectorService;
+    } else if(objectClass == 'User') {
+      currentMenulink = document.getElementById("userMenuLink");
+      currentService = <UserService>this.userService;
+    } else if(objectClass == 'Workshop') {
+      currentMenulink = document.getElementById("workshopMenuLink");
+      currentService = <WorkshopService> this.workshopService;
     }
 
-    service.remove(objectId).subscribe({
+    currentService.remove(objectId).subscribe({
       next: (resp: any) => {
         document.getElementById("removeCloseModalButton")?.click();
-        link?.click();
+        currentMenulink?.click();
         this.modalCommand = 'listing';
         this.modalCommandButton = "NOVO";
       },
       error: (err: any) => {
         this.alertMessage = "Ação não permitida, entre em contato com a gerência."
       }
-    })
+    });
   }
 /*--------------------------------------------------------------*/
 
@@ -410,6 +445,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
         this.userList = list;
       }
     })
+  }
+
+  handleWorkshopLinkEvent() {
+    this.currentModalLink = 'WorkshopMenuLink';
+    this.requestWorkshops();
+  }
+
+  requestWorkshops() {
+    this.workshopService.list().subscribe({
+      next: list => {
+        this.workshopList = list;
+      },
+      error: err => {
+        console.log("Error: ", err);
+      }
+    });
   }
 
   // --------------------------------------------------------
@@ -631,13 +682,13 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateUser() {
-    debugger
+    
     this.userService.update(this.editingUser).subscribe({
       next: resp => {
-        debugger
+        
         this.userService.list().subscribe({
           next: list => {
-            debugger
+            
             this.userList = list;
             this.modalCommand = 'listing';
             this.modalCommandButton = 'NOVO';
@@ -646,11 +697,55 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
-        debugger
+        
         if(err.status == 401) {
           this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
         } else if(err.status == 409) {
           this.alertMessage = 'Erro: Login já cadastrado!'
+        }
+      }
+    })
+  }
+
+  saveWorkshop() {
+    this.workshopService.create(this.editingWorkshop).subscribe({
+      next: resp => {
+        this.workshopService.list().subscribe({
+          next: list => {
+            this.workshopList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
+          }
+        })
+      },
+      error: err => {      
+        console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Oficina já cadastrada!'
+        }
+      }
+    })
+  }
+
+  updateWorkshop() {
+    this.workshopService.update(this.editingWorkshop).subscribe({
+      next: resp => {
+        this.workshopService.list().subscribe({
+          next: list => {
+            this.workshopList = list;
+            this.modalCommand = 'listing';   
+            this.modalCommandButton = 'NOVO';
+          }
+        })
+      },
+      error: err => {
+        console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Oficina já cadastrada!'
         }
       }
     })
@@ -854,12 +949,37 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
       this.editingUser = event.object;
+      this.requestWorkshops();
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingName = event.object.name;
       this.removingEvent = event;
       this.removingAlertMessage01 = "Deseja remover o usuário ";
       this.removingAlertTopTitle = "REMOVER USUÁRIO";
+    }
+  }
+
+  handleWorkshopCommandEvent(event: any) {
+    this.modalCommand = event.command;
+    if(event.command == 'editing') {
+      this.modalCommandButton = 'SALVAR';
+      this.editingWorkshop = event.object;
+    } else if(event.command == 'removing') {
+      this.userService.getByWorkshopId(event.object.id).subscribe({
+        next: list => {          
+          this.removingObjects = '';
+          list.forEach(i => this.removingObjects += i.name + ", ");
+          this.removingObjects = this.removingObjects.substring(0, this.removingObjects.lastIndexOf(","));
+          this.removingName = event.object.name;
+          this.removingEvent = event;
+          this.removingAlertMessage01 = "Deseja remover a oficina" 
+          this.removingAlertMessage02 = "Esta ação também removerá o(s) usuário(s) a seguir: ";
+          this.removingAlertTopTitle = "REMOVER OFICINA";
+        },
+        error: err => {          
+          console.log("Erros: ", err);
+        }
+      })
     }
   }
 
@@ -948,6 +1068,10 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   handleUpdateUserEvent(user: any) {
+    this.editingUser = user;
+  }
+
+  handleUpdateWorkshopEvent(user: any) {
     this.editingUser = user;
   }
 

@@ -19,6 +19,7 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
   @Output() requestPlansEvent = new EventEmitter();
   @Output() requestVehiclesEvent = new EventEmitter();
   @Output() requestInjectorsEvent = new EventEmitter();
+  @Output() requestWorkshopsEvent = new EventEmitter();
 
   serviceOrder = this.test.serviceOrder;
   injectorNumber = '';
@@ -65,6 +66,10 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
 
   emitRequestUsersEvent() {
     this.requestUsersEvent.emit();
+  }
+
+  emitRequestWorkshopsEvent() {
+    this.requestWorkshopsEvent.emit();
   }
 
   openReport() {

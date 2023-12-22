@@ -1,3 +1,4 @@
+import { Workshop } from "./workshop.model";
 
 
 export class User {
@@ -8,7 +9,7 @@ export class User {
 	name = "";
 	whatsapp = "";
 	phone = "";
-	company = "";
+	workshop = new Workshop();
 	role = "";
 
     constructor() {

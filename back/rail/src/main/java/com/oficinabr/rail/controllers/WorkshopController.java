@@ -15,48 +15,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.oficinabr.rail.dto.UserDTO;
-import com.oficinabr.rail.services.UserService;
+import com.oficinabr.rail.dto.WorkshopDTO;
+import com.oficinabr.rail.services.WorkshopService;
 
 @RestController
-@RequestMapping("users")
-public class UserController {
+@RequestMapping("workshops")
+public class WorkshopController {
 
 	@Autowired
-	UserService service;
+	WorkshopService service;
 	
 	@GetMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO> > getAll() { 
+	public ResponseEntity<List<WorkshopDTO> > getAll() { 
 		return service.getAll();
 	}
 	
 	@GetMapping(value = "/{id}")	
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<UserDTO> get(@PathVariable("id") String id) {     
+	public ResponseEntity<WorkshopDTO> get(@PathVariable("id") String id) {     
 		return service.get(id);
 	}
 	
-	@GetMapping(value = "/workshop/{id}")	
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO> > getByWorkshopId(@PathVariable("id") String id) {     
-		return service.getByWorkshopId(id);
-	}
-		
 	@PostMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
-	public ResponseEntity<UserDTO> save(@RequestBody UserDTO dto) {
+	public ResponseEntity<WorkshopDTO> save(@RequestBody WorkshopDTO dto) {
 		return service.save(dto);
 	}
 	
 	@PutMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.PUT)
-	public ResponseEntity<UserDTO> update(@RequestBody UserDTO dto) {
+	public ResponseEntity<WorkshopDTO> update(@RequestBody WorkshopDTO dto) {
 		return service.update(dto);
 	}
 	@DeleteMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.DELETE)
-	public ResponseEntity<UserDTO> delete(@PathVariable("id") String id) {
+	public ResponseEntity<WorkshopDTO> delete(@PathVariable("id") String id) {
 		return service.delete(id);
 	}
 }

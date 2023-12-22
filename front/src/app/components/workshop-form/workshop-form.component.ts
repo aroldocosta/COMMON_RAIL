@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { User } from 'src/app/model/user.model';
 import { Workshop } from 'src/app/model/workshop.model';
 import { CommonsComponent } from '../commons/commons.component';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.css']
+  selector: 'app-workshop-form',
+  templateUrl: './workshop-form.component.html',
+  styleUrls: ['./workshop-form.component.css']
 })
-export class UserFormComponent extends CommonsComponent{
+export class WorkshopFormComponent extends CommonsComponent {
 
-  @Input() editingUser: User = new User();
   @Input() workshopList: Workshop[] = [];
+  @Input() editingWorkshop: Workshop = new Workshop();
+ 
   @Output() clearEvent = new EventEmitter();
-  @Output() updateEvent = new EventEmitter<any>();
+  @Output() updateEvent = new EventEmitter<Workshop>();
 
   constructor() {
     super();
@@ -23,7 +23,7 @@ export class UserFormComponent extends CommonsComponent{
     this.clearEvent.emit();
   }
 
-  emitUpdateUserEvent() {
-    this.updateEvent.emit(this.editingUser);
+  emitUpdateWorkshopEvent() {
+    this.updateEvent.emit(this.editingWorkshop);
   }
 }

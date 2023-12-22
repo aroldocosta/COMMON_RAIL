@@ -36,6 +36,8 @@ import { ServiceOrderReportComponent } from './components/service-order-report/s
 import { InjectorNumberReportComponent } from './components/injector-number-report/injector-number-report.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { UserTableComponent } from './components/user-table/user-table.component';
+import { WorkshopTableComponent } from './components/workshop-table/workshop-table.component';
+import { WorkshopFormComponent } from './components/workshop-form/workshop-form.component';
 
 registerLocaleData(ptBr);
 
@@ -70,6 +72,8 @@ registerLocaleData(ptBr);
     InjectorNumberReportComponent,
     UserFormComponent,
     UserTableComponent,
+    WorkshopTableComponent,
+    WorkshopFormComponent,
   ],
   imports: [
     FormsModule,

@@ -40,4 +40,9 @@ export class UserService {
     const url = `${this.baseUrl}users/${id}`;
     return this.http.delete(url, this.login.getHttpOptions());
   }
+
+  getByWorkshopId(id: string) {
+    const url = `${this.baseUrl}users/workshop/${id}`;
+    return this.http.get<User[]>(url, this.login.getHttpOptions());
+  }
 }

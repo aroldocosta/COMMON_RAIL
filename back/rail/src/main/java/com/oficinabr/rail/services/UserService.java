@@ -10,8 +10,10 @@ import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.UserDTO;
 import com.oficinabr.rail.entity.User;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.entity.infra.security.SecurityConfiguration;
 import com.oficinabr.rail.repository.UserRepository;
+import com.oficinabr.rail.repository.WorkshopRepository;
 
 @Service
 public class UserService {
@@ -19,6 +21,9 @@ public class UserService {
 
 	@Autowired
 	private UserRepository repository;
+	
+	@Autowired
+	private WorkshopRepository workshopRepository;
 	
 	@Autowired
 	SecurityConfiguration security;
@@ -43,11 +48,24 @@ public class UserService {
 		}
 	}
 	
+	public ResponseEntity<List<UserDTO>> getByWorkshopId(String id) {
+		try {
+			List<UserDTO> resp = repository.findByWorkshopId(id).stream().map(UserDTO::new).toList();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
 	public ResponseEntity<UserDTO> save(UserDTO dto) {
 		try {
 			User user = new User(dto);
 			String encryptedPass = security.passwordEncoder().encode(dto.password());
 			user.setPassword(encryptedPass);
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			user.setWorkshop(workshop);
+			
 			UserDTO resp = new UserDTO(repository.save(user));	
 		return ResponseEntity.ok(resp);	
 		} catch(DataIntegrityViolationException e) {
@@ -64,8 +82,12 @@ public class UserService {
 
 			if(!dto.password().equals(user.getPassword())) {
 				String encryptedPass = security.passwordEncoder().encode(dto.password());
-				user.setPassword(encryptedPass);
+				user.setPassword(encryptedPass);				
 			}
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			user.setWorkshop(workshop);
+			
 			UserDTO resp = new UserDTO(repository.save(user));
 			return ResponseEntity.ok(resp);	
 		} catch (DataIntegrityViolationException e) {

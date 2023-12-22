@@ -22,10 +22,23 @@
           <a id="injectorMenuLink" class="a-link nav-link px-2 text-secondary" data-bs-target="#injectModalToggle" data-bs-toggle="modal" (click)="emitRequestInjectorsEvent()">
             <i class="bi bi-droplet-half"></i> INJETORES</a>            
         </li>
-        <li class="nav-item" *ngIf="logged.role == 'ADMIN'">
+        <!-- <li class="nav-item" *ngIf="logged.role == 'ADMIN'">
           <a id="userMenuLink" class="a-link nav-link px-2 text-secondary" data-bs-target="#userModalToggle" data-bs-toggle="modal" (click)="emitRequestUsersEvent()">
             <i class="bi bi-person"></i> USUÁRIOS</a>            
-        </li>
+        </li> -->
+        <li class="nav-item" *ngIf="logged.role == 'ADMIN'">             
+          <div class="nav-item dropdown">
+            <a class="a-link nav-link dropdown-toggle px-2 text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-card-checklist"></i> USUÁRIOS
+            </a>
+            <ul class="dropdown-menu">
+              <li><a id="userMenuLink" class="a-link dropdown-item" data-bs-target="#userModalToggle" data-bs-toggle="modal" (click)="emitRequestUsersEvent()">
+                <i class="bi bi-box-arrow-right"></i> USUÁRIOS</a></li>
+              <li><a id="workshopMenuLink" class="a-link dropdown-item" data-bs-target="#workshopModalToggle" data-bs-toggle="modal" (click)="emitRequestWorkshopsEvent()">
+                <i class="bi bi-box-arrow-right"></i> OFICINAS</a></li>
+            </ul>
+          </div>
+      </li>
         <li class="nav-item" *ngIf="testCommand == 'editing'">             
             <div class="nav-item dropdown">
               <a class="a-link nav-link dropdown-toggle px-2 text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
