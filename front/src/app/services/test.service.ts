@@ -24,6 +24,11 @@ export class TestService {
     return this.http.get<Test>(url, this.login.getHttpOptions());
   }
   
+  getByWorkshop(id: number) {
+    const url = `${this.baseUrl}tests/workshop/${id}`;
+    return this.http.get<Test[]>(url, this.login.getHttpOptions());
+  }
+  
   create(test: Test): Observable<any> {
     const url = `${this.baseUrl}tests`;
     return this.http.post(url, test, this.login.getHttpOptions());

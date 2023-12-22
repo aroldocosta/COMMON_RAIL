@@ -10,7 +10,7 @@ import { User } from '../model/user.model';
 })
 export class LoginService {
 
-  user!: User;
+  logged: User = new User();
   readonly baseUrl = environment.API_BASE_URL;
 
   constructor(private http: HttpClient) { }

@@ -24,6 +24,11 @@ export class WorkshopService {
     return this.http.get<Workshop>(url, this.login.getHttpOptions());
   }
 
+  getByUserId(id: string) {
+    const url = `${this.baseUrl}workshops/user/${id}`;
+    return this.http.get<Workshop>(url, this.login.getHttpOptions());
+  }
+
   create(workshop: any): Observable<any> {
     const url = `${this.baseUrl}workshops`;
     return this.http.post(url, workshop, this.login.getHttpOptions());

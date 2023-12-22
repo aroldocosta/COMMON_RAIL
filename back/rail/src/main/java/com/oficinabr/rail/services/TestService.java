@@ -45,6 +45,18 @@ public class TestService {
 		}
 	}
 	
+	public ResponseEntity<List<TestDTO>> getByWorkshop(String id) {
+		try {
+			List<TestDTO> resp = repository.findAllByOrderByDateDesc().stream()
+					.map(TestDTO::new)
+					.filter(t -> t.workshop().id().equals(id))
+					.toList();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
 	public ResponseEntity<TestDTO> get(String id) {
 		try {
 			TestDTO resp = repository.findById(id).stream().map(TestDTO::new).findAny().get();

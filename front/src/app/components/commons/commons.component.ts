@@ -4,6 +4,7 @@ import { Plan } from 'src/app/model/plan.model';
 import { TestReport } from 'src/app/model/test-report.model';
 import { Test } from 'src/app/model/test.model';
 import { User } from 'src/app/model/user.model';
+import { Workshop } from 'src/app/model/workshop.model';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({

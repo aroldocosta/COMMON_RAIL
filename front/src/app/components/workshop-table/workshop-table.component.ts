@@ -19,7 +19,6 @@ export class WorkshopTableComponent {
   }
 
   emitEditingEvent(workshop: Workshop) {
-    debugger
     let event = { command: 'editing', object: workshop }
     this.commandEvent.emit(event);
   }

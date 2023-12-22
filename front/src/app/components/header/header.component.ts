@@ -77,7 +77,6 @@ export class HeaderComponent extends CommonsComponent implements OnInit{
   }
 
   handleServiceOrderReport() {
-    console.log("Gerar pdf")
     this.router.navigate(['report'], { state: {serviceOrder: this.test.serviceOrder, report: 'service-order' }});
   }
 

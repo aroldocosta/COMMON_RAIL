@@ -66,6 +66,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   removingAlertMessage02: string = '';
   currentModalLink: string = '';
   serviceOrder: string = '';
+  currentWorkshop: any;
 
   tabIndex = 0;
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
@@ -92,12 +93,11 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    const userId = this.login.getAuthId();
-
     if(this.login.getAuthData() != null) {
-      this.userService.get(userId).subscribe({
-        next: user => {
-          this.logged = user;
+      const userId = this.login.getAuthId();  
+      this.userService.getWorkshop(userId).subscribe({ 
+        next: workshop => {
+          this.currentWorkshop = workshop;
           this.requestUsers();
           this.requestTests();
           this.requestPlans();
@@ -304,8 +304,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     let currentMenulink: any;
     let currentService: any;
 
-    debugger
-
     let objectId = this.removingEvent.object.id;
     let objectClass = this.removingEvent.objClass;
  
@@ -510,7 +508,6 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   saveTest() {
-    debugger
     let today = new Date();
     this.test.date = this.getFormattedDate(today);
     this.test.workshop = this.logged.workshop;
@@ -769,7 +766,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   requestTests() {
     this.currentModalLink = '';
-    this.testService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.testService.getByWorkshop(workshopId).subscribe({
       next: list => {        
         this.testList = list;
 

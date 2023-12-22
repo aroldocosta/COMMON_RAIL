@@ -38,6 +38,10 @@ public class Workshop {
 		
 	}
 	
+	public Workshop(String id) {
+		this.id = id;
+	}
+	
 	public Workshop(WorkshopDTO dto) {
 		this.id = dto.id();
 		this.name = dto.name();

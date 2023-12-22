@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.UserDTO;
+import com.oficinabr.rail.dto.WorkshopDTO;
 import com.oficinabr.rail.entity.User;
 import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.entity.infra.security.SecurityConfiguration;
@@ -42,15 +43,6 @@ public class UserService {
 		
 		try {
 			UserDTO resp = repository.findById(id).stream().map(UserDTO::new).findAny().get();
-			return ResponseEntity.ok(resp);
-		} catch (Exception e) {
-			return ResponseEntity.noContent().build();
-		}
-	}
-	
-	public ResponseEntity<List<UserDTO>> getByWorkshopId(String id) {
-		try {
-			List<UserDTO> resp = repository.findByWorkshopId(id).stream().map(UserDTO::new).toList();
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -104,6 +96,26 @@ public class UserService {
 			return ResponseEntity.ok().build();
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	public ResponseEntity<List<UserDTO>> getByWorkshopId(String id) {
+		try {
+			List<UserDTO> resp = repository.findByWorkshopId(id).stream().map(UserDTO::new).toList();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	public ResponseEntity<WorkshopDTO> getWorkshop(String id) {
+		try {
+			WorkshopDTO resp = new WorkshopDTO(repository.findById(id).get().getWorkshop());
+			return ResponseEntity.ok(resp);
+		} catch (DataIntegrityViolationException e) {
+			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
 		}
 	}
 }

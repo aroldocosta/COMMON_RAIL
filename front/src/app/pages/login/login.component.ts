@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
   requestLogin() {
     let login = this.login.value;
     let password = this.password.value
-    this.router.navigateByUrl("/");
-
      this.service.resquestLogin(login, password)
      .subscribe({
         next: ( auth ) => {

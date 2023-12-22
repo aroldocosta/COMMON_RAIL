@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oficinabr.rail.dto.UserDTO;
+import com.oficinabr.rail.dto.WorkshopDTO;
 import com.oficinabr.rail.services.UserService;
 
 @RestController
@@ -58,5 +59,11 @@ public class UserController {
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.DELETE)
 	public ResponseEntity<UserDTO> delete(@PathVariable("id") String id) {
 		return service.delete(id);
+	}
+	
+	@GetMapping("/{id}/workshop")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<WorkshopDTO> getUserWorkshop(@PathVariable("id") String id) {
+		return service.getWorkshop(id);
 	}
 }
