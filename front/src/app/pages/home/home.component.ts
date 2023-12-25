@@ -510,7 +510,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   saveTest() {
     let today = new Date();
     this.test.date = this.getFormattedDate(today);
-    this.test.workshop = this.logged.workshop;
+    this.test.workshop = this.currentWorkshop;
     this.testService.create(this.test).subscribe({
       next: resp => {
         //document.getElementById("newCloseModalButton")?.click();
@@ -523,6 +523,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateTest() { 
+    debugger
+    this.test.workshop = this.currentWorkshop;
     this.testService.update(this.test).subscribe({
       next: resp => {
         this.handleTabbingTestEvent(this.currentTab);

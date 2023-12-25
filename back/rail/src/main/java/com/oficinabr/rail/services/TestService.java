@@ -87,6 +87,10 @@ public class TestService {
 	public ResponseEntity<TestDTO> update(TestDTO dto) {
 		try {
 			Test test = createTest(dto);
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			test.setWorkshop(workshop);
+			
 			TestDTO resp = new TestDTO(repository.save(test));
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
