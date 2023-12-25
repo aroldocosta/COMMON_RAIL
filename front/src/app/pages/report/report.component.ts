@@ -1,22 +1,18 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Component, Input } from '@angular/core';
-import { Plan } from 'src/app/model/plan.model';
 import { TestReport } from 'src/app/model/test-report.model';
-import { Test } from 'src/app/model/test.model';
-import { PlanService } from 'src/app/services/plan.service';
 import { ReportService } from 'src/app/services/report.service';
-import { TestService } from 'src/app/services/test.service';
-import { CommonsComponent } from 'src/app/components/commons/commons.component';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import { CommonPageComponent } from 'src/app/components/commons/common-page/common-page.component';
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.css']
 })
-export class ReportComponent extends CommonsComponent {
+export class ReportComponent extends CommonPageComponent {
 
   gaugeH = 0;
   gaugeY = 135;

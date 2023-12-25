@@ -5,25 +5,25 @@ import { LoginService } from 'src/app/services/login.service';
 import { PlanService } from 'src/app/services/plan.service';
 import { formatNumber} from '@angular/common';
 import { InjectorService } from 'src/app/services/injector.service';
-import { AsideComponent } from 'src/app/components/aside/aside.component';
 import { TestService } from 'src/app/services/test.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { Injector } from 'src/app/model/injector.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
-import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 import { User } from 'src/app/model/user.model';
 import { Router } from '@angular/router';
-import { CommonsComponent } from 'src/app/components/commons/commons.component';
 import { Workshop } from 'src/app/model/workshop.model';
 import { WorkshopService } from 'src/app/services/workshop.service';
+import { TopMessageComponent } from 'src/app/components/commons/top-message/top-message.component';
+import { AsideComponent } from 'src/app/components/commons/aside/aside.component';
+import { CommonPageComponent } from 'src/app/components/commons/common-page/common-page.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent extends CommonsComponent implements OnInit{
+export class HomeComponent extends CommonPageComponent implements OnInit{
 
   @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any

@@ -2,7 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
+import { TopMessageComponent } from 'src/app/components/commons/top-message/top-message.component';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
