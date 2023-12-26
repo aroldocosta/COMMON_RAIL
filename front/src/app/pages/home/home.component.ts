@@ -805,7 +805,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       this.doTestInjectorFilter();
       this.doTestSequenceFilter();
       this.doTestFilteredOrderFilter();
-      this.doTestInjectorNumberFilter();
+      this.doInjectorNumberFilter(this.filteredInjectorNumber);
     }
   }
 
@@ -813,7 +813,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   }
 
-  doTestInjectorNumberFilter() {
+  doInjectorNumberFilter(injectorNumber: string) {
+    this.filteredInjectorNumber = injectorNumber;
     if(this.filteredInjectorNumber != '') {
       this.filteredField = 'injectorNumber';
       this.filteredList = this.testList

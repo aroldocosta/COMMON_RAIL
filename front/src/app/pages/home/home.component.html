@@ -169,96 +169,24 @@
 		(cancelButtonEvent)="cancelWorkshopCommandButton()"
 		(commandButtonEvent)="handleWorkshopCommandButton()"
    ></app-workshop-modal>
-  <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="editModalToggleLabel">EDITAR TESTE</h1>
-		  <button id="editCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<app-test-form
-				command = 'editing'
-				[message]="alertMessage"
-				[planList] = 'planList'
-				[testDate] = 'testDate'		
-				(clearEvent) = 'clearAlertMessage()'
-			></app-test-form>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="updateTest()">SALVAR</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-  <div class="modal fade" id="removeModalToggle" aria-labelledby="removeModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="removeModalToggleLabel">{{removingAlertTopTitle}}</h1>
-		  <button (click)="cancelRemoveCommandButton()" id="removeCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive">
-			<div class="row">
-				<div class="col-sm-2">
-					<h3 style="text-align: center;"><i class="bi bi-exclamation-diamond danger-icon"></i></h3>
-				</div>
-				<div class="col-sm-10">
-					<h3>{{removingAlertMessage01}} <b><i>{{removingName}}?</i></b></h3><br>
-					<h5 *ngIf="removingObjects.length > 0">
-						<span class="warning">ATENÇÃO: </span>
-						<span style="color: darkgrey">{{removingAlertMessage02}}</span> <br>
-						<span style="color: gray; font-weight: bolder;">{{removingObjects}}</span>
-					</h5>
-				</div>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelRemoveCommandButton()">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="handleModalRemoveConfirm()">REMOVER</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>  
-  <div class="modal fade" id="injectorNumberFilterModalToggle" aria-labelledby="injectorNumberModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="injectorNumberFilterModalToggleLabel">FILTRAR NUMERO DO INJETOR</h1>
-		  <button id="injectorNumberFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div class="table-responsive filter-input">
-				<label for="">DIGITE O NUMERO DO INJETOR</label>
-				<div class="input-group input-group-lg">
-					<input type="text" class="form-control" 
-						placeholder="Número do injetor"
-						aria-label="Sizing example input" 
-						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="filteredInjectorNumber"
-					>
-				</div>
-				<app-alert-message 
-					[message]="alertMessage"
-					(clearEvent)="clearAlertMessage()"
-				></app-alert-message>
-			</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestInjectorNumberFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="sequenceFilterModalToggle" aria-labelledby="sequenceModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+   <app-remove-modal
+   		[message]="alertMessage"
+   		[removingName]="removingName"
+   		[removingEvent]="removingEvent"
+   		[removingObjects]="removingObjects"
+   		[removingAlertTopTitle]="removingAlertTopTitle"
+   		[removingAlertMessage01]="removingAlertMessage01"
+   		[removingAlertMessage02]="removingAlertMessage02"
+		(clearEvent)="clearAlertMessage()"
+		(cancelEvent)="cancelRemoveCommandButton()"
+		(confirmEvent)="handleModalRemoveConfirm()"
+   ></app-remove-modal>
+   <app-inj-number-filter-modal
+   		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+   		(filterEvent)="doInjectorNumberFilter($event)"
+   ></app-inj-number-filter-modal>
+    <div class="modal fade" id="sequenceFilterModalToggle" aria-labelledby="sequenceModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -267,10 +195,10 @@
 		</div>
 		<div class="modal-body">
 			<div class="table-responsive filter-input">
-				<label for="">DIGITE A SEQUÊNCIA</label>
+				<label for="">NOME DO CLIENTE</label>
 				<div class="input-group input-group-lg">
 					<input type="text" class="form-control" 
-						placeholder="Número de sequência"
+						placeholder="Digite o nome do cliente"
 						aria-label="Sizing example input" 
 						aria-describedby="inputGroup-sizing-lg" 
 						[(ngModel)]="filteredSequence"
@@ -391,10 +319,10 @@
 		</div>
 		<div class="modal-body">
 		<div class="table-responsive filter-input">
-			<label for="">DIGITE A ORDEM DE SERVIÇO</label>
+			<label for="">ORDEM DE SERVIÇO</label>
 			<div class="input-group input-group-lg">
 				<input type="text" class="form-control" 
-					placeholder="Ordem de serviço"
+					placeholder="Digite o número da OS"
 					aria-label="Sizing example input" 
 					aria-describedby="inputGroup-sizing-lg" 
 					[(ngModel)]="filteredServiceOrder"

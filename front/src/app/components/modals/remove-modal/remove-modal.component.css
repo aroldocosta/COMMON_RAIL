@@ -1,0 +1,9 @@
+@import "../../../../data-style.css";
+
+.danger-icon {
+    color: red !important;
+    /* margin-left: 0.2em;
+    margin-right: 0.6em; */
+    margin: auto;
+    font-size: 3em;
+ }
