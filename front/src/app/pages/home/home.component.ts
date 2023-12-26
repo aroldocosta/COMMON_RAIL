@@ -799,7 +799,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   doTestFieldFilters() {
     if(this.filteredField !== '') {
-      this.doTestDateFilter();
+      this.doDateFilter(this.filteredDate);
       this.doTestVehicleFilter();
       this.doTestInjectorFilter();      
       this.doTestInjectorFilter();
@@ -824,7 +824,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   doCustomerFilter(customer: string) {
-    debugger
     this.filteredCustomer = customer;
     if(this.filteredCustomer != '') {
       this.filteredField = 'customer';
@@ -834,7 +833,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     } 
   }
  
-  doTestDateFilter() {
+  doDateFilter(date: string) {
+    this.filteredDate = date;
     if(this.filteredDate != '') {
       this.filteredField = 'date';
       this.filteredList = this.testList

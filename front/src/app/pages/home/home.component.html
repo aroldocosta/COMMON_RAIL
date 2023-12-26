@@ -191,37 +191,11 @@
 		(clearEvent)="clearAlertMessage()"
 	  	(filterEvent)="doCustomerFilter($event)"
    ></app-customer-filter-modal>
-  <div class="modal fade" id="dateFilterModalToggle" aria-labelledby="dateFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="dateFilterModalToggleLabel">FILTRAR POR DATA</h1>
-		  <button id="dateFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">SELECIONE A DATA</label>
-			<div class="input-group input-group-lg">
-				<input type="date" class="form-control" 
-					placeholder="Data do teste"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredDate"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestDateFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
+   <app-date-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="doDateFilter($event)"
+   ></app-date-filter-modal>
   <div class="modal fade" id="injectorFilterModalToggle" aria-labelledby="injectorFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">

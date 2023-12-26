@@ -49,6 +49,7 @@ import { InjModelFilterModalComponent } from './components/modals/inj-model-filt
 import { CustomerFilterModalComponent } from './components/modals/customer-filter-modal/customer-filter-modal.component';
 import { ServiceOrderFilterModalComponent } from './components/modals/service-order-filter-modal/service-order-filter-modal.component';
 import { VehicleFilterModalComponent } from './components/modals/vehicle-filter-modal/vehicle-filter-modal.component';
+import { DateFilterModalComponent } from './components/modals/date-filter-modal/date-filter-modal.component';
 
 registerLocaleData(ptBr);
 
@@ -96,6 +97,7 @@ registerLocaleData(ptBr);
     CustomerFilterModalComponent,
     ServiceOrderFilterModalComponent,
     VehicleFilterModalComponent,
+    DateFilterModalComponent,
   ],
   imports: [
     FormsModule,
