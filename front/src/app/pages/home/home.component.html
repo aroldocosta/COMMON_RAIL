@@ -107,36 +107,17 @@
 			</section>
 	   </div>
    </div>                      
-   <div class="modal fade" id="planModalToggle" aria-labelledby="planModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">PLANOS</h1>
-		  <button (click)="cancelPlanCommandButton()" id="planModalCloseButton"type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-plan-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
-				[plan]="plan"
-				[alertMessage]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdatePlanEvent($event)"
-			></app-plan-form>
-			<app-plan-table
-				*ngIf="modalCommand == 'listing'" 
-				[list]="planList"
-				(commandEvent)="handlePlanCommandEvent($event)"
-			></app-plan-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelPlanCommandButton()">FECHAR</button>	
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handlePlanCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div>
+   <app-plan-modal
+		[modalCommand]="modalCommand" 
+		[plan]="plan"
+		[list]="planList"
+		[alertMessage]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdatePlanEvent($event)"
+		(commandEvent)="handlePlanCommandEvent($event)"
+		(cancelButtonEvent)="cancelPlanCommandButton()"
+		(commandButtonEvent)="handlePlanCommandButton()"
+   ></app-plan-modal>
   <div class="modal fade" id="vehicleModalToggle" aria-labelledby="vehicleModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
@@ -151,6 +132,7 @@
 				[editingVehicle]="editingVehicle"		
 				[alertMessage]="alertMessage"		
 				(clearEvent)="clearAlertMessage()"
+				(cancelEvent)="cancelPlanCommandButton()"
 				(updateEvent)="handleUpdateVehicleEvent($event)"
 			>
 			</app-vehicle-form>

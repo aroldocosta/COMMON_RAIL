@@ -29,7 +29,7 @@
         <li class="nav-item" *ngIf="logged.role == 'ADMIN'">             
           <div class="nav-item dropdown">
             <a class="a-link nav-link dropdown-toggle px-2 text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi bi-card-checklist"></i> USUÁRIOS
+              <i class="bi bi-person"></i> USUÁRIOS
             </a>
             <ul class="dropdown-menu">
               <li><a id="userMenuLink" class="a-link dropdown-item" data-bs-target="#userModalToggle" data-bs-toggle="modal" (click)="emitRequestUsersEvent()">

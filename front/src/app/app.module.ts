@@ -38,6 +38,11 @@ import { TopMessageComponent } from './components/commons/top-message/top-messag
 import { AsideComponent } from './components/commons/aside/aside.component';
 import { InjectorNumberReportComponent } from './components/reports/injector-number-report/injector-number-report.component';
 import { ServiceOrderReportComponent } from './components/reports/service-order-report/service-order-report.component';
+import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
+import { PlanModalComponent } from './components/modals/plan-modal/plan-modal.component';
+import { InjectorModalComponent } from './components/modals/injector-modal/injector-modal.component';
+import { WorkshopModalComponent } from './components/modals/workshop-modal/workshop-modal.component';
+import { VehicleModalComponent } from './components/modals/vehicle-modal/vehicle-modal.component';
 
 registerLocaleData(ptBr);
 
@@ -74,6 +79,11 @@ registerLocaleData(ptBr);
     UserTableComponent,
     WorkshopTableComponent,
     WorkshopFormComponent,
+    UserModalComponent,
+    PlanModalComponent,
+    InjectorModalComponent,
+    WorkshopModalComponent,
+    VehicleModalComponent,
   ],
   imports: [
     FormsModule,

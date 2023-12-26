@@ -27,12 +27,12 @@ export class PlanTableComponent {
     this.showEvent.emit();
   }
 
-  emitEditingEvent(plan: Plan) {
+  emitEditingEvent(plan: any) {
     let event = { command: 'editing', object: plan }
     this.commandEvent.emit(event);
   }
 
-  emitRemovingEvent(plan: Plan) {
+  emitRemovingEvent(plan: any) {
     let event = { command: 'removing', object: plan, objClass: 'Plan' }
     this.commandEvent.emit(event);
   }
