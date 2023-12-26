@@ -51,7 +51,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
   filteredInjectorModel: string = '';
-  // filteredVechiclePlate: string = '';
   filteredCustomer: string = '';
   filteredServiceOrder: string = '';
   removingName: string = '';
@@ -803,7 +802,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       this.doVehicleFilter(this.filteredVehicle);
       this.doInjectorModelFilter(this.filteredInjectorModel);      
       this.doCustomerFilter(this.filteredCustomer);
-      this.doTestFilteredOrderFilter();
+      this.doServiceOrderFilter(this.filteredServiceOrder);
       this.doInjectorNumberFilter(this.filteredInjectorNumber);
     }
   }
@@ -841,7 +840,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       document.getElementById("dateFilterCloseModalButton")?.click();  
     }
   }
-  
+
   doInjectorModelFilter(model: string) {
     this.filteredInjectorModel = model;
     if(this.filteredInjectorModel != '') {
@@ -863,7 +862,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     }
   }
 
-  doTestFilteredOrderFilter() {
+  doServiceOrderFilter(serviceOrder: string) {
+    this.filteredServiceOrder = serviceOrder;
     if(this.filteredServiceOrder != '') {
       this.filteredField = 'serviceOrder';
       this.filteredList = this.testList

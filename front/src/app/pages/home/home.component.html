@@ -206,36 +206,10 @@
 		(clearEvent)="clearAlertMessage()"
 		(filterEvent)="doVehicleFilter($event)"
    ></app-vehicle-filter-modal>
-   <div class="modal fade" id="serviceOrderFilterModalToggle" aria-labelledby="serviceOrderFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="serviceOrderFilterModalToggleLabel">FILTRAR POR ORDEM DE SERVIÇO</h1>
-		  <button id="serviceOrderFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">ORDEM DE SERVIÇO</label>
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" 
-					placeholder="Digite o número da OS"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredServiceOrder"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestFilteredOrderFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>      
+   <app-service-order-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="doServiceOrderFilter($event)"
+   ></app-service-order-filter-modal>
 </div>
 <app-footer></app-footer>
