@@ -801,8 +801,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(this.filteredField !== '') {
       this.doDateFilter(this.filteredDate);
       this.doTestVehicleFilter();
-      this.doTestInjectorFilter();      
-      this.doTestInjectorFilter();
+      this.doInjectorModelFilter(this.filteredInjectorModel);      
       this.doCustomerFilter(this.filteredCustomer);
       this.doTestFilteredOrderFilter();
       this.doInjectorNumberFilter(this.filteredInjectorNumber);
@@ -843,7 +842,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     }
   }
 
-  doTestInjectorFilter() {
+  doInjectorModelFilter(model: string) {
+    this.filteredInjectorModel = model;
     if(this.filteredInjectorModel != '') {
       this.filteredField = 'injectorModel';
       this.filteredList = this.testList
