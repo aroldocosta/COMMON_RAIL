@@ -201,38 +201,12 @@
 		(clearEvent)="clearAlertMessage()"
 		(filterEvent)="doInjectorModelFilter($event)"
    ></app-inj-model-filter-modal>
-  <div class="modal fade" id="vehicleFilterModalToggle" aria-labelledby="vehicleFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="vehicleFilterModalToggleLabel">FILTRAR POR VEÍCULO</h1>
-		  <button id="vehicleFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">DIGITE A PLACA</label>
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" 
-					placeholder="Placa do veículo"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredVechiclePlate"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestVehicleFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="serviceOrderFilterModalToggle" aria-labelledby="serviceOrderFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+   <app-vehicle-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="doVehicleFilter($event)"
+   ></app-vehicle-filter-modal>
+   <div class="modal fade" id="serviceOrderFilterModalToggle" aria-labelledby="serviceOrderFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
 		<div class="modal-header">

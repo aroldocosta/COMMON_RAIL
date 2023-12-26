@@ -6,9 +6,9 @@
                     data-bs-target="#injectorNumberFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-1-square"></i> NUM / [SEQ]</a>
                     <a *ngIf="filteredField == 'injectorNumber'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> NUM</a>
                 </th>
-                <th><a *ngIf="filteredField != 'sequence'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por sequência" 
-                    data-bs-target="#sequenceFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-person-check"></i> CLIENTE</a>
-                    <a *ngIf="filteredField == 'sequence'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> SEQ</a>
+                <th><a *ngIf="filteredField != 'customer'"  class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por sequência" 
+                    data-bs-target="#customerFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-person-check"></i> CLIENTE</a>
+                    <a *ngIf="filteredField == 'customer'" class="a-link nav-link px-2 text-primary"><i class="bi bi-funnel" (click)="emitResetFilterEvent()"></i> CLIENTE</a>
                 </th>
                 <th><a *ngIf="filteredField != 'serviceOrder'" class="a-link nav-link px-2 text-secondary" href="#" onclick="return null" title="Filtrar por ordem de serviço" 
                     data-bs-target="#serviceOrderFilterModalToggle" data-bs-toggle="modal"><i class="bi bi-receipt"></i> OS</a>

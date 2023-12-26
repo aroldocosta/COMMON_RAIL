@@ -51,7 +51,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   filteredVehicle: string = 'ALL';
   filteredInjector: string = 'ALL';
   filteredInjectorModel: string = '';
-  filteredVechiclePlate: string = '';
+  // filteredVechiclePlate: string = '';
   filteredCustomer: string = '';
   filteredServiceOrder: string = '';
   removingName: string = '';
@@ -800,7 +800,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   doTestFieldFilters() {
     if(this.filteredField !== '') {
       this.doDateFilter(this.filteredDate);
-      this.doTestVehicleFilter();
+      this.doVehicleFilter(this.filteredVehicle);
       this.doInjectorModelFilter(this.filteredInjectorModel);      
       this.doCustomerFilter(this.filteredCustomer);
       this.doTestFilteredOrderFilter();
@@ -841,7 +841,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       document.getElementById("dateFilterCloseModalButton")?.click();  
     }
   }
-
+  
   doInjectorModelFilter(model: string) {
     this.filteredInjectorModel = model;
     if(this.filteredInjectorModel != '') {
@@ -852,11 +852,13 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     }
   }
 
-  doTestVehicleFilter() {
-    if(this.filteredVechiclePlate != '') {
+
+  doVehicleFilter(plate: string) {
+    this.filteredVehicle = plate;
+    if(this.filteredVehicle != '') {
       this.filteredField = 'vehicle';
       this.filteredList = this.testList
-      .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
+      .filter(t => t.vehiclePlate == this.filteredVehicle);
       document.getElementById("vehicleFilterCloseModalButton")?.click(); 
     }
   }
