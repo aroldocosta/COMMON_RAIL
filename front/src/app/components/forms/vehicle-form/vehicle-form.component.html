@@ -1,0 +1,56 @@
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-6">
+        <label class="input" for="">PROPRIETÁRIO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o proprietário"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="vehicle.owner"
+            >
+        </div>
+    </div>
+    <div class="col-6">
+        <label class="input" for="">PLACA</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite a placa"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="vehicle.plate"
+            >
+        </div>
+    </div>    
+</div>
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-6">
+        <label class="input" for="">MODELO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o modelo"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="vehicle.model"
+            >
+        </div>
+    </div>      
+    <div class="col-6">
+        <label class="input" for="">ANO/MODELO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o ano/modelo"
+                (input)="emitUpdateVehicleEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="vehicle.yearModel"
+            >
+        </div>
+    </div> 
+</div>
+<app-alert-message 
+    [message]="alertMessage"
+    (clearEvent)="emitClearMessage()"
+></app-alert-message>

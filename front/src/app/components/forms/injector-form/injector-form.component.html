@@ -1,0 +1,44 @@
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-sm-12 col-md-6">
+        <label class="input" for="">MODELO</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o modelo"
+                (input)="emitUpdateInjectorEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="injector.model"
+            >
+        </div>
+    </div> 
+    <div class="col-sm-12 col-md-6">
+        <label class="input" for="">PLANO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateInjectorEvent()" 
+                [(ngModel)]="injector.planId" 
+            >
+            <option value="" selected>Selecione o plano</option>
+            <option *ngFor="let p of planList" [value]="p.id">{{p.code}}</option>
+            </select>
+        </div>
+    </div>     
+</div>
+<div class="row" style="padding: 2em 0">
+    <div class="col-12">
+        <label class="input" for="">DESCRIÇÃO</label>
+        <div class="input-group input-group-lg">
+            <textarea type="text" class="form-control"
+                placeholder="Descrição" 
+                (input)="emitUpdateInjectorEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="injector.description"
+            ></textarea>
+        </div>
+    </div>
+</div>
+<app-alert-message 
+    [message]="alertMessage"
+    (clearEvent)="emitClearMessage()"
+></app-alert-message>

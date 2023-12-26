@@ -1,18 +1,23 @@
 -- Usuários
-insert into users (id, name, login, password, role) 
+insert into workshop (id, name, description) 
+values ('recodiesel_id', 'RECODIESEL', 'Descricao da oficina');
+
+insert into users (id, name, login, password, role, workshop_id) 
 values ('f8d1e2e0-739a-4af8-b72a-79044ccc03f0', 
 	    'Admin', 
 	    'admin@railcontrol.com', 
 	    '$2a$10$xDhFXJM95Ok4W2b9aLpoz.j5MZkml8IRPyshmR9zI9qdpYxV/mifu', 
-	    'ADMIN'
+	    'ADMIN',
+	    'recodiesel_id'
 );
 
-insert into users (id, name, login, password, role) 
+insert into users (id, name, login, password, role, workshop_id) 
 values ('2933d5c4-3b47-4355-acf9-b24e358740d1', 
 	    'Operador', 
 	    'oper@railcontrol.com', 
 	    '$2a$10$JFwfkqn3CH3zvuUC4M9VzuVBCpqrnCPE5Hi6JUz1LVeCrBvKlYZNa', 
-	    'OPERATOR'
+	    'OPERATOR',
+	    'recodiesel_id'
 );
 
  -- Veiculos

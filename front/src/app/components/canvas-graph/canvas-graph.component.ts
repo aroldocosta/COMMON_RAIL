@@ -1,14 +1,14 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Plan } from 'src/app/model/plan.model';
 import { Test } from 'src/app/model/test.model';
-import { CommonsComponent } from '../commons/commons.component';
+import { CommonPageComponent } from '../commons/common-page/common-page.component';
 
 @Component({
   selector: 'app-canvas-graph',
   templateUrl: './canvas-graph.component.html',
   styleUrls: ['./canvas-graph.component.css']
 })
-export class CanvasGraphComponent extends CommonsComponent {
+export class CanvasGraphComponent extends CommonPageComponent {
 
   @Input() valDeb: string = '';
   @Input() maxDeb: string = '';

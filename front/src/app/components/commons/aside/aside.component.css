@@ -1,0 +1,79 @@
+@import "../../../../data-style.css";
+
+
+.side-logo-img {
+	margin: 0.5em auto;
+    border-style: solid;
+    border-color: #f0f0f0;
+    border-radius: 5px;
+} 
+
+.top-title {
+	text-align: center;
+	color: darkgrey;
+	font-size: 1.4em;
+	margin-top: 1em;
+}
+
+h4 {
+	text-align: center;
+}
+
+th, td {
+	text-align: right;
+}
+
+h4, th {
+	color: #aaaaaa;
+	font-size: 1.5em;
+	font-weight: 300;
+}
+
+td {
+	color: darkgray;
+	font-size: 1.5em;
+	font-weight: 500;
+}
+
+td.infinity {
+	padding-right: 0.5em;
+}
+
+p {
+	text-align: center;
+	font-size: small;
+}
+
+.card-body {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+#comments {
+	background-color: #eeeeee;
+	border-radius: 10px;
+	margin: 1.8em 1em 1em 0;
+	height: 12em;
+}
+
+
+.comments {
+	color: #202020;
+	text-align: center;
+	padding-top: 0.5em
+}
+
+.arrow-left, .arrow-right {
+	bottom: 0;
+	font-size: 2.5em;
+	text-align: center;
+	padding-bottom: 0.5em;
+}
+
+@media screen and (max-width: 768px) {
+	.card {
+		height: 28em !important;
+	}
+}

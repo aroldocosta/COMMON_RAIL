@@ -1,0 +1,31 @@
+<div class="modal fade" id="planModalToggle" aria-labelledby="planModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">PLANOS</h1>
+		  <button (click)="emitCancelButtonEvent()" id="planModalCloseButton"type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<hr class="colorgraph">
+			<app-plan-form
+				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
+				[plan]="plan"
+				[alertMessage]="alertMessage"
+				[modalCommandButton]="modalCommandButton"
+				(clearEvent)="clearAlertMessage()"
+				(updateEvent)="emitUpdatePlanEvent()"
+			></app-plan-form>
+			<app-plan-table
+				*ngIf="modalCommand == 'listing'" 
+				[list]="list"
+				(commandEvent)="emitCommandEvent($event)"
+			></app-plan-table>
+			<hr class="colorgraph">
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" (click)="emitCancelButtonEvent()">FECHAR</button>	
+		  	<button class="btn btn-outline-primary btn-modal" (click)="emitCommandButtonEvent()">{{modalCommandButton}}</button>
+		</div>
+	  </div>
+	</div>
+  </div>

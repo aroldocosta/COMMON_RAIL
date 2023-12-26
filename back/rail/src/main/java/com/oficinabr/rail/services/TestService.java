@@ -12,10 +12,12 @@ import com.oficinabr.rail.entity.Injector;
 import com.oficinabr.rail.entity.Plan;
 import com.oficinabr.rail.entity.Test;
 import com.oficinabr.rail.entity.Vehicle;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.InjectorRepository;
 import com.oficinabr.rail.repository.PlanRepository;
 import com.oficinabr.rail.repository.TestRepository;
 import com.oficinabr.rail.repository.VehicleRepository;
+import com.oficinabr.rail.repository.WorkshopRepository;
 
 @Service
 public class TestService {
@@ -31,9 +33,24 @@ public class TestService {
 	@Autowired
 	private InjectorRepository injectorRepository;
 	
+	@Autowired
+	private WorkshopRepository workshopRepository;
+	
 	public ResponseEntity<List<TestDTO>> getAll() {
 		try {
 			List<TestDTO> resp = repository.findAllByOrderByDateDesc().stream().map(TestDTO::new).toList();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	public ResponseEntity<List<TestDTO>> getByWorkshop(String id) {
+		try {
+			List<TestDTO> resp = repository.findAllByOrderByDateDesc().stream()
+					.map(TestDTO::new)
+					.filter(t -> t.workshop().id().equals(id))
+					.toList();
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
@@ -57,6 +74,9 @@ public class TestService {
 			Integer sequence = (max == null) ? 1 : max.getSequence() + 1;
 			test.setSequence(sequence);
 			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			test.setWorkshop(workshop);
+			
 			TestDTO resp = new TestDTO(repository.save(test));
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
@@ -67,6 +87,10 @@ public class TestService {
 	public ResponseEntity<TestDTO> update(TestDTO dto) {
 		try {
 			Test test = createTest(dto);
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			test.setWorkshop(workshop);
+			
 			TestDTO resp = new TestDTO(repository.save(test));
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {

@@ -1,0 +1,71 @@
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-sm-12 col-md-12">
+        <label class="input" for="">NOME</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o nome"
+                (input)="emitUpdateUserEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="user.name"
+            >
+        </div>
+    </div>     
+</div>
+<div class="row" style="padding: 2em 0"> 
+    <div class="col-sm-12 col-md-6">
+        <label class="input" for="">OFICINA</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateUserEvent()" 
+                [(ngModel)]="user.workshop.id" 
+            >
+            <option value="" selected>Selecione a oficina</option>
+            <option *ngFor="let w of workshopList" [value]="w.id">{{w.name}}</option>
+            </select>                
+        </div> 
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <label class="input" for="">FUNÇÃO</label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                (change)="emitUpdateUserEvent()" 
+                [(ngModel)]="user.role" 
+            >
+            <option value="" selected>Selecione a função</option>
+            <option value="OPERATOR">OPERATOR</option>
+            <option value="ADMIN">ADMIN</option>
+            </select>
+        </div>
+    </div>    
+</div>
+<div class="row" style="padding: 2em 0">
+    <div class="col-sm-12 col-md-6">
+        <label class="input" for="">LOGIN</label>
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" 
+                placeholder="Digite o nome"
+                (input)="emitUpdateUserEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="user.login"
+            >
+        </div>
+    </div> 
+    <div class="col-sm-12 col-md-6">
+        <label class="input" for="">SENHA</label>
+        <div class="input-group input-group-lg">
+            <input type="password" class="form-control" 
+                placeholder="Digite o nome"
+                (input)="emitUpdateUserEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="user.password"
+            >
+        </div>
+    </div> 
+</div>
+<app-alert-message 
+    [message]="alertMessage"
+    (clearEvent)="emitClearMessage()"
+></app-alert-message>

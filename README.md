@@ -24,7 +24,7 @@
 - 5 (x) Na tela de injetores altera mais nao apaga, pergunta se quer apagar mais nao apaga
 - 6 (x) Ao criar um novo teste, traz todos valores lidos do teste anterior (Concordamos em ser assim mesmo)
 
-### ----------------------10/12/23----------------------
+### ----------------------10/12/23---------------------
 - 7 (x) Na tela principal nao apaga um teste
 - 8 (x) No celular nao aparece o botao salvar teste, aparece e NOVO TESTE, mais salva (Hora da certo e Hora da errado)
 
@@ -32,10 +32,10 @@
 - 9 (x) No celular na tela de criacao de teste ao selecionar o injetor nao ta sugerindo o plano
 - 10 (x) Ao criar um um teste EX: 1/[] nao ta vindo o numero de sequencia
 
-### ----------------------12/12/23----------------------
+### ----------------------12/12/23---------------------
 - 11 () Nas telas de cadastro criar bloqueio pra nao cadastrar CODIGO, PLACA E MODELO REPETIDO
 
-### ‐---------‐-----------13/12/23‐-----------------------------
+### ‐---------‐-----------13/12/23‐--------------------
 - 12 () Ao selecionar sequencia 1 ou sequencia 2 de um teste precisa selecionar duas vezes
 - 13 () inserir filtros em mais de uma coluna au mesmo tempo
 - 14 () Substituir a cor laranja pela cor verde escuro 41AE1E
@@ -47,7 +47,6 @@
 - 3 (x) Diminuir a largura das colunas: INJETOR, SEQUENCIA, ORD. SERVICO, EDT e REM, para nao precisar barra de rolagem em baixo.
 - 4 (x) Ao salvar um teste manter a ordem dos injetores 1, 2, 3, 4
 
-### ----------------------10/12/23----------------------- 
+### ----------------------10/12/23---------------------- 
 - 5 (x) Estando na tela de edicao de teste e importante ver qual e a sequencia
 - 6 (x) Estando na tela de edicao de teste e importante ter um botao "VOLTAR" ao lado MODELO INJETOR
-

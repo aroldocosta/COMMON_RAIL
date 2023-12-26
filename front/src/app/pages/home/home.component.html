@@ -3,6 +3,7 @@
 	[testCommand]="testCommand"
 	(requestPlansEvent)="handlePlanLinkEvent()"
 	(requestVehiclesEvent)="handleVehicleLinkEvent()"
+	(requestWorkshopsEvent)="handleWorkshopLinkEvent()"
 	(requestInjectorsEvent)="handleInjectorLinkEvent()"
 	(requestUsersEvent)="handleUserLinkEvent()"
 	(reportEvent)="setReportFile($event)"
@@ -106,131 +107,68 @@
 			</section>
 	   </div>
    </div>                      
-   <div class="modal fade" id="planModalToggle" aria-labelledby="planModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">PLANOS</h1>
-		  <button (click)="cancelPlanCommandButton()" id="planModalCloseButton"type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-plan-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
-				[plan]="plan"
-				[alertMessage]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdatePlanEvent($event)"
-			></app-plan-form>
-			<app-plan-table
-				*ngIf="modalCommand == 'listing'" 
-				[list]="planList"
-				(commandEvent)="handlePlanCommandEvent($event)"
-			></app-plan-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelPlanCommandButton()">FECHAR</button>	
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handlePlanCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-  <div class="modal fade" id="vehicleModalToggle" aria-labelledby="vehicleModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="vehicleModalToggleLabel">VEÍCULOS</h1>
-		  <button (click)="cancelVehicleCommandButton()" id="vehicleModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-vehicle-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[editingVehicle]="editingVehicle"		
-				[alertMessage]="alertMessage"		
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdateVehicleEvent($event)"
-			>
-			</app-vehicle-form>
-			<app-vehicle-table
-				*ngIf="modalCommand == 'listing'"				
-				[list]="vehicleList"
-				(commandEvent)="handleVehicleCommandEvent($event)"				
-			>
-			</app-vehicle-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelVehicleCommandButton()">FECHAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handleVehicleCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-  <div class="modal fade" id="injectModalToggle" aria-labelledby="injectModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="injectModalToggleLabel">INJETORES</h1>
-		  <button (click)="cancelInjectorCommandButton()" id="injectorModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-injector-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[planList]="planList"
-				[alertMessage]="alertMessage"
-				[editingInjector]="editingInjector"
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdateInjectorEvent($event)"
-			>
-			</app-injector-form>
-			<app-injector-table
-				*ngIf="modalCommand == 'listing'"
-				[list] = 'injectorList'
-				(commandEvent)="handleInjectorCommandEvent($event)"
-			></app-injector-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelInjectorCommandButton()">FECHAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handleInjectorCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div>  
-  <div class="modal fade" id="userModalToggle" aria-labelledby="userModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="injectModalToggleLabel">USUÁRIOS</h1>
-		  <button (click)="cancelUserCommandButton()" id="userModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-user-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[editingUser]="editingUser"
-				[alertMessage]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdateUserEvent($event)"
-			>
-			</app-user-form>
-			<app-user-table
-				*ngIf="modalCommand == 'listing'"
-				[list] = 'userList'
-				(commandEvent)="handleUserCommandEvent($event)"
-			></app-user-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelUserCommandButton()">FECHAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handleUserCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div>
+   <app-plan-modal
+		[plan]="plan"
+		[list]="planList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdatePlanEvent($event)"
+		(commandEvent)="handlePlanCommandEvent($event)"
+		(cancelButtonEvent)="cancelPlanCommandButton()"
+		(commandButtonEvent)="handlePlanCommandButton()"
+   ></app-plan-modal>
+   <app-vehicle-modal
+		[vehicle]="vehicle"
+		[list]="vehicleList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdateVehicleEvent($event)"
+		(commandEvent)="handleVehicleCommandEvent($event)"
+		(cancelButtonEvent)="cancelVehicleCommandButton()"
+		(commandButtonEvent)="handleVehicleCommandButton()"
+   ></app-vehicle-modal>
+   <app-injector-modal
+		[injector]="injector"
+		[list]="injectorList"
+		[planList]="planList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdateInjectorEvent($event)"
+		(commandEvent)="handleInjectorCommandEvent($event)"
+		(cancelButtonEvent)="cancelInjectorCommandButton()"
+		(commandButtonEvent)="handleInjectorCommandButton()"
+   ></app-injector-modal>
+   <app-user-modal
+		[user]="user"
+		[list]="userList"
+		[workshopList]="workshopList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdateUserEvent($event)"
+		(commandEvent)="handleUserCommandEvent($event)"
+		(cancelButtonEvent)="cancelUserCommandButton()"
+		(commandButtonEvent)="handleUserCommandButton()"
+   ></app-user-modal>
+   <app-workshop-modal
+		[workshop]="workshop"
+		[list]="workshopList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdateWorkshopEvent($event)"
+		(commandEvent)="handleWorkshopCommandEvent($event)"
+		(cancelButtonEvent)="cancelWorkshopCommandButton()"
+		(commandButtonEvent)="handleWorkshopCommandButton()"
+   ></app-workshop-modal>
   <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">

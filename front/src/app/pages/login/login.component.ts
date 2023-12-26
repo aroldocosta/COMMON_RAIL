@@ -2,7 +2,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
+import { TopMessageComponent } from 'src/app/components/commons/top-message/top-message.component';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -37,8 +37,6 @@ export class LoginComponent implements OnInit {
   requestLogin() {
     let login = this.login.value;
     let password = this.password.value
-    this.router.navigateByUrl("/");
-
      this.service.resquestLogin(login, password)
      .subscribe({
         next: ( auth ) => {

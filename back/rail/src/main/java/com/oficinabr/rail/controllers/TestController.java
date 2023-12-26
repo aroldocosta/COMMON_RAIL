@@ -30,6 +30,12 @@ public class TestController {
 		return service.getAll();
 	}
 	
+	@GetMapping("/workshop/{id}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<List<TestDTO>> getByWorkshop(@PathVariable("id") String id) {
+		return service.getByWorkshop(id);
+	}
+	
 	@GetMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<TestDTO> get(@PathVariable("id") String id) {

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.VehicleDTO;
 import com.oficinabr.rail.entity.Vehicle;
-import com.oficinabr.rail.repository.UserRepository;
 import com.oficinabr.rail.repository.VehicleRepository;
 
 @Service

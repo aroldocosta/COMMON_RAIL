@@ -34,6 +34,10 @@ public class Test {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "workshop_id")
+	private Workshop workshop;
 
 	@Column(name = "injector_number")
 	private Integer injectorNumber;
@@ -152,6 +156,14 @@ public class Test {
 
 	public void setPlan(Plan plan) {
 		this.plan = plan;
+	}
+
+	public Workshop getWorkshop() {
+		return workshop;
+	}
+
+	public void setWorkshop(Workshop workshop) {
+		this.workshop = workshop;
 	}
 
 	public Integer getInjectorNumber() {

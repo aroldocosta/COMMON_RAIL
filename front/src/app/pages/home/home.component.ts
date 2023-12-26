@@ -5,35 +5,35 @@ import { LoginService } from 'src/app/services/login.service';
 import { PlanService } from 'src/app/services/plan.service';
 import { formatNumber} from '@angular/common';
 import { InjectorService } from 'src/app/services/injector.service';
-import { AsideComponent } from 'src/app/components/aside/aside.component';
 import { TestService } from 'src/app/services/test.service';
 import { VehicleService } from 'src/app/services/vehicle.service';
 import { Injector } from 'src/app/model/injector.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
 import { UserService } from 'src/app/services/user.service';
-import { TopMessageComponent } from 'src/app/components/top-message/top-message.component';
 import { User } from 'src/app/model/user.model';
 import { Router } from '@angular/router';
-import { CommonsComponent } from 'src/app/components/commons/commons.component';
-import { ReportService } from 'src/app/services/report.service';
+import { Workshop } from 'src/app/model/workshop.model';
+import { WorkshopService } from 'src/app/services/workshop.service';
+import { TopMessageComponent } from 'src/app/components/commons/top-message/top-message.component';
+import { AsideComponent } from 'src/app/components/commons/aside/aside.component';
+import { CommonPageComponent } from 'src/app/components/commons/common-page/common-page.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent extends CommonsComponent implements OnInit{
+export class HomeComponent extends CommonPageComponent implements OnInit{
 
   @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
   @ViewChild(AsideComponent) aside: any
   @Input() injectorList: Injector[] = [];
+  @Input() workshopList: Workshop[] = [];
   @Input() vehicleList: Vehicle[] = [];
   @Input() planList: Plan[] = [];
   @Input() userList: User[] = [];
+
   report: any = 'Aguarde...';
-  editingVehicle = new Vehicle();
-  editingInjector = new Injector();
-  editingUser = new User();
   testPayment = '';
   testPlanId = '';
   testInjectorId = '';
@@ -62,6 +62,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   removingAlertMessage02: string = '';
   currentModalLink: string = '';
   serviceOrder: string = '';
+  currentWorkshop: any;
 
   tabIndex = 0;
   currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
@@ -76,35 +77,43 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   constructor(
     private router: Router,
+    private login: LoginService,
     private userService: UserService,
     private testService: TestService,      
     private planService: PlanService,
-    private loginService: LoginService,
-    private reportService: ReportService,
     private vehicleService: VehicleService,
-    private injectorService: InjectorService
+    private injectorService: InjectorService,
+    private workshopService: WorkshopService
     ) {
       super();
   }
 
   ngOnInit(): void {
-    if(!this.loginService.isAuthenticated()) {
-      this.router.navigateByUrl('/login');
+    if(this.login.getAuthData() != null) {
+      const userId = this.login.getAuthId();  
+      this.userService.getWorkshop(userId).subscribe({ 
+        next: workshop => {
+          this.currentWorkshop = workshop;
+          this.requestUsers();
+          this.requestTests();
+          this.requestPlans();
+          this.requestVehicles();
+          this.requestInjectors();
+          this.filteredDateIni = this.getFormattedDate(new Date());
+          this.filteredDateEnd = this.getFormattedDate(new Date()); 
+          this.test.planId = '0';
+          this.test.vehiclePlate = '0';
+          this.test.injectorModel = '0';
+        },
+        error: err => {
+          this.login.setAuthData(null);
+          this.goToLink('/login', this.login, this.router);
+        }
+      })
     } else {
-      this.requestUsers();
-      this.requestTests();
-      this.requestPlans();
-      this.requestVehicles();
-      this.requestInjectors();
-      this.filteredDateIni = this.getFormattedDate(new Date());
-      this.filteredDateEnd = this.getFormattedDate(new Date()); 
-      // this.filteredDateTest = this.getFormattedDate(new Date());
-      this.test.planId = '0';
-      this.test.vehiclePlate = '0';
-      this.test.injectorModel = '0';
+      this.login.setAuthData(null);
+      this.goToLink('/login', this.login, this.router);
     }
-
-    //let modal = document.getElementById('planModalToggle');
   }
 
   /* ---------------- Remove Command Button Handlers ----------------- */
@@ -182,7 +191,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingVehicle = new Vehicle();
+      this.vehicle = new Vehicle();
     } else if(this.modalCommand == 'creating') {
       this.saveVehicle();
     } else if(this.modalCommand == 'editing') {
@@ -200,17 +209,19 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     }
   }
 
-  /* ------------ Injector Command Button Handlers ------------- */
+  /* ------------ User Command Button Handlers ------------- */
   handleUserCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingUser = new User();
-      this.requestUsers();
+      this.user = new User();
+      this.requestWorkshops();
     } else if(this.modalCommand == 'creating') {
       this.saveUser();
+      this.requestUsers();
     } else if(this.modalCommand == 'editing') {
       this.updateUser();
+      this.requestUsers();
     }
   }
 
@@ -223,12 +234,12 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       this.modalCommandButton = 'NOVO'
     }
   }
-  /*------------------------------------------------------------*/
+  /* ------------ Injector Command Button Handlers ------------- */
   handleInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingInjector = new Injector();
+      this.injector = new Injector();
       this.requestPlans();
     } else if(this.modalCommand == 'creating') {
       this.saveInjector();
@@ -240,6 +251,28 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   cancelInjectorCommandButton() {
     if(this.modalCommand == 'listing') {
       document.getElementById('injectorModalCloseButton')?.click();
+      this.currentModalLink = '';
+    } else {
+      this.modalCommand = 'listing';
+      this.modalCommandButton = 'NOVO'
+    }
+  }
+  /* ------------ Workshop Command Button Handlers ------------- */
+  handleWorkshopCommandButton() {
+    if(this.modalCommand == 'listing') {
+      this.modalCommand = 'creating';
+      this.modalCommandButton = 'SALVAR';
+      this.workshop = new Workshop();
+    } else if(this.modalCommand == 'creating') {
+      this.saveWorkshop();
+    } else if(this.modalCommand == 'editing') {
+      this.updateWorkshop();
+    }
+  }
+
+  cancelWorkshopCommandButton() {
+    if(this.modalCommand == 'listing') {
+      document.getElementById('workshopModalCloseButton')?.click();
       this.currentModalLink = '';
     } else {
       this.modalCommand = 'listing';
@@ -264,39 +297,43 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   handleModalRemoveConfirm() {
-    let link: any;
-    let service: any;
+    let currentMenulink: any;
+    let currentService: any;
 
     let objectId = this.removingEvent.object.id;
     let objectClass = this.removingEvent.objClass;
  
     if(objectClass == 'Plan') {
-      service = <PlanService>this.planService;
-      link = document.getElementById("planMenuLink");
+      currentService = <PlanService>this.planService;
+      currentMenulink = document.getElementById("planMenuLink");
     } else if(objectClass == 'Test') {
       this.handleTestRemoveConfirm(this.removingEvent.object);
       return;
     } else if(objectClass == 'Vehicle') {
-      link = document.getElementById("vehicleMenuLink");
-      service = <VehicleService>this.vehicleService;
+      currentMenulink = document.getElementById("vehicleMenuLink");
+      currentService = <VehicleService>this.vehicleService;
     } else if(objectClass == 'Injector') {
-      link = document.getElementById("injectorMenuLink");
-      service = <InjectorService>this.injectorService;
-    }  else if(objectClass == 'User') {
-      service = <UserService>this.userService;
+      currentMenulink = document.getElementById("injectorMenuLink");
+      currentService = <InjectorService>this.injectorService;
+    } else if(objectClass == 'User') {
+      currentMenulink = document.getElementById("userMenuLink");
+      currentService = <UserService>this.userService;
+    } else if(objectClass == 'Workshop') {
+      currentMenulink = document.getElementById("workshopMenuLink");
+      currentService = <WorkshopService> this.workshopService;
     }
 
-    service.remove(objectId).subscribe({
+    currentService.remove(objectId).subscribe({
       next: (resp: any) => {
         document.getElementById("removeCloseModalButton")?.click();
-        link?.click();
+        currentMenulink?.click();
         this.modalCommand = 'listing';
         this.modalCommandButton = "NOVO";
       },
       error: (err: any) => {
         this.alertMessage = "Ação não permitida, entre em contato com a gerência."
       }
-    })
+    });
   }
 /*--------------------------------------------------------------*/
 
@@ -414,6 +451,22 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     })
   }
 
+  handleWorkshopLinkEvent() {
+    this.currentModalLink = 'WorkshopMenuLink';
+    this.requestWorkshops();
+  }
+
+  requestWorkshops() {
+    this.workshopService.list().subscribe({
+      next: list => {
+        this.workshopList = list;
+      },
+      error: err => {
+        console.log("Error: ", err);
+      }
+    });
+  }
+
   // --------------------------------------------------------
 
 
@@ -453,6 +506,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   saveTest() {
     let today = new Date();
     this.test.date = this.getFormattedDate(today);
+    this.test.workshop = this.currentWorkshop;
     this.testService.create(this.test).subscribe({
       next: resp => {
         //document.getElementById("newCloseModalButton")?.click();
@@ -465,6 +519,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateTest() { 
+    this.test.workshop = this.currentWorkshop;
     this.testService.update(this.test).subscribe({
       next: resp => {
         this.handleTabbingTestEvent(this.currentTab);
@@ -523,7 +578,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   saveVehicle() {
-    this.vehicleService.create(this.editingVehicle).subscribe({
+    this.vehicleService.create(this.vehicle).subscribe({
       next: resp => {
         this.vehicleService.list().subscribe({
           next: list => {
@@ -545,7 +600,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateVehicle() {
-    this.vehicleService.update(this.editingVehicle).subscribe({
+    this.vehicleService.update(this.vehicle).subscribe({
       next: resp => {
         this.vehicleService.list().subscribe({
           next: list => {
@@ -567,7 +622,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   saveInjector() {
-    this.injectorService.create(this.editingInjector).subscribe({
+    this.injectorService.create(this.injector).subscribe({
       next: resp => {
         this.injectorService.list().subscribe({
           next: list => {
@@ -589,7 +644,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateInjector() {
-    this.injectorService.update(this.editingInjector).subscribe({
+    this.injectorService.update(this.injector).subscribe({
       next: resp => {
         this.injectorService.list().subscribe({
           next: list => {
@@ -611,7 +666,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   saveUser() {
-    this.userService.create(this.editingUser).subscribe({
+    this.userService.create(this.user).subscribe({
       next: resp => {
         this.userService.list().subscribe({
           next: list => {
@@ -633,13 +688,13 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   updateUser() {
-    debugger
-    this.userService.update(this.editingUser).subscribe({
+    
+    this.userService.update(this.user).subscribe({
       next: resp => {
-        debugger
+        
         this.userService.list().subscribe({
           next: list => {
-            debugger
+            
             this.userList = list;
             this.modalCommand = 'listing';
             this.modalCommandButton = 'NOVO';
@@ -648,11 +703,55 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
-        debugger
+        
         if(err.status == 401) {
           this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
         } else if(err.status == 409) {
           this.alertMessage = 'Erro: Login já cadastrado!'
+        }
+      }
+    })
+  }
+
+  saveWorkshop() {
+    this.workshopService.create(this.workshop).subscribe({
+      next: resp => {
+        this.workshopService.list().subscribe({
+          next: list => {
+            this.workshopList = list;
+            this.modalCommand = 'listing';
+            this.modalCommandButton = 'NOVO';
+          }
+        })
+      },
+      error: err => {      
+        console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Oficina já cadastrada!'
+        }
+      }
+    })
+  }
+
+  updateWorkshop() {
+    this.workshopService.update(this.workshop).subscribe({
+      next: resp => {
+        this.workshopService.list().subscribe({
+          next: list => {
+            this.workshopList = list;
+            this.modalCommand = 'listing';   
+            this.modalCommandButton = 'NOVO';
+          }
+        })
+      },
+      error: err => {
+        console.log("Error: ", err);
+        if(err.status == 401) {
+          this.alertMessage = 'Ação não permitida, entre em contato com a gerência.'
+        } else if(err.status == 409) {
+          this.alertMessage = 'Erro: Oficina já cadastrada!'
         }
       }
     })
@@ -663,7 +762,9 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   requestTests() {
-    this.testService.list().subscribe({
+    this.currentModalLink = '';
+    let workshopId = this.currentWorkshop.id;
+    this.testService.getByWorkshop(workshopId).subscribe({
       next: list => {        
         this.testList = list;
 
@@ -775,7 +876,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
           this.test = test;
           this.plan = test.plan
           this.testCommandButton = 'SALVAR';
-          this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
+          this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.injector);
         },
         error: err => {
           console.log("Error: ", err);
@@ -814,12 +915,9 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   
   handleVehicleCommandEvent(event: any) {  
     if(event.command == 'editing') {
-      // this.modalCommand = event.command;
-      // this.modalCommandButton = 'SALVAR';
-      // this.editingVehicle = event.object;
       this.vehicleService.get(event.object.id).subscribe({
         next: vehicle => {
-          this.editingVehicle = vehicle;
+          this.vehicle = vehicle;
           this.modalCommand = event.command;
           this.modalCommandButton = 'SALVAR';
         },
@@ -840,7 +938,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(event.command == 'editing') {
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
-      this.editingInjector = event.object;
+      this.injector = event.object;
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingName = event.object.model;
@@ -854,13 +952,38 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     if(event.command == 'editing') {
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
-      this.editingUser = event.object;
+      this.user = event.object;
+      this.requestWorkshops();
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingName = event.object.name;
       this.removingEvent = event;
       this.removingAlertMessage01 = "Deseja remover o usuário ";
       this.removingAlertTopTitle = "REMOVER USUÁRIO";
+    }
+  }
+
+  handleWorkshopCommandEvent(event: any) {
+    this.modalCommand = event.command;
+    if(event.command == 'editing') {
+      this.modalCommandButton = 'SALVAR';
+      this.workshop = event.object;
+    } else if(event.command == 'removing') {
+      this.userService.getByWorkshopId(event.object.id).subscribe({
+        next: list => {          
+          this.removingObjects = '';
+          list.forEach(i => this.removingObjects += i.name + ", ");
+          this.removingObjects = this.removingObjects.substring(0, this.removingObjects.lastIndexOf(","));
+          this.removingName = event.object.name;
+          this.removingEvent = event;
+          this.removingAlertMessage01 = "Deseja remover a oficina" 
+          this.removingAlertMessage02 = "Esta ação também removerá o(s) usuário(s) a seguir: ";
+          this.removingAlertTopTitle = "REMOVER OFICINA";
+        },
+        error: err => {          
+          console.log("Erros: ", err);
+        }
+      })
     }
   }
 
@@ -878,7 +1001,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
 
   handleTabbingTestEvent(tab: any) {
     this.currentTab = tab;
-    this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
+    this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.injector);
   }
 
   handleUpdateTestEvent(test: Test) {
@@ -894,8 +1017,8 @@ export class HomeComponent extends CommonsComponent implements OnInit{
       next: plan => {
         this.plan = plan;
         let planType = (this.plan != null) ? this.plan.type : '';
-        let injectorType = (this.editingInjector != null) ? this.editingInjector.type : '';
-        let injectorTypeSelected = (this.editingInjector != null && this.editingInjector.type.length > 0);
+        let injectorType = (this.injector != null) ? this.injector.type : '';
+        let injectorTypeSelected = (this.injector != null && this.injector.type.length > 0);
 
         if(injectorTypeSelected && planType != injectorType) {
           this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", this.topMessage.WARNING, 3000);
@@ -914,7 +1037,7 @@ export class HomeComponent extends CommonsComponent implements OnInit{
     
     this.injectorService.get(injectorId).subscribe({
       next: injector => {
-        this.editingInjector = injector;
+        this.injector = injector;
         this.test.planId = injector.planId;
         this.planService.get(injector.planId).subscribe({
           next: plan => {
@@ -941,15 +1064,19 @@ export class HomeComponent extends CommonsComponent implements OnInit{
   }
 
   handleUpdateVehicleEvent(vehicle: Vehicle) {
-    this.editingVehicle = vehicle;
+    this.vehicle = vehicle;
   }
 
   handleUpdateInjectorEvent(injector: Injector) {
-    this.editingInjector = injector;
+    this.injector = injector;
   }
 
   handleUpdateUserEvent(user: any) {
-    this.editingUser = user;
+    this.user = user;
+  }
+
+  handleUpdateWorkshopEvent(workshop: any) {  
+    this.workshop = workshop;
   }
 
   handleResetFilterEvent() {
