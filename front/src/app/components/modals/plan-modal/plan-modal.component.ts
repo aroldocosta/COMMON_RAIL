@@ -32,20 +32,6 @@ export class PlanModalComponent extends CommonPageComponent {
     this.showEvent.emit();
   }
 
-  // emitEditingEvent(plan: any) {
-  //   let event = { command: 'editing', object: plan }
-  //   this.commandEvent.emit(event);
-  // }
-
-  // emitRemovingEvent(plan: any) {
-  //   let event = { command: 'removing', object: plan, objClass: 'Plan' }
-  //   this.commandEvent.emit(event);
-  // }
-
-  // emitClearMessage() {
-  //   this.clearEvent.emit();
-  // }
-
   emitUpdatePlanEvent() {
     this.updateEvent.emit(this.plan);
   }

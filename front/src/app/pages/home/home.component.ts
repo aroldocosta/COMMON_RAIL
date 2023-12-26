@@ -34,9 +34,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   @Input() userList: User[] = [];
 
   report: any = 'Aguarde...';
-  editingInjector = new Injector();
-  editingWorkshop = new Workshop();
-  editingVehicle = new Vehicle();  
+  editingWorkshop = new Workshop(); 
   editingUser = new User();
   testPayment = '';
   testPlanId = '';
@@ -195,7 +193,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingVehicle = new Vehicle();
+      this.vehicle = new Vehicle();
     } else if(this.modalCommand == 'creating') {
       this.saveVehicle();
     } else if(this.modalCommand == 'editing') {
@@ -243,7 +241,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingInjector = new Injector();
+      this.injector = new Injector();
       this.requestPlans();
     } else if(this.modalCommand == 'creating') {
       this.saveInjector();
@@ -523,7 +521,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateTest() { 
-    debugger
     this.test.workshop = this.currentWorkshop;
     this.testService.update(this.test).subscribe({
       next: resp => {
@@ -583,7 +580,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveVehicle() {
-    this.vehicleService.create(this.editingVehicle).subscribe({
+    this.vehicleService.create(this.vehicle).subscribe({
       next: resp => {
         this.vehicleService.list().subscribe({
           next: list => {
@@ -605,7 +602,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateVehicle() {
-    this.vehicleService.update(this.editingVehicle).subscribe({
+    this.vehicleService.update(this.vehicle).subscribe({
       next: resp => {
         this.vehicleService.list().subscribe({
           next: list => {
@@ -627,7 +624,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveInjector() {
-    this.injectorService.create(this.editingInjector).subscribe({
+    this.injectorService.create(this.injector).subscribe({
       next: resp => {
         this.injectorService.list().subscribe({
           next: list => {
@@ -649,7 +646,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateInjector() {
-    this.injectorService.update(this.editingInjector).subscribe({
+    this.injectorService.update(this.injector).subscribe({
       next: resp => {
         this.injectorService.list().subscribe({
           next: list => {
@@ -881,7 +878,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
           this.test = test;
           this.plan = test.plan
           this.testCommandButton = 'SALVAR';
-          this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
+          this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.injector);
         },
         error: err => {
           console.log("Error: ", err);
@@ -920,12 +917,9 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   
   handleVehicleCommandEvent(event: any) {  
     if(event.command == 'editing') {
-      // this.modalCommand = event.command;
-      // this.modalCommandButton = 'SALVAR';
-      // this.editingVehicle = event.object;
       this.vehicleService.get(event.object.id).subscribe({
         next: vehicle => {
-          this.editingVehicle = vehicle;
+          this.vehicle = vehicle;
           this.modalCommand = event.command;
           this.modalCommandButton = 'SALVAR';
         },
@@ -946,7 +940,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(event.command == 'editing') {
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
-      this.editingInjector = event.object;
+      this.injector = event.object;
     } else if(event.command == 'removing') {
       this.removingObjects = '';
       this.removingName = event.object.model;
@@ -1009,7 +1003,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   handleTabbingTestEvent(tab: any) {
     this.currentTab = tab;
-    this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.editingInjector);
+    this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.injector);
   }
 
   handleUpdateTestEvent(test: Test) {
@@ -1025,8 +1019,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       next: plan => {
         this.plan = plan;
         let planType = (this.plan != null) ? this.plan.type : '';
-        let injectorType = (this.editingInjector != null) ? this.editingInjector.type : '';
-        let injectorTypeSelected = (this.editingInjector != null && this.editingInjector.type.length > 0);
+        let injectorType = (this.injector != null) ? this.injector.type : '';
+        let injectorTypeSelected = (this.injector != null && this.injector.type.length > 0);
 
         if(injectorTypeSelected && planType != injectorType) {
           this.topMessage?.setAlertMessage("ATENÇÃO: Tipo de plano e tipo de injetor são diferentes!", this.topMessage.WARNING, 3000);
@@ -1045,7 +1039,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     
     this.injectorService.get(injectorId).subscribe({
       next: injector => {
-        this.editingInjector = injector;
+        this.injector = injector;
         this.test.planId = injector.planId;
         this.planService.get(injector.planId).subscribe({
           next: plan => {
@@ -1072,11 +1066,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleUpdateVehicleEvent(vehicle: Vehicle) {
-    this.editingVehicle = vehicle;
+    this.vehicle = vehicle;
   }
 
   handleUpdateInjectorEvent(injector: Injector) {
-    this.editingInjector = injector;
+    this.injector = injector;
   }
 
   handleUpdateUserEvent(user: any) {

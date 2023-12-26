@@ -1,1 +1,33 @@
-<p>vehicle-modal works!</p>
+<div class="modal fade" id="vehicleModalToggle" aria-labelledby="vehicleModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="vehicleModalToggleLabel">VEÍCULOS</h1>
+		  <button (click)="emitCancelButtonEvent()" id="vehicleModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<hr class="colorgraph">
+			<app-vehicle-form
+				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
+				[vehicle]="vehicle"		
+				[alertMessage]="alertMessage"		
+				(clearEvent)="clearAlertMessage()"
+				(cancelEvent)="emitCancelButtonEvent()"
+				(updateEvent)="emitUpdateVehicleEvent()"
+			>
+			</app-vehicle-form>
+			<app-vehicle-table
+				*ngIf="modalCommand == 'listing'"				
+				[list]="list"
+				(commandEvent)="emitCommandEvent($event)"				
+			>
+			</app-vehicle-table>
+			<hr class="colorgraph">
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" (click)="emitCancelButtonEvent()">FECHAR</button>
+		  	<button class="btn btn-outline-primary btn-modal" (click)="emitCommandButtonEvent()">{{modalCommandButton}}</button>
+		</div>
+	  </div>
+	</div>
+  </div>

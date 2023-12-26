@@ -7,7 +7,7 @@
                 (input)="emitUpdateInjectorEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingInjector.model"
+                [(ngModel)]="injector.model"
             >
         </div>
     </div> 
@@ -16,7 +16,7 @@
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
                 (change)="emitUpdateInjectorEvent()" 
-                [(ngModel)]="editingInjector.planId" 
+                [(ngModel)]="injector.planId" 
             >
             <option value="" selected>Selecione o plano</option>
             <option *ngFor="let p of planList" [value]="p.id">{{p.code}}</option>
@@ -33,7 +33,7 @@
                 (input)="emitUpdateInjectorEvent()"
                 aria-label="Sizing example input" 
                 aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="editingInjector.description"
+                [(ngModel)]="injector.description"
             ></textarea>
         </div>
     </div>

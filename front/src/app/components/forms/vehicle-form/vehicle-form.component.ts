@@ -13,7 +13,6 @@ export class VehicleFormComponent extends CommonPageComponent {
   @Input() command: string = 'editing';
   @Input() userList: User[] = [];
   @Input() vehicleList: Vehicle[] = [];
-  @Input() editingVehicle: Vehicle = new Vehicle();
   @Output() clearEvent = new EventEmitter();
   @Output() updateEvent = new EventEmitter<Vehicle>();
   
@@ -26,7 +25,6 @@ export class VehicleFormComponent extends CommonPageComponent {
   }
 
   emitUpdateVehicleEvent() {
-  
-    this.updateEvent.emit(this.editingVehicle);
+    this.updateEvent.emit(this.vehicle);
   }
 }

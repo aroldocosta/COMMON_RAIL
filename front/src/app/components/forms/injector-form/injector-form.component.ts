@@ -11,7 +11,6 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 export class InjectorFormComponent extends CommonPageComponent {
 
   @Input() planList: Plan[] = [];
-  @Input() editingInjector: Injector = new Injector();
   @Output() clearEvent = new EventEmitter();
   @Output() updateEvent = new EventEmitter<Injector>();
 
@@ -24,6 +23,6 @@ export class InjectorFormComponent extends CommonPageComponent {
   }
 
   emitUpdateInjectorEvent() {
-    this.updateEvent.emit(this.editingInjector);
+    this.updateEvent.emit(this.injector);
   }
 }
