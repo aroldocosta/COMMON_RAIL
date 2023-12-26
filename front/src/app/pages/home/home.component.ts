@@ -52,7 +52,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   filteredInjector: string = 'ALL';
   filteredInjectorModel: string = '';
   filteredVechiclePlate: string = '';
-  filteredSequence: string = '';
+  filteredCustomer: string = '';
   filteredServiceOrder: string = '';
   removingName: string = '';
   removingEvent: any;
@@ -790,7 +790,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   clearTestFilterFields() {
     this.filteredInjectorNumber = '';
-    this.filteredSequence = '';
+    this.filteredCustomer = '';
     this.filteredDate = '';
     this.filteredInjectorModel = '';
     this.filteredInjectorModel = '';
@@ -803,7 +803,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       this.doTestVehicleFilter();
       this.doTestInjectorFilter();      
       this.doTestInjectorFilter();
-      this.doTestSequenceFilter();
+      this.doCustomerFilter(this.filteredCustomer);
       this.doTestFilteredOrderFilter();
       this.doInjectorNumberFilter(this.filteredInjectorNumber);
     }
@@ -823,12 +823,14 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     }                               
   }
 
-  doTestSequenceFilter() {
-    if(this.filteredSequence != '') {
-      this.filteredField = 'sequence';
+  doCustomerFilter(customer: string) {
+    debugger
+    this.filteredCustomer = customer;
+    if(this.filteredCustomer != '') {
+      this.filteredField = 'customer';
       this.filteredList = this.testList
-        .filter(t => t.sequence == this.filteredSequence);
-      document.getElementById("sequenceFilterCloseModalButton")?.click(); 
+        .filter(t => t.customerName == this.filteredCustomer);
+      document.getElementById("customerFilterCloseModalButton")?.click(); 
     } 
   }
  
