@@ -24,6 +24,7 @@ export class InjectorModalComponent extends CommonPageComponent {
   constructor() {
     super();
   }
+  
   clearAlertMessage() {
     this.clearEvent.emit();
   }

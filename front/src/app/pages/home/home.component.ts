@@ -35,7 +35,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   report: any = 'Aguarde...';
   editingWorkshop = new Workshop(); 
-  editingUser = new User();
   testPayment = '';
   testPlanId = '';
   testInjectorId = '';
@@ -216,7 +215,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingUser = new User();
+      this.user = new User();
       this.requestWorkshops();
     } else if(this.modalCommand == 'creating') {
       this.saveUser();
@@ -668,7 +667,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveUser() {
-    this.userService.create(this.editingUser).subscribe({
+    this.userService.create(this.user).subscribe({
       next: resp => {
         this.userService.list().subscribe({
           next: list => {
@@ -691,7 +690,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   updateUser() {
     
-    this.userService.update(this.editingUser).subscribe({
+    this.userService.update(this.user).subscribe({
       next: resp => {
         
         this.userService.list().subscribe({
@@ -954,7 +953,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(event.command == 'editing') {
       this.modalCommand = event.command;
       this.modalCommandButton = 'SALVAR';
-      this.editingUser = event.object;
+      this.user = event.object;
       this.requestWorkshops();
     } else if(event.command == 'removing') {
       this.removingObjects = '';
@@ -1074,11 +1073,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleUpdateUserEvent(user: any) {
-    this.editingUser = user;
+    this.user = user;
   }
 
   handleUpdateWorkshopEvent(user: any) {
-    this.editingUser = user;
+    this.user = user;
   }
 
   handleResetFilterEvent() {

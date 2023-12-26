@@ -10,7 +10,6 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 })
 export class UserFormComponent extends CommonPageComponent{
 
-  @Input() editingUser: User = new User();
   @Input() workshopList: Workshop[] = [];
   @Output() clearEvent = new EventEmitter();
   @Output() updateEvent = new EventEmitter<any>();
@@ -24,6 +23,6 @@ export class UserFormComponent extends CommonPageComponent{
   }
 
   emitUpdateUserEvent() {
-    this.updateEvent.emit(this.editingUser);
+    this.updateEvent.emit(this.user);
   }
 }

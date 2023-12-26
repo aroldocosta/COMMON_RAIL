@@ -144,38 +144,19 @@
 		(cancelButtonEvent)="cancelInjectorCommandButton()"
 		(commandButtonEvent)="handleInjectorCommandButton()"
    ></app-injector-modal>
-  <div class="modal fade" id="userModalToggle" aria-labelledby="userModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="userModalToggleLabel">USUÁRIOS</h1>
-		  <button (click)="cancelUserCommandButton()" id="userModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-user-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[editingUser]="editingUser"
-				[workshopList]="workshopList"
-				[alertMessage]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdateUserEvent($event)"
-			>
-			</app-user-form>
-			<app-user-table
-				*ngIf="modalCommand == 'listing'"
-				[list] = 'userList'
-				(commandEvent)="handleUserCommandEvent($event)"
-			></app-user-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelUserCommandButton()">FECHAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handleUserCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div>
+   <app-user-modal
+		[user]="user"
+		[list]="userList"
+		[workshopList]="workshopList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdateUserEvent($event)"
+		(commandEvent)="handleUserCommandEvent($event)"
+		(cancelButtonEvent)="cancelUserCommandButton()"
+		(commandButtonEvent)="handleUserCommandButton()"
+   ></app-user-modal>
   <div class="modal fade" id="workshopModalToggle" aria-labelledby="workshopModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">

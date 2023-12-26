@@ -27,6 +27,7 @@ export class CommonPageComponent {
   @Input() tabId: string = 'med_electric';
   @Input() plan: Plan = new Plan();
   @Input() vehicle: Vehicle = new Vehicle();
+  @Input() user: User = new User();
   @Input() injector: Injector = new Injector
   @Input() test: Test = new Test();
   @Input() resColor = ''; 
