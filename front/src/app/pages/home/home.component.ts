@@ -34,7 +34,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   @Input() userList: User[] = [];
 
   report: any = 'Aguarde...';
-  editingWorkshop = new Workshop(); 
   testPayment = '';
   testPlanId = '';
   testInjectorId = '';
@@ -263,7 +262,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     if(this.modalCommand == 'listing') {
       this.modalCommand = 'creating';
       this.modalCommandButton = 'SALVAR';
-      this.editingWorkshop = new Workshop();
+      this.workshop = new Workshop();
     } else if(this.modalCommand == 'creating') {
       this.saveWorkshop();
     } else if(this.modalCommand == 'editing') {
@@ -715,7 +714,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveWorkshop() {
-    this.workshopService.create(this.editingWorkshop).subscribe({
+    this.workshopService.create(this.workshop).subscribe({
       next: resp => {
         this.workshopService.list().subscribe({
           next: list => {
@@ -737,7 +736,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateWorkshop() {
-    this.workshopService.update(this.editingWorkshop).subscribe({
+    this.workshopService.update(this.workshop).subscribe({
       next: resp => {
         this.workshopService.list().subscribe({
           next: list => {
@@ -968,7 +967,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.modalCommand = event.command;
     if(event.command == 'editing') {
       this.modalCommandButton = 'SALVAR';
-      this.editingWorkshop = event.object;
+      this.workshop = event.object;
     } else if(event.command == 'removing') {
       this.userService.getByWorkshopId(event.object.id).subscribe({
         next: list => {          

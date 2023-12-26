@@ -6,6 +6,7 @@ import { TestReport } from 'src/app/model/test-report.model';
 import { Test } from 'src/app/model/test.model';
 import { User } from 'src/app/model/user.model';
 import { Vehicle } from 'src/app/model/vehicle.model';
+import { Workshop } from 'src/app/model/workshop.model';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class CommonPageComponent {
   @Input() tabId: string = 'med_electric';
   @Input() plan: Plan = new Plan();
   @Input() vehicle: Vehicle = new Vehicle();
+  @Input() workshop: Workshop = new Workshop();
   @Input() user: User = new User();
   @Input() injector: Injector = new Injector
   @Input() test: Test = new Test();

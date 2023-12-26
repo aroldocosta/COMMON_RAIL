@@ -157,7 +157,19 @@
 		(cancelButtonEvent)="cancelUserCommandButton()"
 		(commandButtonEvent)="handleUserCommandButton()"
    ></app-user-modal>
-  <div class="modal fade" id="workshopModalToggle" aria-labelledby="workshopModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+   <app-workshop-modal
+		[workshop]="workshop"
+		[list]="workshopList"
+		[modalCommand]="modalCommand"
+		[alertMessage]="alertMessage"
+		[modalCommandButton]="modalCommandButton"
+		(clearEvent)="clearAlertMessage()"
+		(updateEvent)="handleUpdateWorkshopEvent($event)"
+		(commandEvent)="handleWorkshopCommandEvent($event)"
+		(cancelButtonEvent)="cancelWorkshopCommandButton()"
+		(commandButtonEvent)="handleWorkshopCommandButton()"
+   ></app-workshop-modal>
+  <!-- <div class="modal fade" id="workshopModalToggle" aria-labelledby="workshopModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
 		<div class="modal-header">
@@ -168,7 +180,7 @@
 			<hr class="colorgraph">
 			<app-workshop-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[editingWorkshop]="editingWorkshop"
+				[workshop]="workshop"
 				[alertMessage]="alertMessage"
 				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="handleUpdateWorkshopEvent($event)"
@@ -186,7 +198,7 @@
 		</div>
 	  </div>
 	</div>
-  </div>
+  </div> -->
   <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
