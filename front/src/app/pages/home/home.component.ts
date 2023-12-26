@@ -1075,8 +1075,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.user = user;
   }
 
-  handleUpdateWorkshopEvent(user: any) {
-    this.user = user;
+  handleUpdateWorkshopEvent(workshop: any) {  
+    this.workshop = workshop;
   }
 
   handleResetFilterEvent() {

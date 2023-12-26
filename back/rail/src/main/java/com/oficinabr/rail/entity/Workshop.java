@@ -45,6 +45,7 @@ public class Workshop {
 	public Workshop(WorkshopDTO dto) {
 		this.id = dto.id();
 		this.name = dto.name();
+		this.description = dto.description();
 	}
 
 	public String getId() {

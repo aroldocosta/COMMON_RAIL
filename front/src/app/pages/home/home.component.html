@@ -169,36 +169,6 @@
 		(cancelButtonEvent)="cancelWorkshopCommandButton()"
 		(commandButtonEvent)="handleWorkshopCommandButton()"
    ></app-workshop-modal>
-  <!-- <div class="modal fade" id="workshopModalToggle" aria-labelledby="workshopModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="workshopModalToggleLabel">OFICINAS</h1>
-		  <button (click)="cancelWorkshopCommandButton()" id="workshopModalCloseButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<hr class="colorgraph">
-			<app-workshop-form
-				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
-				[workshop]="workshop"
-				[alertMessage]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="handleUpdateWorkshopEvent($event)"
-			></app-workshop-form>
-			<app-workshop-table
-				*ngIf="modalCommand == 'listing'"
-				[list] = 'workshopList'
-				(commandEvent)="handleWorkshopCommandEvent($event)"
-			></app-workshop-table>
-			<hr class="colorgraph">
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelWorkshopCommandButton()">FECHAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="handleWorkshopCommandButton()">{{modalCommandButton}}</button>
-		</div>
-	  </div>
-	</div>
-  </div> -->
   <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
