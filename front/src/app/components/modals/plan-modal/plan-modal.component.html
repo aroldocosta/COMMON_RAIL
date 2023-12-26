@@ -11,6 +11,7 @@
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'" 
 				[plan]="plan"
 				[alertMessage]="alertMessage"
+				[modalCommandButton]="modalCommandButton"
 				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="emitUpdatePlanEvent()"
 			></app-plan-form>
