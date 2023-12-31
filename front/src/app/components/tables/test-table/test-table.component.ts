@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Filter } from 'src/app/model/filter.model';
 import { Test } from 'src/app/model/test.model';
 
 @Component({
@@ -10,8 +9,8 @@ import { Test } from 'src/app/model/test.model';
 export class TestTableComponent {
 
   @Input() list: Test[] = [];
-  @Input() filteredField = 'serviceOrder';
-  @Output() resetFilterEvent = new EventEmitter();    
+  @Input() filteredField: any[] = [];
+  @Output() resetFilterEvent = new EventEmitter<any>();    
   @Output() newEvent = new EventEmitter<Test>();
   @Output() commandEvent = new EventEmitter
 
@@ -31,7 +30,11 @@ export class TestTableComponent {
     this.commandEvent.emit(event);
   }
 
-  emitResetFilterEvent() {
-    this.resetFilterEvent.emit();
+  emitResetFilterEvent(fieldName: string) {
+    this.resetFilterEvent.emit({field: fieldName});
+  }
+
+  containsFilter(fieldName: string) {
+    return this.filteredField.some(f => f.field === fieldName );
   }
 }

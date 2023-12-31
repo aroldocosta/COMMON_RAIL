@@ -23,7 +23,6 @@ export class ServiceOrderFilterModalComponent extends CommonPageComponent {
   }
 
   emitServiceOrderFilter() {
-    debugger
-    this.filterEvent.emit(this.filteredServiceOrder);
+    this.filterEvent.emit({field: 'serviceOrder', value: this.filteredServiceOrder});
   }
 }

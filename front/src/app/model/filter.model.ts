@@ -1,9 +1,17 @@
 export class Filter {
-    name: string = '';
-    checked: boolean = false;
 
-    constructor(name: string, checked: boolean) {
-        this.name = name;
-        this.checked = checked;
+    test: any;
+    date: string = '';   
+    vehicle: string = 'ALL';
+    dateIni: string = '';
+    dateEnd: string = '';
+    customer: string = '';
+    injector: string = 'ALL';
+    fieldList: any[] = []; 
+    serviceOrder: string = '';
+    injectorModel: string = '';
+    injectorNumber: string = '';
+
+    constructor() {
     }
 }

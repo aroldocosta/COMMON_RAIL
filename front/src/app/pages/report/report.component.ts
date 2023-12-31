@@ -6,6 +6,7 @@ import { ReportService } from 'src/app/services/report.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { CommonPageComponent } from 'src/app/components/commons/common-page/common-page.component';
+import { Filter } from 'src/app/model/filter.model';
 
 @Component({
   selector: 'app-report',
@@ -174,5 +175,9 @@ export class ReportComponent extends CommonPageComponent {
         buttons.style.visibility = 'visible';
         this.reportClass = '';
     }, 100);
+  }
+
+  back() {
+    this.router.navigate(['/']);
   }
 }

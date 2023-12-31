@@ -23,7 +23,6 @@ export class VehicleFilterModalComponent extends CommonPageComponent {
   }
 
   emitVehicleFilterEvent() {
-    debugger
-    this.filterEvent.emit(this.filteredVehicle);
+    this.filterEvent.emit({field: 'vehicle', value: this.filteredVehicle});
   }
 }

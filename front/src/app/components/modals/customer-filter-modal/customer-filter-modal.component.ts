@@ -23,6 +23,6 @@ export class CustomerFilterModalComponent extends CommonPageComponent {
   }
 
   emitCustomerFilter() {
-    this.filterEvent.emit(this.filteredCustomer);
+    this.filterEvent.emit({field: 'customer', value: this.filteredCustomer});
   }
 }

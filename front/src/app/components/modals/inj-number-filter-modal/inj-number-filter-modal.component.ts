@@ -24,7 +24,6 @@ export class InjNumberFilterModalComponent extends CommonPageComponent {
   }
 
   emitInjectorNumberFilter() {
-    debugger
-    this.filterEvent.emit(this.filteredInjectorNumber);
+    this.filterEvent.emit({field: 'injectorNumber', value: this.filteredInjectorNumber});
   }
 }

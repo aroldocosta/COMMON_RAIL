@@ -23,6 +23,6 @@ export class DateFilterModalComponent extends CommonPageComponent {
   }
 
   emitDateFilter() {
-    this.filterEvent.emit(this.filteredDate);
+    this.filterEvent.emit({field: 'date', value: this.filteredDate});
   }
 }

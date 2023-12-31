@@ -23,6 +23,6 @@ export class InjModelFilterModalComponent extends CommonPageComponent {
   }
 
   emitInjectorModelFilter() {
-    this.filterEvent.emit(this.filteredInjectorModel);
+    this.filterEvent.emit({field: 'injectorModel', value: this.filteredInjectorModel});
   }
 }

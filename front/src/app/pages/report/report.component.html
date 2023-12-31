@@ -1,3 +1,12 @@
+<div id="command-bnt" class="row">
+    <div class="col-sm-6 small" [ngClass]="reportClass">
+        <button (click)="back()" class="btn btn-outline-default btn-block btn-left">VOLTAR</button>
+    </div>
+    <div class="col-sm-6 small" [ngClass]="reportClass">
+
+        <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
+    </div>
+</div>
 <div *ngIf="reportType == 'service-order'">
     <app-service-order-report
         [plan]="plan"
