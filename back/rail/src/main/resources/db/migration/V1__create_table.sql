@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	name TEXT NOT NULL, 
 	login TEXT NOT NULL UNIQUE,
@@ -7,28 +7,30 @@ CREATE TABLE users (
 	workshop_id TEXT NOT NULL
 );
 
-CREATE TABLE workshop (
+CREATE TABLE IF NOT EXISTS workshop (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	name TEXT NOT NULL,
 	description TEXT 
 );
 
-CREATE TABLE vehicle (
+CREATE TABLE IF NOT EXISTS vehicle (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	plate TEXT UNIQUE NOT NULL,
 	model TEXT NOT NULL,
 	year_model TEXT NOT NULL,
-	owner TEXT NOT NULL
+	owner TEXT NOT NULL,
+	workshop_id TEXT NOT NULL
 );
 
-CREATE TABLE injector (
+CREATE TABLE IF NOT EXISTS injector (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	model TEXT UNIQUE NOT NULL,
 	plan_id TEXT NOT NULL,
-	description TEXT
+	description TEXT,
+	workshop_id TEXT NOT NULL
 );
 
-CREATE TABLE test (
+CREATE TABLE IF NOT EXISTS test (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	injector_number NUMERIC NOT NULL,
 	sequence NUMERIC NOT NULL,
@@ -55,7 +57,7 @@ CREATE TABLE test (
 	workshop_id TEXT NOT NULL
 );
 
-CREATE TABLE plan (
+CREATE TABLE IF NOT EXISTS plan (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	code TEXT UNIQUE NOT NULL,
 	type TEXT NOT NULL,
@@ -85,5 +87,6 @@ CREATE TABLE plan (
 	max_idling_return NUMERIC,
 	min_idling_return NUMERIC,
 	max_pre_injection_return NUMERIC,
-	min_pre_injection_return NUMERIC
+	min_pre_injection_return NUMERIC,
+	workshop_id TEXT NOT NULL
 );
