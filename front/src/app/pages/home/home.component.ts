@@ -390,8 +390,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   requestPlans() {
-    
-    this.planService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.planService.getByWorkshop(workshopId).subscribe({
       next: list => {
         this.planList = list;
       }
@@ -399,13 +399,13 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleVehicleLinkEvent() {
-    this.currentModalLink = 'planMenuLink';
+    this.currentModalLink = 'vehicleMenuLink';
     this.requestVehicles();
   }
 
   requestVehicles() {
-    this.currentModalLink = 'vehicleMenuLink';
-    this.vehicleService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.vehicleService.getByWorkshop(workshopId).subscribe({
       next: list => {
         this.vehicleList = list;
       }
@@ -413,13 +413,13 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleInjectorLinkEvent() {
-    this.currentModalLink = 'planMenuLink';
+    this.currentModalLink = 'injectorMenuLink';
     this.requestInjectors();
   }
 
   requestInjectors() {
-    this.currentModalLink = 'injectorMenuLink';
-    this.injectorService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.injectorService.getByWorkshop(workshopId).subscribe({
       next: list => {
         this.injectorList = list;
       },
@@ -435,7 +435,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   requestUsers() {
-    this.userService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.userService.getByWorkshopId(workshopId).subscribe({
       next: list => {
         this.userList = list;
       }
@@ -523,9 +524,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   savePlan() {
-     return this.planService.create(this.plan).subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.plan.workshop = this.currentWorkshop;
+    return this.planService.create(this.plan).subscribe({
       next: resp => {
-        this.planService.list().subscribe({
+        this.planService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.planList = list;
             this.modalCommand = 'listing';
@@ -546,9 +549,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updatePlan() {
+    let workshopId = this.currentWorkshop.id;
+    this.plan.workshop = this.currentWorkshop;
     this.planService.update(this.plan).subscribe({
       next: resp => {
-        this.planService.list().subscribe({
+        this.planService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.planList = list;
             this.modalCommand = 'listing';
@@ -569,9 +574,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveVehicle() {
+    let workshopId = this.currentWorkshop.id;
+    this.vehicle.workshop = this.currentWorkshop;
     this.vehicleService.create(this.vehicle).subscribe({
       next: resp => {
-        this.vehicleService.list().subscribe({
+        this.vehicleService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.vehicleList = list;
             this.modalCommand = 'listing';   
@@ -591,9 +598,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateVehicle() {
+    let workshopId = this.currentWorkshop.id;
+    this.vehicle.workshop = this.currentWorkshop;
     this.vehicleService.update(this.vehicle).subscribe({
       next: resp => {
-        this.vehicleService.list().subscribe({
+        this.vehicleService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.vehicleList = list;
             this.modalCommand = 'listing';
@@ -613,9 +622,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveInjector() {
+    let workshopId = this.currentWorkshop.id;
+    this.injector.workshop = this.currentWorkshop;
     this.injectorService.create(this.injector).subscribe({
       next: resp => {
-        this.injectorService.list().subscribe({
+        this.injectorService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.injectorList = list;
             this.modalCommand = 'listing';
@@ -635,9 +646,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateInjector() {
+    let workshopId = this.currentWorkshop.id;
+    this.injector.workshop = this.currentWorkshop;
     this.injectorService.update(this.injector).subscribe({
       next: resp => {
-        this.injectorService.list().subscribe({
+        this.injectorService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.injectorList = list;
             this.modalCommand = 'listing';   
@@ -657,9 +670,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveUser() {
+    let workshopId = this.currentWorkshop.id;
     this.userService.create(this.user).subscribe({
       next: resp => {
-        this.userService.list().subscribe({
+        this.userService.getByWorkshopId(workshopId).subscribe({
           next: list => {
             this.userList = list;
             this.modalCommand = 'listing';
@@ -680,10 +694,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   updateUser() {
     
+    let workshopId = this.currentWorkshop.id;
     this.userService.update(this.user).subscribe({
       next: resp => {
-        
-        this.userService.list().subscribe({
+        this.userService.getByWorkshopId(workshopId).subscribe({
           next: list => {
             
             this.userList = list;

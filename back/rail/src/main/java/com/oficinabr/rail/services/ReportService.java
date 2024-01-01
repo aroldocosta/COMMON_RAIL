@@ -21,7 +21,7 @@ public class ReportService {
 	private TestRepository repository;
 	
 
-	public ResponseEntity<TestReportDTO> getReportByServiceOrder(String serviceOrder) {	
+	public ResponseEntity<TestReportDTO> findReportByServiceOrder(String serviceOrder) {	
 		
 		try {
 			
@@ -47,7 +47,7 @@ public class ReportService {
 		}
 	}
 	
-	public ResponseEntity<TestReportDTO> getReportByInjectorNumber(String serviceOrder, Integer injectorNumber) {	
+	public ResponseEntity<TestReportDTO> findReportByInjectorNumber(String serviceOrder, Integer injectorNumber) {	
 		
 		try {
 			

@@ -26,20 +26,20 @@ public class TestController {
 	
 	@GetMapping()												
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<TestDTO>> getAll() {
-		return service.getAll();
+	public ResponseEntity<List<TestDTO>> findAll() {
+		return service.findAll();
 	}
 	
 	@GetMapping("/workshop/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<TestDTO>> getByWorkshop(@PathVariable("id") String id) {
-		return service.getByWorkshop(id);
+	public ResponseEntity<List<TestDTO>> findByWorkshop(@PathVariable("id") String id) {
+		return service.findByWorkshop(id);
 	}
 	
 	@GetMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<TestDTO> get(@PathVariable("id") String id) {
-		return service.get(id);
+	public ResponseEntity<TestDTO> find(@PathVariable("id") String id) {
+		return service.find(id);
 	}
 	
 	@PostMapping()

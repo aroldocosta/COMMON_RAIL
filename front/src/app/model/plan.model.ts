@@ -1,3 +1,5 @@
+import { Workshop } from "./workshop.model";
+
 export class Plan {
 
     id: string = '';
@@ -30,6 +32,7 @@ export class Plan {
 	minIdlingReturn: string = '0.00';
 	maxPreInjectionReturn: string = '0.00';
 	minPreInjectionReturn: string = '0.00';
+	workshop: Workshop = new Workshop();
 
     constructor() {}
 }

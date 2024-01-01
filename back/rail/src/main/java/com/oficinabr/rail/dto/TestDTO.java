@@ -1,7 +1,6 @@
 package com.oficinabr.rail.dto;
 
 import com.oficinabr.rail.entity.Test;
-import com.oficinabr.rail.entity.Workshop;
 
 public record TestDTO(
 		String id, 
@@ -35,37 +34,37 @@ public record TestDTO(
 		WorkshopDTO workshop
 	) {
 	
-		public TestDTO(Test t) {
+		public TestDTO(Test test) {
 			this(
-				t.getId(), 
-				t.getInjectorNumber(), 
-				t.getSequence(), 
-				t.getComments(), 
-				t.getDescription(), 
-				t.getDate(),
-				t.getResistance(), 
-				t.getReactance(), 
-				t.getIsolation(), 
-				t.getHalfLoad(), 
-				t.getFullLoad(), 
-				t.getIdling(),
-				t.getPreInjection(), 
-				t.getHalfLoadReturn(), 
-				t.getFullLoadReturn(), 
-				t.getIdlingReturn(),
-				t.getPreInjectionReturn(), 
-				t.getPlan().getId(), 
-				t.getInjector().getId(), 
-				t.getInjector().getPlan().getType(), 
-				t.getInjector().getModel(),
-				t.getVehicle().getId(), 
-				t.getVehicle().getPlate(), 
-				t.getImaCode(), 
-				t.getServiceOrder(), 
-				t.getCustomerName(), 
+				test.getId(), 
+				test.getInjectorNumber(), 
+				test.getSequence(), 
+				test.getComments(), 
+				test.getDescription(), 
+				test.getDate(),
+				test.getResistance(), 
+				test.getReactance(), 
+				test.getIsolation(), 
+				test.getHalfLoad(), 
+				test.getFullLoad(), 
+				test.getIdling(),
+				test.getPreInjection(), 
+				test.getHalfLoadReturn(), 
+				test.getFullLoadReturn(), 
+				test.getIdlingReturn(),
+				test.getPreInjectionReturn(), 
+				test.getPlan().getId(), 
+				test.getInjector().getId(), 
+				test.getInjector().getPlan().getType(), 
+				test.getInjector().getModel(),
+				test.getVehicle().getId(), 
+				test.getVehicle().getPlate(), 
+				test.getImaCode(), 
+				test.getServiceOrder(), 
+				test.getCustomerName(), 
 				1, 
-				new PlanDTO(t.getPlan()),
-				new WorkshopDTO(t.getWorkshop())
+				new PlanDTO(test.getPlan()),
+				new WorkshopDTO(test.getWorkshop())
 			);
 	}
 }

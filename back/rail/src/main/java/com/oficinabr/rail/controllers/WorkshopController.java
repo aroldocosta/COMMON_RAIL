@@ -27,14 +27,14 @@ public class WorkshopController {
 	
 	@GetMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<WorkshopDTO> > getAll() { 
-		return service.getAll();
+	public ResponseEntity<List<WorkshopDTO> > findAll() { 
+		return service.findAll();
 	}
 	
 	@GetMapping(value = "/{id}")	
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<WorkshopDTO> get(@PathVariable("id") String id) {     
-		return service.get(id);
+	public ResponseEntity<WorkshopDTO> find(@PathVariable("id") String id) {     
+		return service.find(id);
 	}
 	
 	@PostMapping()

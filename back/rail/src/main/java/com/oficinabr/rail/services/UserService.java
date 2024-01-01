@@ -29,7 +29,7 @@ public class UserService {
 	@Autowired
 	SecurityConfiguration security;
 	
-	public ResponseEntity<List<UserDTO> > getAll() {
+	public ResponseEntity<List<UserDTO> > findAll() {
 		
 		try {
 			List<UserDTO> resp = repository.findAll().stream().map(UserDTO::new).toList();
@@ -39,7 +39,7 @@ public class UserService {
 		}
 	}
 	
-	public ResponseEntity<UserDTO> get(String id) {	
+	public ResponseEntity<UserDTO> find(String id) {	
 		
 		try {
 			UserDTO resp = repository.findById(id).stream().map(UserDTO::new).findAny().get();
@@ -99,7 +99,7 @@ public class UserService {
 		}
 	}
 	
-	public ResponseEntity<List<UserDTO>> getByWorkshopId(String id) {
+	public ResponseEntity<List<UserDTO>> findByWorkshop(String id) {
 		try {
 			List<UserDTO> resp = repository.findByWorkshopId(id).stream().map(UserDTO::new).toList();
 			return ResponseEntity.ok(resp);
@@ -108,7 +108,7 @@ public class UserService {
 		}
 	}
 	
-	public ResponseEntity<WorkshopDTO> getWorkshop(String id) {
+	public ResponseEntity<WorkshopDTO> findWorkshop(String id) {
 		try {
 			WorkshopDTO resp = new WorkshopDTO(repository.findById(id).get().getWorkshop());
 			return ResponseEntity.ok(resp);

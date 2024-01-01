@@ -3,7 +3,6 @@ package com.oficinabr.rail.report;
 import java.util.List;
 
 import com.oficinabr.rail.dto.TestDTO;
-import com.oficinabr.rail.entity.Test;
 
 public class TestReportDTO {
 	

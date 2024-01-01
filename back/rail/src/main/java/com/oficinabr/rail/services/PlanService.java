@@ -10,14 +10,19 @@ import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.PlanDTO;
 import com.oficinabr.rail.entity.Plan;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.PlanRepository;
+import com.oficinabr.rail.repository.WorkshopRepository;
 
 @Service
 public class PlanService {
 	@Autowired
 	private PlanRepository repository;
 	
-	public ResponseEntity<List<PlanDTO>> getAll() {
+	@Autowired
+	private WorkshopRepository workshopRepository;
+	
+	public ResponseEntity<List<PlanDTO>> findAll() {
 		try {
 			List<PlanDTO> resp = repository.findAll().stream().map(PlanDTO::new).toList();
 			return ResponseEntity.ok(resp);
@@ -26,7 +31,16 @@ public class PlanService {
 		}
 	}
 	
-	public ResponseEntity<PlanDTO> get(String id) {			
+	public ResponseEntity<List<PlanDTO>> findByWorkshop(String id) {
+		try {
+			List<PlanDTO> resp = repository.findByWorkshopId(id).stream().map(PlanDTO::new).toList();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	public ResponseEntity<PlanDTO> find(String id) {			
 		try {
 			PlanDTO resp = repository.findById(id).stream().map(PlanDTO::new).findAny().get();
 			return ResponseEntity.ok(resp);
@@ -39,6 +53,10 @@ public class PlanService {
 		
 		try {		
 			Plan plan = new Plan(dto);			
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			plan.setWorkshop(workshop);
+			
 			PlanDTO resp = new PlanDTO(repository.save(plan));
 			return ResponseEntity.ok(resp);
 		} catch(DataIntegrityViolationException e) {
@@ -51,6 +69,10 @@ public class PlanService {
 	public ResponseEntity<PlanDTO> update(PlanDTO dto) {
 		try {
 			Plan plan = new Plan(dto);	
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			plan.setWorkshop(workshop);
+			
 			PlanDTO resp = new PlanDTO(repository.save(plan));
 			return ResponseEntity.ok(resp);
 		} catch(DataIntegrityViolationException e) {

@@ -10,15 +10,20 @@ import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.VehicleDTO;
 import com.oficinabr.rail.entity.Vehicle;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.VehicleRepository;
+import com.oficinabr.rail.repository.WorkshopRepository;
 
 @Service
 public class VehicleService {
 
 	@Autowired
 	private VehicleRepository repository;
+	
+	@Autowired
+	private WorkshopRepository workshopRepository;
 
-	public ResponseEntity<List<VehicleDTO>> getAll() {
+	public ResponseEntity<List<VehicleDTO>> findAll() {
 		try {
 			List<VehicleDTO> resp = repository.findAll().stream().map(VehicleDTO::new).toList();
 			return ResponseEntity.ok(resp);
@@ -27,7 +32,16 @@ public class VehicleService {
 		}
 	}
 	
-	public ResponseEntity<VehicleDTO> get(String id) {
+	public ResponseEntity<List<VehicleDTO>> findByWorkshop(String id) {
+		try {
+			List<VehicleDTO> resp = repository.findByWorkshopId(id).stream().map(VehicleDTO::new).toList();
+			return ResponseEntity.ok(resp);
+		} catch (Exception e) {
+			return ResponseEntity.noContent().build();
+		}
+	}
+	
+	public ResponseEntity<VehicleDTO> find(String id) {
 		try {
 			VehicleDTO resp = repository.findById(id).stream().map(VehicleDTO::new).findAny().get();
 			return ResponseEntity.ok(resp);
@@ -38,8 +52,12 @@ public class VehicleService {
 	
 	public ResponseEntity<VehicleDTO> save(VehicleDTO dto) {
 		try {
-			Vehicle v = new Vehicle(dto);
-			VehicleDTO resp = new VehicleDTO(repository.save(v));
+			Vehicle vehicle = new Vehicle(dto);
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			vehicle.setWorkshop(workshop);
+			
+			VehicleDTO resp = new VehicleDTO(repository.save(vehicle));
 			return ResponseEntity.ok(resp);
 		} catch(DataIntegrityViolationException e) {
 			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
@@ -50,9 +68,12 @@ public class VehicleService {
 	
 	public ResponseEntity<VehicleDTO> update(VehicleDTO dto) {
 		try {
-//			Vehicle v = new Vehicle();
-			Vehicle v = new Vehicle(dto);
-			VehicleDTO resp = new VehicleDTO(repository.save(v));
+			Vehicle vehicle = new Vehicle(dto);
+			
+			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
+			vehicle.setWorkshop(workshop);
+			
+			VehicleDTO resp = new VehicleDTO(repository.save(vehicle));
 			return ResponseEntity.ok(resp);
 		} catch(DataIntegrityViolationException e) {
 			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();

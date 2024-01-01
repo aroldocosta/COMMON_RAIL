@@ -27,18 +27,25 @@ public class InjectorController {
 	
 	@GetMapping()												
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<InjectorDTO>> getAll() {
-		return service.getAll();
+	public ResponseEntity<List<InjectorDTO>> findAll() {
+		return service.findAll();
 	}
+	
+	@GetMapping("/workshop/{id}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<List<InjectorDTO>> findByWorkshop(@PathVariable("id") String id) {
+		return service.findByWorkshop(id);
+	}
+	
 	@GetMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<InjectorDTO> get(@PathVariable("id") String id) {
-		return service.get(id);
+	public ResponseEntity<InjectorDTO> find(@PathVariable("id") String id) {
+		return service.find(id);
 	}
 	@GetMapping(value = "/plan/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<InjectorDTO>> getByPlanId(@PathVariable("id") String id) {
-		return service.getByPlanId(id);
+	public ResponseEntity<List<InjectorDTO>> findByPlanId(@PathVariable("id") String id) {
+		return service.findByPlanId(id);
 	}
 	@PostMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
@@ -56,36 +63,3 @@ public class InjectorController {
 		return service.delete(id);
 	}
 }
-
-/*
-	@GetMapping()
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<InjectorDTO> > getAll() {
-		return service.getAll();
-	}
-	@GetMapping(value = "/{id}")	
-	public ResponseEntity<InjectorDTO> get(@PathVariable("id") Long id) {     
-		return service.get(id);
-	}
-	@PostMapping()
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
-	public ResponseEntity<InjectorDTO> save(@RequestBody InjectorDTO dto) {
-		return service.save(dto);
-	}
-	@PutMapping()
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.PUT)
-	public ResponseEntity<InjectorDTO> update(@RequestBody InjectorDTO dto) {
-		return service.update(dto);
-	}
-	@DeleteMapping(value = "{id}")
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.DELETE)
-	public ResponseEntity<InjectorDTO> delete(@PathVariable("id") Long id) {
-		return service.delete(id);
-	}
-	
-	@GetMapping(value = "/totals")
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<TotalsDTO> getTotals() {
-		return service.totals();
-	}
- */
