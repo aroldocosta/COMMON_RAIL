@@ -47,8 +47,7 @@ public class TestController {
 	public ResponseEntity<TestDTO> save(@RequestBody TestDTO dto) {
 		return service.save(dto);
 	}
-	
-	
+		
 	@PutMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.PUT)
 	public ResponseEntity<TestDTO> update(@RequestBody TestDTO dto) {

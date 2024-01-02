@@ -13,6 +13,18 @@
    **Config**
 -  Adiconar "allowSyntheticDefaultImports": true na seção "angularCompilerOptions" do arquivo "tsconfig.json"
 
+## Postgres
+ ### Backup e restauração de dados
+ - https://www.postgresql.org/docs/current/app-pgdump.html
+
+   - 1 To dump a database called mydb into an SQL-script file:
+
+      ``` $ pg_dump mydb > db.sql ```
+
+   - 2 To reload such a script into a (freshly created) database named newdb:
+
+      ``` $ psql -d newdb -f db.sql ```
+
 ## Issues
 	
 - 1 (x) As informacoes dos bicos so salva correto se tiver numero apos a virgula caso contrario o numero inteiro passa pra casa decimal
@@ -48,9 +60,6 @@
 ### ‐---------‐-----------27/12/23‐-----------------------------
 - 16 () Na tela principal na coluna cliente ao clicar em cliente aparece e sequencia e nao seleciona
 
-
-
-
 ### SOLUCOES DE USABILIDADES
 - 1 (x) Selecionar edicao do bico pela linha toda
 - 2 (x) Ao salvar um teste voltar para o grupo da mesma "OS"
@@ -60,3 +69,28 @@
 ### ----------------------10/12/23----------------------- 
 - 5 (x) Estando na tela de edicao de teste e importante ver qual e a sequencia
 - 6 (x) Estando na tela de edicao de teste e importante ter um botao "VOLTAR" ao lado MODELO INJETOR
+
+
+## MVP
+
+### Proposta de valor
+   - Por que o cliente precisa do produto/serviço?
+   - Qual solução oferece?
+   - Como utilizar?
+   - Por que o cliente vai escolher este produto
+   - O que agrega valor ao produto
+
+### Público certo 
+   - Deve ter o mesmo perfil do public alvo da empresa
+
+### Tempo de teste
+   - Definir um tempo suficiente para avaliar
+     se o produto tem aceitação
+
+### Teste do produto
+   - Acompanhar, treinar e avaliar a utilização do produto
+     pelo cliente
+
+### Feedbacks
+   - Entender os retornos(feedbacks) do cliente e fazer
+     correções e adaptações que façam sentido para o produto    
