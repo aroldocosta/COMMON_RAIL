@@ -23,6 +23,11 @@ export class PlanService {
     const url = `${this.baseUrl}plans/${id}`;
     return this.http.get<Plan>(url, this.login.getHttpOptions());
   }
+
+  getByWorkshop(id: number) {
+    const url = `${this.baseUrl}plans/workshop/${id}`;
+    return this.http.get<Plan[]>(url, this.login.getHttpOptions());
+  }
   
   create(plan: any): Observable<any> {
     const url = `${this.baseUrl}plans`;

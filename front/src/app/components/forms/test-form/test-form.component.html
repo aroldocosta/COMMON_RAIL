@@ -62,13 +62,15 @@
         <label class="input" for="">NÚMERO INJETOR </label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
+                *ngIf="test"
                 (change)="emitUpdateTestEvent()"
                 [(ngModel)]="test.injectorNumber"
                 [disabled]="command == 'editing'" 
             >
                 <option value="0"selected>Selecione</option>
-                <option *ngFor="let n of numberList" [value]="n">{{n}}
-                    <span *ngIf="command == 'editing'"> / [ {{test.sequence}} ]</span></option>
+                <option *ngFor="let number of numberList" [value]="number">
+                    {{number}} <span *ngIf="command == 'editing'"> / [ {{test.sequence}} ]</span> 
+                </option>
             </select>
         </div>
     </div> 

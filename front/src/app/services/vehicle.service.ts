@@ -23,6 +23,11 @@ export class VehicleService {
     return this.http.get<Vehicle>(url, this.login.getHttpOptions());
   }
   
+  getByWorkshop(id: number) {
+    const url = `${this.baseUrl}vehicles/workshop/${id}`;
+    return this.http.get<Vehicle[]>(url, this.login.getHttpOptions());
+  }
+
   create(vehicle: any): Observable<any> {
     const url = `${this.baseUrl}vehicles`;
     return this.http.post(url, vehicle, this.login.getHttpOptions());

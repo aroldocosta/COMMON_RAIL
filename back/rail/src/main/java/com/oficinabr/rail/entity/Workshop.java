@@ -34,6 +34,17 @@ public class Workshop {
 	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Test> testList;
 	
+	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Plan> planList;
+	
+	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Vehicle> vehicleList;
+	
+	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<Injector> injectorList;
+	
+	public static final String ADMIN_WORKSHOP = "recodiesel_id";
+	
 	public Workshop() {
 		
 	}
@@ -86,5 +97,29 @@ public class Workshop {
 
 	public void setTestList(List<Test> testList) {
 		this.testList = testList;
+	}
+
+	public List<Plan> getPlanList() {
+		return planList;
+	}
+
+	public void setPlanList(List<Plan> planList) {
+		this.planList = planList;
+	}
+
+	public List<Vehicle> getVehicleList() {
+		return vehicleList;
+	}
+
+	public void setVehicleList(List<Vehicle> vehicleList) {
+		this.vehicleList = vehicleList;
+	}
+
+	public List<Injector> getInjectorList() {
+		return injectorList;
+	}
+
+	public void setInjectorList(List<Injector> injectorList) {
+		this.injectorList = injectorList;
 	}
 }

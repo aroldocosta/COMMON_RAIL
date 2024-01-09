@@ -8,7 +8,8 @@ public record InjectorDTO(
 		String planId, 
 		String planCode, 
 		String model, 
-		String description) {
+		String description,
+		WorkshopDTO workshop) {
 
 	public InjectorDTO(Injector injector) {
 		this(
@@ -17,6 +18,8 @@ public record InjectorDTO(
 			injector.getPlan().getId(), 
 			injector.getPlan().getCode(), 
 			injector.getModel(), 
-			injector.getDescription());
+			injector.getDescription(),
+			new WorkshopDTO(injector.getWorkshop())
+		);
 	}
 }

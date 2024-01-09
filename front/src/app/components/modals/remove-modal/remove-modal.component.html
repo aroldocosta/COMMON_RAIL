@@ -1,0 +1,35 @@
+<div class="modal fade" id="removeModalToggle" aria-labelledby="removeModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="removeModalToggleLabel">{{removingAlertTopTitle}}</h1>
+		  <button (click)="emitCancelRemoveButtonEvent()" id="removeCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+		<div class="table-responsive">
+			<div class="row">
+				<div class="col-sm-2">
+					<h3 style="text-align: center;"><i class="bi bi-exclamation-diamond danger-icon"></i></h3>
+				</div>
+				<div class="col-sm-10">
+					<h3>{{removingAlertMessage01}} <b><i>{{removingName}}?</i></b></h3><br>
+					<h5 *ngIf="removingObjects.length > 0">
+						<span class="warning">ATENÇÃO: </span>
+						<span style="color: darkgrey">{{removingAlertMessage02}}</span> <br>
+						<span style="color: gray; font-weight: bolder;">{{removingObjects}}</span>
+					</h5>
+				</div>
+			</div>
+			<app-alert-message 
+				[message]="alertMessage"
+				(clearEvent)="emitClearAlertMessage()"
+			></app-alert-message>
+		</div>
+		</div>	
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" (click)="emitCancelRemoveButtonEvent()">CANCELAR</button>
+			<button class="btn btn-outline-primary btn-modal" (click)="emitConfirmRemoveButtonEvent()">REMOVER</button>
+	    </div>	
+	  </div>
+	</div>	
+  </div> 

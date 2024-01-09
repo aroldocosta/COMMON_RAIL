@@ -21,16 +21,16 @@ values ('2933d5c4-3b47-4355-acf9-b24e358740d1',
 );
 
  -- Veiculos
-insert into vehicle (id, plate, model, year_model, owner) values ('VCL1111', 'ABC1111', 'FORD 01', '2017/2018', 'Fulano de Tal');
-insert into vehicle (id, plate, model, year_model, owner) values ('VCL2222', 'ABC2222', 'FORD 02', '2020/2020', 'Sicrano Silva');
-insert into vehicle (id, plate, model, year_model, owner) values ('VCL3333', 'ABC3333', 'FORD 03', '2021/2022', 'Beltrano Costa');
-insert into vehicle (id, plate, model, year_model, owner) values ('VCL4444', 'ABC4444', 'FORD 04', '2023/2023', 'Fulano Pereira');
+insert into vehicle (id, plate, model, year_model, owner, workshop_id) values ('VCL1111', 'ABC1111', 'FORD 01', '2017/2018', 'Fulano de Tal', 'recodiesel_id');
+insert into vehicle (id, plate, model, year_model, owner, workshop_id) values ('VCL2222', 'ABC2222', 'FORD 02', '2020/2020', 'Sicrano Silva', 'recodiesel_id');
+insert into vehicle (id, plate, model, year_model, owner, workshop_id) values ('VCL3333', 'ABC3333', 'FORD 03', '2021/2022', 'Beltrano Costa', 'recodiesel_id');
+insert into vehicle (id, plate, model, year_model, owner, workshop_id) values ('VCL4444', 'ABC4444', 'FORD 04', '2023/2023', 'Fulano Pereira', 'recodiesel_id');
 
 -- Injetores
-insert into injector (id, model, plan_id, description) values ('INJ1111', '0445110231', 'PLN000001', 'Modelo de injetor para teste');	
-insert into injector (id, model, plan_id, description) values ('INJ2222', '0445110190', 'PLN000002', 'Modelo de injetor para teste');	
-insert into injector (id, model, plan_id, description) values ('INJ3333', '0445110520', 'PLN000003', 'Modelo de injetor para teste');	
-insert into injector (id, model, plan_id, description) values ('INJ4444', '0445110374', 'PLN000004', 'Modelo de injetor para teste');							 
+insert into injector (id, model, plan_id, description, workshop_id) values ('INJ1111', '0445110231', 'PLN000001', 'Modelo de injetor para teste', 'recodiesel_id');	
+insert into injector (id, model, plan_id, description, workshop_id) values ('INJ2222', '0445110190', 'PLN000002', 'Modelo de injetor para teste', 'recodiesel_id');	
+insert into injector (id, model, plan_id, description, workshop_id) values ('INJ3333', '0445110520', 'PLN000003', 'Modelo de injetor para teste', 'recodiesel_id');	
+insert into injector (id, model, plan_id, description, workshop_id) values ('INJ4444', '0445110374', 'PLN000004', 'Modelo de injetor para teste', 'recodiesel_id');							 
 
 -- Planos
 insert into plan (
@@ -63,7 +63,20 @@ insert into plan (
 	max_idling_return,
 	min_idling_return,
 	max_pre_injection_return,
-	min_pre_injection_return
+	min_pre_injection_return, 
+	half_load_bench_rpm,
+	half_load_pulse_time,
+	half_load_frequency,
+	full_load_bench_rpm,
+	full_load_pulse_time,
+	full_load_frequency,
+	idling_bench_rpm,
+	idling_pulse_time,
+	idling_frequency,
+	pre_injection_bench_rpm,
+	pre_injection_pulse_time,
+	pre_injection_frequency,
+	workshop_id
 ) values (
 	'PLN000001',
 	'PLANO_01',
@@ -94,7 +107,20 @@ insert into plan (
 	12, 
 	0,
 	5,
-	0
+	0,
+	1300,
+	1,
+	1000,
+	1300,
+	1,
+	1500,
+	450,
+	1,
+	400,
+	400,
+	2,
+	150,	
+	'recodiesel_id'
 );
 
 insert into plan (
@@ -127,7 +153,20 @@ insert into plan (
 	max_idling_return,
 	min_idling_return,
 	max_pre_injection_return,
-	min_pre_injection_return
+	min_pre_injection_return,
+	half_load_bench_rpm,
+	half_load_pulse_time,
+	half_load_frequency,
+	full_load_bench_rpm,
+	full_load_pulse_time,
+	full_load_frequency,
+	idling_bench_rpm,
+	idling_pulse_time,
+	idling_frequency,
+	pre_injection_bench_rpm,
+	pre_injection_pulse_time,
+	pre_injection_frequency,
+	workshop_id
 ) values (
 	'PLN000002',
 	'PLANO_02',
@@ -158,7 +197,20 @@ insert into plan (
 	12, 
 	0,
 	5,
-	0
+	0,
+	1300,
+	1,
+	1000,
+	1300,
+	1,
+	1500,
+	450,
+	1,
+	400,
+	400,
+	2,
+	150,	
+	'recodiesel_id'
 );
 
 insert into plan (
@@ -191,7 +243,20 @@ insert into plan (
 	max_idling_return,
 	min_idling_return,
 	max_pre_injection_return,
-	min_pre_injection_return
+	min_pre_injection_return,
+	half_load_bench_rpm,
+	half_load_pulse_time,
+	half_load_frequency,
+	full_load_bench_rpm,
+	full_load_pulse_time,
+	full_load_frequency,
+	idling_bench_rpm,
+	idling_pulse_time,
+	idling_frequency,
+	pre_injection_bench_rpm,
+	pre_injection_pulse_time,
+	pre_injection_frequency,
+	workshop_id
 ) values (
 	'PLN000003',
 	'HILUX 2.5',
@@ -222,7 +287,20 @@ insert into plan (
 	12, 
 	0,
 	5,
-	0
+	0,
+	1300,
+	1,
+	1000,
+	1300,
+	1,
+	1500,
+	450,
+	1,
+	400,
+	400,
+	2,
+	150,	
+	'recodiesel_id'
 );
 
 insert into plan (
@@ -255,7 +333,20 @@ insert into plan (
 	max_idling_return,
 	min_idling_return,
 	max_pre_injection_return,
-	min_pre_injection_return
+	min_pre_injection_return,
+	half_load_bench_rpm,
+	half_load_pulse_time,
+	half_load_frequency,
+	full_load_bench_rpm,
+	full_load_pulse_time,
+	full_load_frequency,
+	idling_bench_rpm,
+	idling_pulse_time,
+	idling_frequency,
+	pre_injection_bench_rpm,
+	pre_injection_pulse_time,
+	pre_injection_frequency,
+	workshop_id
 ) values (
 	'PLN000004',
 	'PLANO_04',
@@ -286,5 +377,18 @@ insert into plan (
 	12, 
 	0,
 	5,
-	0
+	0,
+	1300,
+	1,
+	1000,
+	1300,
+	1,
+	1500,
+	450,
+	1,
+	400,
+	400,
+	2,
+	150,
+	'recodiesel_id'
 );

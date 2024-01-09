@@ -17,7 +17,7 @@ public class WorkshopService {
 	@Autowired
 	private WorkshopRepository repository;
 		
-	public ResponseEntity<List<WorkshopDTO> > getAll() {
+	public ResponseEntity<List<WorkshopDTO> > findAll() {
 		
 		try {
 			List<WorkshopDTO> resp = repository.findAll().stream().map(WorkshopDTO::new).toList();
@@ -27,7 +27,7 @@ public class WorkshopService {
 		}
 	}
 	
-	public ResponseEntity<WorkshopDTO> get(String id) {	
+	public ResponseEntity<WorkshopDTO> find(String id) {	
 		
 		try {
 			WorkshopDTO resp = repository.findById(id).stream().map(WorkshopDTO::new).findAny().get();

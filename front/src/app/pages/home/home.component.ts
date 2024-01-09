@@ -17,6 +17,7 @@ import { WorkshopService } from 'src/app/services/workshop.service';
 import { TopMessageComponent } from 'src/app/components/commons/top-message/top-message.component';
 import { AsideComponent } from 'src/app/components/commons/aside/aside.component';
 import { CommonPageComponent } from 'src/app/components/commons/common-page/common-page.component';
+import { Filter } from 'src/app/model/filter.model';
 
 @Component({
   selector: 'app-home',
@@ -25,8 +26,8 @@ import { CommonPageComponent } from 'src/app/components/commons/common-page/comm
 })
 export class HomeComponent extends CommonPageComponent implements OnInit{
 
-  @ViewChild(TopMessageComponent) topMessage?: TopMessageComponent;
-  @ViewChild(AsideComponent) aside: any
+  @ViewChild(TopMessageComponent) topMessage: TopMessageComponent = new TopMessageComponent;
+  @ViewChild(AsideComponent) aside: AsideComponent = new AsideComponent();
   @Input() injectorList: Injector[] = [];
   @Input() workshopList: Workshop[] = [];
   @Input() vehicleList: Vehicle[] = [];
@@ -39,21 +40,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   testInjectorId = '';
   testDate = '';
   testQuantity = '0';
+  filtered: Filter = new Filter();
   filteredList: Test[] = [];
   enabledDateIni: boolean = true;
   enabledDateEnd: boolean = true;
-  filteredField = '';
-  filteredDateIni: string = '';
-  filteredDateEnd: string = '';
-  filteredDate: string = '';
-  filteredInjectorNumber: string = '';
-  filteredTest: any;
-  filteredVehicle: string = 'ALL';
-  filteredInjector: string = 'ALL';
-  filteredInjectorModel: string = '';
-  filteredVechiclePlate: string = '';
-  filteredSequence: string = '';
-  filteredServiceOrder: string = '';
   removingName: string = '';
   removingEvent: any;
   removingObjects: string = '';
@@ -86,6 +76,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     private workshopService: WorkshopService
     ) {
       super();
+      this.filtered = this.testService.filtered;
   }
 
   ngOnInit(): void {
@@ -99,8 +90,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
           this.requestPlans();
           this.requestVehicles();
           this.requestInjectors();
-          this.filteredDateIni = this.getFormattedDate(new Date());
-          this.filteredDateEnd = this.getFormattedDate(new Date()); 
+          this.filtered.dateIni = this.getFormattedDate(new Date());
+          this.filtered.dateEnd = this.getFormattedDate(new Date()); 
           this.test.planId = '0';
           this.test.vehiclePlate = '0';
           this.test.injectorModel = '0';
@@ -119,7 +110,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   /* ---------------- Remove Command Button Handlers ----------------- */
   cancelRemoveCommandButton() {
     this.testCommand = 'listing';
-    this.testCommandButton = "NOVO TESTE";
+    this.testCommandButton = "NOVO";
     this.modalCommand = 'listing';
     this.modalCommandButton = "NOVO";  
     document.getElementById('removeCloseModalButton')?.click(); 
@@ -159,7 +150,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   cancelTestCommandButton() {
     this.testCommand = 'listing';
-    this.testCommandButton = 'NOVO TESTE';
+    this.testCommandButton = 'NOVO';
     this.requestTests();
   }
 
@@ -286,7 +277,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.testService.remove(test.id).subscribe({
       next: resp => {
         this.testCommand = 'listing';
-        this.testCommandButton = 'NOVO TESTE';
+        this.testCommandButton = 'NOVO';
         document.getElementById("removeCloseModalButton")?.click();
         this.requestTests();      
       },
@@ -355,8 +346,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   isFilteredDate(date: string) {    
     let dateValues = date.split('T')[0].split('-');
-    let filteredDateIni = this.filteredDateIni.split('-');
-    let filteredDateEnd = this.filteredDateEnd.split('-');
+    let filteredDateIni = this.filtered.dateIni.split('-');
+    let filteredDateEnd = this.filtered.dateEnd.split('-');
     let d_yea_tst = Number(dateValues[0]);
     let d_mon_tst = Number(dateValues[1]);
     let d_day_tst = Number(dateValues[2]);
@@ -399,8 +390,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   requestPlans() {
-    
-    this.planService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.planService.getByWorkshop(workshopId).subscribe({
       next: list => {
         this.planList = list;
       }
@@ -408,13 +399,13 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleVehicleLinkEvent() {
-    this.currentModalLink = 'planMenuLink';
+    this.currentModalLink = 'vehicleMenuLink';
     this.requestVehicles();
   }
 
   requestVehicles() {
-    this.currentModalLink = 'vehicleMenuLink';
-    this.vehicleService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.vehicleService.getByWorkshop(workshopId).subscribe({
       next: list => {
         this.vehicleList = list;
       }
@@ -422,13 +413,13 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleInjectorLinkEvent() {
-    this.currentModalLink = 'planMenuLink';
+    this.currentModalLink = 'injectorMenuLink';
     this.requestInjectors();
   }
 
   requestInjectors() {
-    this.currentModalLink = 'injectorMenuLink';
-    this.injectorService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.injectorService.getByWorkshop(workshopId).subscribe({
       next: list => {
         this.injectorList = list;
       },
@@ -444,7 +435,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   requestUsers() {
-    this.userService.list().subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.userService.getByWorkshopId(workshopId).subscribe({
       next: list => {
         this.userList = list;
       }
@@ -532,9 +524,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   savePlan() {
-     return this.planService.create(this.plan).subscribe({
+    let workshopId = this.currentWorkshop.id;
+    this.plan.workshop = this.currentWorkshop;
+    return this.planService.create(this.plan).subscribe({
       next: resp => {
-        this.planService.list().subscribe({
+        this.planService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.planList = list;
             this.modalCommand = 'listing';
@@ -555,9 +549,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updatePlan() {
+    let workshopId = this.currentWorkshop.id;
+    this.plan.workshop = this.currentWorkshop;
     this.planService.update(this.plan).subscribe({
       next: resp => {
-        this.planService.list().subscribe({
+        this.planService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.planList = list;
             this.modalCommand = 'listing';
@@ -578,9 +574,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveVehicle() {
+    let workshopId = this.currentWorkshop.id;
+    this.vehicle.workshop = this.currentWorkshop;
     this.vehicleService.create(this.vehicle).subscribe({
       next: resp => {
-        this.vehicleService.list().subscribe({
+        this.vehicleService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.vehicleList = list;
             this.modalCommand = 'listing';   
@@ -600,9 +598,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateVehicle() {
+    let workshopId = this.currentWorkshop.id;
+    this.vehicle.workshop = this.currentWorkshop;
     this.vehicleService.update(this.vehicle).subscribe({
       next: resp => {
-        this.vehicleService.list().subscribe({
+        this.vehicleService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.vehicleList = list;
             this.modalCommand = 'listing';
@@ -622,9 +622,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveInjector() {
+    let workshopId = this.currentWorkshop.id;
+    this.injector.workshop = this.currentWorkshop;
     this.injectorService.create(this.injector).subscribe({
       next: resp => {
-        this.injectorService.list().subscribe({
+        this.injectorService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.injectorList = list;
             this.modalCommand = 'listing';
@@ -644,9 +646,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateInjector() {
+    let workshopId = this.currentWorkshop.id;
+    this.injector.workshop = this.currentWorkshop;
     this.injectorService.update(this.injector).subscribe({
       next: resp => {
-        this.injectorService.list().subscribe({
+        this.injectorService.getByWorkshop(workshopId).subscribe({
           next: list => {
             this.injectorList = list;
             this.modalCommand = 'listing';   
@@ -666,9 +670,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   saveUser() {
+    let workshopId = this.currentWorkshop.id;
     this.userService.create(this.user).subscribe({
       next: resp => {
-        this.userService.list().subscribe({
+        this.userService.getByWorkshopId(workshopId).subscribe({
           next: list => {
             this.userList = list;
             this.modalCommand = 'listing';
@@ -689,10 +694,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   updateUser() {
     
+    let workshopId = this.currentWorkshop.id;
     this.userService.update(this.user).subscribe({
       next: resp => {
-        
-        this.userService.list().subscribe({
+        this.userService.getByWorkshopId(workshopId).subscribe({
           next: list => {
             
             this.userList = list;
@@ -779,33 +784,26 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     });
   }
 
-  // doTestFilter() {
-  //   this.filteredList = this.testList
-  //     .filter(t => t.sequence == this.filteredSequence)
-  //     .filter(t => t.date == this.filteredDateTest)
-  //     .filter(t => t.injectorId == this.filteredInjector)
-  //     .filter(t => t.vehiclePlate == this.filteredVehicle)
-  //     .filter(t => t.serviceOrder == this.filteredServiceOrder);
-  // }
+  setFieldFilter(field: any) {
+    if(!this.containsFilter(field)) {
+      this.filtered.fieldList.push(field);
+      this.doTestFieldFilters();
+    }
+  }
 
-  clearTestFilterFields() {
-    this.filteredInjectorNumber = '';
-    this.filteredSequence = '';
-    this.filteredDate = '';
-    this.filteredInjectorModel = '';
-    this.filteredInjectorModel = '';
-    this.filteredServiceOrder = '';
+  clrFieldFilter(field: any) {
+    this.filtered.fieldList = this.filtered.fieldList.filter(f => f != field);
   }
 
   doTestFieldFilters() {
-    if(this.filteredField !== '') {
-      this.doTestDateFilter();
-      this.doTestVehicleFilter();
-      this.doTestInjectorFilter();      
-      this.doTestInjectorFilter();
-      this.doTestSequenceFilter();
-      this.doTestFilteredOrderFilter();
-      this.doTestInjectorNumberFilter();
+    if(this.filtered.fieldList.length != 0) {
+      this.filteredList = this.testList
+      this.doDateFilter();
+      this.doVehicleFilter();
+      this.doCustomerFilter();
+      this.doServiceOrderFilter();
+      this.doInjectorModelFilter();
+      this.doInjectorNumberFilter();
     }
   }
 
@@ -813,59 +811,84 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   }
 
-  doTestInjectorNumberFilter() {
-    if(this.filteredInjectorNumber != '') {
-      this.filteredField = 'injectorNumber';
-      this.filteredList = this.testList
-        .filter(t => t.injectorNumber == Number(this.filteredInjectorNumber));
-      document.getElementById("injectorNumberFilterCloseModalButton")?.click();    
-    }                               
+  doInjectorNumberFilter() {    
+    
+    let value = this.filtered.fieldList.filter(f => f.field == 'injectorNumber')[0]?.value;   
+
+    if(value) {
+      this.filtered.injectorNumber = value;
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.filteredList
+        .filter(t => t.injectorNumber == Number(this.filtered.injectorNumber));
+        document.getElementById("injectorNumberFilterCloseModalButton")?.click(); 
+    }                              
   }
 
-  doTestSequenceFilter() {
-    if(this.filteredSequence != '') {
-      this.filteredField = 'sequence';
-      this.filteredList = this.testList
-        .filter(t => t.sequence == this.filteredSequence);
-      document.getElementById("sequenceFilterCloseModalButton")?.click(); 
-    } 
+  doCustomerFilter() {
+    
+    let value = this.filtered.fieldList.filter(f => f.field == 'customer')[0]?.value;
+
+    if(value) {
+      this.filtered.customer = value;
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.filteredList
+        .filter(t => t.customerName == this.filtered.customer);
+      document.getElementById("customerFilterCloseModalButton")?.click(); 
+    }  
   }
  
-  doTestDateFilter() {
-    if(this.filteredDate != '') {
-      this.filteredField = 'date';
-      this.filteredList = this.testList
-        .filter(t => t.date == this.filteredDate);
-      document.getElementById("dateFilterCloseModalButton")?.click();  
+  doDateFilter() {
+    let value = this.filtered.fieldList.filter(f => f.field == 'date')[0]?.value;
+
+    if(value) {
+      this.filtered.date = value;
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.filteredList
+        .filter(t => t.date == this.filtered.date);
+      document.getElementById("dateFilterCloseModalButton")?.click(); 
     }
   }
 
-  doTestInjectorFilter() {
-    if(this.filteredInjectorModel != '') {
-      this.filteredField = 'injectorModel';
-      this.filteredList = this.testList
-      .filter(t => t.injectorModel == this.filteredInjectorModel)
-      document.getElementById("injectorFilterCloseModalButton")?.click(); 
+  doInjectorModelFilter() {
+
+    let value = this.filtered.fieldList.filter(f => f.field == 'injectorModel')[0]?.value;
+
+    if(value) {
+      this.filtered.injectorModel = value;
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.filteredList
+        .filter(t => t.injectorModel == this.filtered.injectorModel);
+      document.getElementById("injectorModelFilterCloseModalButton")?.click(); 
     }
   }
 
-  doTestVehicleFilter() {
-    if(this.filteredVechiclePlate != '') {
-      this.filteredField = 'vehicle';
-      this.filteredList = this.testList
-      .filter(t => t.vehiclePlate == this.filteredVechiclePlate);
+
+  doVehicleFilter() {
+
+    let value = this.filtered.fieldList.filter(f => f.field == 'vehicle')[0]?.value;
+
+    if(value) {
+      this.filtered.vehicle = value;
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.filteredList
+        .filter(t => t.vehiclePlate == this.filtered.vehicle);
       document.getElementById("vehicleFilterCloseModalButton")?.click(); 
     }
   }
 
-  doTestFilteredOrderFilter() {
-    if(this.filteredServiceOrder != '') {
-      this.filteredField = 'serviceOrder';
-      this.filteredList = this.testList
-      .filter(t => t.serviceOrder == this.filteredServiceOrder)
-      .sort((a, b) => a.injectorNumber - b.injectorNumber)
+  doServiceOrderFilter() {
+
+    debugger
+    let value = this.filtered.fieldList.filter(f => f.field == 'serviceOrder')[0]?.value;
+
+    if(value) {
+      this.filtered.serviceOrder = value;
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.filteredList
+        .filter(t => t.serviceOrder == this.filtered.serviceOrder);
       document.getElementById("serviceOrderFilterCloseModalButton")?.click(); 
     }
+    
   }
 
   handleTestCommandEvent(event: any) {  
@@ -876,7 +899,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
           this.test = test;
           this.plan = test.plan
           this.testCommandButton = 'SALVAR';
-          this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.injector);
+          this.aside.setCurrentTab(this.currentTab, this.test, this.plan);
         },
         error: err => {
           console.log("Error: ", err);
@@ -1001,7 +1024,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   handleTabbingTestEvent(tab: any) {
     this.currentTab = tab;
-    this.aside.setCurrentTab(this.currentTab, this.test, this.plan, this.injector);
+    this.aside.setCurrentTab(this.currentTab, this.test, this.plan);
   }
 
   handleUpdateTestEvent(test: Test) {
@@ -1079,8 +1102,16 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.workshop = workshop;
   }
 
-  handleResetFilterEvent() {
-    this.filteredField = '';
-    this.filteredList = this.testList;
+  handleResetFilterEvent(filter: any) {
+    if(this.containsFilter(filter)) {
+      this.filtered.fieldList = this.filtered.fieldList.filter(f => f.field != filter.field);
+      this.testService.filtered = this.filtered;
+      this.filteredList = this.testList;
+      this.doTestFieldFilters();      
+    }
+  }
+
+  containsFilter(filter: any) {
+    return this.filtered.fieldList.some(f => f.field === filter.field );
   }
 }

@@ -43,6 +43,13 @@ import { PlanModalComponent } from './components/modals/plan-modal/plan-modal.co
 import { InjectorModalComponent } from './components/modals/injector-modal/injector-modal.component';
 import { WorkshopModalComponent } from './components/modals/workshop-modal/workshop-modal.component';
 import { VehicleModalComponent } from './components/modals/vehicle-modal/vehicle-modal.component';
+import { RemoveModalComponent } from './components/modals/remove-modal/remove-modal.component';
+import { InjNumberFilterModalComponent } from './components/modals/inj-number-filter-modal/inj-number-filter-modal.component';
+import { InjModelFilterModalComponent } from './components/modals/inj-model-filter-modal/inj-model-filter-modal.component';
+import { CustomerFilterModalComponent } from './components/modals/customer-filter-modal/customer-filter-modal.component';
+import { ServiceOrderFilterModalComponent } from './components/modals/service-order-filter-modal/service-order-filter-modal.component';
+import { VehicleFilterModalComponent } from './components/modals/vehicle-filter-modal/vehicle-filter-modal.component';
+import { DateFilterModalComponent } from './components/modals/date-filter-modal/date-filter-modal.component';
 
 registerLocaleData(ptBr);
 
@@ -84,6 +91,13 @@ registerLocaleData(ptBr);
     InjectorModalComponent,
     WorkshopModalComponent,
     VehicleModalComponent,
+    RemoveModalComponent,
+    InjNumberFilterModalComponent,
+    InjModelFilterModalComponent,
+    CustomerFilterModalComponent,
+    ServiceOrderFilterModalComponent,
+    VehicleFilterModalComponent,
+    DateFilterModalComponent,
   ],
   imports: [
     FormsModule,

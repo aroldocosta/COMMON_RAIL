@@ -1,11 +1,3 @@
-<div id="command-bnt" class="row">
-    <div class="col-sm-6 small" [ngClass]="reportClass">
-        <a href="/" class="btn btn-outline-default btn-block btn-left">VOLTAR</a>
-    </div>
-    <div class="col-sm-6 small" [ngClass]="reportClass">
-        <button (click)="download()" class="btn btn-outline-defaulty btn-block btn-right">BAIXAR</button>
-    </div>
-</div>
 <div id="report" class="container">
     <div class="loop" *ngFor="let test of testList">    
         <header class="header">

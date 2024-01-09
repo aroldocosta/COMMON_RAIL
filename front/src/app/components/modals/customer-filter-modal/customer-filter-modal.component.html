@@ -1,0 +1,31 @@
+<div class="modal fade" id="customerFilterModalToggle" aria-labelledby="customerModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-xl">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="customerFilterModalToggleLabel">FILTRAR CLIENTE</h1>
+		  <button id="customerFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div class="table-responsive filter-input">
+				<label for="">NOME DO CLIENTE</label>
+				<div class="input-group input-group-lg">
+					<input type="text" class="form-control" 
+						placeholder="Digite o nome do cliente"
+						aria-label="Sizing example input" 
+						aria-describedby="inputGroup-sizing-lg" 
+						[(ngModel)]="filteredCustomer"
+					>
+				</div>
+				<app-alert-message 
+					[message]="alertMessage"
+					(clearEvent)="emitClearAlertMessage()"
+				></app-alert-message>
+			</div>
+		</div>	
+		<div class="modal-footer">
+			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
+			<button class="btn btn-outline-primary btn-modal" (click)="emitCustomerFilter()">FILTRAR</button>
+	    </div>	
+	  </div>
+	</div>	
+  </div>

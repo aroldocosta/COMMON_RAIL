@@ -1,6 +1,26 @@
 <div *ngIf="reportType == 'service-order'">
-    <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}<i>({{plan.halfLoadPressure}}bar)</i></h2>                               
+    <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}</h2>                               
     <div class="table-responsive">
+        <table class="table table-sm">
+            <tbody>
+                <tr>
+                    <th class="striped-table" scope="row" title="Pressão bomba">PRESSÃO(bar):</th>
+                    <td class="striped-table">{{plan.halfLoadPressure | number: '1.0'}}</td>
+                </tr>
+                <tr>
+                    <th class="striped-table" scope="row" title="Rotação">ROTAÇÃO(1/min):</th>
+                    <td class="striped-table">{{plan.halfLoadBenchRpm | number: '1.0'}}</td>
+                </tr>
+                <tr>
+                    <th scope="row" title="Largura de pulso">PULSO PWM(ms):</th>
+                    <td>{{plan.halfLoadPulseTime 	| number: '1.0'}}</td>
+                </tr>
+                <tr>
+                    <th scope="row" title="Frequência">FREQUÊNCIA(p/m):</th>
+                    <td>{{plan.halfLoadFrequency 	| number: '1.0'}}</td>
+                </tr>                				  
+            </tbody>
+        </table>
         <table class="table table-sm">
             <thead>
                 <tr>

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.oficinabr.rail.dto.PlanDTO;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.services.PlanService;
 
 @RestController
@@ -25,14 +27,22 @@ public class PlanController {
 	
 	@GetMapping()												
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<PlanDTO>> getAll() {
-		return service.getAll();
+	public ResponseEntity<List<PlanDTO>> findAll() {
+		return service.findAll();
+	}
+	
+	@GetMapping("/workshop/{id}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<List<PlanDTO>> findByWorkshop(@PathVariable("id") String id) {
+		return Workshop.ADMIN_WORKSHOP.equals(id) 
+				? service.findAll()
+				: service.findByWorkshop(id);
 	}
 	
 	@GetMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<PlanDTO> get(@PathVariable("id") String id) {
-		return service.get(id);
+	public ResponseEntity<PlanDTO> find(@PathVariable("id") String id) {
+		return service.find(id);
 	}
 	
 	@PostMapping()

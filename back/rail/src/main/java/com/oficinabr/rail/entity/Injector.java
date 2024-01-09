@@ -34,9 +34,13 @@ public class Injector {
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "workshop_id")
+	private Workshop workshop;
+	
 	@OneToMany(mappedBy = "injector", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Test> testList;
-	
+		
 	public Injector() {
 		
 	}
@@ -78,6 +82,14 @@ public class Injector {
 
 	public void setPlan(Plan plan) {
 		this.plan = plan;
+	}
+
+	public Workshop getWorkshop() {
+		return workshop;
+	}
+
+	public void setWorkshop(Workshop workshop) {
+		this.workshop = workshop;
 	}
 
 	public List<Test> getTestList() {

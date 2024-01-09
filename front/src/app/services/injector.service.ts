@@ -23,6 +23,11 @@ export class InjectorService {
     const url = `${this.baseUrl}injectors/${id}`;
     return this.http.get<Injector>(url, this.login.getHttpOptions());
   }
+
+  getByWorkshop(id: number) {
+    const url = `${this.baseUrl}injectors/workshop/${id}`;
+    return this.http.get<Injector[]>(url, this.login.getHttpOptions());
+  }
   
   create(injector: any): Observable<any> {
     const url = `${this.baseUrl}injectors`;

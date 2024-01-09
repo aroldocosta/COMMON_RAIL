@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Filter } from '../model/filter.model';
 import { Test } from '../model/test.model';
 import { LoginService } from './login.service';
 
@@ -11,6 +12,8 @@ import { LoginService } from './login.service';
 export class TestService {
 
   readonly baseUrl = environment.API_BASE_URL;
+
+  filtered: Filter = new Filter();
 
   constructor(private http: HttpClient, private login: LoginService) { }
 

@@ -22,13 +22,28 @@
 	   <div class="col-sm-0 col-md-8">
 			<section class="right-content">
 				<div class="row">
-					<div class="col-md-3">
+					<header class="header">
+						<div class="wrapper">
+							<button type="button" 
+								(click)="handleTestCommandButton()" 
+								class="btn btn-outline-primary btn-block top-button" 
+								>{{testCommandButton}}
+							</button>
+						  <div class="header-text">
+							<h1 class="title" [ngClass]="reportClass">INJETOR</h1>
+						  </div>
+						</div>
+					</header> 
+					<!-- <div class="col-md-3">
 						<button type="button" 
 							(click)="handleTestCommandButton()" 
 							class="btn btn-outline-primary btn-block top-button" 
 							>{{testCommandButton}}</button>
 					</div>
 					<div class="col-md-9">
+						<h1>TESTE DE INJETOR</h1>
+					</div> -->
+					<!--<div class="col-md-9">
 						<div class="row">
 							<div class="col-md-3 small">
 								<label>DATA INICIO</label>
@@ -38,7 +53,7 @@
 									  	aria-label="Checkbox" title="Seleciona todas as datas">
 									</div>
 									<input type="date" class="form-control" aria-describedby="basic-addon1" [disabled]="enabledDateIni"
-										(change)="filterTest()" [ngModel]="filteredDateIni | date:'yyyy-MM-dd'" (ngModelChange)="filteredDateIni = $event" >
+										(change)="filterTest()" [ngModel]="filtered.dateIni | date:'yyyy-MM-dd'" (ngModelChange)="filtered.dateIni = $event" >
 								  </div>
 							</div>
 							<div class="col-md-3 small">
@@ -49,25 +64,25 @@
 									  	aria-label="Checkbox" title="Seleciona todas as datas">
 									</div>
 									<input type="date" class="form-control" aria-describedby="basic-addon1" [disabled]="enabledDateEnd"
-										(change)="filterTest()" [ngModel]="filteredDateEnd | date:'yyyy-MM-dd'" (ngModelChange)="filteredDateEnd = $event" >
+										(change)="filterTest()" [ngModel]="filtered.dateEnd | date:'yyyy-MM-dd'" (ngModelChange)="filtered.dateEnd = $event" >
 								  </div>
 							</div>							
 							<div class="col-md-3 small">
 								<label for="">MODELO</label>
-								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredInjector" (change)="doTestCombinedFilter()">
+								<select class="form-select" aria-label="Default select example" [(ngModel)]="filtered.injector" (change)="doTestCombinedFilter()">
 									<option value="ALL"selected>TODOS</option>
 									<option *ngFor="let d of injectorList" [value]="d.id">{{d.model}}</option>
 								</select>
 							</div>
 							<div class="col-md-3 small">
 								<label for="">VEÍCULO</label>
-								<select class="form-select" aria-label="Default select example" [(ngModel)]="filteredVehicle" (change)="doTestCombinedFilter()">
+								<select class="form-select" aria-label="Default select example" [(ngModel)]="filtered.vehicle" (change)="doTestCombinedFilter()">
 									<option value="ALL"selected>TODOS</option>
 									<option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
 								</select>
 							</div>
 						</div>
-					</div>	
+					</div>	-->
 				</div>	
 				<hr class="colorgraph">
 					<app-top-message></app-top-message>
@@ -88,9 +103,9 @@
 					<app-test-table
 						*ngIf="testCommand == 'listing'"
 						[list]="filteredList"
-						[filteredField]="filteredField"
+						[filteredField]="filtered.fieldList"
 						(commandEvent)="handleTestCommandEvent($event)"
-						(resetFilterEvent)="handleResetFilterEvent()"
+						(resetFilterEvent)="handleResetFilterEvent($event)"
 					></app-test-table>
 				<hr class="colorgraph">
 				<div>
@@ -169,249 +184,47 @@
 		(cancelButtonEvent)="cancelWorkshopCommandButton()"
 		(commandButtonEvent)="handleWorkshopCommandButton()"
    ></app-workshop-modal>
-  <div class="modal fade" id="editModalToggle" aria-labelledby="editModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="editModalToggleLabel">EDITAR TESTE</h1>
-		  <button id="editCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<app-test-form
-				command = 'editing'
-				[message]="alertMessage"
-				[planList] = 'planList'
-				[testDate] = 'testDate'		
-				(clearEvent) = 'clearAlertMessage()'
-			></app-test-form>
-		</div>
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-		  	<button class="btn btn-outline-primary btn-modal" (click)="updateTest()">SALVAR</button>
-		</div>
-	  </div>
-	</div>
-  </div>
-  <div class="modal fade" id="removeModalToggle" aria-labelledby="removeModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="removeModalToggleLabel">{{removingAlertTopTitle}}</h1>
-		  <button (click)="cancelRemoveCommandButton()" id="removeCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive">
-			<div class="row">
-				<div class="col-sm-2">
-					<h3 style="text-align: center;"><i class="bi bi-exclamation-diamond danger-icon"></i></h3>
-				</div>
-				<div class="col-sm-10">
-					<h3>{{removingAlertMessage01}} <b><i>{{removingName}}?</i></b></h3><br>
-					<h5 *ngIf="removingObjects.length > 0">
-						<span class="warning">ATENÇÃO: </span>
-						<span style="color: darkgrey">{{removingAlertMessage02}}</span> <br>
-						<span style="color: gray; font-weight: bolder;">{{removingObjects}}</span>
-					</h5>
-				</div>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="cancelRemoveCommandButton()">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="handleModalRemoveConfirm()">REMOVER</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>  
-  <div class="modal fade" id="injectorNumberFilterModalToggle" aria-labelledby="injectorNumberModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="injectorNumberFilterModalToggleLabel">FILTRAR NUMERO DO INJETOR</h1>
-		  <button id="injectorNumberFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div class="table-responsive filter-input">
-				<label for="">DIGITE O NUMERO DO INJETOR</label>
-				<div class="input-group input-group-lg">
-					<input type="text" class="form-control" 
-						placeholder="Número do injetor"
-						aria-label="Sizing example input" 
-						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="filteredInjectorNumber"
-					>
-				</div>
-				<app-alert-message 
-					[message]="alertMessage"
-					(clearEvent)="clearAlertMessage()"
-				></app-alert-message>
-			</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestInjectorNumberFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="sequenceFilterModalToggle" aria-labelledby="sequenceModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="sequenceFilterModalToggleLabel">FILTRAR SEQUENCIA</h1>
-		  <button id="sequenceFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-			<div class="table-responsive filter-input">
-				<label for="">DIGITE A SEQUÊNCIA</label>
-				<div class="input-group input-group-lg">
-					<input type="text" class="form-control" 
-						placeholder="Número de sequência"
-						aria-label="Sizing example input" 
-						aria-describedby="inputGroup-sizing-lg" 
-						[(ngModel)]="filteredSequence"
-					>
-				</div>
-				<app-alert-message 
-					[message]="alertMessage"
-					(clearEvent)="clearAlertMessage()"
-				></app-alert-message>
-			</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestSequenceFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="dateFilterModalToggle" aria-labelledby="dateFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="dateFilterModalToggleLabel">FILTRAR POR DATA</h1>
-		  <button id="dateFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">SELECIONE A DATA</label>
-			<div class="input-group input-group-lg">
-				<input type="date" class="form-control" 
-					placeholder="Data do teste"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredDate"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestDateFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="injectorFilterModalToggle" aria-labelledby="injectorFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="injectorFilterModalToggleLabel">FILTRAR POR INJETOR</h1>
-		  <button id="injectorFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">DIGITE O CÓDIGO</label>
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" 
-					placeholder="Código do injetor"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredInjectorModel"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestInjectorFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="vehicleFilterModalToggle" aria-labelledby="vehicleFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="vehicleFilterModalToggleLabel">FILTRAR POR VEÍCULO</h1>
-		  <button id="vehicleFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">DIGITE A PLACA</label>
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" 
-					placeholder="Placa do veículo"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredVechiclePlate"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestVehicleFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>
-  <div class="modal fade" id="serviceOrderFilterModalToggle" aria-labelledby="serviceOrderFilterModalToggleLabel" tabindex="-1" aria-hidden="true" style="display: none;">
-	<div class="modal-dialog modal-xl">
-	  <div class="modal-content">
-		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="serviceOrderFilterModalToggleLabel">FILTRAR POR ORDEM DE SERVIÇO</h1>
-		  <button id="serviceOrderFilterCloseModalButton" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		</div>
-		<div class="modal-body">
-		<div class="table-responsive filter-input">
-			<label for="">DIGITE A ORDEM DE SERVIÇO</label>
-			<div class="input-group input-group-lg">
-				<input type="text" class="form-control" 
-					placeholder="Ordem de serviço"
-					aria-label="Sizing example input" 
-					aria-describedby="inputGroup-sizing-lg" 
-					[(ngModel)]="filteredServiceOrder"
-				>
-			</div>
-			<app-alert-message 
-				[message]="alertMessage"
-				(clearEvent)="clearAlertMessage()"
-			></app-alert-message>
-		</div>
-		</div>	
-		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="doTestFilteredOrderFilter()">FILTRAR</button>
-	    </div>	
-	  </div>
-	</div>	
-  </div>      
+   <app-remove-modal
+   		[message]="alertMessage"
+   		[removingName]="removingName"
+   		[removingEvent]="removingEvent"
+   		[removingObjects]="removingObjects"
+   		[removingAlertTopTitle]="removingAlertTopTitle"
+   		[removingAlertMessage01]="removingAlertMessage01"
+   		[removingAlertMessage02]="removingAlertMessage02"
+		(clearEvent)="clearAlertMessage()"
+		(cancelEvent)="cancelRemoveCommandButton()"
+		(confirmEvent)="handleModalRemoveConfirm()"
+   ></app-remove-modal>
+   <app-inj-number-filter-modal
+   		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+   		(filterEvent)="setFieldFilter($event)"
+   ></app-inj-number-filter-modal>
+   <app-customer-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+	  	(filterEvent)="setFieldFilter($event)"
+   ></app-customer-filter-modal>
+   <app-date-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="setFieldFilter($event)"
+   ></app-date-filter-modal>
+   <app-inj-model-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="setFieldFilter($event)"
+   ></app-inj-model-filter-modal>
+   <app-vehicle-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="setFieldFilter($event)"
+   ></app-vehicle-filter-modal>
+   <app-service-order-filter-modal
+		[message]="alertMessage"
+		(clearEvent)="clearAlertMessage()"
+		(filterEvent)="setFieldFilter($event)"
+   ></app-service-order-filter-modal>
 </div>
 <app-footer></app-footer>

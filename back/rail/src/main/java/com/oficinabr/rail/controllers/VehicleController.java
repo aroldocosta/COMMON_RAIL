@@ -27,14 +27,20 @@ public class VehicleController {
 
 	@GetMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<VehicleDTO>> getAll() {
-		return service.getAll();
+	public ResponseEntity<List<VehicleDTO>> findAll() {
+		return service.findAll();
+	}
+	
+	@GetMapping("/workshop/{id}")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
+	public ResponseEntity<List<VehicleDTO>> findByWorkshop(@PathVariable("id") String id) {
+		return service.findByWorkshop(id);
 	}
 	
 	@GetMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<VehicleDTO> get(@PathVariable("id") String id) {     
-		return service.get(id);
+	public ResponseEntity<VehicleDTO> find(@PathVariable("id") String id) {     
+		return service.find(id);
 	}
 	
 	@PostMapping()
@@ -53,38 +59,4 @@ public class VehicleController {
 	public ResponseEntity<VehicleDTO> delete(@PathVariable("id") String id) {
 		return service.delete(id);
 	}
-	
-	/*
-	 	@GetMapping()
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<VehicleDTO> > getAll() {
-		return service.getAll();
-	}
-	@GetMapping(value = "/{id}")	
-	public ResponseEntity<VehicleDTO> get(@PathVariable("id") Long id) {     
-		return service.get(id);
-	}
-	@PostMapping()
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
-	public ResponseEntity<VehicleDTO> save(@RequestBody VehicleDTO dto) {
-		return service.save(dto);
-	}
-	@PutMapping()
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.PUT)
-	public ResponseEntity<VehicleDTO> update(@RequestBody VehicleDTO dto) {
-		return service.update(dto);
-	}
-	@DeleteMapping(value = "{id}")
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.DELETE)
-	public ResponseEntity<VehicleDTO> delete(@PathVariable("id") Long id) {
-		return service.delete(id);
-	}
-	
-	@GetMapping(value = "/totals")
-	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<TotalsDTO> getTotals() {
-		return service.totals();
-	}
-	
-	*/
 }

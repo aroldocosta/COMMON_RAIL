@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.oficinabr.rail.dto.UserDTO;
 import com.oficinabr.rail.dto.WorkshopDTO;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.services.UserService;
 
 @RestController
@@ -28,20 +29,22 @@ public class UserController {
 	
 	@GetMapping()
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO> > getAll() { 
-		return service.getAll();
+	public ResponseEntity<List<UserDTO> > findAll() { 
+		return service.findAll();
 	}
 	
 	@GetMapping(value = "/{id}")	
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<UserDTO> get(@PathVariable("id") String id) {     
-		return service.get(id);
+	public ResponseEntity<UserDTO> find(@PathVariable("id") String id) {     
+		return service.find(id);
 	}
 	
 	@GetMapping(value = "/workshop/{id}")	
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<UserDTO> > getByWorkshopId(@PathVariable("id") String id) {     
-		return service.getByWorkshopId(id);
+	public ResponseEntity<List<UserDTO> > findByWorkshopId(@PathVariable("id") String id) {  
+		return Workshop.ADMIN_WORKSHOP.equals(id) 
+				? service.findAll()
+				: service.findByWorkshop(id);
 	}
 		
 	@PostMapping()
@@ -63,7 +66,7 @@ public class UserController {
 	
 	@GetMapping("/{id}/workshop")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<WorkshopDTO> getUserWorkshop(@PathVariable("id") String id) {
-		return service.getWorkshop(id);
+	public ResponseEntity<WorkshopDTO> findUserWorkshop(@PathVariable("id") String id) {
+		return service.findWorkshop(id);
 	}
 }

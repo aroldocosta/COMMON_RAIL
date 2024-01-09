@@ -206,6 +206,47 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
+                <label class="input" for="">ROTAÇÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>1/min</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadBenchRpm"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">PULSO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ms</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadPulseTime"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">FREQUÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>p/m</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadFrequency"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
             </div>
         </div>
     </tab>
@@ -275,6 +316,47 @@
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxIdlingReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">ROTAÇÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>1/min</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.idlingBenchRpm"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">PULSO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ms</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.idlingPulseTime"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">FREQUÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>Hz</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.idlingFrequency"
                     >
                 </div>
             </div>
@@ -352,6 +434,47 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-4">
+                <label class="input" for="">ROTAÇÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>1/min</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.fullLoadBenchRpm"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">PULSO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ms</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.fullLoadPulseTime"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">FREQUÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>Hz</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.fullLoadFrequency"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
             </div>
         </div>
     </tab>
@@ -421,6 +544,47 @@
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.maxPreInjectionReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">ROTAÇÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>1/min</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.preInjectionBenchRpm"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">PULSO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ms</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.preInjectionPulseTime"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">FREQUÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>Hz</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.preInjectionFrequency"
                     >
                 </div>
             </div>

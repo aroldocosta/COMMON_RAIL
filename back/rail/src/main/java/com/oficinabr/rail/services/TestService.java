@@ -11,11 +11,13 @@ import com.oficinabr.rail.dto.TestDTO;
 import com.oficinabr.rail.entity.Injector;
 import com.oficinabr.rail.entity.Plan;
 import com.oficinabr.rail.entity.Test;
+import com.oficinabr.rail.entity.User;
 import com.oficinabr.rail.entity.Vehicle;
 import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.InjectorRepository;
 import com.oficinabr.rail.repository.PlanRepository;
 import com.oficinabr.rail.repository.TestRepository;
+import com.oficinabr.rail.repository.UserRepository;
 import com.oficinabr.rail.repository.VehicleRepository;
 import com.oficinabr.rail.repository.WorkshopRepository;
 
@@ -23,6 +25,9 @@ import com.oficinabr.rail.repository.WorkshopRepository;
 public class TestService {
 	@Autowired
 	private TestRepository repository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Autowired
 	private PlanRepository planRepository;
@@ -35,29 +40,26 @@ public class TestService {
 	
 	@Autowired
 	private WorkshopRepository workshopRepository;
-	
-	public ResponseEntity<List<TestDTO>> getAll() {
+		
+	public ResponseEntity<List<TestDTO>> findAll() {
 		try {
-			List<TestDTO> resp = repository.findAllByOrderByDateDesc().stream().map(TestDTO::new).toList();
+			List<TestDTO> resp = repository.findAll().stream().map(TestDTO::new).toList();
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}
 	}
 	
-	public ResponseEntity<List<TestDTO>> getByWorkshop(String id) {
+	public ResponseEntity<List<TestDTO>> findByWorkshop(String id) {
 		try {
-			List<TestDTO> resp = repository.findAllByOrderByDateDesc().stream()
-					.map(TestDTO::new)
-					.filter(t -> t.workshop().id().equals(id))
-					.toList();
+			List<TestDTO> resp = repository.findByWorkshopId(id).stream().map(TestDTO::new).toList();
 			return ResponseEntity.ok(resp);
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		}
 	}
 	
-	public ResponseEntity<TestDTO> get(String id) {
+	public ResponseEntity<TestDTO> find(String id) {
 		try {
 			TestDTO resp = repository.findById(id).stream().map(TestDTO::new).findAny().get();
 			return ResponseEntity.ok(resp);
