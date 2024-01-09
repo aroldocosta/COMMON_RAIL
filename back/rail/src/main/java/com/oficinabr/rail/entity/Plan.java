@@ -37,7 +37,7 @@ public class Plan {
 	private List<Test> testList;
 	
 	@OneToMany(mappedBy = "plan", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Test> injectorList;
+	private List<Injector> injectorList;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "workshop_id")
@@ -254,11 +254,11 @@ public class Plan {
 		this.workshop = workshop;
 	}
 
-	public List<Test> getInjectorList() {
+	public List<Injector> getInjectorList() {
 		return injectorList;
 	}
 
-	public void setInjectorList(List<Test> injectorList) {
+	public void setInjectorList(List<Injector> injectorList) {
 		this.injectorList = injectorList;
 	}
 
