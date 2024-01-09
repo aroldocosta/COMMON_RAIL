@@ -21,7 +21,7 @@ export class CommonPageComponent {
   errors = "";
   DUPLICATED_KEY = "DUPLICATED_KEY";
   UNKNOWN_ERROR  = "UNKNOWN_ERROR";
-  testCommandButton = 'NOVO TESTE'
+  testCommandButton = 'NOVO'
 
   @Input() modalCommand: string = 'listing';
   @Input() modalCommandButton: string = 'NOVO';

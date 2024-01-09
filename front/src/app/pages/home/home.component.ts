@@ -110,7 +110,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   /* ---------------- Remove Command Button Handlers ----------------- */
   cancelRemoveCommandButton() {
     this.testCommand = 'listing';
-    this.testCommandButton = "NOVO TESTE";
+    this.testCommandButton = "NOVO";
     this.modalCommand = 'listing';
     this.modalCommandButton = "NOVO";  
     document.getElementById('removeCloseModalButton')?.click(); 
@@ -150,7 +150,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   cancelTestCommandButton() {
     this.testCommand = 'listing';
-    this.testCommandButton = 'NOVO TESTE';
+    this.testCommandButton = 'NOVO';
     this.requestTests();
   }
 
@@ -277,7 +277,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.testService.remove(test.id).subscribe({
       next: resp => {
         this.testCommand = 'listing';
-        this.testCommandButton = 'NOVO TESTE';
+        this.testCommandButton = 'NOVO';
         document.getElementById("removeCloseModalButton")?.click();
         this.requestTests();      
       },
