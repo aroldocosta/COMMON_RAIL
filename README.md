@@ -65,6 +65,11 @@
 - 18 () criar passo carga parcial 2 e 3
 - 19 () criar passo estaquidade
 
+### ‐---------‐-----------10/01/24‐-----------------------------
+- 20 () O botao salvar superior da tela principa ao lado esquerdo do nome injetor nao ta salvando
+- 21 () Os dois campos que foram criados, pulso e frequencia, qualquer numero que digitar esta salvando com o valor 1000
+
+
 ### SOLUCOES DE USABILIDADES
 - 1 (x) Selecionar edicao do bico pela linha toda
 - 2 (x) Ao salvar um teste voltar para o grupo da mesma "OS"
@@ -98,4 +103,114 @@
 
 ### Feedbacks
    - Entender os retornos(feedbacks) do cliente e fazer
-     correções e adaptações que façam sentido para o produto    
+     correções e adaptações que façam sentido para o produto  
+
+
+## LISTA DE TESTE DE SOFTWARE (Nao confundir com teste de injetor)
+### PLANOS
+#### Teste 1
+1. Criar um plano e salvar. Esperado -> plano criado
+2. Editar plano e salvar.   Esperado -> plano modificado
+3. Listar plano.            Esperado -> lista de planos  
+4. Remover plano            Esperado -> plano removido
+
+#### Teste 2
+1. Criar um plano 
+2. Criar um Injetor e associar ao plano criado 
+3. Remover o plano. 
+4. Verificar alerta (se mostra que vai remover o injetor associado) 
+5. Confirmar 
+6. Conferir se o plano e o injetor foram removidos.  
+**Esperado -> Plano e injetor removidos.**
+
+#### Teste 3
+1. Criar um plano e salvar.
+2. Editar plano e preencher todos os campos/
+   atributos do plano
+3. Salvar plano   
+4. Conferir se todos os campos/atributos foram salvos
+   corretamente  
+**Esperado -> campos/atributos salvos.**   
+            
+### VEICULOS
+#### Teste 1
+1. Criar um veiculo e salvar. Esperado -> veiculo criado
+2. Editar veículo e salvar.   Esperado -> veículo modificado
+3. Listar veículo.            Esperado -> lista de veículos  
+4. Remover veículo            Esperado -> veículo removido
+
+### INJETORES
+#### Teste 1
+1. Criar um injetor e salvar. Esperado -> injetor criado
+2. Editar injetor e salvar.   Esperado -> injetor modificado
+3. Listar injetor.            Esperado -> lista de injetors  
+4. Remover injetor            Esperado -> injetor removido
+
+### OFICINAS
+#### Teste 1
+1. Criar uma oficina e salvar. Esperado -> oficina criada
+2. Editar oficina e salvar.    Esperado -> oficina modificada
+3. Listar oficina.             Esperado -> lista de oficinas  
+4. Remover oficina             Esperado -> oficina removida
+
+#### Teste 2
+1. Criar um oficina 
+2. Criar um Usuário e associar a oficina criada 
+3. Remover a oficina. 
+4. Verificar alerta (se mostra que vai remover o usuário associado) 
+5. Confirmar 
+6. Conferir se o oficina e o usuário foram removidos.  
+**Esperado -> oficina e usuario removidos.**
+
+### USUARIOS
+#### Teste 1
+1. Criar um usuário e salvar. Esperado -> usuário criado
+2. Editar usuário e salvar.   Esperado -> usuário modificado
+3. Listar usuário.            Esperado -> lista de usuários  
+4. Remover usuário            Esperado -> usuário removido    
+
+### TESTES(DE INJETOR)
+#### Teste 1  
+1. Criar um teste e salvar. Esperado -> teste criado
+2. Editar teste e salvar.   Esperado -> teste modificado
+3. Listar teste.            Esperado -> lista de testes  
+4. Remover teste            Esperado -> teste removido
+**Obs: Repita o teste e tilize o botão NOVO inferior**
+#### Teste 2
+1. Criar um teste e salvar.
+2. Editar teste e preencher todos os campos/
+   atributos do teste
+3. Salvar teste   
+4. Conferir se todos os campos/atributos foram salvos
+   corretamente  
+**Esperado -> campos/atributos salvos.** 
+
+#### Teste 3
+1. Verificar filtro de numero de injetor (individualmente)
+2. Verificar filtro de cliente (individualmente)
+3. Verificar filtro de ordem de serviço(os) (individualmente)
+4. Verificar filtro de data (individualmente)
+5. Verificar filtro de modelo de injetor(injet) (individualmente)
+6. Verificar filtro de veículo (individualmente)
+**Esperado -> filtragem correta para cada campo.** 
+
+#### Teste 4
+1. Criar diversos cenarios de filtros combinados
+   - Ex. NUM + CLIENTE,  CLIENTE + OS + INJETOR etc
+
+**Esperado -> filtragem combinada correta para cada cenário.** 
+
+#### Teste 5
+1. Gerar relatorio por ordem de serviço
+2. Verificar se todas as informações estão corretas
+3. Baixar arquivo pdf
+4. Verificar se o arquivo pdf está correto
+**Esperado -> relatorio e arquivo pdf corretos.** 
+
+#### Teste 6
+1. Gerar relatorio por injetor
+2. Verificar se todas as informações estão corretas
+2. Verificar se gráficos de evolução estão corretas
+4. Baixar arquivo pdf
+5. Verificar se o arquivo pdf está correto
+**Esperado -> relatorio e arquivo pdf corretos.** 
