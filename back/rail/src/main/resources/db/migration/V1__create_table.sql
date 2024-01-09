@@ -88,5 +88,17 @@ CREATE TABLE IF NOT EXISTS plan (
 	min_idling_return NUMERIC,
 	max_pre_injection_return NUMERIC,
 	min_pre_injection_return NUMERIC,
+	half_load_bench_rpm NUMERIC,
+	half_load_pulse_time NUMERIC,
+	half_load_frequency NUMERIC,
+	full_load_bench_rpm NUMERIC,
+	full_load_pulse_time NUMERIC,
+	full_load_frequency NUMERIC,
+	idling_bench_rpm NUMERIC,
+	idling_pulse_time NUMERIC,
+	idling_frequency NUMERIC,
+	pre_injection_bench_rpm NUMERIC,
+	pre_injection_pulse_time NUMERIC,
+	pre_injection_frequency NUMERIC,
 	workshop_id TEXT NOT NULL
 );

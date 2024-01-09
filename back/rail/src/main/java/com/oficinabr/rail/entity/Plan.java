@@ -121,6 +121,46 @@ public class Plan {
 	@Column(name = "min_pre_injection_return")
     private Float minPreInjectionReturn;
 	
+	//-----------
+	@Column(name = "half_load_bench_rpm")
+	private Float halfLoadBenchRpm;
+	
+	@Column(name = "half_load_pulse_time")
+	private Float halfLoadPulseTime;
+	
+	@Column(name = "half_load_frequency")
+	private Float halfLoadFrequency;
+	
+	//-----------
+	@Column(name = "full_load_bench_rpm")
+	private Float fullLoadBenchRpm;
+	
+	@Column(name = "full_load_pulse_time")
+	private Float fullLoadPulseTime;
+	
+	@Column(name = "full_load_frequency")
+	private Float fullLoadFrequency;
+	
+	//-----------
+	@Column(name = "idling_bench_rpm")
+	private Float idlingBenchRpm;
+	
+	@Column(name = "idling_pulse_time")
+	private Float idlingPulseTime;
+	
+	@Column(name = "idling_frequency")
+	private Float idlingFrequency;
+	
+	//-----------
+	@Column(name = "pre_injection_bench_rpm")
+	private Float preInjectionBenchRpm;
+	
+	@Column(name = "pre_injection_pulse_time")
+	private Float preInjectionPulseTime;
+	
+	@Column(name = "pre_injection_frequency")
+	private Float preInjectionFrequency;
+	
 	public Plan() {
 		
 	}
@@ -156,6 +196,20 @@ public class Plan {
 		this.setMinIdlingReturn(dto.minIdlingReturn());
 		this.setMaxPreInjectionReturn(dto.maxPreInjectionReturn());
 		this.setMinPreInjectionReturn(dto.minPreInjectionReturn());
+		this.setHalfLoadBenchRpm(dto.halfLoadBenchRpm());
+		this.setHalfLoadPulseTime(dto.halfLoadPulseTime());
+		this.setHalfLoadFrequency(dto.halfLoadFrequency());
+		
+		this.setFullLoadBenchRpm(dto.halfLoadBenchRpm());
+		this.setFullLoadPulseTime(dto.halfLoadPulseTime());
+		this.setFullLoadFrequency(dto.halfLoadFrequency());
+		this.setIdlingBenchRpm(dto.halfLoadBenchRpm());
+		this.setIdlingPulseTime(dto.halfLoadPulseTime());
+		this.setIdlingFrequency(dto.halfLoadFrequency());
+		this.setPreInjectionBenchRpm(dto.halfLoadBenchRpm());
+		this.setPreInjectionPulseTime(dto.halfLoadPulseTime());
+		this.setPreInjectionFrequency(dto.halfLoadFrequency());
+		
 	}
 	
 	public String getId() {
@@ -363,5 +417,101 @@ public class Plan {
 	}
 	public void setMinPreInjectionReturn(Float minPreInjectionReturn) {
 		this.minPreInjectionReturn = minPreInjectionReturn;
+	}
+
+	public Float getHalfLoadBenchRpm() {
+		return halfLoadBenchRpm;
+	}
+
+	public void setHalfLoadBenchRpm(Float halfLoadBenchRpm) {
+		this.halfLoadBenchRpm = halfLoadBenchRpm;
+	}
+
+	public Float getHalfLoadPulseTime() {
+		return halfLoadPulseTime;
+	}
+
+	public void setHalfLoadPulseTime(Float halfLoadPulseTime) {
+		this.halfLoadPulseTime = halfLoadPulseTime;
+	}
+
+	public Float getHalfLoadFrequency() {
+		return halfLoadFrequency;
+	}
+
+	public void setHalfLoadFrequency(Float halfLoadFrequency) {
+		this.halfLoadFrequency = halfLoadFrequency;
+	}
+
+	public Float getFullLoadBenchRpm() {
+		return fullLoadBenchRpm;
+	}
+
+	public void setFullLoadBenchRpm(Float fullLoadBenchRpm) {
+		this.fullLoadBenchRpm = fullLoadBenchRpm;
+	}
+
+	public Float getFullLoadPulseTime() {
+		return fullLoadPulseTime;
+	}
+
+	public void setFullLoadPulseTime(Float fullLoadPulseTime) {
+		this.fullLoadPulseTime = fullLoadPulseTime;
+	}
+
+	public Float getFullLoadFrequency() {
+		return fullLoadFrequency;
+	}
+
+	public void setFullLoadFrequency(Float fullLoadFrequency) {
+		this.fullLoadFrequency = fullLoadFrequency;
+	}
+
+	public Float getIdlingBenchRpm() {
+		return idlingBenchRpm;
+	}
+
+	public void setIdlingBenchRpm(Float idlingBenchRpm) {
+		this.idlingBenchRpm = idlingBenchRpm;
+	}
+
+	public Float getIdlingPulseTime() {
+		return idlingPulseTime;
+	}
+
+	public void setIdlingPulseTime(Float idlingPulseTime) {
+		this.idlingPulseTime = idlingPulseTime;
+	}
+
+	public Float getIdlingFrequency() {
+		return idlingFrequency;
+	}
+
+	public void setIdlingFrequency(Float idlingFrequency) {
+		this.idlingFrequency = idlingFrequency;
+	}
+
+	public Float getPreInjectionBenchRpm() {
+		return preInjectionBenchRpm;
+	}
+
+	public void setPreInjectionBenchRpm(Float preInjectionBenchRpm) {
+		this.preInjectionBenchRpm = preInjectionBenchRpm;
+	}
+
+	public Float getPreInjectionPulseTime() {
+		return preInjectionPulseTime;
+	}
+
+	public void setPreInjectionPulseTime(Float preInjectionPulseTime) {
+		this.preInjectionPulseTime = preInjectionPulseTime;
+	}
+
+	public Float getPreInjectionFrequency() {
+		return preInjectionFrequency;
+	}
+
+	public void setPreInjectionFrequency(Float preInjectionFrequency) {
+		this.preInjectionFrequency = preInjectionFrequency;
 	}
 }

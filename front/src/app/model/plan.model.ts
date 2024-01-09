@@ -32,6 +32,18 @@ export class Plan {
 	minIdlingReturn: string = '0.00';
 	maxPreInjectionReturn: string = '0.00';
 	minPreInjectionReturn: string = '0.00';
+	halfLoadBenchRpm: string = '0.00';
+	halfLoadPulseTime: string = '0.00';
+	halfLoadFrequency: string = '0.00';
+	fullLoadBenchRpm: string = '0.00';
+	fullLoadPulseTime: string = '0.00';
+	fullLoadFrequency: string = '0.00';
+	idlingBenchRpm: string = '0.00';
+	idlingPulseTime: string = '0.00';
+	idlingFrequency: string = '0.00';
+	preInjectionBenchRpm: string = '0.00';
+	preInjectionPulseTime: string = '0.00';
+	preInjectionFrequency: string = '0.00';
 	workshop: Workshop = new Workshop();
 
     constructor() {}

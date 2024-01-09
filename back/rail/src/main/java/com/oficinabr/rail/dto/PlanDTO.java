@@ -33,6 +33,19 @@ public record PlanDTO(
 	Float minIdlingReturn,
 	Float maxPreInjectionReturn,
 	Float minPreInjectionReturn, 
+	Float halfLoadBenchRpm,
+	Float halfLoadPulseTime,	
+	Float halfLoadFrequency,
+	Float fullLoadBenchRpm,
+	Float fullLoadPulseTime,	
+	Float fullLoadFrequency,
+	Float idlingBenchRpm,
+	Float idlingPulseTime,	
+	Float idlingFrequency,
+	Float preInjectionBenchRpm,
+	Float preInjectionPulseTime,	
+	Float preInjectionFrequency,
+	
 	WorkshopDTO workshop
 	) {
 	
@@ -68,6 +81,18 @@ public record PlanDTO(
 			plan.getMinIdlingReturn(),
 			plan.getMaxPreInjectionReturn(),
 			plan.getMinPreInjectionReturn(),
+			plan.getHalfLoadBenchRpm(),
+			plan.getHalfLoadPulseTime(),
+			plan.getHalfLoadFrequency(),
+			plan.getFullLoadBenchRpm(),
+			plan.getFullLoadPulseTime(),
+			plan.getFullLoadFrequency(),
+			plan.getIdlingBenchRpm(),
+			plan.getIdlingPulseTime(),
+			plan.getIdlingFrequency(),
+			plan.getPreInjectionBenchRpm(),
+			plan.getPreInjectionPulseTime(),
+			plan.getPreInjectionFrequency(),
 			new WorkshopDTO(plan.getWorkshop())
 		);
 	}

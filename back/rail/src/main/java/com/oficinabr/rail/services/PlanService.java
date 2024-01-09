@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.oficinabr.rail.dto.PlanDTO;
+import com.oficinabr.rail.entity.Injector;
 import com.oficinabr.rail.entity.Plan;
 import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.PlanRepository;
