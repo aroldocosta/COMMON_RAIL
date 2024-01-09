@@ -205,10 +205,10 @@ COPY public.injector (id, model, plan_id, description, workshop_id) FROM stdin;
 -- Data for Name: plan; Type: TABLE DATA; Schema: public; Owner: aga2ocom_usr
 --
 
-COPY public.plan (id, code, type, description, max_resistance, min_resistance, max_reactance, min_reactance, max_isolation, min_isolation, max_half_load, min_half_load, half_load_pressure, max_full_load, min_full_load, full_load_pressure, max_idling, min_idling, idling_pressure, max_pre_injection, min_pre_injection, pre_injection_pressure, max_half_load_return, min_half_load_return, max_full_load_return, min_full_load_return, max_idling_return, min_idling_return, max_pre_injection_return, min_pre_injection_return, workshop_id) FROM stdin;
-71e23d0a-da31-4e9f-afb5-484fe77798c3	0445120007	INDUTIVO	Bico Injetor Cummins Isb 0445120007	360	330	0	0	0	30	28	18	800	47	33	1400	9	6	300	0	0	0	15	3	35	5	10	2	0	0	recodiesel_id
-ad32b942-474d-4f48-b5a6-b5cf6bc3311d	23670-0L090	INDUTIVO	Bico Injetor 23670-0L090 Toyota Hilux	600	200	0	0	0	30	14.5	5.3	1000	84.9	58.7	1400	7.2	0.3	640	7.9	0.9	320	10	2	40	2	10	2	8	1	recodiesel_id
-9b9d197a-f1e7-42e9-baa9-b445814ef64c	23670-0L050	INDUTIVO	Injetor Hilux 3.0 2005 a 2010 095000-8290 (23670-0L050 /0L020)	1200	800	226	218	0	270	30	22	800	57	43	1400	9	5	300	5	3	360	22	3	30	5	13	3	8	2	recodiesel_id
+COPY public.plan (id, code, type, description, max_resistance, min_resistance, max_reactance, min_reactance, max_isolation, min_isolation, max_half_load, min_half_load, half_load_pressure, max_full_load, min_full_load, full_load_pressure, max_idling, min_idling, idling_pressure, max_pre_injection, min_pre_injection, pre_injection_pressure, max_half_load_return, min_half_load_return, max_full_load_return, min_full_load_return, max_idling_return, min_idling_return, max_pre_injection_return, min_pre_injection_return, half_load_bench_rpm, half_load_pulse_time, half_load_frequency, full_load_bench_rpm, full_load_pulse_time, full_load_frequency, idling_bench_rpm, idling_pulse_time, idling_frequency, pre_injection_bench_rpm, pre_injection_pulse_time, pre_injection_frequency, workshop_id) FROM stdin;
+71e23d0a-da31-4e9f-afb5-484fe77798c3	0445120007	INDUTIVO	Bico Injetor Cummins Isb 0445120007	360	330	0	0	0	30	28	18	800	47	33	1400	9	6	300	0	0	0	15	3	35	5	10	2	0	0	1300	1	1000	1300	1	1500	450	1	400	400	2	150	recodiesel_id
+ad32b942-474d-4f48-b5a6-b5cf6bc3311d	23670-0L090	INDUTIVO	Bico Injetor 23670-0L090 Toyota Hilux	600	200	0	0	0	30	14.5	5.3	1000	84.9	58.7	1400	7.2	0.3	640	7.9	0.9	320	10	2	40	2	10	2	8	1	1300	1	1000	1300	1	1500	450	1	400	400	2	150	recodiesel_id
+9b9d197a-f1e7-42e9-baa9-b445814ef64c	23670-0L050	INDUTIVO	Injetor Hilux 3.0 2005 a 2010 095000-8290 (23670-0L050 /0L020)	1200	800	226	218	0	270	30	22	800	57	43	1400	9	5	300	5	3	360	22	3	30	5	13	3	8	2	1300	1	1000	1300	1	1500	450	1	400	400	2	150	recodiesel_id
 \.
 
 
