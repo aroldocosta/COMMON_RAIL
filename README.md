@@ -49,16 +49,21 @@
 
 ### ‐---------‐-----------13/12/23‐-----------------------------
 - 12 () Quando selecino teste ex: teste 1 sequencia 3 ele mostra 1/[] ou 1/[sequencia mostrada anterior]
-	saio e seleciono teste 1 sequencia 3 novamente ai mostra 1/[3] (so no celular)
+	saio e seleciono teste 1 sequencia 3 novamente ai mostra 1/[3] (so foi observado o evento no meu celular mod A71 samsung)
 
 ### ‐---------‐-----------18/12/23‐-----------------------------
-- 13 () inserir filtros em mais de uma coluna au mesmo tempo
+- 13 (x) inserir filtros em mais de uma coluna ao mesmo tempo
 - 14 (x) Substituir a cor laranja pela cor verde escuro 41AE1E
-- 15 () Ao filtrar uma OS manter o filtro ate que solicite remover filtro
+- 15 (x) Ao filtrar uma OS manter o filtro ate que solicite remover filtro
 	(resolveu parcialmente pois se eu abrir relatorio o filtro sai)
 
 ### ‐---------‐-----------27/12/23‐-----------------------------
-- 16 () Na tela principal na coluna cliente ao clicar em cliente aparece e sequencia e nao seleciona
+- 16 (x) Na tela principal na coluna cliente ao clicar em cliente aparece e sequencia e nao seleciona
+
+### ‐---------‐-----------07/01/24‐-----------------------------
+- 17 () Na tela de teste substituir o passo medidas elétricas por passe de arranque
+- 18 () criar passo carga parcial 2 e 3
+- 19 () criar passo estaquidade
 
 ### SOLUCOES DE USABILIDADES
 - 1 (x) Selecionar edicao do bico pela linha toda
