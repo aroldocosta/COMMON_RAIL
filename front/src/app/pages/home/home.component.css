@@ -1,5 +1,14 @@
 @import "../../../data-style.css";
 
+h1.title {
+   z-index: -1;
+}
+
+.top-button {
+    z-index: 1;
+    position: relative;
+}
+
 h2 {
    padding-top: 0.5em;
 }
