@@ -2,7 +2,8 @@
 	<div class="modal-dialog modal-xl">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel">PLANOS</h1>
+		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel" *ngIf="!plan.code">PLANOS</h1>
+		  <h1 class="modal-title fs-5" id="exampleModalToggleLabel" *ngIf="plan.code">{{plan.code}}</h1>
 		  <button (click)="emitCancelButtonEvent()" id="planModalCloseButton"type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
