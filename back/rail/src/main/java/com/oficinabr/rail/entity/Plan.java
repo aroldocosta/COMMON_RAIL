@@ -198,18 +198,16 @@ public class Plan {
 		this.setMinPreInjectionReturn(dto.minPreInjectionReturn());
 		this.setHalfLoadBenchRpm(dto.halfLoadBenchRpm());
 		this.setHalfLoadPulseTime(dto.halfLoadPulseTime());
-		this.setHalfLoadFrequency(dto.halfLoadFrequency());
-		
-		this.setFullLoadBenchRpm(dto.halfLoadBenchRpm());
-		this.setFullLoadPulseTime(dto.halfLoadPulseTime());
-		this.setFullLoadFrequency(dto.halfLoadFrequency());
-		this.setIdlingBenchRpm(dto.halfLoadBenchRpm());
-		this.setIdlingPulseTime(dto.halfLoadPulseTime());
-		this.setIdlingFrequency(dto.halfLoadFrequency());
-		this.setPreInjectionBenchRpm(dto.halfLoadBenchRpm());
-		this.setPreInjectionPulseTime(dto.halfLoadPulseTime());
-		this.setPreInjectionFrequency(dto.halfLoadFrequency());
-		
+		this.setHalfLoadFrequency(dto.halfLoadFrequency());		
+		this.setFullLoadBenchRpm(dto.fullLoadBenchRpm());
+		this.setFullLoadPulseTime(dto.fullLoadPulseTime());
+		this.setFullLoadFrequency(dto.fullLoadFrequency());
+		this.setIdlingBenchRpm(dto.idlingBenchRpm());
+		this.setIdlingPulseTime(dto.idlingPulseTime());
+		this.setIdlingFrequency(dto.idlingFrequency());
+		this.setPreInjectionBenchRpm(dto.preInjectionBenchRpm());
+		this.setPreInjectionPulseTime(dto.preInjectionPulseTime());
+		this.setPreInjectionFrequency(dto.preInjectionFrequency());
 	}
 	
 	public String getId() {
