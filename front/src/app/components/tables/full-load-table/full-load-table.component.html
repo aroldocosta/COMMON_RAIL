@@ -2,25 +2,33 @@
   <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}</h2>
   <div class="table-responsive">
     <table class="table table-sm">
+      <thead>
+          <tr>
+              <th class="striped-table" scope="col" title="Pressão bomba">PRESSÃO(bar):</th>
+              <th class="striped-table" scope="col" title="Rotação">ROTAÇÃO(1/min):</th>
+          </tr>
+      </thead>
       <tbody>
           <tr>
-            <th class="striped-table" scope="row" title="Pressão bomba">PRESSÃO(bar):</th>
-            <td class="striped-table">{{plan.fullLoadPressure | number: '1.0'}}</td>
+              <td>{{plan.fullLoadPressure | number: '1.0'}}</td>
+              <td>{{plan.fullLoadBenchRpm | number: '1.0'}}</td>
           </tr>
-          <tr>
-              <th class="striped-table" scope="row" title="Rotação">ROTAÇÃO(1/min):</th>
-              <td class="striped-table">{{plan.fullLoadBenchRpm | number: '1.0'}}</td>
-          </tr>
-          <tr>
-              <th scope="row" title="Largura de pulso">PULSO PWM(ms):</th>
-              <td>{{plan.fullLoadPulseTime 	| number: '1.0'}}</td>
-          </tr>
-          <tr>
-              <th scope="row" title="Frequência">FREQUÊNCIA(p/m):</th>
-              <td>{{plan.fullLoadFrequency 	| number: '1.0'}}</td>
-          </tr>                				  
       </tbody>
-    </table>    
+  </table>
+  <table class="table table-sm">
+      <thead>
+          <tr>
+              <th class="striped-table" scope="col" title="Largura de pulso">PULSO PWM(ms):</th>
+              <th class="striped-table" scope="col" title="Frequência">FREQUÊNCIA(p/m):</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>{{plan.fullLoadPulseTime 	| number: '1.0'}}</td>
+              <td>{{plan.fullLoadFrequency 	| number: '1.0'}}</td>
+          </tr>
+      </tbody>
+  </table>   
     <table class="table table-sm">
         <thead>
           <tr>

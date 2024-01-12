@@ -2,25 +2,33 @@
     <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}</h2>
     <div class="table-responsive">
         <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th class="striped-table" scope="col" title="Pressão bomba">PRESSÃO(bar):</th>
+                    <th class="striped-table" scope="col" title="Rotação">ROTAÇÃO(1/min):</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
-                  <th class="striped-table" scope="row" title="Pressão bomba">PRESSÃO(bar):</th>
-                  <td class="striped-table">{{plan.idlingPressure | number: '1.0'}}</td>
+                    <td>{{plan.idlingPressure | number: '1.0'}}</td>
+                    <td>{{plan.idlingBenchRpm | number: '1.0'}}</td>
                 </tr>
-                <tr>
-                    <th class="striped-table" scope="row" title="Rotação">ROTAÇÃO(1/min):</th>
-                    <td class="striped-table">{{plan.idlingBenchRpm | number: '1.0'}}</td>
-                </tr>
-                <tr>
-                    <th scope="row" title="Largura de pulso">PULSO PWM(ms):</th>
-                    <td>{{plan.idlingPulseTime 	| number: '1.0'}}</td>
-                </tr>
-                <tr>
-                    <th scope="row" title="Frequência">FREQUÊNCIA(p/m):</th>
-                    <td>{{plan.idlingFrequency 	| number: '1.0'}}</td>
-                </tr>                				  
             </tbody>
-        </table>        
+        </table>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th class="striped-table" scope="col" title="Largura de pulso">PULSO PWM(ms):</th>
+                    <th class="striped-table" scope="col" title="Frequência">FREQUÊNCIA(p/m):</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{plan.idlingPulseTime 	| number: '1.0'}}</td>
+                    <td>{{plan.idlingFrequency 	| number: '1.0'}}</td>
+                </tr>
+            </tbody>
+        </table>       
         <table class="table table-sm">
             <thead>
                 <tr>

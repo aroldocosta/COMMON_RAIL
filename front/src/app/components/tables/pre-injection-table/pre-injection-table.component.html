@@ -2,25 +2,33 @@
     <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}</h2>
     <div class="table-responsive">
         <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th class="striped-table" scope="col" title="Pressão bomba">PRESSÃO(bar):</th>
+                    <th class="striped-table" scope="col" title="Rotação">ROTAÇÃO(1/min):</th>
+                </tr>
+            </thead>
             <tbody>
                 <tr>
-                  <th class="striped-table" scope="row" title="Pressão bomba">PRESSÃO(bar):</th>
-                  <td class="striped-table">{{plan.preInjectionPressure | number: '1.0'}}</td>
+                    <td>{{plan.preInjectionPressure | number: '1.0'}}</td>
+                    <td>{{plan.preInjectionBenchRpm | number: '1.0'}}</td>
                 </tr>
-                <tr>
-                    <th class="striped-table" scope="row" title="Rotação">ROTAÇÃO(1/min):</th>
-                    <td class="striped-table">{{plan.preInjectionBenchRpm | number: '1.0'}}</td>
-                </tr>
-                <tr>
-                    <th scope="row" title="Largura de pulso">PULSO PWM(ms):</th>
-                    <td>{{plan.preInjectionPulseTime 	| number: '1.0'}}</td>
-                </tr>
-                <tr>
-                    <th scope="row" title="Frequência">FREQUÊNCIA(p/m):</th>
-                    <td>{{plan.preInjectionFrequency 	| number: '1.0'}}</td>
-                </tr>                				  
             </tbody>
-        </table> 
+        </table>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th class="striped-table" scope="col" title="Largura de pulso">PULSO PWM(ms):</th>
+                    <th class="striped-table" scope="col" title="Frequência">FREQUÊNCIA(p/m):</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{plan.preInjectionPulseTime 	| number: '1.0'}}</td>
+                    <td>{{plan.preInjectionFrequency 	| number: '1.0'}}</td>
+                </tr>
+            </tbody>
+        </table>
         <table class="table table-sm">
             <thead>
                 <tr>
