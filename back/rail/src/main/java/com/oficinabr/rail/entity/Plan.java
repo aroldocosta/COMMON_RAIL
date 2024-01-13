@@ -184,38 +184,52 @@ public class Plan {
 		this.setCode(dto.code());
 		this.setType(dto.type());
 		this.setDescription(dto.description());
-		this.setMaxHalfLoad(dto.maxHalfLoad());
-		this.setMinHalfLoad(dto.minHalfLoad());
-		this.setHalfLoadPressure(dto.halfLoadPressure());
-		this.setMaxFullLoad(dto.maxFullLoad());
-		this.setMinFullLoad(dto.minFullLoad());
-		this.setFullLoadPressure(dto.fullLoadPressure());
+		//-------------------------------------------------
+		this.setMaxStarting(dto.maxStarting());
+		this.setMinStarting(dto.minStarting());
+		this.setMaxStartingReturn(dto.maxStartingReturn());
+		this.setMinStartingReturn(dto.minStartingReturn());
+		this.setStartingPressure(dto.startingPressure());
+		this.setStartingBenchRpm(dto.startingBenchRpm());
+		this.setStartingPulseTime(dto.startingPulseTime());
+		this.setStartingFrequency(dto.startingFrequency());
+		//-------------------------------------------------
 		this.setMaxIdling(dto.maxIdling());
 		this.setMinIdling(dto.minIdling());
-		this.setIdlingPressure(dto.idlingPressure());
-		this.setMaxPreInjection(dto.maxPreInjection());
-		this.setMinPreInjection(dto.minPreInjection());
-		this.setPreInjectionPressure(dto.preInjectionPressure());
-		this.setMaxHalfLoadReturn(dto.maxHalfLoadReturn());
-		this.setMinHalfLoadReturn(dto.minHalfLoadReturn());
-		this.setMaxFullLoadReturn(dto.maxFullLoadReturn());
-		this.setMinFullLoadReturn(dto.minFullLoadReturn());
 		this.setMaxIdlingReturn(dto.maxIdlingReturn());
 		this.setMinIdlingReturn(dto.minIdlingReturn());
-		this.setMaxPreInjectionReturn(dto.maxPreInjectionReturn());
-		this.setMinPreInjectionReturn(dto.minPreInjectionReturn());
-		this.setHalfLoadBenchRpm(dto.halfLoadBenchRpm());
-		this.setHalfLoadPulseTime(dto.halfLoadPulseTime());
-		this.setHalfLoadFrequency(dto.halfLoadFrequency());		
-		this.setFullLoadBenchRpm(dto.fullLoadBenchRpm());
-		this.setFullLoadPulseTime(dto.fullLoadPulseTime());
-		this.setFullLoadFrequency(dto.fullLoadFrequency());
+		this.setIdlingPressure(dto.idlingPressure());
 		this.setIdlingBenchRpm(dto.idlingBenchRpm());
 		this.setIdlingPulseTime(dto.idlingPulseTime());
 		this.setIdlingFrequency(dto.idlingFrequency());
+		//-------------------------------------------------
+		this.setMaxHalfLoad(dto.maxHalfLoad());
+		this.setMinHalfLoad(dto.minHalfLoad());
+		this.setMaxHalfLoadReturn(dto.maxHalfLoadReturn());
+		this.setMinHalfLoadReturn(dto.minHalfLoadReturn());
+		this.setHalfLoadPressure(dto.halfLoadPressure());
+		this.setHalfLoadBenchRpm(dto.halfLoadBenchRpm());
+		this.setHalfLoadPulseTime(dto.halfLoadPulseTime());
+		this.setHalfLoadFrequency(dto.halfLoadFrequency());
+		//-------------------------------------------------
+		this.setMaxFullLoad(dto.maxFullLoad());
+		this.setMinFullLoad(dto.minFullLoad());
+		this.setMaxFullLoadReturn(dto.maxFullLoadReturn());
+		this.setMinFullLoadReturn(dto.minFullLoadReturn());
+		this.setFullLoadPressure(dto.fullLoadPressure());
+		this.setFullLoadBenchRpm(dto.fullLoadBenchRpm());
+		this.setFullLoadPulseTime(dto.fullLoadPulseTime());
+		this.setFullLoadFrequency(dto.fullLoadFrequency());
+		//------------------------------------------------
+		this.setMaxPreInjection(dto.maxPreInjection());
+		this.setMinPreInjection(dto.minPreInjection());
+		this.setMaxPreInjectionReturn(dto.maxPreInjectionReturn());
+		this.setMinPreInjectionReturn(dto.minPreInjectionReturn());
+		this.setPreInjectionPressure(dto.preInjectionPressure());
 		this.setPreInjectionBenchRpm(dto.preInjectionBenchRpm());
 		this.setPreInjectionPulseTime(dto.preInjectionPulseTime());
 		this.setPreInjectionFrequency(dto.preInjectionFrequency());
+		//------------------------------------------------
 	}
 	
 	public String getId() {
