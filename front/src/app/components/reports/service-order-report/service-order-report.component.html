@@ -40,40 +40,26 @@
         <div class="session-box">
             <div class="row">
                 <div class="col-sm-8" [ngClass]="reportClass">
-                    <app-med-electric-table
-                        tabTitle="MED ELÉTRICAS"
+                    <app-starting-table
+                        tabTitle="ARRANQUE"
                         showSequence="true"
-                        [reportClass]="reportClass"
                         [plan]="plan"
                         [test]="test"
                         [reportClass]="reportClass"
-                    ></app-med-electric-table>
-                </div>
-                <div class="col-sm-4" [ngClass]="reportClass">
-                    <img class="components-img report" [ngClass]="reportClass" src="../../../assets/img/componente.png">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-8" [ngClass]="reportClass">
-                    <app-half-load-table
-                        tabTitle="CARGA PARCIAL"
-                        [reportClass]="reportClass"
-                        [plan]="plan"
-                        [test]="test"
-                        [reportClass]="reportClass"
-                    ></app-half-load-table> 
+                    ></app-starting-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
                     <app-canvas-graph
-                        [valDeb]="test.halfLoad"
-                        [maxDeb]="plan.maxHalfLoad"
-                        [minDeb]="plan.minHalfLoad"
-                        [valRet]="test.halfLoadReturn"
-                        [maxRet]="plan.maxHalfLoadReturn"
-                        [minRet]="plan.minHalfLoadReturn"
+                        [valDeb]="test.starting"
+                        [maxDeb]="plan.maxStarting"
+                        [minDeb]="plan.minStarting"
+                        [valRet]="test.startingReturn"
+                        [maxRet]="plan.maxStartingReturn"
+                        [minRet]="plan.minStartingReturn"
+                        [graphClass]="graphClass"
                         [reportClass]="reportClass"
                     ></app-canvas-graph>
-                </div> 
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-8" [ngClass]="reportClass">
@@ -92,9 +78,32 @@
                         [valRet]="test.idlingReturn"
                         [maxRet]="plan.maxIdlingReturn"
                         [minRet]="plan.minIdlingReturn"
+                        [graphClass]="graphClass"
                         [reportClass]="reportClass"
                     ></app-canvas-graph>
                 </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8" [ngClass]="reportClass">
+                    <app-half-load-table
+                        tabTitle="CARGA PARCIAL"
+                        [plan]="plan"
+                        [test]="test"
+                        [reportClass]="reportClass"
+                    ></app-half-load-table> 
+                </div>  
+                <div class="col-sm-4" [ngClass]="reportClass">
+                    <app-canvas-graph
+                        [valDeb]="test.halfLoad"
+                        [maxDeb]="plan.maxHalfLoad"
+                        [minDeb]="plan.minHalfLoad"
+                        [valRet]="test.halfLoadReturn"
+                        [maxRet]="plan.maxHalfLoadReturn"
+                        [minRet]="plan.minHalfLoadReturn"
+                        [graphClass]="graphClass"
+                        [reportClass]="reportClass"
+                    ></app-canvas-graph>
+                </div> 
             </div>
             <div class="row">
                 <div class="col-sm-8" [ngClass]="reportClass">
@@ -113,6 +122,7 @@
                         [valRet]="test.fullLoadReturn"
                         [maxRet]="plan.maxFullLoadReturn"
                         [minRet]="plan.minFullLoadReturn"
+                        [graphClass]="graphClass"
                         [reportClass]="reportClass"
                     ></app-canvas-graph>
                 </div>
@@ -134,6 +144,7 @@
                         [valRet]="test.preInjectionReturn"
                         [maxRet]="plan.maxPreInjectionReturn"
                         [minRet]="plan.minPreInjectionReturn"
+                        [graphClass]="graphClass"
                         [reportClass]="reportClass"
                     ></app-canvas-graph>
                 </div>

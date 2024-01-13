@@ -25,7 +25,7 @@ export class CommonPageComponent {
 
   @Input() modalCommand: string = 'listing';
   @Input() modalCommandButton: string = 'NOVO';
-  @Input() tabId: string = 'med_electric';
+  @Input() tabId: string = 'starting';
   @Input() plan: Plan = new Plan();
   @Input() vehicle: Vehicle = new Vehicle();
   @Input() workshop: Workshop = new Workshop();
@@ -35,7 +35,7 @@ export class CommonPageComponent {
   @Input() resColor = ''; 
   @Input() rctColor = '';
   @Input() isoColor = '';
-  @Input() tabTitle: string = 'MED ELÉTRICAS';
+  @Input() tabTitle: string = 'ARRANQUE';
   @Input() testList: Test[] = [];
   @Input() sequence: any = [];
   @Input() reportType = 'service-order';

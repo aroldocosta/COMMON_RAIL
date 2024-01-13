@@ -63,23 +63,17 @@ public class Test {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "resistance")
-	private Float resistance;
+	@Column(name = "starting")
+	private Float starting;
 	
-	@Column(name = "reactance")
-	private Float reactance;
-	
-	@Column(name = "isolation")
-	private Float isolation;
+	@Column(name = "idling")
+	private Float idling;
 	
 	@Column(name = "half_load")
 	private Float halfLoad;
 	
 	@Column(name = "full_load")
 	private Float fullLoad;
-	
-	@Column(name = "idling")
-	private Float idling;
 	
 	@Column(name = "pre_injection")
 	private Float preInjection;
@@ -89,6 +83,9 @@ public class Test {
 	
 	@Column(name = "full_load_return")
 	private Float fullLoadReturn;
+
+	@Column(name = "starting_return")
+	private Float startingReturn;
 	
 	@Column(name = "idling_return")
 	private Float idlingReturn;
@@ -107,17 +104,16 @@ public class Test {
 		this.setDate(dto.date());
 		this.setComments(dto.comments());
 		this.setDescription(dto.description());
-		this.setResistance(dto.resistance());
-		this.setReactance(dto.reactance());
-		this.setIsolation(dto.isolation());
 		//------------------------------------
+		this.setStarting(dto.starting());
+		this.setIdling(dto.idling());
 		this.setHalfLoad(dto.halfLoad());
 		this.setFullLoad(dto.fullLoad());
-		this.setIdling(dto.idling());
 		this.setPreInjection(dto.preInjection());
 		//----------------------------------
 		this.setHalfLoadReturn(dto.halfLoadReturn());
 		this.setFullLoadReturn(dto.fullLoadReturn());
+		this.setStartingReturn(dto.idlingReturn());
 		this.setIdlingReturn(dto.idlingReturn());
 		this.setPreInjectionReturn(dto.preInjectionReturn());
 		//----------------------------------
@@ -230,28 +226,21 @@ public class Test {
 		this.description = description;
 	}
 
-	public Float getResistance() {
-		return resistance;
+	
+	public Float getStarting() {
+		return starting;
 	}
 
-	public void setResistance(Float resistance) {
-		this.resistance = resistance;
+	public void setStarting(Float starting) {
+		this.starting = starting;
+	}
+	
+	public Float getIdling() {
+		return idling;
 	}
 
-	public Float getReactance() {
-		return reactance;
-	}
-
-	public void setReactance(Float reactance) {
-		this.reactance = reactance;
-	}
-
-	public Float getIsolation() {
-		return isolation;
-	}
-
-	public void setIsolation(Float isolation) {
-		this.isolation = isolation;
+	public void setIdling(Float idling) {
+		this.idling = idling;
 	}
 
 	public Float getHalfLoad() {
@@ -268,14 +257,6 @@ public class Test {
 
 	public void setFullLoad(Float fullLoad) {
 		this.fullLoad = fullLoad;
-	}
-
-	public Float getIdling() {
-		return idling;
-	}
-
-	public void setIdling(Float idling) {
-		this.idling = idling;
 	}
 
 	public Float getPreInjection() {
@@ -302,6 +283,14 @@ public class Test {
 		this.fullLoadReturn = fullLoadReturn;
 	}
 
+	public Float getStartingReturn() {
+		return startingReturn;
+	}
+
+	public void setStartingReturn(Float startingReturn) {
+		this.startingReturn = startingReturn;
+	}
+	
 	public Float getIdlingReturn() {
 		return idlingReturn;
 	}

@@ -7,41 +7,54 @@ public record PlanDTO(
 	String code,
 	String type,
 	String description,
-	Float maxResistance,
-	Float minResistance,
-	Float maxReactance,
-	Float minReactance,
-	Float maxIsolation,
-	Float minIsolation,
-	Float maxHalfLoad,
-	Float minHalfLoad,
-	Float halfLoadPressure,
-	Float maxFullLoad,
-	Float minFullLoad,
-	Float fullLoadPressure,
+	//--------------------------
+	Float maxStarting,
+	Float minStarting,
+	Float maxStartingReturn,	
+	Float minStartingReturn,
+	Float startingPressure,
+	Float startingBenchRpm,
+	Float startingPulseTime,	
+	Float startingFrequency,
+	
+	//--------------------------
 	Float maxIdling,
 	Float minIdling,
-	Float idlingPressure,
-	Float maxPreInjection,
-	Float minPreInjection,
-	Float preInjectionPressure,
-	Float maxHalfLoadReturn,	
-	Float minHalfLoadReturn,	
-	Float maxFullLoadReturn,
-	Float minFullLoadReturn,	
 	Float maxIdlingReturn,	
 	Float minIdlingReturn,
-	Float maxPreInjectionReturn,
-	Float minPreInjectionReturn, 
-	Float halfLoadBenchRpm,
-	Float halfLoadPulseTime,	
-	Float halfLoadFrequency,
-	Float fullLoadBenchRpm,
-	Float fullLoadPulseTime,	
-	Float fullLoadFrequency,
+	Float idlingPressure,
 	Float idlingBenchRpm,
 	Float idlingPulseTime,	
 	Float idlingFrequency,
+	
+	//-------------------------
+	Float maxHalfLoad,
+	Float minHalfLoad,
+	Float maxHalfLoadReturn,	
+	Float minHalfLoadReturn,
+	Float halfLoadPressure,
+	Float halfLoadBenchRpm,
+	Float halfLoadPulseTime,	
+	Float halfLoadFrequency,
+	
+	//-------------------------
+	
+	Float maxFullLoad,
+	Float minFullLoad,
+	Float maxFullLoadReturn,
+	Float minFullLoadReturn,
+	Float fullLoadPressure,
+	Float fullLoadBenchRpm,
+	Float fullLoadPulseTime,	
+	Float fullLoadFrequency,
+	
+	//-------------------------
+
+	Float maxPreInjection,
+	Float minPreInjection,	
+	Float maxPreInjectionReturn,
+	Float minPreInjectionReturn, 
+	Float preInjectionPressure,
 	Float preInjectionBenchRpm,
 	Float preInjectionPulseTime,	
 	Float preInjectionFrequency,
@@ -55,58 +68,60 @@ public record PlanDTO(
 			plan.getCode(),
 			plan.getType(),
 			plan.getDescription(),
-			plan.getMaxResistance(),
-			plan.getMinResistance(),
-			plan.getMaxReactance(),
-			plan.getMinReactance(),
-			plan.getMaxIsolation(),
-			plan.getMinIsolation(),
-			plan.getMaxHalfLoad(),
-			plan.getMinHalfLoad(),
-			plan.getHalfLoadPressure(),
-			plan.getMaxFullLoad(),
-			plan.getMinFullLoad(),
-			plan.getFullLoadPressure(),
+			
+			//-------------------------
+			plan.getMaxStarting(),
+			plan.getMinStarting(),
+			plan.getMaxStartingReturn(),	
+			plan.getMinStartingReturn(),
+			plan.getStartingPressure(),
+			plan.getStartingBenchRpm(),
+			plan.getStartingPulseTime(),
+			plan.getStartingFrequency(),
+			
+			//-------------------------
+			
 			plan.getMaxIdling(),
 			plan.getMinIdling(),
-			plan.getIdlingPressure(),
-			plan.getMaxPreInjection(),
-			plan.getMinPreInjection(),
-			plan.getPreInjectionPressure(),
-			plan.getMaxHalfLoadReturn(),	
-			plan.getMinHalfLoadReturn(),	
-			plan.getMaxFullLoadReturn(),
-			plan.getMinFullLoadReturn(),	
 			plan.getMaxIdlingReturn(),	
 			plan.getMinIdlingReturn(),
-			plan.getMaxPreInjectionReturn(),
-			plan.getMinPreInjectionReturn(),
-			plan.getHalfLoadBenchRpm(),
-			plan.getHalfLoadPulseTime(),
-			plan.getHalfLoadFrequency(),
-			plan.getFullLoadBenchRpm(),
-			plan.getFullLoadPulseTime(),
-			plan.getFullLoadFrequency(),
+			plan.getIdlingPressure(),
 			plan.getIdlingBenchRpm(),
 			plan.getIdlingPulseTime(),
 			plan.getIdlingFrequency(),
+
+			//-------------------------
+			plan.getMaxHalfLoad(),
+			plan.getMinHalfLoad(),
+			plan.getMaxHalfLoadReturn(),	
+			plan.getMinHalfLoadReturn(),
+			plan.getHalfLoadPressure(),
+			plan.getHalfLoadBenchRpm(),
+			plan.getHalfLoadPulseTime(),
+			plan.getHalfLoadFrequency(),
+			
+			//-------------------------
+			plan.getMaxFullLoad(),
+			plan.getMinFullLoad(),
+			plan.getMaxFullLoadReturn(),
+			plan.getMinFullLoadReturn(),
+			plan.getFullLoadPressure(),
+			plan.getFullLoadBenchRpm(),
+			plan.getFullLoadPulseTime(),
+			plan.getFullLoadFrequency(),
+			
+			//-------------------------
+			
+			plan.getMaxPreInjection(),
+			plan.getMinPreInjection(),
+			plan.getMaxPreInjectionReturn(),
+			plan.getMinPreInjectionReturn(),
+			plan.getPreInjectionPressure(),
 			plan.getPreInjectionBenchRpm(),
 			plan.getPreInjectionPulseTime(),
 			plan.getPreInjectionFrequency(),
+			
 			new WorkshopDTO(plan.getWorkshop())
 		);
 	}
 }
-
-/*
-		
-
-	
-
-	
-	@Column(name = "max_pre_injection_return")
-    private Float maxPreInjectionReturn;
-
-	@Column(name = "min_pre_injection_return")
-    private Float minPreInjectionReturn;
-*/

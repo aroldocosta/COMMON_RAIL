@@ -42,112 +42,18 @@
             </div>
         </div>  
     </tab>
-    <tab heading="MED ELETRICAS">
-        <div class="row" style="padding: 2em 0">
-            <div class="col-sm-12 col-md-6">
-                <label class="input" for="">MIN RESISTÊNCIA</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
-                    <input type="number" class="form-control"
-                        step="0.1" min="0"
-                        (input)="emitUpdatePlanEvent()" 
-                        aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.minResistance"
-                    >
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <label class="input" for="">MAX RESISTÊNCIA</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
-                    <input type="number" class="form-control"
-                        step="0.1" min="0" 
-                        (input)="emitUpdatePlanEvent()"
-                        aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.maxResistance"
-                    >
-                </div>
-            </div>
-        </div>  
-        <div class="row" style="padding: 2em 0">  
-            <div class="col-sm-12 col-md-6">
-                <label *ngIf="plan.type != 'PIEZO_ELETRICO'" class="input" for="">MIN INDUTÂNCIA</label>
-                <label *ngIf="plan.type == 'PIEZO_ELETRICO'" class="input" for="">MIN CAPACITÂNCIA</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i>
-                        <b *ngIf="plan.type != 'PIEZO_ELETRICO'">mH</b>
-                        <b *ngIf="plan.type == 'PIEZO_ELETRICO'">nF</b>
-                    </i></span>
-                    <input type="number" class="form-control"
-                        step="0.1" min="0" 
-                        (input)="emitUpdatePlanEvent()"
-                        aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.minReactance"
-                    >
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6">
-                <label *ngIf="plan.type != 'PIEZO_ELETRICO'" class="input" for="">MAX INDUTÂNCIA</label>
-                <label *ngIf="plan.type == 'PIEZO_ELETRICO'" class="input" for="">MAX CAPACITÂNCIA</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i>
-                        <b *ngIf="plan.type != 'PIEZO_ELETRICO'">mH</b>
-                        <b *ngIf="plan.type == 'PIEZO_ELETRICO'">nF</b>
-                    </i></span>
-                    <input type="number" class="form-control"
-                        step="0.1" min="0"
-                        (input)="emitUpdatePlanEvent()" 
-                        aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.maxReactance"
-                    >
-                </div>
-            </div>
-        </div>    
-        <div class="row" style="padding: 2em 0">   
-            <div class="col-sm-12 col-md-6">
-                <label class="input" for="">MIN ISOLAMENTO</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>M&#937;</b></i></span>
-                    <input type="number" class="form-control" 
-                        step="0.1" min="0"
-                        (input)="emitUpdatePlanEvent()"
-                        aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.minIsolation"
-                    >
-                </div>
-            </div>  
-            <div class="col-sm-12 col-md-6">
-                <label class="input" for="">MAX ISOLAMENTO</label>
-                <div class="input-group input-group-lg">
-                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>M&#937;</b></i></span>
-                    <input type="number" class="form-control"
-                        step="0.1" min="0" 
-                        (input)="emitUpdatePlanEvent()"
-                        aria-label="Sizing example input" 
-                        aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.maxIsolation"
-                    >
-                </div>
-            </div>          
-        </div>
-    </tab>
-    <tab heading="CARGA PARCIAL">
+    <tab heading="ARRANQUE">
         <div class="row" style="padding: 2em 0">
             <div class="col-sm-12 col-md-4">
                 <label class="input" for="">DEBITO MIN</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
                     <input type="number" class="form-control"
-                        step="0.1" min="0"
-                        (input)="emitUpdatePlanEvent()" 
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.minHalfLoad"
+                        [(ngModel)]="plan.minStarting"
                     >
                 </div>
             </div>
@@ -155,12 +61,12 @@
                 <label class="input" for="">DEBITO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="number" class="form-control" 
-                        step="0.1" min="0"
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.maxHalfLoad"
+                        [(ngModel)]="plan.maxStarting"
                     >
                 </div>
             </div>
@@ -173,7 +79,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.halfLoadPressure"
+                        [(ngModel)]="plan.startingPressure"
                     >
                 </div>
             </div>
@@ -188,7 +94,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.minHalfLoadReturn"
+                        [(ngModel)]="plan.minStartingReturn"
                     >
                 </div>
             </div>
@@ -196,12 +102,12 @@
                 <label class="input" for="">RETORNO MAX</label>
                 <div class="input-group input-group-lg">
                     <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                    <input type="number" class="form-control"
-                        step="0.1" min="0" 
+                    <input type="number" class="form-control" 
+                        step="0.1" min="0"
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.maxHalfLoadReturn"
+                        [(ngModel)]="plan.maxStartingReturn"
                     >
                 </div>
             </div>
@@ -214,7 +120,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.halfLoadBenchRpm"
+                        [(ngModel)]="plan.startingBenchRpm"
                     >
                 </div>
             </div>
@@ -229,7 +135,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.halfLoadPulseTime"
+                        [(ngModel)]="plan.startingPulseTime"
                     >
                 </div>
             </div>
@@ -242,7 +148,7 @@
                         (input)="emitUpdatePlanEvent()"
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
-                        [(ngModel)]="plan.halfLoadFrequency"
+                        [(ngModel)]="plan.startingFrequency"
                     >
                 </div>
             </div>
@@ -357,6 +263,120 @@
                         aria-label="Sizing example input" 
                         aria-describedby="inputGroup-sizing-lg" 
                         [(ngModel)]="plan.idlingFrequency"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+            </div>
+        </div>
+    </tab>
+    <tab heading="CARGA PARCIAL">
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">DEBITO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0"
+                        (input)="emitUpdatePlanEvent()" 
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.minHalfLoad"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">DEBITO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="number" class="form-control" 
+                        step="0.1" min="0"
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.maxHalfLoad"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">PRESSÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>bar</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadPressure"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">RETORNO MIN</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.minHalfLoadReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">RETORNO MAX</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.maxHalfLoadReturn"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">ROTAÇÃO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>1/min</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadBenchRpm"
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="row" style="padding: 2em 0">
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">PULSO</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ms</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadPulseTime"
+                    >
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label class="input" for="">FREQUÊNCIA</label>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>p/m</b></i></span>
+                    <input type="number" class="form-control"
+                        step="0.1" min="0" 
+                        (input)="emitUpdatePlanEvent()"
+                        aria-label="Sizing example input" 
+                        aria-describedby="inputGroup-sizing-lg" 
+                        [(ngModel)]="plan.halfLoadFrequency"
                     >
                 </div>
             </div>

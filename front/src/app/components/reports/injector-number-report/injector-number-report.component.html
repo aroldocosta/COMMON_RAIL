@@ -41,46 +41,29 @@
         <div class="session-box">
             <div class="row">
                 <div class="col-sm-8" [ngClass]="reportClass">
-                    <app-med-electric-table
-                        tabTitle="MED ELÉTRICAS"
-                        showSequence="true"
+                    <app-starting-table
+                        tabTitle="ARRANQUE"
                         [plan]="plan"
                         [test]="test"
                         [testList]="testList"
                         [reportType]="reportType"
                         [reportClass]="reportClass"
-                        [injectorNumber]="testReport.injectorNumber"
-                    ></app-med-electric-table> 
-                </div>  
-                <div class="col-sm-4" [ngClass]="reportClass">
-                    <img class="components-img" [ngClass]="reportClass" src="../../../assets/img/componente.png">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-8" [ngClass]="reportClass">
-                    <app-half-load-table
-                        tabTitle="CARGA PARCIAL"
-                        [plan]="plan"
-                        [test]="test"
-                        [testList]="testList"
-                        [reportType]="reportType"
-                        [reportClass]="reportClass"
-                    ></app-half-load-table> 
+                    ></app-starting-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
                     <app-canvas-graph
-                        [valDeb]="test.halfLoad"
-                        [maxDeb]="plan.maxHalfLoad"
-                        [minDeb]="plan.minHalfLoad"
-                        [valRet]="test.halfLoadReturn"
-                        [maxRet]="plan.maxHalfLoadReturn"
-                        [minRet]="plan.minHalfLoadReturn"
-                        [testList]="testList"
+                        [valDeb]="test.starting"
+                        [maxDeb]="plan.maxStarting"
+                        [minDeb]="plan.minStarting"
+                        [valRet]="test.startingReturn"
+                        [maxRet]="plan.maxStartingReturn"
+                        [minRet]="plan.minStartingReturn"
                         [reportType]="reportType"
+                        [testList]="testList"
                         [reportClass]="reportClass"
-                        [sequence]="halfLoadSequence"
+                        [sequence]="startingSequence"
                     ></app-canvas-graph>
-                </div> 
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-8" [ngClass]="reportClass">
@@ -108,6 +91,32 @@
                     ></app-canvas-graph>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-8" [ngClass]="reportClass">
+                    <app-half-load-table
+                        tabTitle="CARGA PARCIAL"
+                        [plan]="plan"
+                        [test]="test"
+                        [testList]="testList"
+                        [reportType]="reportType"
+                        [reportClass]="reportClass"
+                    ></app-half-load-table> 
+                </div>  
+                <div class="col-sm-4" [ngClass]="reportClass">
+                    <app-canvas-graph
+                        [valDeb]="test.halfLoad"
+                        [maxDeb]="plan.maxHalfLoad"
+                        [minDeb]="plan.minHalfLoad"
+                        [valRet]="test.halfLoadReturn"
+                        [maxRet]="plan.maxHalfLoadReturn"
+                        [minRet]="plan.minHalfLoadReturn"
+                        [testList]="testList"
+                        [reportType]="reportType"
+                        [reportClass]="reportClass"
+                        [sequence]="halfLoadSequence"
+                    ></app-canvas-graph>
+                </div> 
+            </div>            
             <div class="row">
                 <div class="col-sm-8" [ngClass]="reportClass">
                     <app-full-load-table

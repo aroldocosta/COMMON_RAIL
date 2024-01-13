@@ -119,65 +119,18 @@
 <div class="row" *ngIf="command == 'editing'">  
     <div class="col-md-12">
     <tabset class="menber-tabset">
-        <tab id="med_electric" heading="MED ELETRICAS" (selectTab)="changeTab($event)">
-            <div class="row input">
-                <div class="col-sm-12 col-md-4">
-                    <label class="input" for="">RESISTÊNCIA</label>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>m&#937;</b></i></span>
-                        <input id="x" type="number" class="form-control"
-                            step="0.1" min="0"                             
-                            aria-label="Sizing example input" 
-                            aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleResistanceFormat()"
-                            [(ngModel)]="test.resistance"
-                        >
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <label *ngIf="test.injectorType != 'PIEZO_ELETRICO'"class="input" for="">INDUTÂNCIA</label>
-                    <label *ngIf="test.injectorType == 'PIEZO_ELETRICO'" class="input" for="">CAPACITÂNCIA</label>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg"><i>
-                            <b *ngIf="injectorType != 'PIEZO_ELETRICO'">mH</b>
-                            <b *ngIf="injectorType == 'PIEZO_ELETRICO'">nF</b>
-                        </i></span>
-                        <input type="number" class="form-control" 
-                            step="0.1" min="0"
-                            aria-label="Sizing example input" 
-                            aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleReactanceFormat()"
-                            [(ngModel)]="test.reactance"
-                        >
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4" *ngIf="command == 'editing'">
-                    <label class="input" for="">ISOLAMENTO</label>
-                    <div class="input-group input-group-lg">
-                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>M&#937;</b></i></span>
-                        <input type="number" class="form-control" 
-                            step="0.1" min="0"
-                            aria-label="Sizing example input" 
-                            aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleIsolationFormat()"
-                            [(ngModel)]="test.isolation"
-                        >
-                    </div>
-                </div>
-            </div>
-        </tab>
-        <tab id="half_load" heading="CARGA PARCIAL" (selectTab)="changeTab($event)">
+        <tab id="starting" heading="ARRANQUE" (selectTab)="changeTab($event)">
             <div class="row input">
                 <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
                     <label class="input" for="">DEBITO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                        <input type="number" class="form-control" 
-                            step="0.1" min="0"
+                        <input type="number" class="form-control"  
+                            step="0.1" min="0"                           
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleHalfLoadFormat()"
-                            [(ngModel)]="test.halfLoad"
+                            (input)="handleStartingFormat()"
+                            [(ngModel)]="test.starting"
                         >
                     </div>
                 </div>
@@ -185,12 +138,12 @@
                     <label class="input" for="">RETORNO</label>
                     <div class="input-group input-group-lg">
                         <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
-                        <input type="number" class="form-control" 
-                            step="0.1" min="0"
+                        <input type="number" class="form-control"
+                            step="0.1" min="0"                             
                             aria-label="Sizing example input" 
                             aria-describedby="inputGroup-sizing-lg" 
-                            (input)="handleHalfLoadReturnFormat()"
-                            [(ngModel)]="test.halfLoadReturn"
+                            (input)="handleStartingReturnFormat()"
+                            [(ngModel)]="test.startingReturn"
                         >
                     </div>
                 </div>
@@ -221,6 +174,36 @@
                             aria-describedby="inputGroup-sizing-lg" 
                             (input)="handleIdlingReturnFormat()"
                             [(ngModel)]="test.idlingReturn"
+                        >
+                    </div>
+                </div>
+            </div>
+        </tab>
+        <tab id="half_load" heading="CARGA PARCIAL" (selectTab)="changeTab($event)">
+            <div class="row input">
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
+                    <label class="input" for="">DEBITO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="number" class="form-control" 
+                            step="0.1" min="0"
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            (input)="handleHalfLoadFormat()"
+                            [(ngModel)]="test.halfLoad"
+                        >
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6" *ngIf="command == 'editing'">
+                    <label class="input" for="">RETORNO</label>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text" id="inputGroup-sizing-lg"><i><b>ml</b></i></span>
+                        <input type="number" class="form-control" 
+                            step="0.1" min="0"
+                            aria-label="Sizing example input" 
+                            aria-describedby="inputGroup-sizing-lg" 
+                            (input)="handleHalfLoadReturnFormat()"
+                            [(ngModel)]="test.halfLoadReturn"
                         >
                     </div>
                 </div>

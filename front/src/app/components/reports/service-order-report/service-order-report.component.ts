@@ -10,8 +10,13 @@ export class ServiceOrderReportComponent extends CommonPageComponent {
 
   @Output() downloadEvent = new EventEmitter();
 
+  graphClass='bigBeaker';
   constructor() {
-    super()
+    super();
+  }
+
+  ngOnInit() {
+    this.reportClass="reportClass";
   }
 
   download() {

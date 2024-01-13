@@ -52,21 +52,13 @@ export class TestFormComponent extends CommonPageComponent {
     emitCreateEvent(test: Test) {
       this.createEvent.emit(test);
     }
-    handleResistanceFormat() {
-      this.emitUpdateTestEvent();
-    }
-
-    handleReactanceFormat() {
-      this.emitUpdateTestEvent();
-    }
-
-    handleIsolationFormat() {
-      this.emitUpdateTestEvent();
-    }
-    handleHalfLoadFormat() {
+    handleStartingFormat() {
       this.emitUpdateTestEvent();
     }
     handleIdlingFormat() {
+      this.emitUpdateTestEvent();
+    }
+    handleHalfLoadFormat() {
       this.emitUpdateTestEvent();
     }
     handleFullLoadFormat() {
@@ -75,10 +67,14 @@ export class TestFormComponent extends CommonPageComponent {
     handlePreInjectionFormat() {
       this.emitUpdateTestEvent();
     }
-    handleHalfLoadReturnFormat() {
+
+    handleStartingReturnFormat() {
       this.emitUpdateTestEvent();
     }
     handleIdlingReturnFormat() {
+      this.emitUpdateTestEvent();
+    }
+    handleHalfLoadReturnFormat() {
       this.emitUpdateTestEvent();
     }
     handleFullLoadReturnFormat() {

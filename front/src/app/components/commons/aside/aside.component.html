@@ -10,14 +10,7 @@
 	</div>
 	<div>	
 		<div class="card">
-			<div class="components-img" [ngClass]="(tabId == 'med_electric') ? 'show' : 'hidden'">
-				<div class="row">
-					<div class="col-sm-12">
-						<img class="card-img-top" class="components-img" src="../../../assets/img/componente.png">
-					</div>
-				</div>
-			</div>
-			<div [class]="(tabId == 'med_electric' || tabId == 'comments') ? 'hidden' : 'show'">
+			<div [class]="(tabId == 'comments') ? 'hidden' : 'show'">
                 <app-canvas-graph
                     [valDeb]="valDeb"
                     [maxDeb]="maxDeb"
@@ -27,23 +20,12 @@
                     [minRet]="minRet"
                 ></app-canvas-graph>
 			</div>	
-			<div class="card-body" *ngIf="tabId == 'med_electric'">
-				<app-med-electric-table
-					showSequence="false"
-					[resColor]="resColor"
-					[rctColor]="rctColor"
-					[isoColor]="isoColor"
+			<div class="card-body" *ngIf="tabId == 'starting'">
+				<app-starting-table
 					[tabTitle]="tabTitle"
 					[plan]="plan"
 					[test]="test"
-				></app-med-electric-table>
-			</div>
-			<div class="card-body" *ngIf="tabId == 'half_load'">
-				<app-half-load-table
-					[tabTitle]="tabTitle"
-					[plan]="plan"
-					[test]="test"
-				></app-half-load-table>
+				></app-starting-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'idling'">
 				<app-idling-table
@@ -51,6 +33,13 @@
 					[plan]="plan"
 					[test]="test"
 				></app-idling-table>
+			</div>
+			<div class="card-body" *ngIf="tabId == 'half_load'">
+				<app-half-load-table
+					[tabTitle]="tabTitle"
+					[plan]="plan"
+					[test]="test"
+				></app-half-load-table>
 			</div>
 			<div class="card-body" *ngIf="tabId == 'full_load'">
 				<app-full-load-table

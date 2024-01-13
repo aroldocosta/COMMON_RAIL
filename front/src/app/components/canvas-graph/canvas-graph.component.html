@@ -1,19 +1,19 @@
 <div *ngIf="reportType == 'service-order'">
     <div class="row">
-        <div class="col-canvas" [ngClass]="reportClass">
-            <canvas class="canvas" [ngClass]="reportClass" #debCanvas></canvas>
+        <div class="col-canvas">
+            <canvas class="canvas" [ngClass]="graphClass" #debCanvas></canvas>
             <h4 class="report">DÉB</h4>
         </div>
-        <div class="col-canvas" [ngClass]="reportClass">
-            <canvas class="canvas" [ngClass]="reportClass" #retCanvas></canvas>
+        <div class="col-canvas">
+            <canvas class="canvas" [ngClass]="graphClass" #retCanvas></canvas>
             <h4 class="report">RET</h4>
         </div>
     </div>
 </div>
 <div *ngIf="reportType == 'injector-number'">
     <div class="row">
-        <div class="col-12" [ngClass]="reportClass">
-            <canvas class="canvas-line" [ngClass]="reportClass" #lineGraphCanvas></canvas>
+        <div class="col-12">
+            <canvas class="canvas-line" #lineGraphCanvas></canvas>
         </div>
         <span class="green-line"></span>Débito <span class="blue-line"></span>Retorno
     </div>

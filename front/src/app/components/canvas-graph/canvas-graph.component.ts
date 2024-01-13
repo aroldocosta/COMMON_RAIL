@@ -20,6 +20,7 @@ export class CanvasGraphComponent extends CommonPageComponent {
   gaugeH = 0;
   gaugeY = 135;
 
+  @Input() graphClass = '';
   @ViewChild('debCanvas', {static: false}) debCanvas!: ElementRef;
   @ViewChild('retCanvas', {static: false}) retCanvas!: ElementRef;
   @ViewChild('lineGraphCanvas', {static: false}) lineGraphCanvas!: ElementRef;

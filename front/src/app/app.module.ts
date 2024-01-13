@@ -17,7 +17,6 @@ import { VehicleTableComponent } from './components/tables/vehicle-table/vehicle
 import { InjectorTableComponent } from './components/tables/injector-table/injector-table.component';
 import { TabsModule } from "ngx-bootstrap/tabs";
 import { PreInjectionTableComponent } from './components/tables/pre-injection-table/pre-injection-table.component';
-import { MedElectricTableComponent } from './components/tables/med-electric-table/med-electric-table.component';
 import { IdlingTableComponent } from './components/tables/idling-table/idling-table.component';
 import { FullLoadTableComponent } from './components/tables/full-load-table/full-load-table.component';
 import { HalfLoadTableComponent } from './components/tables/half-load-table/half-load-table.component';
@@ -50,6 +49,7 @@ import { CustomerFilterModalComponent } from './components/modals/customer-filte
 import { ServiceOrderFilterModalComponent } from './components/modals/service-order-filter-modal/service-order-filter-modal.component';
 import { VehicleFilterModalComponent } from './components/modals/vehicle-filter-modal/vehicle-filter-modal.component';
 import { DateFilterModalComponent } from './components/modals/date-filter-modal/date-filter-modal.component';
+import { StartingTableComponent } from './components/tables/starting-table/starting-table.component';
 
 registerLocaleData(ptBr);
 
@@ -73,7 +73,7 @@ registerLocaleData(ptBr);
     VehicleFormComponent,
     InjectorFormComponent,
     PreInjectionTableComponent,
-    MedElectricTableComponent,
+    // MedElectricTableComponent,
     IdlingTableComponent,
     FullLoadTableComponent,
     HalfLoadTableComponent,
@@ -98,6 +98,7 @@ registerLocaleData(ptBr);
     ServiceOrderFilterModalComponent,
     VehicleFilterModalComponent,
     DateFilterModalComponent,
+    StartingTableComponent,
   ],
   imports: [
     FormsModule,

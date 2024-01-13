@@ -5,29 +5,21 @@
             <thead>
                 <tr>
                     <th class="striped-table" scope="col" title="Pressão bomba">PRESSÃO(bar):</th>
+                    <td class="striped-table">{{plan.halfLoadPressure | number: '1.0'}}</td>
                     <th class="striped-table" scope="col" title="Rotação">ROTAÇÃO(1/min):</th>
+                    <td class="striped-table">{{plan.halfLoadBenchRpm | number: '1.0'}}</td>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>{{plan.halfLoadPressure | number: '1.0'}}</td>
-                    <td>{{plan.halfLoadBenchRpm | number: '1.0'}}</td>
-                </tr>
-            </tbody>
         </table>
         <table class="table table-sm">
             <thead>
                 <tr>
                     <th class="striped-table" scope="col" title="Largura de pulso">PULSO PWM(ms):</th>
+                    <td class="striped-table">{{plan.halfLoadPulseTime 	| number: '1.0'}}</td>
                     <th class="striped-table" scope="col" title="Frequência">FREQUÊNCIA(p/m):</th>
+                    <td class="striped-table">{{plan.halfLoadFrequency 	| number: '1.0'}}</td>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>{{plan.halfLoadPulseTime 	| number: '1.0'}}</td>
-                    <td>{{plan.halfLoadFrequency 	| number: '1.0'}}</td>
-                </tr>
-            </tbody>
         </table>
         <table class="table table-sm">
             <thead>

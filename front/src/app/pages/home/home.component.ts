@@ -55,11 +55,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   currentWorkshop: any;
 
   tabIndex = 0;
-  currentTab: any = {id:'med_electric', heading: 'MED ELETRICAS'};
+  currentTab: any = {id:'starting', heading: 'ARRANQUE'};
   tabList = [
-    {id:'med_electric',   heading: 'MED ELETRICAS'},
-    {id:'half_load',      heading: 'CARGA PARCIAL'},
+    {id:'starting',       heading: 'ARRANQUE'},
     {id:'idling',         heading: 'MARCHA LENTA'},
+    {id:'half_load',      heading: 'CARGA PARCIAL'},    
     {id:'full_load',      heading: 'PLENA CARGA'},    
     {id:'pre_injection',  heading: 'PRE INJEÇÃO'},
     {id:'comments',       heading: 'OBSERVAÇÕES'},
@@ -877,8 +877,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   doServiceOrderFilter() {
-
-    debugger
     let value = this.filtered.fieldList.filter(f => f.field == 'serviceOrder')[0]?.value;
 
     if(value) {

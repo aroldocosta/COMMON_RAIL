@@ -7,8 +7,9 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
   styleUrls: ['./injector-number-report.component.css']
 })
 export class InjectorNumberReportComponent extends CommonPageComponent {
-  @Input() halfLoadSequence: any;
+  @Input() startingSequence: any;
   @Input() idlingSequence: any;
+  @Input() halfLoadSequence: any;
   @Input() injectorNumber: any;
   @Input() fullLoadSequence: any;
   @Input() preInjectionSequence: any;
@@ -16,7 +17,8 @@ export class InjectorNumberReportComponent extends CommonPageComponent {
   @Output() downloadEvent = new EventEmitter();
 
   constructor() {
-    super()
+    super();
+    this.reportClass = "reportClass";
   }
 
   download() {

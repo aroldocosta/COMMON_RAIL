@@ -1,13 +1,15 @@
 <div *ngIf="reportType == 'service-order'">
-    <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}</h2>
+    <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}
+        <span *ngIf="showSequence == 'true'">( INJ_{{test.injectorNumber}} [ {{test.sequence}} ] )</span>
+    </h2>
     <div class="table-responsive">
         <table class="table table-sm">
             <thead>
                 <tr>
                     <th class="striped-table" scope="col" title="Pressão bomba">PRESSÃO(bar):</th>
-                    <td class="striped-table">{{plan.idlingPressure | number: '1.0'}}</td>
+                    <td class="striped-table">{{plan.startingPressure | number: '1.0'}}</td>
                     <th class="striped-table" scope="col" title="Rotação">ROTAÇÃO(1/min):</th>
-                    <td class="striped-table">{{plan.idlingBenchRpm | number: '1.0'}}</td>
+                    <td class="striped-table">{{plan.startingBenchRpm | number: '1.0'}}</td>
                 </tr>
             </thead>
         </table>
@@ -15,9 +17,9 @@
             <thead>
                 <tr>
                     <th class="striped-table" scope="col" title="Largura de pulso">PULSO PWM(ms):</th>
-                    <td class="striped-table">{{plan.idlingPulseTime 	| number: '1.0'}}</td>
+                    <td class="striped-table">{{plan.startingPulseTime 	| number: '1.0'}}</td>
                     <th class="striped-table" scope="col" title="Frequência">FREQUÊNCIA(p/m):</th>
-                    <td class="striped-table">{{plan.idlingFrequency 	| number: '1.0'}}</td>
+                    <td class="striped-table">{{plan.startingFrequency 	| number: '1.0'}}</td>
                 </tr>
             </thead>
         </table>       
@@ -33,22 +35,22 @@
             <tbody>
             <tr>
                 <th scope="row" title="Quantidade vendidida em litros">DEB(ml):</th>
-                <td>{{plan.minIdling 	| number: '1.2'}}</td>
-                <td>{{test.idling 		| number: '1.2'}}</td>
-                <td>{{plan.maxIdling 	| number: '1.2'}}</td>
+                <td>{{plan.minStarting 	| number: '1.2'}}</td>
+                <td>{{test.starting 		| number: '1.2'}}</td>
+                <td>{{plan.maxStarting 	| number: '1.2'}}</td>
             </tr>
             <tr>
                 <th scope="row" title="RET:al faturado">RET(ml):</th>
-                <td>{{plan.minIdlingReturn 	| number: '1.2'}}</td>
-                <td>{{test.idlingReturn 		| number: '1.2'}}</td>
-                <td>{{plan.maxIdlingReturn 	| number: '1.2'}}</td>
+                <td>{{plan.minStartingReturn 	| number: '1.2'}}</td>
+                <td>{{test.startingReturn 		| number: '1.2'}}</td>
+                <td>{{plan.maxStartingReturn 	| number: '1.2'}}</td>
             </tr>
             </tbody>
         </table>
     </div> 
 </div>
 <div *ngIf="reportType == 'injector-number'">
-    <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}<i>({{plan.idlingPressure}}bar)</i></h2>
+    <h2 class="top-title" [ngClass]="reportClass">{{tabTitle}}<i>({{plan.startingPressure}}bar)</i></h2>
     <div class="table-responsive">
         <table class="table table-sm">
             <thead>
@@ -60,11 +62,11 @@
             <tbody>
                 <tr>
                     <th  scope="row" title="Débito marcha lenta">DEB(ml):</th>
-                    <td *ngFor="let t of testList">{{t.idling | number: '1.2'}}</td>
+                    <td *ngFor="let t of testList">{{t.starting | number: '1.2'}}</td>
                 </tr>
                 <tr>
                     <th  scope="row" title="Retorno marcha lenta">RET(ml):</th>
-                    <td *ngFor="let t of testList">{{t.idlingReturn | number: '1.2'}}</td>
+                    <td *ngFor="let t of testList">{{t.startingReturn | number: '1.2'}}</td>
                 </tr>				  
             </tbody>
         </table>

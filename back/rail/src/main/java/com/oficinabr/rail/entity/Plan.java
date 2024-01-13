@@ -42,42 +42,35 @@ public class Plan {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "workshop_id")
 	private Workshop workshop;
+
+
+	//------------------------------
 	
-	@Column(name = "max_resistance")
-	private Float maxResistance;
+	@Column(name = "max_starting")
+	private Float maxStarting;
 	
-	@Column(name = "min_resistance")
-	private Float minResistance;
+	@Column(name = "min_starting")
+	private Float minStarting;
 	
-	@Column(name = "max_reactance")
-	private Float maxReactance;
+	@Column(name = "max_starting_return")
+	private Float maxStartingReturn;
 	
-	@Column(name = "min_reactance")
-	private Float minReactance;
+	@Column(name = "min_starting_return")
+	private Float minStartingReturn;
 	
-	@Column(name = "max_isolation")
-	private Float maxIsolation;
+	@Column(name = "starting_pressure")
+	private Float startingPressure;
 	
-	@Column(name = "min_isolation")
-	private Float minIsolation;
+	@Column(name = "starting_bench_rpm")
+	private Float startingBenchRpm;
 	
-	@Column(name = "max_half_load")
-	private Float maxHalfLoad;
+	@Column(name = "starting_pulse_time")
+	private Float startingPulseTime;
 	
-	@Column(name = "min_half_load")
-	private Float minHalfLoad;
+	@Column(name = "starting_frequency")
+	private Float startingFrequency;
 	
-	@Column(name = "half_load_pressure")
-	private Float halfLoadPressure;
-	
-	@Column(name = "max_full_load")
-	private Float maxFullLoad;
-	
-	@Column(name = "min_full_load")
-	private Float minFullLoad;
-	
-	@Column(name = "full_load_pressure")
-	private Float fullLoadPressure;
+	//------------------------------
 	
 	@Column(name = "max_idling")
 	private Float maxIdling;
@@ -85,63 +78,15 @@ public class Plan {
 	@Column(name = "min_idling")
 	private Float minIdling;
 	
-	@Column(name = "idling_pressure")
-	private Float idlingPressure;
-	
-	@Column(name = "max_pre_injection")
-    private Float maxPreInjection;
-
-	@Column(name = "min_pre_injection")
-    private Float minPreInjection;
-	
-	@Column(name = "pre_injection_pressure")
-    private Float preInjectionPressure;
-	
-	@Column(name = "max_half_load_return")
-	private Float maxHalfLoadReturn;
-	
-	@Column(name = "min_half_load_return")
-	private Float minHalfLoadReturn;
-	
-	@Column(name = "max_full_load_return")
-	private Float maxFullLoadReturn;
-	
-	@Column(name = "min_full_load_return")
-	private Float minFullLoadReturn;
-	
 	@Column(name = "max_idling_return")
 	private Float maxIdlingReturn;
 	
 	@Column(name = "min_idling_return")
 	private Float minIdlingReturn;
 	
-	@Column(name = "max_pre_injection_return")
-    private Float maxPreInjectionReturn;
-
-	@Column(name = "min_pre_injection_return")
-    private Float minPreInjectionReturn;
+	@Column(name = "idling_pressure")
+	private Float idlingPressure;
 	
-	//-----------
-	@Column(name = "half_load_bench_rpm")
-	private Float halfLoadBenchRpm;
-	
-	@Column(name = "half_load_pulse_time")
-	private Float halfLoadPulseTime;
-	
-	@Column(name = "half_load_frequency")
-	private Float halfLoadFrequency;
-	
-	//-----------
-	@Column(name = "full_load_bench_rpm")
-	private Float fullLoadBenchRpm;
-	
-	@Column(name = "full_load_pulse_time")
-	private Float fullLoadPulseTime;
-	
-	@Column(name = "full_load_frequency")
-	private Float fullLoadFrequency;
-	
-	//-----------
 	@Column(name = "idling_bench_rpm")
 	private Float idlingBenchRpm;
 	
@@ -151,7 +96,75 @@ public class Plan {
 	@Column(name = "idling_frequency")
 	private Float idlingFrequency;
 	
-	//-----------
+	//-----------------------------
+	
+	@Column(name = "max_half_load")
+	private Float maxHalfLoad;
+	
+	@Column(name = "min_half_load")
+	private Float minHalfLoad;
+	
+	@Column(name = "max_half_load_return")
+	private Float maxHalfLoadReturn;
+	
+	@Column(name = "min_half_load_return")
+	private Float minHalfLoadReturn;
+	
+	@Column(name = "half_load_pressure")
+	private Float halfLoadPressure;
+	
+	@Column(name = "half_load_bench_rpm")
+	private Float halfLoadBenchRpm;
+	
+	@Column(name = "half_load_pulse_time")
+	private Float halfLoadPulseTime;
+	
+	@Column(name = "half_load_frequency")
+	private Float halfLoadFrequency;
+	
+	//------------------------------
+	
+	@Column(name = "max_full_load")
+	private Float maxFullLoad;
+	
+	@Column(name = "min_full_load")
+	private Float minFullLoad;
+	
+	@Column(name = "max_full_load_return")
+	private Float maxFullLoadReturn;
+	
+	@Column(name = "min_full_load_return")
+	private Float minFullLoadReturn;
+	
+	@Column(name = "full_load_pressure")
+	private Float fullLoadPressure;
+	
+	@Column(name = "full_load_bench_rpm")
+	private Float fullLoadBenchRpm;
+	
+	@Column(name = "full_load_pulse_time")
+	private Float fullLoadPulseTime;
+	
+	@Column(name = "full_load_frequency")
+	private Float fullLoadFrequency;
+	
+	//-----------------------------
+	
+	@Column(name = "max_pre_injection")
+    private Float maxPreInjection;
+
+	@Column(name = "min_pre_injection")
+    private Float minPreInjection;
+	
+	@Column(name = "max_pre_injection_return")
+    private Float maxPreInjectionReturn;
+
+	@Column(name = "min_pre_injection_return")
+    private Float minPreInjectionReturn;
+	
+	@Column(name = "pre_injection_pressure")
+    private Float preInjectionPressure;
+	
 	@Column(name = "pre_injection_bench_rpm")
 	private Float preInjectionBenchRpm;
 	
@@ -160,6 +173,7 @@ public class Plan {
 	
 	@Column(name = "pre_injection_frequency")
 	private Float preInjectionFrequency;
+	//----------------------------
 	
 	public Plan() {
 		
@@ -170,12 +184,6 @@ public class Plan {
 		this.setCode(dto.code());
 		this.setType(dto.type());
 		this.setDescription(dto.description());
-		this.setMaxResistance(dto.maxResistance());
-		this.setMinResistance(dto.minResistance());
-		this.setMaxReactance(dto.maxReactance());
-		this.setMinReactance(dto.minReactance());
-		this.setMaxIsolation(dto.maxIsolation());
-		this.setMinIsolation(dto.minIsolation());
 		this.setMaxHalfLoad(dto.maxHalfLoad());
 		this.setMinHalfLoad(dto.minHalfLoad());
 		this.setHalfLoadPressure(dto.halfLoadPressure());
@@ -260,42 +268,70 @@ public class Plan {
 		this.injectorList = injectorList;
 	}
 
-	public Float getMaxResistance() {
-		return maxResistance;
+	public Float getMaxStarting() {
+		return maxStarting;
 	}
-	public void setMaxResistance(Float maxResistance) {
-		this.maxResistance = maxResistance;
+
+	public void setMaxStarting(Float maxStarting) {
+		this.maxStarting = maxStarting;
 	}
-	public Float getMinResistance() {
-		return minResistance;
+
+	public Float getMinStarting() {
+		return minStarting;
 	}
-	public void setMinResistance(Float minResistance) {
-		this.minResistance = minResistance;
+
+	public void setMinStarting(Float minStarting) {
+		this.minStarting = minStarting;
 	}
-	public Float getMaxReactance() {
-		return maxReactance;
+
+	public Float getMaxStartingReturn() {
+		return maxStartingReturn;
 	}
-	public void setMaxReactance(Float maxReactance) {
-		this.maxReactance = maxReactance;
+
+	public void setMaxStartingReturn(Float maxStartingReturn) {
+		this.maxStartingReturn = maxStartingReturn;
 	}
-	public Float getMinReactance() {
-		return minReactance;
+
+	public Float getMinStartingReturn() {
+		return minStartingReturn;
 	}
-	public void setMinReactance(Float minReactance) {
-		this.minReactance = minReactance;
+
+	public void setMinStartingReturn(Float minStartingReturn) {
+		this.minStartingReturn = minStartingReturn;
 	}
-	public Float getMaxIsolation() {
-		return maxIsolation;
+
+	public Float getStartingPressure() {
+		return startingPressure;
 	}
-	public void setMaxIsolation(Float maxIsolation) {
-		this.maxIsolation = maxIsolation;
+
+	public void setStartingPressure(Float startingPressure) {
+		this.startingPressure = startingPressure;
 	}
-	public Float getMinIsolation() {
-		return minIsolation;
+
+	public Float getStartingBenchRpm() {
+		return startingBenchRpm;
 	}
-	public void setMinIsolation(Float minIsolation) {
-		this.minIsolation = minIsolation;
+
+	public void setStartingBenchRpm(Float startingBenchRpm) {
+		this.startingBenchRpm = startingBenchRpm;
 	}
+
+	public Float getStartingPulseTime() {
+		return startingPulseTime;
+	}
+
+	public void setStartingPulseTime(Float startingPulseTime) {
+		this.startingPulseTime = startingPulseTime;
+	}
+
+	public Float getStartingFrequency() {
+		return startingFrequency;
+	}
+
+	public void setStartingFrequency(Float startingFrequency) {
+		this.startingFrequency = startingFrequency;
+	}
+
 	public Float getMaxHalfLoad() {
 		return maxHalfLoad;
 	}

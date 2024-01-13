@@ -15,10 +15,12 @@ export class Test {
 	isolation: string = '0.00';
 	halfLoad: string = '0.00';
 	fullLoad: string = '0.00';
+	starting: string = '0.00'
 	idling: string = '0.00';
 	preInjection: string = '0.00';
 	halfLoadReturn: string = '0.00';
 	fullLoadReturn: string = '0.00';
+	startingReturn: string = '0.00';
 	idlingReturn: string = '0.00';
 	preInjectionReturn: string = '0.00';
 	injectorId: string = '';

@@ -46,19 +46,18 @@ export class AsideComponent extends CommonPageComponent implements OnInit {
     this.test = test;
     this.plan = plan;
 
-    if(tab.id == 'med_electric') {
-      this.resColor = this.drawColor(test.resistance, plan.maxResistance, plan.minResistance);
-      this.rctColor = this.drawColor(test.reactance,  plan.maxReactance,  plan.minReactance);
-      this.isoColor = this.drawColor(test.isolation,  plan.maxIsolation,  plan.minIsolation);
-    }else if(tab.id == 'half_load') {
+    if(tab.id == 'starting') {
+      this.setDebGraphValue(test.starting, plan.maxStarting, plan.minStarting);
+      this.setRetGraphValue(test.startingReturn, plan.maxStartingReturn, plan.minStartingReturn);
+    } else if(tab.id == 'idling') {
+      this.setDebGraphValue(test.idling, plan.maxIdling, plan.minIdling);
+      this.setRetGraphValue(test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);
+    } else if(tab.id == 'half_load') {
       this.setDebGraphValue(test.halfLoad, plan.maxHalfLoad, plan.minHalfLoad);
       this.setRetGraphValue(test.halfLoadReturn, plan.maxHalfLoadReturn, plan.minHalfLoadReturn);
     } else if(tab.id == 'full_load') {
       this.setDebGraphValue(test.fullLoad, plan.maxFullLoad, plan.minFullLoad);
       this.setRetGraphValue(test.fullLoadReturn, plan.maxFullLoadReturn, plan.minFullLoadReturn);
-    } else if(tab.id == 'idling') {
-      this.setDebGraphValue(test.idling, plan.maxIdling, plan.minIdling);
-      this.setRetGraphValue(test.idlingReturn, plan.maxIdlingReturn, plan.minIdlingReturn);
     } else if(tab.id == 'pre_injection') {
       this.setDebGraphValue(test.preInjection, plan.maxPreInjection, plan.minPreInjection);
       this.setRetGraphValue(test.preInjectionReturn, plan.maxPreInjectionReturn, plan.minPreInjectionReturn);

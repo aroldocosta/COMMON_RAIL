@@ -224,3 +224,8 @@ h4.report {
     
 }
 
+@media screen and (max-width: 768px) {
+    .canvas {
+        height: 6em;
+    }
+}

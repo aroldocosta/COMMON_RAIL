@@ -1,5 +1,13 @@
 @import "../../../data-style.css";
 
+.bigBeaker {
+    height: 15em;
+}
+
+.smallBeaker {
+    height: 8em;
+}
+
 .col-canvas {
     width: 50%;
 }

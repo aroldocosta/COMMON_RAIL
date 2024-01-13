@@ -1,1 +1,5 @@
 @import "../../../../data-style.css";
+
+.graphClass {
+    height: 34em !important;
+}

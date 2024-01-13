@@ -8,7 +8,7 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
   templateUrl: './idling-table.component.html',
   styleUrls: ['./idling-table.component.css']
 })
-export class IdlingTableComponent extends CommonPageComponent{
+export class IdlingTableComponent extends CommonPageComponent {
   
   constructor(){
     super();
