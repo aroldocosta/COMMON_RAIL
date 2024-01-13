@@ -61,14 +61,14 @@
 - 16 (x) Na tela principal na coluna cliente ao clicar em cliente aparece e sequencia e nao seleciona
 
 ### ‐---------‐-----------07/01/24‐-----------------------------
-- 17 () Na tela de teste substituir o passo medidas elétricas por passe de arranque
+- 17 (x) Na tela de teste substituir o passo medidas elétricas por passe de arranque
 - 18 () criar passo carga parcial 2 e 3 (considerando que a 1 ja tem)
 - 19 () criar passo estaquidade
 
 ### ‐---------‐-----------10/01/24‐-----------------------------
-- 20 () O botao salvar superior da tela principa ao lado esquerdo do nome injetor nao ta salvando
-- 21 () Os tres campos que foram criados, pulso, frequencia e rotacao, nao aceita auteracao
-- 22 () No cadastro de planos no item carga parcial a frequencia aparece p/m os outros aparece Hz
+- 20 (x) O botao salvar superior da tela principa ao lado esquerdo do nome injetor nao ta salvando
+- 21 (x) Os tres campos que foram criados, pulso, frequencia e rotacao, nao aceita auteracao
+- 22 (x) No cadastro de planos no item carga parcial a frequencia aparece p/m os outros aparece Hz
 
 
 
@@ -85,7 +85,7 @@
 - 6 (x) Estando na tela de edicao de teste e importante ter um botao "VOLTAR" ao lado MODELO INJETOR
 
 ### ----------------------10/01/24-----------------------
-- () Trocar a sequencia de marcha lenta com carga parcial (carga parcial marcha lenta para marca lenta carga parcial)
+- (x) Trocar a sequencia de marcha lenta com carga parcial (carga parcial marcha lenta para marca lenta carga parcial)
 
 
 
@@ -123,7 +123,7 @@
 4. Remover plano            Esperado -> plano removido      ok
 
 #### Teste 2
-1. Criar um plano                                                       0k
+1. Criar um plano                                                       ok
 2. Criar um Injetor e associar ao plano criado                          ok
 3. Remover o plano.                                                     ok
 4. Verificar alerta (se mostra que vai remover o injetor associado)     0k
@@ -137,8 +137,8 @@
    atributos do plano                                    ok
 3. Salvar plano                                          ok
 4. Conferir se todos os campos/atributos foram salvos
-   corretamente                                          nao,
-   os campos rotacao, pulso e frequencia mantem os mesmos valores de todod os atributos.
+   corretamente.
+   nao, os dados do arranque nao foram salvos
 **Esperado -> campos/atributos salvos.**   
             
 ### VEICULOS
@@ -163,12 +163,14 @@
 4. Remover oficina             Esperado -> oficina removida       ok
 
 #### Teste 2
-1. Criar um oficina                                                     ok
-2. Criar um Usuário e associar a oficina criada                         ok
-3. Remover a oficina.                                                   ok
-4. Verificar alerta (se mostra que vai remover o usuário associado)     ok
-5. Confirmar                                                            ok
-6. Conferir se o oficina e o usuário foram removidos.                   ok
+1. Criar um oficina                                                     OK
+2. Criar um Usuário e associar a oficina criada
+   Ao criar usuario deu erro de senha (senha facil) ao modificar a senha
+   aparece mensagem que ja foi cadastrado
+3. Remover a oficina.                                                   OK
+4. Verificar alerta (se mostra que vai remover o usuário associado)     OK
+5. Confirmar                                                            OK
+6. Conferir se o oficina e o usuário foram removidos.                   OK
 **Esperado -> oficina e usuario removidos.**
 
 ### USUARIOS
@@ -183,8 +185,9 @@
 1. Criar um teste e salvar. Esperado -> teste criado        ok
 2. Editar teste e salvar.   Esperado -> teste modificado    ok
 3. Listar teste.            Esperado -> lista de testes     ok
-4. Remover teste            Esperado -> teste removido      ok
-**Obs: Repita o teste e tilize o botão NOVO inferior**
+4. Remover teste            Esperado -> teste removido
+   Ao remover aparece uma mensagem sobre um antigo usuario
+**Obs: Repita o teste e utilize o botão NOVO inferior**
 #### Teste 2
 1. Criar um teste e salvar.                             ok
 2. Editar teste e preencher todos os campos/
@@ -192,8 +195,7 @@
 3. Salvar teste                                         ok
 4. Conferir se todos os campos/atributos foram salvos
    corretamente.
-   Foram preenchidos mais nao corretamente, como citado anteriormente,
-   erro no pulso frequencia e rotacao
+   Foram preenchidos mais nao foram salvos os dados do arranque
 **Esperado -> campos/atributos salvos.** 
 
 #### Teste 3
@@ -214,7 +216,7 @@
 #### Teste 5
 1. Gerar relatorio por ordem de serviço                  OK
 2. Verificar se todas as informações estão corretas      OK
-3. Baixar arquivo pdf                                    0O
+3. Baixar arquivo pdf                                    OK
 4. Verificar se o arquivo pdf está correto               OK
 **Esperado -> relatorio e arquivo pdf corretos.** 
 
