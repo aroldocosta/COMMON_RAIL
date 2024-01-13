@@ -115,6 +115,12 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.modalCommandButton = "NOVO";  
     document.getElementById('removeCloseModalButton')?.click(); 
 
+    this.removingAlertMessage01 = '';
+    this.removingAlertMessage02 = '';
+    this.removingAlertTopTitle  = '';
+    this.removingName           = '';
+    this.removingObjects        = '';
+
     if(this.currentModalLink.length > 0) {
       document.getElementById(this.currentModalLink)?.click();
     }   
@@ -320,6 +326,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
         currentMenulink?.click();
         this.modalCommand = 'listing';
         this.modalCommandButton = "NOVO";
+        this.removingAlertMessage01 = '';
+        this.removingAlertMessage02 = '';
+        this.removingAlertTopTitle  = '';
+        this.removingName           = '';
+        this.removingObjects        = '';
       },
       error: (err: any) => {
         this.alertMessage = "Ação não permitida, entre em contato com a gerência."
