@@ -4,9 +4,9 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th class="striped-table" scope="col" title="Pressão bomba">PRESSÃO(bar):</th>
+                    <th class="striped-table" scope="col" title="Pressão bomba">PRES(bar):</th>
                     <td class="striped-table">{{plan.preInjectionPressure | number: '1.0'}}</td>
-                    <th class="striped-table" scope="col" title="Rotação">ROTAÇÃO(1/min):</th>
+                    <th class="striped-table" scope="col" title="Rotação">ROT(1/min):</th>
                     <td class="striped-table">{{plan.preInjectionBenchRpm | number: '1.0'}}</td>
                 </tr>
             </thead>
@@ -14,9 +14,9 @@
         <table class="table table-sm">
             <thead>
                 <tr>
-                    <th class="striped-table" scope="col" title="Largura de pulso">PULSO PWM(ms):</th>
+                    <th class="striped-table" scope="col" title="Largura de pulso">PULSO(ms):</th>
                     <td class="striped-table">{{plan.preInjectionPulseTime 	| number: '1.0'}}</td>
-                    <th class="striped-table" scope="col" title="Frequência">FREQUÊNCIA(p/m):</th>
+                    <th class="striped-table" scope="col" title="Frequência">FREQ(p/m):</th>
                     <td class="striped-table">{{plan.preInjectionFrequency 	| number: '1.0'}}</td>
                 </tr>
             </thead>
