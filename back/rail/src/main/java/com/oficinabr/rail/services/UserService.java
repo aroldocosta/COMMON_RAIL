@@ -70,17 +70,18 @@ public class UserService {
 	public ResponseEntity<UserDTO> update(UserDTO dto) {
 		try {
 
-			User user = new User(dto);
-
-			if(!dto.password().equals(user.getPassword())) {
+			User newUser = new User(dto);
+			User oldUser = repository.findById(dto.id()).get();
+						
+			if(!dto.password().equals(oldUser.getPassword())) {
 				String encryptedPass = security.passwordEncoder().encode(dto.password());
-				user.setPassword(encryptedPass);				
+				newUser.setPassword(encryptedPass);				
 			}
 			
 			Workshop workshop = workshopRepository.findById(dto.workshop().id()).get();
-			user.setWorkshop(workshop);
+			newUser.setWorkshop(workshop);
 			
-			UserDTO resp = new UserDTO(repository.save(user));
+			UserDTO resp = new UserDTO(repository.save(newUser));
 			return ResponseEntity.ok(resp);	
 		} catch (DataIntegrityViolationException e) {
 			return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
