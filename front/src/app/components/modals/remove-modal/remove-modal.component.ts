@@ -6,9 +6,8 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
   templateUrl: './remove-modal.component.html',
   styleUrls: ['./remove-modal.component.css']
 })
-export class RemoveModalComponent extends CommonPageComponent{
+export class RemoveModalComponent extends CommonPageComponent {
 
-  @Input() message: string = '';
   @Input() removingName: string = '';
   @Input() removingEvent: any;
   @Input() removingObjects: string = '';

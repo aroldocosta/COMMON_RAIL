@@ -53,6 +53,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   currentModalLink: string = '';
   serviceOrder: string = '';
   currentWorkshop: any;
+  FORBIDDEN_ACTION_MESSAGE = "Ação não permitida, entre em contato com a gerência.";
 
   tabIndex = 0;
   currentTab: any = {id:'starting', heading: 'ARRANQUE'};
@@ -120,6 +121,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     this.removingAlertTopTitle  = '';
     this.removingName           = '';
     this.removingObjects        = '';
+    this.alertMessage           = '';
 
     if(this.currentModalLink.length > 0) {
       document.getElementById(this.currentModalLink)?.click();
@@ -294,9 +296,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   handleModalRemoveConfirm() {
+    
     let currentMenulink: any;
     let currentService: any;
 
+    let object = this.removingEvent.object;
     let objectId = this.removingEvent.object.id;
     let objectClass = this.removingEvent.objClass;
  
@@ -320,6 +324,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       currentService = <WorkshopService> this.workshopService;
     }
 
+    if(this.isForbidden(object)) {
+      return;
+    }
+
     currentService.remove(objectId).subscribe({
       next: (resp: any) => {
         document.getElementById("removeCloseModalButton")?.click();
@@ -333,9 +341,17 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
         this.removingObjects        = '';
       },
       error: (err: any) => {
-        this.alertMessage = "Ação não permitida, entre em contato com a gerência."
+        this.alertMessage = this.FORBIDDEN_ACTION_MESSAGE;
       }
     });
+  }
+
+  isForbidden(object: any) {
+    if(object.workshop.id != this.currentWorkshop.id) {
+      this.alertMessage = this.FORBIDDEN_ACTION_MESSAGE;
+      return true;
+    }
+    return false;
   }
 /*--------------------------------------------------------------*/
 

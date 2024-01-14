@@ -94,6 +94,5 @@ public class PlanService {
 		} catch (Exception e) {
 			return ResponseEntity.noContent().build();
 		} 
-	}
-	
+	}	
 }

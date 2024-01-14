@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class AlertMessageComponent {
 
-    @Input() message: string = '';
+    @Input()  message: string = '';
     @Output() showEvent = new EventEmitter();
     @Output() clearEvent = new EventEmitter();
 
