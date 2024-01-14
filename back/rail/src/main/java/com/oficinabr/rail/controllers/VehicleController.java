@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.oficinabr.rail.dto.VehicleDTO;
+import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.services.VehicleService;
 
 @RestController
@@ -33,8 +34,10 @@ public class VehicleController {
 	
 	@GetMapping("/workshop/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
-	public ResponseEntity<List<VehicleDTO>> findByWorkshop(@PathVariable("id") String id) {
-		return service.findByWorkshop(id);
+	public ResponseEntity<List<VehicleDTO>> findByWorkshop(@PathVariable("id") String id) {	
+		return Workshop.ADMIN_WORKSHOP.equals(id) 
+				? service.findAll()
+				: service.findByWorkshop(id);
 	}
 	
 	@GetMapping(value = "/{id}")

@@ -43,7 +43,7 @@ public class Workshop {
 	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Injector> injectorList;
 	
-	public static final String ADMIN_WORKSHOP = "recodiesel_id";
+	public static final String ADMIN_WORKSHOP = "7654fedc-98ab-78a4-3be7-ab343d47a237";
 	
 	public Workshop() {
 		

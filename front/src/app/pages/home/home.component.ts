@@ -462,7 +462,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   requestWorkshops() {
     this.workshopService.list().subscribe({
       next: list => {
-        this.workshopList = list;
+        if(this.currentWorkshop.name == 'RECODIESEL') {
+          this.workshopList = list;
+        } else {
+          this.workshopList = list.filter(w => w.id == this.currentWorkshop.id);
+        }
       },
       error: err => {
         console.log("Error: ", err);
@@ -471,7 +475,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   // --------------------------------------------------------
-
 
   handleTestReport() {
     this.router.navigateByUrl('report');
