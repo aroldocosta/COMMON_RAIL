@@ -54,8 +54,7 @@
 ### ‐---------‐-----------18/12/23‐-----------------------------
 - 13 (x) inserir filtros em mais de uma coluna ao mesmo tempo
 - 14 (x) Substituir a cor laranja pela cor verde escuro 41AE1E
-- 15 (x) Ao filtrar uma OS manter o filtro ate que solicite remover filtro
-	(resolveu parcialmente pois se eu abrir relatorio o filtro sai)
+- 15 (x) Ao filtrar uma OS manter o filtro ate que solicite remover filtro	
 
 ### ‐---------‐-----------27/12/23‐-----------------------------
 - 16 (x) Na tela principal na coluna cliente ao clicar em cliente aparece e sequencia e nao seleciona
@@ -63,18 +62,27 @@
 ### ‐---------‐-----------07/01/24‐-----------------------------
 - 17 (x) Na tela de teste substituir o passo medidas elétricas por passe de arranque
 - 18 () criar passo carga parcial 2 e 3 (considerando que a 1 ja tem)
-- 19 () criar passo estaquidade
+- 19 () criar passo estaquidade (Antes do passo arranque)
 
 ### ‐---------‐-----------10/01/24‐-----------------------------
 - 20 (x) O botao salvar superior da tela principa ao lado esquerdo do nome injetor nao ta salvando
 - 21 (x) Os tres campos que foram criados, pulso, frequencia e rotacao, nao aceita auteracao
 - 22 (x) No cadastro de planos no item carga parcial a frequencia aparece p/m os outros aparece Hz
 
+### ‐---------‐-----------13/01/24‐-----------------------------
+- 23 () Ao editar a senha de um usuario, o mesmo nao acessa mais o sistema
+- 24 () Esta cadastrado um admin chamado ivan que nao aparece na lista mais acessa o sistema
+- 25 () Esta cadastrado um usuario chamado Wando que nao aparece na lista mais acessa o sistema
+- 26 () O administrador de uma oficina tem acesso a outras (que nao deve ter)
 
 
 
 
-### SOLUCOES DE USABILIDADES
+
+
+
+
+### SOLUCOES DE USABILIDADES BACKLOG
 - 1 (x) Selecionar edicao do bico pela linha toda
 - 2 (x) Ao salvar um teste voltar para o grupo da mesma "OS"
 - 3 (x) Diminuir a largura das colunas: INJETOR, SEQUENCIA, ORD. SERVICO, EDT e REM, para nao precisar barra de rolagem em baixo.
@@ -85,7 +93,10 @@
 - 6 (x) Estando na tela de edicao de teste e importante ter um botao "VOLTAR" ao lado MODELO INJETOR
 
 ### ----------------------10/01/24-----------------------
-- (x) Trocar a sequencia de marcha lenta com carga parcial (carga parcial marcha lenta para marca lenta carga parcial)
+- 7 (x) Trocar a sequencia de marcha lenta com carga parcial (carga parcial marcha lenta para marca lenta carga parcial)
+
+
+
 
 
 
@@ -117,118 +128,106 @@
 ## LISTA DE TESTE DE SOFTWARE (Nao confundir com teste de injetor)
 ### PLANOS
 #### Teste 1
-1. Criar um plano e salvar. Esperado -> plano criado        ok
-2. Editar plano e salvar.   Esperado -> plano modificado    ok
-3. Listar plano.            Esperado -> lista de planos     ok
-4. Remover plano            Esperado -> plano removido      ok
+1. Criar um plano e salvar. Esperado -> plano criado
+2. Editar plano e salvar.   Esperado -> plano modificado
+3. Listar plano.            Esperado -> lista de planos
+4. Remover plano            Esperado -> plano removido
 
 #### Teste 2
-1. Criar um plano                                                       ok
-2. Criar um Injetor e associar ao plano criado                          ok
-3. Remover o plano.                                                     ok
-4. Verificar alerta (se mostra que vai remover o injetor associado)     0k
-5. Confirmar                                                            ok
-6. Conferir se o plano e o injetor foram removidos.                     ok
+1. Criar um plano
+2. Criar um Injetor e associar ao plano criado
+3. Remover o plano.
+4. Verificar alerta (se mostra que vai remover o injetor associado)
+5. Confirmar
+6. Conferir se o plano e o injetor foram removidos.
 **Esperado -> Plano e injetor removidos.**
 
 #### Teste 3
-1. Criar um plano e salvar.                              ok
-2. Editar plano e preencher todos os campos/
-   atributos do plano                                    ok
-3. Salvar plano                                          ok
-4. Conferir se todos os campos/atributos foram salvos
-   corretamente.
-   nao, os dados do arranque nao foram salvos
+1. Criar um plano e salvar.
+2. Editar plano e preencher todos os campos/atributos do plano
+3. Salvar plano
+4. Conferir se todos os campos/atributos foram salvos corretamente.   
 **Esperado -> campos/atributos salvos.**   
             
 ### VEICULOS
 #### Teste 1
-1. Criar um veiculo e salvar. Esperado -> veiculo criado          ok
-2. Editar veículo e salvar.   Esperado -> veículo modificado      ok
-3. Listar veículo.            Esperado -> lista de veículos       ok
-4. Remover veículo            Esperado -> veículo removido        ok
+1. Criar um veiculo e salvar. Esperado -> veiculo criado
+2. Editar veículo e salvar.   Esperado -> veículo modificado
+3. Listar veículo.            Esperado -> lista de veículos
+4. Remover veículo            Esperado -> veículo removido
 
 ### INJETORES
 #### Teste 1
-1. Criar um injetor e salvar. Esperado -> injetor criado          ok
-2. Editar injetor e salvar.   Esperado -> injetor modificado      ok
-3. Listar injetor.            Esperado -> lista de injetors       ok
-4. Remover injetor            Esperado -> injetor removido        ok
+1. Criar um injetor e salvar. Esperado -> injetor criado
+2. Editar injetor e salvar.   Esperado -> injetor modificado
+3. Listar injetor.            Esperado -> lista de injetors
+4. Remover injetor            Esperado -> injetor removido
 
 ### OFICINAS
 #### Teste 1
-1. Criar uma oficina e salvar. Esperado -> oficina criada         ok
-2. Editar oficina e salvar.    Esperado -> oficina modificada     ok
-3. Listar oficina.             Esperado -> lista de oficinas      ok
-4. Remover oficina             Esperado -> oficina removida       ok
+1. Criar uma oficina e salvar. Esperado -> oficina criada
+2. Editar oficina e salvar.    Esperado -> oficina modificada
+3. Listar oficina.             Esperado -> lista de oficinas
+4. Remover oficina             Esperado -> oficina removida
 
 #### Teste 2
-1. Criar um oficina                                                     OK
+1. Criar um oficina
 2. Criar um Usuário e associar a oficina criada
-   Ao criar usuario deu erro de senha (senha facil) ao modificar a senha
-   aparece mensagem que ja foi cadastrado
-3. Remover a oficina.                                                   OK
-4. Verificar alerta (se mostra que vai remover o usuário associado)     OK
-5. Confirmar                                                            OK
-6. Conferir se o oficina e o usuário foram removidos.                   OK
+3. Remover a oficina.
+4. Verificar alerta (se mostra que vai remover o usuário associado)
+5. Confirmar
+6. Conferir se o oficina e o usuário foram removidos.
 **Esperado -> oficina e usuario removidos.**
 
 ### USUARIOS
 #### Teste 1
-1. Criar um usuário e salvar. Esperado -> usuário criado        ok
-2. Editar usuário e salvar.   Esperado -> usuário modificado    ok
-3. Listar usuário.            Esperado -> lista de usuários     ok
-4. Remover usuário            Esperado -> usuário removido      ok
+1. Criar um usuário e salvar. Esperado -> usuário criado
+2. Editar usuário e salvar.   Esperado -> usuário modificado
+3. Listar usuário.            Esperado -> lista de usuários
+4. Remover usuário            Esperado -> usuário removido
 
 ### TESTES(DE INJETOR)
 #### Teste 1  
-1. Criar um teste e salvar. Esperado -> teste criado        ok
-2. Editar teste e salvar.   Esperado -> teste modificado    ok
-3. Listar teste.            Esperado -> lista de testes     ok
+1. Criar um teste e salvar. Esperado -> teste criado
+2. Editar teste e salvar.   Esperado -> teste modificado
+3. Listar teste.            Esperado -> lista de testes
 4. Remover teste            Esperado -> teste removido
-   Ao remover aparece uma mensagem sobre um antigo usuario
 **Obs: Repita o teste e utilize o botão NOVO inferior**
+
 #### Teste 2
-1. Criar um teste e salvar.                             ok
-2. Editar teste e preencher todos os campos/
-   atributos do teste                                   ok
-3. Salvar teste                                         ok
-4. Conferir se todos os campos/atributos foram salvos
-   corretamente.
-   Foram preenchidos mais nao foram salvos os dados do arranque
+1. Criar um teste e salvar.
+2. Editar teste e preencher todos os campos/atributos do teste
+3. Salvar teste
+4. Conferir se todos os campos/atributos foram salvos corretamente.   
 **Esperado -> campos/atributos salvos.** 
 
 #### Teste 3
-1. Verificar filtro de numero de injetor (individualmente)           ok  
-2. Verificar filtro de cliente (individualmente)                     ok
-3. Verificar filtro de ordem de serviço(os) (individualmente)        ok
-4. Verificar filtro de data (individualmente)                        OK
-5. Verificar filtro de modelo de injetor(injet) (individualmente)    ok
-6. Verificar filtro de veículo (individualmente)                     OK
+1. Verificar filtro de numero de injetor (individualmente)
+2. Verificar filtro de cliente (individualmente)
+3. Verificar filtro de ordem de serviço(os) (individualmente)
+4. Verificar filtro de data (individualmente)
+5. Verificar filtro de modelo de injetor(injet) (individualmente)
+6. Verificar filtro de veículo (individualmente)
 **Esperado -> filtragem correta para cada campo.** 
 
 #### Teste 4
 1. Criar diversos cenarios de filtros combinados
-   - Ex. NUM + CLIENTE,  CLIENTE + OS + INJETOR etc                  0K
+   - Ex. NUM + CLIENTE,  CLIENTE + OS + INJETOR etc
 
 **Esperado -> filtragem combinada correta para cada cenário.** 
 
 #### Teste 5
-1. Gerar relatorio por ordem de serviço                  OK
-2. Verificar se todas as informações estão corretas      OK
-3. Baixar arquivo pdf                                    OK
-4. Verificar se o arquivo pdf está correto               OK
+1. Gerar relatorio por ordem de serviço
+2. Verificar se todas as informações estão corretas
+3. Baixar arquivo pdf
+4. Verificar se o arquivo pdf está correto
 **Esperado -> relatorio e arquivo pdf corretos.** 
 
 #### Teste 6
-1. Gerar relatorio por injetor                           OK
-2. Verificar se todas as informações estão corretas      OK
-2. Verificar se gráficos de evolução estão corretas      OK
-4. Baixar arquivo pdf                                    OK
-5. Verificar se o arquivo pdf está correto               OK
+1. Gerar relatorio por injetor
+2. Verificar se todas as informações estão corretas
+2. Verificar se gráficos de evolução estão corretas
+4. Baixar arquivo pdf
+5. Verificar se o arquivo pdf está correto
 **Esperado -> relatorio e arquivo pdf corretos.** 
-
-#### COMENTARIOS E PERGUNTAS
-1. Como coloca a logo das oficinas
-2. No futuro precisa de busca e relatorios de oficinas e usuarios
 
