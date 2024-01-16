@@ -82,27 +82,4 @@ public class SecurityConfiguration  {
 		matcher.setMethod(method);
 		return matcher;
 	}
-}
-
-
-/*
- * 
-# datasource
-spring.datasource.url=jdbc:h2:mem:fuel_db
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=admin
-spring.datasource.password=87654321
-
-# h2
-spring.h2.console.enabled=true
-spring.h2.console.path=/h2
-
-# jpa
-spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-spring.jpa.defer-datasource-initialization=true
-
-# security
-api.security.token.secret=${JWT_SECRET:system-secret-key}
- */
- 
-  
+}  
