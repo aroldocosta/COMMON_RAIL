@@ -18,7 +18,7 @@
             >
         </div>
     </div>      
-    <div class="col-sm-12 col-md-6">
+    <div class="col-sm-6 col-md-3">
         <label class="input" for="">MODELO INJETOR</label>
         <div class="input-group input-group-lg">
             <select class="form-select" aria-label="Default select example" 
@@ -30,6 +30,22 @@
             </select>
         </div>
     </div>
+    <div class="col-sm-6 col-md-3">
+        <label class="input" for="">NÚMERO INJETOR </label>
+        <div class="input-group input-group-lg">
+            <select class="form-select" aria-label="Default select example" 
+                *ngIf="test"
+                (change)="emitUpdateTestEvent()"
+                [(ngModel)]="test.injectorNumber"
+                [disabled]="command == 'editing'" 
+            >
+                <option value="0"selected>Selecione</option>
+                <option *ngFor="let number of numberList" [value]="number">
+                    {{number}} <span *ngIf="command == 'editing'"> / [ {{test.sequence}} ]</span> 
+                </option>
+            </select>
+        </div>
+    </div> 
 </div>
 <div class="row input">
     <div class="col-sm-12 col-md-6">
@@ -59,19 +75,15 @@
 </div>
 <div class="row input">
     <div class="col-sm-12 col-md-6">
-        <label class="input" for="">NÚMERO INJETOR </label>
+        <label class="input" for="">CLIENTE</label>
         <div class="input-group input-group-lg">
-            <select class="form-select" aria-label="Default select example" 
-                *ngIf="test"
-                (change)="emitUpdateTestEvent()"
-                [(ngModel)]="test.injectorNumber"
-                [disabled]="command == 'editing'" 
+            <input type="text" class="form-control" 
+                placeholder="Nome do cliente"
+                (input)="emitUpdateTestEvent()"
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-lg" 
+                [(ngModel)]="test.customerName"
             >
-                <option value="0"selected>Selecione</option>
-                <option *ngFor="let number of numberList" [value]="number">
-                    {{number}} <span *ngIf="command == 'editing'"> / [ {{test.sequence}} ]</span> 
-                </option>
-            </select>
         </div>
     </div> 
     <div class="col-sm-12 col-md-6">
@@ -88,18 +100,7 @@
     </div> 
 </div>
 <div class="row input">
-    <div class="col-sm-12 col-md-12">
-        <label class="input" for="">CLIENTE</label>
-        <div class="input-group input-group-lg">
-            <input type="text" class="form-control" 
-                placeholder="Nome do cliente"
-                (input)="emitUpdateTestEvent()"
-                aria-label="Sizing example input" 
-                aria-describedby="inputGroup-sizing-lg" 
-                [(ngModel)]="test.customerName"
-            >
-        </div>
-    </div> 
+
 </div>
 <div class="row input">
     <div class="col-12">
