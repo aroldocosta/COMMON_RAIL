@@ -21,8 +21,9 @@ export class ReportComponent extends CommonPageComponent {
   serviceOrder: string = '';
   injectorNumber: string = '';
 
-  halfLoadSequence: any = [];
+  startingSequence:  any = [];
   idlingSequence: any = [];
+  halfLoadSequence: any = [];
   fullLoadSequence: any = [];
   preInjectionSequence: any = [];
 
@@ -76,18 +77,18 @@ export class ReportComponent extends CommonPageComponent {
           this.plan = this.test.plan;
 
           for(let t of this.testList) {
-            console.log("Test Sequence: \n", t);
             let p = t.plan
-            this.halfLoadSequence.push(
+
+            this.startingSequence.push(
               {
-                step: 'half_load',      
-                deb: t.halfLoad,
-                maxDeb: p.maxHalfLoad,      
-                minDeb: p.minHalfLoad,                          
-                maxRet: p.maxHalfLoadReturn,      
-                minRet: p.minHalfLoadReturn, 
-                ret: t.halfLoadReturn 
-              },
+                step: 'starting',         
+                maxDeb: p.maxStarting,        
+                minDeb: p.minStarting,       
+                deb: t.starting, 
+                maxRet: p.maxStartingReturn,        
+                minRet: p.minStartingReturn,       
+                ret: t.startingReturn
+              }
             );
 
             this.idlingSequence.push(
@@ -100,6 +101,18 @@ export class ReportComponent extends CommonPageComponent {
                 minRet: p.minIdlingReturn,       
                 ret: t.idlingReturn
               }
+            );
+
+            this.halfLoadSequence.push(
+              {
+                step: 'half_load',      
+                deb: t.halfLoad,
+                maxDeb: p.maxHalfLoad,      
+                minDeb: p.minHalfLoad,                          
+                maxRet: p.maxHalfLoadReturn,      
+                minRet: p.minHalfLoadReturn, 
+                ret: t.halfLoadReturn 
+              },
             );
 
             this.fullLoadSequence.push(

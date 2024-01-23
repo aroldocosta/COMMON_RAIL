@@ -51,7 +51,7 @@
                     ></app-starting-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
-                    <app-canvas-graph
+                    <app-canvas-graph canvasId="startingCanvas"
                         [valDeb]="test.starting"
                         [maxDeb]="plan.maxStarting"
                         [minDeb]="plan.minStarting"
@@ -77,7 +77,7 @@
                     ></app-idling-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
-                    <app-canvas-graph
+                    <app-canvas-graph canvasId="idlingCanvas"
                         [valDeb]="test.idling"
                         [maxDeb]="plan.maxIdling"
                         [minDeb]="plan.minIdling"
@@ -103,7 +103,7 @@
                     ></app-half-load-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
-                    <app-canvas-graph
+                    <app-canvas-graph canvasId="halfLoadCanvas"
                         [valDeb]="test.halfLoad"
                         [maxDeb]="plan.maxHalfLoad"
                         [minDeb]="plan.minHalfLoad"
@@ -129,7 +129,7 @@
                     ></app-full-load-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
-                    <app-canvas-graph
+                    <app-canvas-graph canvasId="fullLoadCanvas"
                         [valDeb]="test.fullLoad"
                         [maxDeb]="plan.maxFullLoad"
                         [minDeb]="plan.minFullLoad"
@@ -155,7 +155,7 @@
                     ></app-pre-injection-table> 
                 </div>  
                 <div class="col-sm-4" [ngClass]="reportClass">
-                    <app-canvas-graph
+                    <app-canvas-graph canvasId="preInjectionCanvas"
                         [valDeb]="test.preInjection"
                         [maxDeb]="plan.maxHalfLoad"
                         [minDeb]="plan.minPreInjection"
