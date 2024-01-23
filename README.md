@@ -231,3 +231,53 @@
 5. Verificar se o arquivo pdf está correto
 **Esperado -> relatorio e arquivo pdf corretos.** 
 
+#### Teste 7 
+ 1. Verificar se usuário OPERADOR de outra oficina deleta/edita plano/injeto da oficina de referência
+    - 1 Criar uma oficina
+    - 2 Criar um usuário OPERADOR e adicionar a oficina recem criada
+    - 3 Editar plano da oficina de referencia -> Esperado: O sistema deve impedir
+    - 4 Deletar plano da oficina de referência -> Esperado: O sistema deve impedir
+    - 3 Editar injetor da oficina de referencia -> Esperado: O sistema deve impedir
+    - 4 Deletar injetor da oficina de referênmcia -> Esperado: O sistema deve impedir
+
+ 2. Verificar se usuário OPERADOR cria/edita/deleta plano da propria oficina 
+    - 1 Criar uma oficina
+    - 2 Criar um usuário OPERADOR e adicionar a oficina recem criada
+    - 3 Editar plano da oficina   recém criada -> Esperado:  Operação deve ser executada normalmente
+    - 4 Deletar plano da oficina   recém criada -> Esperado: Operação deve ser executada normalmente
+    - 3 Editar injetor da oficina  recém criada -> Esperado: Operação deve ser executada normalmente
+    - 4 Deletar injetor da oficina recém criada -> Esperado: Operação deve ser executada normalmente
+
+ 3. Verificar se usuário ADMIN de outra oficina ve/edita/deleta plano/injetor da recodiesel 
+    - 1 Criar duas oficinas (A e B)
+    - 2 Criar um usuário ADMIN e adicionar a oficina A recem criada
+    - 3 Criar 1 plano e 1 modelos de injetor na oficina B recém criada
+    - 4 Locar na oficina A como usuario ADMIN recém criado
+    - 4 Abrir lista de planos e injetores na oficina A -> Esperado: Planos e injetores da oficina B nao devem ser exibidos
+    - 3 Editar plano da oficina B ->    Esperado: Não deve ser possível
+    - 4 Deletar plano da oficina B ->   Esperado: Não deve ser possível
+    - 3 Editar injetor da oficina B ->  Esperado: Não deve ser possível
+    - 4 Deletar injetor da oficina B -> Esperado: Não deve ser possível
+
+ 4. Admin de outra oficina cria/edita/deleta plano/injetor da propria oficina
+    - 1 Criar uma oficina
+    - 2 Criar um usuário ADMIN e adicionar a oficina recem criada
+    - 3 Editar plano da oficina    recém criada -> Esperado: Operação deve ser executada normalmente
+    - 4 Deletar plano da oficina   recém criada -> Esperado: Operação deve ser executada normalmente
+    - 3 Editar injetor da oficina  recém criada -> Esperado: Operação deve ser executada normalmente
+    - 4 Deletar injetor da oficina recém criada -> Esperado: Operação deve ser executada normalmente
+
+ #### Teste 8   
+ 1. Verificar endereço do ambiente de teste
+    - 1 Colocar oendereço: https://rail.test.oficinabr.com na barra de endereços do navegador
+    - 2 Clicar Enter -> Esperado: Deve entrar na tela de login
+    - 3 Recarregar a página (Clicar em F5 ou no icone de recarregar a pagina) -> Esperado: Deve continuar na pagina de Login
+    - 4 Colocar o endereço: https://rail.test.oficinabr.com/#/login na barra de endreço do navergador
+    - 5 Clicar Enter -> Esperado: Deve entrar na tela de Login
+
+ 2. Verificar endereço do ambiente de produção
+    - 1 Colocar oendereço: https://rail.oficinabr.com na barra de endereços do navegaor
+    - 2 Clicar Enter -> Esperado: Deve entrar na tela de login
+    - 2 Recarregar a página (Clicar em F5 ou no icone de recarregar a pagina) -> Esperado: Deve continuar na pagina de Login
+    - 3 Colocar o endereço: https://rail.oficinabr.com/#/login na barra de endreço do navergador
+    - 4 Clicar Enter -> Esperado: Deve entrar na tela de Login   
