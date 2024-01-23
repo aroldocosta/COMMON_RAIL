@@ -16,23 +16,4 @@ export class User {
 
     }
 
-	isAdmin() {
-		return true;
-	}
-
-	isDirector() {
-		return true;
-	}
-
-	isManager() {
-		return true;
-	}
-
-	isOperator() {
-		return true;
-	}
-
-	hasLogoFile() {
-		return true;
-	}
 }

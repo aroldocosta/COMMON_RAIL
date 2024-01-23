@@ -86,6 +86,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       this.userService.getWorkshop(userId).subscribe({ 
         next: workshop => {
           this.currentWorkshop = workshop;
+          this.requestLogged(userId);
           this.requestUsers();
           this.requestTests();
           this.requestPlans();
@@ -101,7 +102,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
           this.login.setAuthData(null);
           this.goToLink('/login', this.login, this.router);
         }
-      })
+      });
+
     } else {
       this.login.setAuthData(null);
       this.goToLink('/login', this.login, this.router);
@@ -347,11 +349,24 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   isForbidden(object: any) {
+    
+    if(this.isAdmin(this.logged) && this.isReference(this.currentWorkshop)) {
+      return false;
+    }
+
     if(object.workshop.id != this.currentWorkshop.id) {
       this.alertMessage = this.FORBIDDEN_ACTION_MESSAGE;
       return true;
     }
     return false;
+  }
+
+  isAdmin(user: User) {
+    return (this.logged.role == 'ADMIN');
+  }
+
+  isReference(workshop: Workshop) {
+    return (this.logged.workshop.name == 'RECODIESEL');
   }
 /*--------------------------------------------------------------*/
 
@@ -486,6 +501,18 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       },
       error: err => {
         console.log("Error: ", err);
+      }
+    });
+  }
+
+  requestLogged(userId: string) {
+    this.userService.get(userId).subscribe({
+      next: user => {
+        this.logged = user;
+      },
+      error: err => {
+        this.login.setAuthData(null);
+        this.goToLink('/login', this.login, this.router);
       }
     });
   }
