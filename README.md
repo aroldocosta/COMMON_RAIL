@@ -1,8 +1,15 @@
 ## Deploy
 
-``` scp -rv /Projects/microLet/REPOSITORY/COMMON_RAIL/front/dist/rail/ root@oficinabr.com:/home/COMMON_RAIL/front ```
+### Ambiente de teste
+``` scp -rv /Projects/microLet/REPOSITORY/COMMON_RAIL/front/dist/rail/* root@oficinabr.com:/home/COMMON_RAIL/fr_test ```
 
-``` scp -v /Projects/microLet/REPOSITORY/COMMON_RAIL/back/rail/target/rail-0.0.1-SNAPSHOT.jar root@oficinabr.com:/home/COMMON_RAIL/back ```
+``` scp -v /Projects/microLet/REPOSITORY/COMMON_RAIL/back/rail/target/rail-0.0.1-SNAPSHOT.jar root@oficinabr.com:/home/COMMON_RAIL/bk_test ```
+
+### Ambiente de produção
+``` scp -rv /Projects/microLet/REPOSITORY/COMMON_RAIL/front/dist/rail/* root@oficinabr.com:/home/COMMON_RAIL/fr_prod ```
+
+``` scp -v /Projects/microLet/REPOSITORY/COMMON_RAIL/back/rail/target/rail-0.0.1-SNAPSHOT.jar root@oficinabr.com:/home/COMMON_RAIL/bk_prod ```
+
 
 ## Html2Pdf
 -  https://www.positronx.io/angular-pdf-tutorial-export-pdf-in-angular-with-jspdf/
@@ -48,7 +55,7 @@
 - 11 (x) Nas telas de cadastro criar bloqueio pra nao cadastrar CODIGO, PLACA E MODELO REPETIDO
 
 ### ‐---------‐-----------13/12/23‐-----------------------------
-- 12 () Quando selecino teste ex: teste 1 sequencia 3 ele mostra 1/[] ou 1/[sequencia mostrada anterior]
+- 12 (x) Quando selecino teste ex: teste 1 sequencia 3 ele mostra 1/[] ou 1/[sequencia mostrada anterior]
 	saio e seleciono teste 1 sequencia 3 novamente ai mostra 1/[3] (so foi observado o evento no meu celular mod A71 samsung)
 
 ### ‐---------‐-----------18/12/23‐-----------------------------
@@ -70,16 +77,18 @@
 - 22 (x) No cadastro de planos no item carga parcial a frequencia aparece p/m os outros aparece Hz
 
 ### ‐---------‐-----------13/01/24‐-----------------------------
-- 23 () Ao editar a senha de um usuario, o mesmo nao acessa mais o sistema
-- 24 () Esta cadastrado um admin chamado ivan que nao aparece na lista mais acessa o sistema
-- 25 () Esta cadastrado um usuario chamado Wando que nao aparece na lista mais acessa o sistema
-- 26 () O administrador de uma oficina tem acesso a outras (que nao deve ter)
+- 23 (x) Ao editar a senha de um usuario, o mesmo nao acessa mais o sistema
+- 24 (x) Esta cadastrado um admin chamado ivan que nao aparece na lista mais acessa o sistema
+- 25 (x) Esta cadastrado um usuario chamado Wando que nao aparece na lista mais acessa o sistema
+- 26 (x) O administrador de uma oficina tem acesso a outras (que nao deve ter)
 
-
-
-
-
-
+### ‐---------‐-----------27/01/24‐-----------------------------
+- 27 (x) Oficina no teste 1 e 2 cria e edita mais nao remove -> corrigido
+- 28 (x) Usuario no teste 1 cria e edita mais nao remove -> corrigido
+- 29 (x) No teste 7.1 o usuario de outra oficina edita e deleta plano e injetor da oficina de referencia -> corrigido
+- 30 (x) No teste 7.2 o usuario nao cria nem edita porque ja aparece com a lista de plano e injetor da oficina referencia - Nao entendi, era    pra criar um usuario OPERADOR
+- 31 (x) A recodiesel edita plano e injetor de outra oficina mais nao remove (Acho que nao deve editar tambem) -> Temos que pensar melhor, pq se o cliente for enrolado e pedir pra corrigir ou fazer o plano/injetor dele, como fariamos?
+- 32 (x) Admin de outra oficina quando edita plano e ou injetor da recodiesel ainda muda pra oficina dele o mesmo acontece entre Ofic A e B -> corrigido nao consegue mais nem editar
 
 
 ### SOLUCOES DE USABILIDADES BACKLOG
@@ -94,11 +103,6 @@
 
 ### ----------------------10/01/24-----------------------
 - 7 (x) Trocar a sequencia de marcha lenta com carga parcial (carga parcial marcha lenta para marca lenta carga parcial)
-
-
-
-
-
 
 ## MVP
 
@@ -128,10 +132,10 @@
 ## LISTA DE TESTE DE SOFTWARE (Nao confundir com teste de injetor)
 ### PLANOS
 #### Teste 1
-1. Criar um plano e salvar. Esperado -> plano criado
-2. Editar plano e salvar.   Esperado -> plano modificado
-3. Listar plano.            Esperado -> lista de planos
-4. Remover plano            Esperado -> plano removido
+1. Criar um plano e salvar. **Esperado -> plano criado**
+2. Editar plano e salvar.   **Esperado -> plano modificado**
+3. Listar plano.            **Esperado -> lista de planos**
+4. Remover plano            **Esperado -> plano removido**
 
 #### Teste 2
 1. Criar um plano
@@ -151,24 +155,24 @@
             
 ### VEICULOS
 #### Teste 1
-1. Criar um veiculo e salvar. Esperado -> veiculo criado
-2. Editar veículo e salvar.   Esperado -> veículo modificado
-3. Listar veículo.            Esperado -> lista de veículos
-4. Remover veículo            Esperado -> veículo removido
+1. Criar um veiculo e salvar. **Esperado -> veiculo criado**
+2. Editar veículo e salvar.   **Esperado -> veículo modificado**
+3. Listar veículo.            **Esperado -> lista de veículos**
+4. Remover veículo            **Esperado -> veículo removido**
 
 ### INJETORES
 #### Teste 1
-1. Criar um injetor e salvar. Esperado -> injetor criado
-2. Editar injetor e salvar.   Esperado -> injetor modificado
-3. Listar injetor.            Esperado -> lista de injetors
-4. Remover injetor            Esperado -> injetor removido
+1. Criar um injetor e salvar. **Esperado -> injetor criado**
+2. Editar injetor e salvar.   **Esperado -> injetor modificado**
+3. Listar injetor.            **Esperado -> lista de injetors**
+4. Remover injetor            **Esperado -> injetor removido**
 
 ### OFICINAS
 #### Teste 1
-1. Criar uma oficina e salvar. Esperado -> oficina criada
-2. Editar oficina e salvar.    Esperado -> oficina modificada
-3. Listar oficina.             Esperado -> lista de oficinas
-4. Remover oficina             Esperado -> oficina removida
+1. Criar uma oficina e salvar. **Esperado -> oficina criada**
+2. Editar oficina e salvar.    **Esperado -> oficina modificada**
+3. Listar oficina.             **Esperado -> lista de oficinas**
+4. Remover oficina             **Esperado -> oficina removida**
 
 #### Teste 2
 1. Criar um oficina
@@ -181,17 +185,17 @@
 
 ### USUARIOS
 #### Teste 1
-1. Criar um usuário e salvar. Esperado -> usuário criado
-2. Editar usuário e salvar.   Esperado -> usuário modificado
-3. Listar usuário.            Esperado -> lista de usuários
-4. Remover usuário            Esperado -> usuário removido
+1. Criar um usuário e salvar. **Esperado -> usuário criado**
+2. Editar usuário e salvar.   **Esperado -> usuário modificado**
+3. Listar usuário.            **Esperado -> lista de usuários**
+4. Remover usuário            **Esperado -> usuário removido**
 
 ### TESTES(DE INJETOR)
 #### Teste 1  
-1. Criar um teste e salvar. Esperado -> teste criado
-2. Editar teste e salvar.   Esperado -> teste modificado
-3. Listar teste.            Esperado -> lista de testes
-4. Remover teste            Esperado -> teste removido
+1. Criar um teste e salvar. **Esperado -> teste criado**
+2. Editar teste e salvar.   **Esperado -> teste modificado**
+3. Listar teste.            **Esperado -> lista de testes**
+4. Remover teste            **Esperado -> teste removido**
 **Obs: Repita o teste e utilize o botão NOVO inferior**
 
 #### Teste 2
@@ -235,49 +239,49 @@
  1. Verificar se usuário OPERADOR de outra oficina deleta/edita plano/injeto da oficina de referência
     - 1 Criar uma oficina
     - 2 Criar um usuário OPERADOR e adicionar a oficina recem criada
-    - 3 Editar plano da oficina de referencia -> Esperado: O sistema deve impedir
-    - 4 Deletar plano da oficina de referência -> Esperado: O sistema deve impedir
-    - 3 Editar injetor da oficina de referencia -> Esperado: O sistema deve impedir
-    - 4 Deletar injetor da oficina de referênmcia -> Esperado: O sistema deve impedir
+    - 3 Editar plano da oficina de referencia ->     **Esperado: O sistema deve impedir**
+    - 4 Deletar plano da oficina de referência ->    **Esperado: O sistema deve impedir**
+    - 3 Editar injetor da oficina de referencia ->   **Esperado: O sistema deve impedir**
+    - 4 Deletar injetor da oficina de referênmcia -> **Esperado: O sistema deve impedir**
 
  2. Verificar se usuário OPERADOR cria/edita/deleta plano da propria oficina 
     - 1 Criar uma oficina
     - 2 Criar um usuário OPERADOR e adicionar a oficina recem criada
-    - 3 Editar plano da oficina   recém criada -> Esperado:  Operação deve ser executada normalmente
-    - 4 Deletar plano da oficina   recém criada -> Esperado: Operação deve ser executada normalmente
-    - 3 Editar injetor da oficina  recém criada -> Esperado: Operação deve ser executada normalmente
-    - 4 Deletar injetor da oficina recém criada -> Esperado: Operação deve ser executada normalmente
+    - 3 Editar plano da oficina   recém criada ->  **Esperado:  Operação deve ser executada normalmente**
+    - 4 Deletar plano da oficina   recém criada -> **Esperado:  Operação deve ser executada normalmente**
+    - 3 Editar injetor da oficina  recém criada -> **Esperado:  Operação deve ser executada normalmente**
+    - 4 Deletar injetor da oficina recém criada -> **Esperado:  Operação deve ser executada normalmente**
 
  3. Verificar se usuário ADMIN de outra oficina ve/edita/deleta plano/injetor da recodiesel 
     - 1 Criar duas oficinas (A e B)
     - 2 Criar um usuário ADMIN e adicionar a oficina A recem criada
     - 3 Criar 1 plano e 1 modelos de injetor na oficina B recém criada
     - 4 Locar na oficina A como usuario ADMIN recém criado
-    - 4 Abrir lista de planos e injetores na oficina A -> Esperado: Planos e injetores da oficina B nao devem ser exibidos
-    - 3 Editar plano da oficina B ->    Esperado: Não deve ser possível
-    - 4 Deletar plano da oficina B ->   Esperado: Não deve ser possível
-    - 3 Editar injetor da oficina B ->  Esperado: Não deve ser possível
-    - 4 Deletar injetor da oficina B -> Esperado: Não deve ser possível
+    - 4 Abrir lista de planos e injetores na oficina A -> **Esperado: Planos e injetores da oficina B nao devem ser exibidos**
+    - 3 Editar plano da oficina B ->    **Esperado: Não deve ser possível**
+    - 4 Deletar plano da oficina B ->   **Esperado: Não deve ser possível**
+    - 3 Editar injetor da oficina B ->  **Esperado: Não deve ser possível**
+    - 4 Deletar injetor da oficina B -> **Esperado: Não deve ser possível**
 
  4. Admin de outra oficina cria/edita/deleta plano/injetor da propria oficina
     - 1 Criar uma oficina
     - 2 Criar um usuário ADMIN e adicionar a oficina recem criada
-    - 3 Editar plano da oficina    recém criada -> Esperado: Operação deve ser executada normalmente
-    - 4 Deletar plano da oficina   recém criada -> Esperado: Operação deve ser executada normalmente
-    - 3 Editar injetor da oficina  recém criada -> Esperado: Operação deve ser executada normalmente
-    - 4 Deletar injetor da oficina recém criada -> Esperado: Operação deve ser executada normalmente
+    - 3 Editar plano da oficina    recém criada -> **Esperado:  Operação deve ser executada normalmente**
+    - 4 Deletar plano da oficina   recém criada -> **Esperado:  Operação deve ser executada normalmente**
+    - 3 Editar injetor da oficina  recém criada -> **Esperado:  Operação deve ser executada normalmente**
+    - 4 Deletar injetor da oficina recém criada -> **Esperado:  Operação deve ser executada normalmente**
 
  #### Teste 8   
  1. Verificar endereço do ambiente de teste
-    - 1 Colocar oendereço: https://rail.test.oficinabr.com na barra de endereços do navegador
-    - 2 Clicar Enter -> Esperado: Deve entrar na tela de login
-    - 3 Recarregar a página (Clicar em F5 ou no icone de recarregar a pagina) -> Esperado: Deve continuar na pagina de Login
+    - 1 Colocar o endereço: https://rail.test.oficinabr.com na barra de endereços do navegador
+    - 2 Clicar Enter -> **Esperado: Deve entrar na tela de login**
+    - 3 Recarregar a página (Clicar em F5 ou no icone de recarregar a pagina) -> **Esperado: Deve continuar na pagina de Login**
     - 4 Colocar o endereço: https://rail.test.oficinabr.com/#/login na barra de endreço do navergador
-    - 5 Clicar Enter -> Esperado: Deve entrar na tela de Login
+    - 5 Clicar Enter -> **Esperado: Deve entrar na tela de login**
 
  2. Verificar endereço do ambiente de produção
-    - 1 Colocar oendereço: https://rail.oficinabr.com na barra de endereços do navegaor
-    - 2 Clicar Enter -> Esperado: Deve entrar na tela de login
-    - 2 Recarregar a página (Clicar em F5 ou no icone de recarregar a pagina) -> Esperado: Deve continuar na pagina de Login
+    - 1 Colocar o endereço: https://rail.oficinabr.com na barra de endereços do navegaor
+    - 2 Clicar Enter -> **Esperado: Deve entrar na tela de login**
+    - 2 Recarregar a página (Clicar em F5 ou no icone de recarregar a pagina) -> **Esperado: Deve continuar na pagina de Login**
     - 3 Colocar o endereço: https://rail.oficinabr.com/#/login na barra de endreço do navergador
-    - 4 Clicar Enter -> Esperado: Deve entrar na tela de Login   
+    - 4 Clicar Enter -> **Esperado: Deve entrar na tela de login**   
