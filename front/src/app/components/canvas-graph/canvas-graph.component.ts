@@ -68,7 +68,7 @@ export class CanvasGraphComponent extends CommonPageComponent {
     
     this.lineGraphContxt = this.lineGraphCanvas.nativeElement.getContext('2d');
     
-    this.thisChart = new Chart(this.lineGraphContxt, {
+    new Chart(this.lineGraphContxt, {
       type: 'line',
       data: {
         labels: labelSet,

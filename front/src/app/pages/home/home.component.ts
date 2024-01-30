@@ -160,6 +160,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   cancelTestCommandButton() {
     this.testCommand = 'listing';
+    this.alertMessage = '';
     this.testCommandButton = 'NOVO';
     this.requestTests();
   }
@@ -178,9 +179,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   cancelPlanCommandButton() {
+    this.alertMessage = '';
     if(this.modalCommand == 'listing') {
       document.getElementById('planModalCloseButton')?.click();
       this.currentModalLink = '';
+      this.plan = new Plan();
     } else {
       this.modalCommand = 'listing';
       this.modalCommandButton = 'NOVO'
@@ -201,6 +204,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   cancelVehicleCommandButton() {
+    this.alertMessage = '';
     if(this.modalCommand == 'listing') {
       document.getElementById('vehicleModalCloseButton')?.click();
       this.currentModalLink = '';
@@ -227,6 +231,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   cancelUserCommandButton() {
+    this.alertMessage = '';
     if(this.modalCommand == 'listing') {
       document.getElementById('userModalCloseButton')?.click();
       this.currentModalLink = '';
@@ -250,6 +255,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   cancelInjectorCommandButton() {
+    this.alertMessage = '';
     if(this.modalCommand == 'listing') {
       document.getElementById('injectorModalCloseButton')?.click();
       this.currentModalLink = '';
@@ -272,6 +278,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   cancelWorkshopCommandButton() {
+    this.alertMessage = '';
     if(this.modalCommand == 'listing') {
       document.getElementById('workshopModalCloseButton')?.click();
       this.currentModalLink = '';
@@ -606,6 +613,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updatePlan() {
+
+    if(this.isForbidden(this.injector)) {
+      return;
+    }
+    
     let workshopId = this.currentWorkshop.id;
     this.plan.workshop = this.currentWorkshop;
     this.planService.update(this.plan).subscribe({
@@ -678,7 +690,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     })
   }
 
-  saveInjector() {
+  saveInjector() {  
     let workshopId = this.currentWorkshop.id;
     this.injector.workshop = this.currentWorkshop;
     this.injectorService.create(this.injector).subscribe({
@@ -703,6 +715,11 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   updateInjector() {
+
+    if(this.isForbidden(this.injector)) {
+      return;
+    }
+
     let workshopId = this.currentWorkshop.id;
     this.injector.workshop = this.currentWorkshop;
     this.injectorService.update(this.injector).subscribe({
