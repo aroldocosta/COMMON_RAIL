@@ -35,7 +35,7 @@ public class InjectorController {
 	@GetMapping("/workshop/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<List<InjectorDTO>> findByWorkshop(@PathVariable("id") String id) {
-		return Workshop.ADMIN_WORKSHOP.equals(id) 
+		return Workshop.REFERENCE_WORKSHOP.equals(id) 
 				? service.findAll()
 				: service.findByWorkshop(id);
 	}

@@ -41,7 +41,7 @@ public class InjectorService {
 	public ResponseEntity<List<InjectorDTO>> findByWorkshop(String id) {
 		try {
 			List<Injector> ownedInjects = repository.findByWorkshopId(id);
-			List<Injector> adminInjects = repository.findByWorkshopId(Workshop.ADMIN_WORKSHOP);
+			List<Injector> adminInjects = repository.findByWorkshopId(Workshop.REFERENCE_WORKSHOP);
 			ownedInjects.addAll(adminInjects);
 			List<InjectorDTO> resp = ownedInjects.stream().map(InjectorDTO::new).toList();
 			return ResponseEntity.ok(resp);

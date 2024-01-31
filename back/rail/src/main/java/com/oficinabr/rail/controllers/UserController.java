@@ -42,7 +42,7 @@ public class UserController {
 	@GetMapping(value = "/workshop/{id}")	
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO> > findByWorkshopId(@PathVariable("id") String id) {  
-		return Workshop.ADMIN_WORKSHOP.equals(id) 
+		return Workshop.REFERENCE_WORKSHOP.equals(id) 
 				? service.findAll()
 				: service.findByWorkshop(id);
 	}

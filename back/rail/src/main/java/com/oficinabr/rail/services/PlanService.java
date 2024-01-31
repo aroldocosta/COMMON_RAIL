@@ -35,7 +35,7 @@ public class PlanService {
 	public ResponseEntity<List<PlanDTO>> findByWorkshop(String id) {
 		try {
 			List<Plan> ownedPlans = repository.findByWorkshopId(id);
-			List<Plan> adminPlans = repository.findByWorkshopId(Workshop.ADMIN_WORKSHOP);
+			List<Plan> adminPlans = repository.findByWorkshopId(Workshop.REFERENCE_WORKSHOP);
 			ownedPlans.addAll(adminPlans);					
 			List<PlanDTO> resp = ownedPlans.stream().map(PlanDTO::new).toList();
 			return ResponseEntity.ok(resp);

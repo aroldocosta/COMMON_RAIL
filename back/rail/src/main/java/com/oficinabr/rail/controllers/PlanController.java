@@ -34,7 +34,7 @@ public class PlanController {
 	@GetMapping("/workshop/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.GET)
 	public ResponseEntity<List<PlanDTO>> findByWorkshop(@PathVariable("id") String id) {
-		return Workshop.ADMIN_WORKSHOP.equals(id) 
+		return Workshop.REFERENCE_WORKSHOP.equals(id) 
 				? service.findAll()
 				: service.findByWorkshop(id);
 	}
