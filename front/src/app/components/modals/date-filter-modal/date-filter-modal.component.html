@@ -26,6 +26,22 @@
 			<button class="btn btn-outline-secondary btn-modal" data-bs-dismiss="modal">CANCELAR</button>
 			<button class="btn btn-outline-primary btn-modal" (click)="emitDateFilter()">FILTRAR</button>
 	    </div>	
+		<div class="modal-footer">
+			<div class="container">
+				<div class="row justify-content-end">
+					<div class="col-sm-6 col-md-4">
+						<button class="btn btn-outline-secondary" data-bs-dismiss="modal">CANCELAR</button>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<button 							 
+							class="btn btn-outline-primary" 
+							(click)="emitDateFilter()"
+							[disabled]="filteredDate == ''">FILTRAR
+						</button>
+					</div>
+				</div>
+			</div>			
+		</div>
 	  </div>
 	</div>	
   </div>

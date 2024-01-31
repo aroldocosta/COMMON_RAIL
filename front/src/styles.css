@@ -382,11 +382,6 @@ hr {
     display: block;
 }
 
-.btn-modal {
-    width: 25em; 
-    float: right;
-}
-
 th {
 	font-weight: bold;
 	font-style: italic;
@@ -396,4 +391,8 @@ label.input {
 	font-weight: bold;
 	font-style: italic;
 	color: grey;
+}
+
+button {
+	margin-bottom: 0.3em;
 }
