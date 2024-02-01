@@ -90,6 +90,10 @@
 - 31 (x) A recodiesel edita plano e injetor de outra oficina mais nao remove (Acho que nao deve editar tambem) -> Temos que pensar melhor, pq se o cliente for enrolado e pedir pra corrigir ou fazer o plano/injetor dele, como fariamos?
 - 32 (x) Admin de outra oficina quando edita plano e ou injetor da recodiesel ainda muda pra oficina dele o mesmo acontece entre Ofic A e B -> corrigido nao consegue mais nem editar
 
+### ‐---------‐-----------01/02/24‐-----------------------------
+- 33 ( ) Nao muda a logomarca de uma oficina cliente como usuario ADMIN(OFICINABR)
+         Esperdo -> Deve conseguir mudar a logomarca 
+- 34 ( ) Criar menu para o usuario poder modificar os proprios dados
 
 ### SOLUCOES DE USABILIDADES BACKLOG
 - 1 (x) Selecionar edicao do bico pela linha toda
