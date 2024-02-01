@@ -11,13 +11,11 @@ import com.oficinabr.rail.dto.TestDTO;
 import com.oficinabr.rail.entity.Injector;
 import com.oficinabr.rail.entity.Plan;
 import com.oficinabr.rail.entity.Test;
-import com.oficinabr.rail.entity.User;
 import com.oficinabr.rail.entity.Vehicle;
 import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.InjectorRepository;
 import com.oficinabr.rail.repository.PlanRepository;
 import com.oficinabr.rail.repository.TestRepository;
-import com.oficinabr.rail.repository.UserRepository;
 import com.oficinabr.rail.repository.VehicleRepository;
 import com.oficinabr.rail.repository.WorkshopRepository;
 

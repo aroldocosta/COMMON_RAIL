@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Injector, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ReportService } from 'src/app/services/report.service';
 import { UserService } from 'src/app/services/user.service';
+import { WorkshopService } from 'src/app/services/workshop.service';
 import { CommonPageComponent } from '../common-page/common-page.component';
 
 
@@ -13,6 +14,7 @@ import { CommonPageComponent } from '../common-page/common-page.component';
 })
 export class HeaderComponent extends CommonPageComponent implements OnInit{
  
+  @Input() logoPath = '';
   @Output() reportEvent = new EventEmitter<any>();
   @Output() requestUsersEvent = new EventEmitter();
   @Output() requestPlansEvent = new EventEmitter();
@@ -22,12 +24,13 @@ export class HeaderComponent extends CommonPageComponent implements OnInit{
 
   serviceOrder = this.test.serviceOrder;
   injectorNumber = '';
-
+  
   constructor(
     private userService: UserService,
     private reportService: ReportService,
     private router: Router,
-    private login: LoginService) {
+    private login: LoginService,
+    private workshopService: WorkshopService) {
       super();
   }
 
@@ -109,7 +112,16 @@ export class HeaderComponent extends CommonPageComponent implements OnInit{
      this.goToLink("/logout", this.login, this.router);
   }
 
-  userData() {
-
+  download(id: string) {
+    this.workshopService.download(id).subscribe({
+      next: resp => {
+        console.log(resp);
+      },
+      error: err => {
+        console.log(err);
+      }
+    })
+    console.log("download");
   }
+
 }

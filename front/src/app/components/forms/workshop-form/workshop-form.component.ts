@@ -10,8 +10,10 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 export class WorkshopFormComponent extends CommonPageComponent {
 
   @Input() workshopList: Workshop[] = [];
+  @Input() logoPath: string = '';
   @Output() clearEvent = new EventEmitter();
   @Output() updateEvent = new EventEmitter<Workshop>();
+  @Output() uploadFormEvent = new EventEmitter();
 
   constructor() {
     super();
@@ -23,5 +25,13 @@ export class WorkshopFormComponent extends CommonPageComponent {
 
   emitUpdateWorkshopEvent() {
     this.updateEvent.emit(this.workshop);
+  }
+
+  emitOpenUploadFormEvent() {
+    this.uploadFormEvent.emit();
+  }
+
+  emitCancelButtonEvent() {
+    alert("cancel button clicked");
   }
 }

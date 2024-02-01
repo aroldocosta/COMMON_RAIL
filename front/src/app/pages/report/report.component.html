@@ -10,10 +10,12 @@
 <div *ngIf="reportType == 'service-order'">
     <app-service-order-report
         [plan]="plan"
+        [logoPath]="logoPath"
         [testList]="testList"
         [reportType]="reportType"
         [testReport]="testReport"
         [reportClass]="reportClass"
+        [currentWorkshop]="currentWorkshop"
         (downloadEvent)="handleDownloadEvent()"
     ></app-service-order-report>
 </div>
@@ -22,11 +24,13 @@
     <app-injector-number-report
         [plan]="plan"
         [testList]="testList"
+        [logoPath]="logoPath"
         [reportType]="reportType"
         [testReport]="testReport"
         [reportClass]="reportClass"
         [startingSequence]="startingSequence"
         [idlingSequence]="idlingSequence"
+        [currentWorkshop]="currentWorkshop"
         [halfLoadSequence]="halfLoadSequence"        
         [fullLoadSequence]="fullLoadSequence"
         [preInjectionSequence]="preInjectionSequence"

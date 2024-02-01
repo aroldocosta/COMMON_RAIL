@@ -43,4 +43,17 @@ export class WorkshopService {
     const url = `${this.baseUrl}workshops/${id}`;
     return this.http.delete(url, this.login.getHttpOptions());
   }
+
+  upload(id: any, file: File) {
+    debugger
+    const url = `${this.baseUrl}workshops/${id}/logo`;
+    let formData = new FormData();
+    formData.append("file", file)
+    return this.http.post(url, formData, this.login.getHttpMultipartOptions());
+  }
+
+  download(id: string) {
+    const url = `${this.baseUrl}workshops/${id}/logo`;
+    return this.http.get(url, this.login.getHttpOptions());
+  }
 }

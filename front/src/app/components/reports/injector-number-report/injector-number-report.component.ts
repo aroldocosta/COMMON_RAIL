@@ -7,6 +7,9 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
   styleUrls: ['./injector-number-report.component.css']
 })
 export class InjectorNumberReportComponent extends CommonPageComponent {
+
+  @Input() logoPath = '';
+  @Input() currentWorkshop: any;
   @Input() startingSequence: any;
   @Input() idlingSequence: any;
   @Input() halfLoadSequence: any;

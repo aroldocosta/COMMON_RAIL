@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS workshop (
 	id TEXT PRIMARY KEY UNIQUE NOT NULL,
 	name TEXT NOT NULL,
+	logo TEXT,
 	description TEXT 
 );
 

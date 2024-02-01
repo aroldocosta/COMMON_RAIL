@@ -18,6 +18,8 @@ export class AsideComponent extends CommonPageComponent implements OnInit {
   valRet: string = '';
   maxRet: string = '';
   minRet: string = '';
+  logo: string = '';
+  @Input() logoPath: string = '';
 
   @Output() arrowEvent = new EventEmitter<string>();
   constructor() { 
@@ -25,6 +27,7 @@ export class AsideComponent extends CommonPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
 

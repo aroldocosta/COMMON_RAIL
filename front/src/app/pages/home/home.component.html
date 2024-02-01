@@ -1,5 +1,6 @@
 <app-header 
 	[test]="test"
+	[logoPath]="logoPath"
 	[testCommand]="testCommand"
 	(requestPlansEvent)="handlePlanLinkEvent()"
 	(requestVehiclesEvent)="handleVehicleLinkEvent()"
@@ -15,6 +16,7 @@
    <div class="row">
 	   <div class="col-md-4">
 		   <app-aside
+		    [logoPath]="logoPath"
 		   	(arrowEvent)="handleArrowEvent($event)"
 		   >
 			</app-aside>
@@ -34,55 +36,6 @@
 						  </div>
 						</div>
 					</header> 
-					<!-- <div class="col-md-3">
-						<button type="button" 
-							(click)="handleTestCommandButton()" 
-							class="btn btn-outline-primary btn-block top-button" 
-							>{{testCommandButton}}</button>
-					</div>
-					<div class="col-md-9">
-						<h1>TESTE DE INJETOR</h1>
-					</div> -->
-					<!--<div class="col-md-9">
-						<div class="row">
-							<div class="col-md-3 small">
-								<label>DATA INICIO</label>
-								<div class="input-group mb-3">
-									<div class="input-group-text">
-									  <input class="form-check-input mt-0" type="checkbox" [(ngModel)]="enabledDateIni" 
-									  	aria-label="Checkbox" title="Seleciona todas as datas">
-									</div>
-									<input type="date" class="form-control" aria-describedby="basic-addon1" [disabled]="enabledDateIni"
-										(change)="filterTest()" [ngModel]="filtered.dateIni | date:'yyyy-MM-dd'" (ngModelChange)="filtered.dateIni = $event" >
-								  </div>
-							</div>
-							<div class="col-md-3 small">
-								<label>DATA FIM</label>
-								<div class="input-group mb-3">
-									<div class="input-group-text">
-									  <input class="form-check-input mt-0" type="checkbox" [(ngModel)]="enabledDateEnd" 
-									  	aria-label="Checkbox" title="Seleciona todas as datas">
-									</div>
-									<input type="date" class="form-control" aria-describedby="basic-addon1" [disabled]="enabledDateEnd"
-										(change)="filterTest()" [ngModel]="filtered.dateEnd | date:'yyyy-MM-dd'" (ngModelChange)="filtered.dateEnd = $event" >
-								  </div>
-							</div>							
-							<div class="col-md-3 small">
-								<label for="">MODELO</label>
-								<select class="form-select" aria-label="Default select example" [(ngModel)]="filtered.injector" (change)="doTestCombinedFilter()">
-									<option value="ALL"selected>TODOS</option>
-									<option *ngFor="let d of injectorList" [value]="d.id">{{d.model}}</option>
-								</select>
-							</div>
-							<div class="col-md-3 small">
-								<label for="">VEÍCULO</label>
-								<select class="form-select" aria-label="Default select example" [(ngModel)]="filtered.vehicle" (change)="doTestCombinedFilter()">
-									<option value="ALL"selected>TODOS</option>
-									<option *ngFor="let d of vehicleList" [value]="d.id">{{d.plate}}</option>
-								</select>
-							</div>
-						</div>
-					</div>	-->
 				</div>	
 				<hr class="colorgraph">
 					<app-top-message></app-top-message>
@@ -174,12 +127,15 @@
    ></app-user-modal>
    <app-workshop-modal
 		[workshop]="workshop"
+		[logoPath]="logoPath"
 		[list]="workshopList"
 		[modalCommand]="modalCommand"
 		[alertMessage]="alertMessage"
 		[modalCommandButton]="modalCommandButton"
 		(clearEvent)="clearAlertMessage()"
 		(updateEvent)="handleUpdateWorkshopEvent($event)"
+		(uploadFormEvent)="handleOpenUploadFormEvent()"
+		(fileChangeEvent)="handleFileChangeEvent($event)"
 		(commandEvent)="handleWorkshopCommandEvent($event)"
 		(cancelButtonEvent)="cancelWorkshopCommandButton()"
 		(commandButtonEvent)="handleWorkshopCommandButton()"

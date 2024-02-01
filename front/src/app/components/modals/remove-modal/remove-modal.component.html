@@ -27,9 +27,17 @@
 		</div>
 		</div>	
 		<div class="modal-footer">
-			<button class="btn btn-outline-secondary btn-modal" (click)="emitCancelRemoveButtonEvent()">CANCELAR</button>
-			<button class="btn btn-outline-primary btn-modal" (click)="emitConfirmRemoveButtonEvent()">REMOVER</button>
-	    </div>	
+			<div class="container">
+				<div class="row justify-content-end">
+					<div class="col-sm-6 col-md-4">
+						<button type="button" class="btn btn-outline-secondary" (click)="emitCancelRemoveButtonEvent()">CANCELAR</button>
+					</div>
+					<div class="col-sm-6 col-md-4">
+						<button type="button" class="btn btn-outline-primary" (click)="emitConfirmRemoveButtonEvent()">REMOVER</button>
+					</div>
+				</div>
+			</div>			
+		</div>	
 	  </div>
 	</div>	
   </div> 

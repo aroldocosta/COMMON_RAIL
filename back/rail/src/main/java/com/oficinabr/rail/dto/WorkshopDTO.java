@@ -2,9 +2,9 @@ package com.oficinabr.rail.dto;
 
 import com.oficinabr.rail.entity.Workshop;
 
-public record WorkshopDTO(String id, String name, String description) {
+public record WorkshopDTO(String id, String name, String logo, String description) {
 	
 	public WorkshopDTO(Workshop workshop) {
-		this(workshop.getId(), workshop.getName(), workshop.getDescription());
+		this(workshop.getId(), workshop.getName(), workshop.getLogo(), workshop.getDescription());
 	}
 }

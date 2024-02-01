@@ -1,5 +1,5 @@
 <div class="row" style="padding: 2em 0"> 
-    <div class="col-sm-12 col-md-12">
+    <div class="col-sm-12 col-md-8">
         <label class="input" for="">NOME</label>
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" 
@@ -10,7 +10,19 @@
                 [(ngModel)]="workshop.name"
             >
         </div>
-    </div>    
+    </div>  
+    <div class="col-sm-12 col-md-4">
+        <label class="input" for="">LOGO</label>
+        <div class="thumbnail hide-small">
+            <div class="form-group logo-img">
+                <a href="#" onclick="return null" (click)="emitOpenUploadFormEvent()">
+                    <div class="">
+                        <img [src]="logoPath" alt="Logomarca">
+                    </div>
+                </a>
+            </div>
+        </div> 
+    </div>
 </div>
 <div class="row" style="padding: 2em 0">
     <div class="col-12">

@@ -4,10 +4,10 @@
         <header class="header">
             <div class="wrapper">
               <div class="logo">
-                <img src="assets/img/logo.png">
+                <img [src]="logoPath">
               </div>
               <div class="header-text">
-                <h1 class="title" [ngClass]="reportClass">RAIL CONTROL</h1>
+                <h1 class="title" [ngClass]="reportClass">{{currentWorkshop.name}}</h1>
                 <p class="sub-title" [ngClass]="reportClass">Relatório de teste por numero de injetor</p>
               </div>
             </div>

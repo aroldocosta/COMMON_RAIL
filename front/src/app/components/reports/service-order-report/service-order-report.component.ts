@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonPageComponent } from '../../commons/common-page/common-page.component';
 
 @Component({
@@ -8,6 +8,8 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 })
 export class ServiceOrderReportComponent extends CommonPageComponent {
 
+  @Input() logoPath = '';
+  @Input() currentWorkshop: any;
   @Output() downloadEvent = new EventEmitter();
 
   graphClass='bigBeaker';

@@ -55,6 +55,9 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   currentWorkshop: any;
   FORBIDDEN_ACTION_MESSAGE = "Ação não permitida, entre em contato com a gerência.";
 
+  logoFile: any;
+  logoPath: any;
+
   tabIndex = 0;
   currentTab: any = {id:'starting', heading: 'ARRANQUE'};
   tabList = [
@@ -85,6 +88,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       const userId = this.login.getAuthId();  
       this.userService.getWorkshop(userId).subscribe({ 
         next: workshop => {
+          this.logoPath = 'assets/img/logos/' + workshop.logo;
           this.currentWorkshop = workshop;
           this.requestLogged(userId);
           this.requestUsers();
@@ -274,6 +278,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       this.saveWorkshop();
     } else if(this.modalCommand == 'editing') {
       this.updateWorkshop();
+    } else if(this.modalCommand == 'uploading') {
+      this.uploadWorkshopLogo();
     }
   }
 
@@ -373,7 +379,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   }
 
   isReference(workshop: Workshop) {
-    return (this.logged.workshop.name == 'RECODIESEL');
+    return (this.logged.workshop.name == 'OFICINABR');
   }
 /*--------------------------------------------------------------*/
 
@@ -500,7 +506,7 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   requestWorkshops() {
     this.workshopService.list().subscribe({
       next: list => {
-        if(this.currentWorkshop.name == 'RECODIESEL') {
+        if(this.isReference(this.currentWorkshop)) {
           this.workshopList = list;
         } else {
           this.workshopList = list.filter(w => w.id == this.currentWorkshop.id);
@@ -832,6 +838,23 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
         } else if(err.status == 409) {
           this.alertMessage = 'Erro: Oficina já cadastrada!'
         }
+      }
+    })
+  }
+ 
+  uploadWorkshopLogo() {
+   
+    this.workshopService.upload(this.currentWorkshop.id, this.logoFile).subscribe({
+      next: (workshop: any) => {
+        console.log("resp: ", workshop);
+        this.logoPath = 'assets/img/logos/logomarca.png';
+        let t = setTimeout(() => {
+          this.logoPath = 'assets/img/logos/' + workshop.logo;
+          console.log(this.logoPath);
+        }, 2000)    
+      },
+      error: err => {
+        alert("Error: " + JSON.stringify(err));
       }
     })
   }
@@ -1172,6 +1195,15 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
 
   handleUpdateWorkshopEvent(workshop: any) {  
     this.workshop = workshop;
+  }
+
+  handleOpenUploadFormEvent() {
+    this.modalCommand = 'uploading';
+    this.modalCommandButton = "ENVIAR";
+  }
+
+  handleFileChangeEvent(file: File) {
+    this.logoFile = file;
   }
 
   handleResetFilterEvent(filter: any) {

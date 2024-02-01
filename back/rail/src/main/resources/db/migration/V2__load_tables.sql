@@ -1,9 +1,9 @@
 -- Usuários
-insert into workshop (id, name, description) 
-values ('7654fedc-98ab-78a4-3be7-ab343d47a237', 'RECODIESEL', 'Descricao da oficina');
+insert into workshop (id, name, logo, description) 
+values ('7654fedc-98ab-78a4-3be7-ab343d47a237', 'RECODIESEL', 'logomarca.png', 'Descricao da oficina');
 
-insert into workshop (id, name, description) 
-values ('712bef41-68dc-44f7-9ca8-cb128d46b688', 'OFICINABR', 'Oficina de referência');
+insert into workshop (id, name, logo, description) 
+values ('712bef41-68dc-44f7-9ca8-cb128d46b688', 'OFICINABR', 'logomarca.png', 'Oficina de referência');
 
 insert into users (id, name, login, password, role, workshop_id) 
 values ('f8d1e2e0-739a-4af8-b72a-79044ccc03f0', 

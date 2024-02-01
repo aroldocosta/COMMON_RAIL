@@ -10,15 +10,42 @@
 			<app-workshop-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
 				[workshop]="workshop"
+				[logoPath]="logoPath"
 				[alertMessage]="alertMessage"
 				(clearEvent)="clearAlertMessage()"
 				(updateEvent)="emitUpdateWorkshopEvent($event)"
+				(uploadFormEvent)="emitOpenUploadFormEvent()"
 			></app-workshop-form>
 			<app-workshop-table
 				*ngIf="modalCommand == 'listing'"
 				[list] = 'list'
 				(commandEvent)="emitCommandEvent($event)"
 			></app-workshop-table>
+			<h1>{{modalCommand}}</h1>
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-sm-12 col-md-8" *ngIf="modalCommand == 'uploading'" >
+						<label class="input" for="">LOGO</label>					
+						<label class="input" for="">SELECIONE O ARQUIVO</label>
+						<div class="thumbnail">
+							<div class="form-group logo-img">
+								<a href="#" onclick="return null">
+									<img [src]="logoPath" alt="Logomarca">
+								</a>
+							</div>
+						</div>
+						<div class="input-group input-group-lg">
+							<input type="file" class="form-control" 
+								placeholder="Selecione o arquivo"
+								aria-label="Sizing example input" 
+								aria-describedby="inputGroup-sizing-lg" 
+								(change)="emitFileChangeEvent($event)"
+							>
+						</div>
+						<br>
+					</div>
+				</div>
+			</div>
 			<hr class="colorgraph">
 		</div>
 		<div class="modal-footer">

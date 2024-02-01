@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.oficinabr.rail.dto.WorkshopDTO;
 import com.oficinabr.rail.services.WorkshopService;
@@ -48,9 +50,16 @@ public class WorkshopController {
 	public ResponseEntity<WorkshopDTO> update(@RequestBody WorkshopDTO dto) {
 		return service.update(dto);
 	}
+	
 	@DeleteMapping(value = "/{id}")
 	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.DELETE)
 	public ResponseEntity<WorkshopDTO> delete(@PathVariable("id") String id) {
 		return service.delete(id);
+	}
+	
+	@PostMapping(value = "/{id}/logo")
+	@CrossOrigin(origins = "*", allowedHeaders = "*", methods = RequestMethod.POST)
+	public ResponseEntity<WorkshopDTO> upload(@PathVariable("id") String id, @RequestParam("file") MultipartFile file) {
+		return service.upload(id, file);
 	}
 }

@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { CommonPageComponent } from 'src/app/components/commons/common-page/common-page.component';
 import { Filter } from 'src/app/model/filter.model';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-report',
@@ -18,9 +19,10 @@ export class ReportComponent extends CommonPageComponent {
   gaugeH = 0;
   gaugeY = 135;
 
+  logoPath = '';
   serviceOrder: string = '';
   injectorNumber: string = '';
-
+  currentWorkshop: any;
   startingSequence:  any = [];
   idlingSequence: any = [];
   halfLoadSequence: any = [];
@@ -29,27 +31,41 @@ export class ReportComponent extends CommonPageComponent {
 
   constructor(
     private router: Router,
+    private userService: UserService,
     private reportService: ReportService,
-    private loginService: LoginService,
+    private login: LoginService,
   ) {
     super();
   }
 
   ngOnInit() {
-    if(!this.loginService.isAuthenticated()) {
-      this.router.navigateByUrl('/login');
-    } else {
-      this.reportType = history.state.report;
-      this.serviceOrder = history.state.serviceOrder;
-      this.injectorNumber = history.state.injectorNumber;
+    if(this.login.getAuthData() != null) {
+      const userId = this.login.getAuthId();  
+      this.userService.getWorkshop(userId).subscribe({ 
+        next: workshop => {
+          this.logoPath = 'assets/img/logos/' + workshop.logo;
+          this.currentWorkshop = workshop;
+          this.reportType = history.state.report;
+          this.serviceOrder = history.state.serviceOrder;
+          this.injectorNumber = history.state.injectorNumber;
+    
+          this.testCommand = 'reporting';
+          
+          if(this.reportType == 'service-order') {
+            this.requestTestsByServiceOrder(this.serviceOrder);
+          } else if(this.reportType == 'injector-number') {
+            this.requestTestsByInjectorNumber(this.serviceOrder, this.injectorNumber);
+          }
+        },
+        error: err => {
+          this.login.setAuthData(null);
+          this.goToLink('/login', this.login, this.router);
+        }
+      });
 
-      this.testCommand = 'reporting';
-      
-      if(this.reportType == 'service-order') {
-        this.requestTestsByServiceOrder(this.serviceOrder);
-      } else if(this.reportType == 'injector-number') {
-        this.requestTestsByInjectorNumber(this.serviceOrder, this.injectorNumber);
-      }
+    } else {
+      this.login.setAuthData(null);
+      this.goToLink('/login', this.login, this.router);
     }
   }
 

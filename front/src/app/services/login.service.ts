@@ -55,4 +55,13 @@ export class LoginService {
     };
     return options;
   }
+
+  getHttpMultipartOptions() {
+    let options = { 
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.getAuthToken()}`
+      })
+    };
+    return options;
+  }
 }

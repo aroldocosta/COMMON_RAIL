@@ -25,6 +25,9 @@ public class Workshop {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "logo")
+	String logo;
+	
 	@Column(name = "description")
 	private String description;
 	
@@ -42,7 +45,7 @@ public class Workshop {
 	
 	@OneToMany(mappedBy = "workshop", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Injector> injectorList;
-	
+
 	public static final String REFERENCE_WORKSHOP = "712bef41-68dc-44f7-9ca8-cb128d46b688";
 	
 	public Workshop() {
@@ -56,6 +59,7 @@ public class Workshop {
 	public Workshop(WorkshopDTO dto) {
 		this.id = dto.id();
 		this.name = dto.name();
+		this.logo = dto.logo();
 		this.description = dto.description();
 	}
 
@@ -121,5 +125,13 @@ public class Workshop {
 
 	public void setInjectorList(List<Injector> injectorList) {
 		this.injectorList = injectorList;
+	}
+	
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 }
