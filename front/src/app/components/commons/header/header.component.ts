@@ -14,7 +14,6 @@ import { CommonPageComponent } from '../common-page/common-page.component';
 })
 export class HeaderComponent extends CommonPageComponent implements OnInit{
  
-  @Input() logoPath = '';
   @Output() reportEvent = new EventEmitter<any>();
   @Output() requestUsersEvent = new EventEmitter();
   @Output() requestPlansEvent = new EventEmitter();
@@ -24,10 +23,10 @@ export class HeaderComponent extends CommonPageComponent implements OnInit{
 
   serviceOrder = this.test.serviceOrder;
   injectorNumber = '';
+  logoImagePath: string = "";
   
   constructor(
     private userService: UserService,
-    private reportService: ReportService,
     private router: Router,
     private login: LoginService,
     private workshopService: WorkshopService) {
@@ -51,6 +50,12 @@ export class HeaderComponent extends CommonPageComponent implements OnInit{
     } else {
       this.login.setAuthData(null);
       this.goToLink('/login', this.login, this.router);
+    }
+  }
+  
+  ngOnChanges() {
+    if(this.workshop.id) {
+      this.logoImagePath = "assets/img/logos/" + this.workshop.logo;
     }
   }
 

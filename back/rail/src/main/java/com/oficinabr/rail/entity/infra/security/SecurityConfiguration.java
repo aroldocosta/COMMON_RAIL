@@ -61,7 +61,6 @@ public class SecurityConfiguration  {
                 .requestMatchers(antMatcher(HttpMethod.DELETE, "/tests")).hasRole("USER")
                 .requestMatchers(antMatcher(HttpMethod.DELETE, "/users")).hasRole("ADMIN")
                 .requestMatchers(antMatcher(HttpMethod.DELETE, "/workshops")).hasRole("ADMIN")
-                .requestMatchers(antMatcher(HttpMethod.DELETE, "/workshops/**/logo")).hasRole("USER")
                 .anyRequest().authenticated()
             )
             .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

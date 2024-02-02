@@ -30,7 +30,7 @@ export class CommonPageComponent {
   @Input() vehicle: Vehicle = new Vehicle();
   @Input() workshop: Workshop = new Workshop();
   @Input() user: User = new User();
-  @Input() injector: Injector = new Injector
+  @Input() injector: Injector = new Injector();
   @Input() test: Test = new Test();
   @Input() resColor = ''; 
   @Input() rctColor = '';

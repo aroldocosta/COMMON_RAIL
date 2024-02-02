@@ -10,7 +10,7 @@
 <div *ngIf="reportType == 'service-order'">
     <app-service-order-report
         [plan]="plan"
-        [logoPath]="logoPath"
+        [workshop]="currentWorkshop"
         [testList]="testList"
         [reportType]="reportType"
         [testReport]="testReport"
@@ -24,7 +24,7 @@
     <app-injector-number-report
         [plan]="plan"
         [testList]="testList"
-        [logoPath]="logoPath"
+        [workshop]="currentWorkshop"
         [reportType]="reportType"
         [testReport]="testReport"
         [reportClass]="reportClass"

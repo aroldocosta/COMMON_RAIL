@@ -1,7 +1,5 @@
 import Chart from 'chart.js/auto';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-// import { Plan } from 'src/app/model/plan.model';
-// import { Test } from 'src/app/model/test.model';
 import { CommonPageComponent } from '../commons/common-page/common-page.component';
 
 @Component({
@@ -37,9 +35,9 @@ export class CanvasGraphComponent extends CommonPageComponent {
     super();
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
 
-    let t = setInterval(() => {
+    let t = setTimeout(() => {
      if(this.reportType == 'service-order') {
         this.debContxt = this.debCanvas.nativeElement.getContext('2d');
         this.retContxt = this.retCanvas.nativeElement.getContext('2d');
@@ -60,7 +58,6 @@ export class CanvasGraphComponent extends CommonPageComponent {
     if(dataSet.length == 1) dataSet.push(dataSet[0]);
     
     for(let i = 0; i < dataSet.length; i++) {
-      console.log("Deb: " + dataSet[i].deb);
       debitSet.push(dataSet[i].deb);
       returnSet.push(dataSet[i].ret);
       labelSet.push(i+1);
@@ -106,7 +103,7 @@ export class CanvasGraphComponent extends CommonPageComponent {
           }
         },
       }
-    })
+    });
   }
 
   drawGauge(contxt: CanvasRenderingContext2D, value: string, maxValue: string, minValue: string) {

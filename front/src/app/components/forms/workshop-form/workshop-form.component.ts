@@ -10,13 +10,21 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 export class WorkshopFormComponent extends CommonPageComponent {
 
   @Input() workshopList: Workshop[] = [];
-  @Input() logoPath: string = '';
   @Output() clearEvent = new EventEmitter();
   @Output() updateEvent = new EventEmitter<Workshop>();
   @Output() uploadFormEvent = new EventEmitter();
 
+  logoImagePath: string = '';
+
   constructor() {
     super();
+  }
+
+  ngOnChanges() {
+    console.log("WorkshopFormComponent.ngOnChanges: " + this.workshop.name);
+    if(this.workshop.id) {
+      this.logoImagePath = "assets/img/logos/" + this.workshop.logo;
+    }
   }
 
   emitClearMessage() {

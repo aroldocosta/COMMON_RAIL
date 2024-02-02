@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Workshop } from 'src/app/model/workshop.model';
 import { CommonPageComponent } from '../../commons/common-page/common-page.component';
 
@@ -11,7 +11,6 @@ export class WorkshopModalComponent extends CommonPageComponent {
   @Input() command: string = 'editing';
   @Input() list: Workshop[] = [];
   @Input() message: string = '';
-  @Input() logoPath: string = '';
   
   @Output() commandEvent = new EventEmitter<any>();
   @Output() showEvent = new EventEmitter();
@@ -23,8 +22,17 @@ export class WorkshopModalComponent extends CommonPageComponent {
   @Output() fileChangeEvent = new EventEmitter();
   @Output() uploadFormEvent = new EventEmitter();
 
+  logoImagePath: string = "";
+
   constructor() {
     super();
+  }
+
+  ngOnChanges() {
+    console.log("WorkshopModal.ngOnChanges: " + this.workshop.logo);
+    if(this.workshop.id) {
+      this.logoImagePath = "assets/img/logos/" + this.workshop.logo;
+    }
   }
 
   clearAlertMessage() {
@@ -35,13 +43,9 @@ export class WorkshopModalComponent extends CommonPageComponent {
     this.showEvent.emit();
   }
 
-  emitUpdateWorkshopEvent(workshop: any) {
-    this.updateEvent.emit(workshop);
+  emitUpdateWorkshopEvent() {
+    this.updateEvent.emit(this.workshop);
   }
-
-  // emitUploadLogoEvent() {
-  //   this.uploadEvent.emit(this.logoFile);
-  // }
 
   emitFileChangeEvent(event: any) {
     const file: File = <File>event.target.files[0];

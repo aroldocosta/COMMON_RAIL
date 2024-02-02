@@ -19,7 +19,6 @@ export class ReportComponent extends CommonPageComponent {
   gaugeH = 0;
   gaugeY = 135;
 
-  logoPath = '';
   serviceOrder: string = '';
   injectorNumber: string = '';
   currentWorkshop: any;
@@ -43,7 +42,6 @@ export class ReportComponent extends CommonPageComponent {
       const userId = this.login.getAuthId();  
       this.userService.getWorkshop(userId).subscribe({ 
         next: workshop => {
-          this.logoPath = 'assets/img/logos/' + workshop.logo;
           this.currentWorkshop = workshop;
           this.reportType = history.state.report;
           this.serviceOrder = history.state.serviceOrder;

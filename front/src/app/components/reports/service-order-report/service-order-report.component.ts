@@ -8,9 +8,9 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 })
 export class ServiceOrderReportComponent extends CommonPageComponent {
 
-  @Input() logoPath = '';
   @Input() currentWorkshop: any;
   @Output() downloadEvent = new EventEmitter();
+  logoImagePath: string = "";
 
   graphClass='bigBeaker';
   constructor() {
@@ -19,6 +19,12 @@ export class ServiceOrderReportComponent extends CommonPageComponent {
 
   ngOnInit() {
     this.reportClass="reportClass";
+  }
+
+  ngOnChanges() {
+    if(this.workshop && this.workshop.id) {
+      this.logoImagePath = "assets/img/logos/" + this.workshop.logo;
+    }
   }
 
   download() {

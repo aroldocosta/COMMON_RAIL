@@ -10,10 +10,9 @@
 			<app-workshop-form
 				*ngIf="modalCommand == 'editing' || modalCommand == 'creating'"
 				[workshop]="workshop"
-				[logoPath]="logoPath"
 				[alertMessage]="alertMessage"
 				(clearEvent)="clearAlertMessage()"
-				(updateEvent)="emitUpdateWorkshopEvent($event)"
+				(updateEvent)="emitUpdateWorkshopEvent()"
 				(uploadFormEvent)="emitOpenUploadFormEvent()"
 			></app-workshop-form>
 			<app-workshop-table
@@ -29,7 +28,7 @@
 						<div class="thumbnail">
 							<div class="form-group logo-img">
 								<a href="#" onclick="return null">
-									<img [src]="logoPath" alt="Logomarca">
+									<img [src]="logoImagePath" alt="Logomarca">
 								</a>
 							</div>
 						</div>

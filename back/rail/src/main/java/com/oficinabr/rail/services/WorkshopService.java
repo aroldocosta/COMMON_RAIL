@@ -1,15 +1,21 @@
 package com.oficinabr.rail.services;
 
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.oficinabr.rail.dto.WorkshopDTO;
 import com.oficinabr.rail.entity.Workshop;
 import com.oficinabr.rail.repository.WorkshopRepository;
+import com.oficinabr.rail.utils.FileDownloadUtil;
 
 import jakarta.servlet.ServletContext;
 
@@ -88,13 +95,13 @@ public class WorkshopService {
 	public ResponseEntity<WorkshopDTO> upload(String id, MultipartFile file) {
 		try {	
 			String real_path = logoFilePath;
-			String file_name = "logo." + id + "." + getExtension(file);
-			String logo_path = real_path + file_name;
-			System.out.println(logo_path);
 			
 			try {
-				Files.copy(file.getInputStream(), Path.of(logo_path), StandardCopyOption.REPLACE_EXISTING);
+				removeFile(id);
 				Workshop workshop = repository.findById(id).get();
+				String file_name = "logo." + id + "." + file.getOriginalFilename();
+				String logo_path = real_path + file_name;
+				Files.copy(file.getInputStream(), Path.of(logo_path), StandardCopyOption.REPLACE_EXISTING);
 				workshop.setLogo(file_name);
 				repository.save(workshop);
 				return ResponseEntity.ok(new WorkshopDTO(workshop));
@@ -108,33 +115,47 @@ public class WorkshopService {
 		}
 	}
 	
-	private String getExtension(MultipartFile file) {
-		String name = file.getOriginalFilename();
-		int index = name.lastIndexOf(".");
-		return name.substring(index+1);
+	public ResponseEntity<?> download(String id) {
+		FileDownloadUtil downloadUtil = new FileDownloadUtil();
+		
+		Resource resource = null;
+		
+		try {          
+			resource = downloadUtil.getFileAsResource(id);
+		} catch (IOException e) {
+			return ResponseEntity.internalServerError().build();
+		}
+		
+        if (resource == null) {
+            return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
+        }
+         
+        String contentType = "application/octet-stream";
+        String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
+         
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
+                .body(resource);
 	}
-	
-//	public ResponseEntity<?> download(String id) {
-//		FileDownloadUtil downloadUtil = new FileDownloadUtil();
-//		
-//		Resource resource = null;
-//		
-//		try {          
-//			resource = downloadUtil.getFileAsResource(id);
-//		} catch (IOException e) {
-//			return ResponseEntity.internalServerError().build();
-//		}
-//		
-//        if (resource == null) {
-//            return new ResponseEntity<>("File not found", HttpStatus.NOT_FOUND);
-//        }
-//         
-//        String contentType = "application/octet-stream";
-//        String headerValue = "attachment; filename=\"" + resource.getFilename() + "\"";
-//         
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.parseMediaType(contentType))
-//                .header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
-//                .body(resource);
-//	}
+	    
+    public void removeFile(String id) throws IOException {
+
+    	Path dirPath = Paths.get(logoFilePath);
+      
+        Files.list(dirPath).forEach(file -> {
+        	String fileName = file.getFileName().toString();
+        	
+            if (fileName.contains(id)) {
+            	try {
+					Files.delete(file);
+				} catch (IOException e) {
+					System.out.println(e.getMessage());
+				}
+            } else {
+
+            }
+        });
+    }
+
 }

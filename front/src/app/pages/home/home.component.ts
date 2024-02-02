@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Test } from 'src/app/model/test.model';
 import { Plan } from 'src/app/model/plan.model';
 import { LoginService } from 'src/app/services/login.service';
@@ -56,7 +56,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
   FORBIDDEN_ACTION_MESSAGE = "Ação não permitida, entre em contato com a gerência.";
 
   logoFile: any;
-  logoPath: any;
 
   tabIndex = 0;
   currentTab: any = {id:'starting', heading: 'ARRANQUE'};
@@ -77,7 +76,8 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
     private planService: PlanService,
     private vehicleService: VehicleService,
     private injectorService: InjectorService,
-    private workshopService: WorkshopService
+    private workshopService: WorkshopService,
+    private cdr: ChangeDetectorRef 
     ) {
       super();
       this.filtered = this.testService.filtered;
@@ -88,7 +88,6 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       const userId = this.login.getAuthId();  
       this.userService.getWorkshop(userId).subscribe({ 
         next: workshop => {
-          this.logoPath = 'assets/img/logos/' + workshop.logo;
           this.currentWorkshop = workshop;
           this.requestLogged(userId);
           this.requestUsers();
@@ -112,6 +111,10 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
       this.login.setAuthData(null);
       this.goToLink('/login', this.login, this.router);
     }
+  }
+
+  ngOnchange() {
+
   }
 
   /* ---------------- Remove Command Button Handlers ----------------- */
@@ -844,14 +847,16 @@ export class HomeComponent extends CommonPageComponent implements OnInit{
  
   uploadWorkshopLogo() {
    
-    this.workshopService.upload(this.currentWorkshop.id, this.logoFile).subscribe({
+    this.workshopService.upload(this.workshop.id, this.logoFile).subscribe({
       next: (workshop: any) => {
-        console.log("resp: ", workshop);
-        this.logoPath = 'assets/img/logos/logomarca.png';
         let t = setTimeout(() => {
-          this.logoPath = 'assets/img/logos/' + workshop.logo;
-          console.log(this.logoPath);
-        }, 2000)    
+          this.workshop = workshop;
+
+          if(this.workshop.id == this.currentWorkshop.id) {
+            this.currentWorkshop = this.workshop;
+          }
+          this.cdr.detectChanges();
+        }, 500);    
       },
       error: err => {
         alert("Error: " + JSON.stringify(err));

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonPageComponent } from '../../commons/common-page/common-page.component';
 
 @Component({
@@ -8,7 +8,6 @@ import { CommonPageComponent } from '../../commons/common-page/common-page.compo
 })
 export class InjectorNumberReportComponent extends CommonPageComponent {
 
-  @Input() logoPath = '';
   @Input() currentWorkshop: any;
   @Input() startingSequence: any;
   @Input() idlingSequence: any;
@@ -16,12 +15,19 @@ export class InjectorNumberReportComponent extends CommonPageComponent {
   @Input() injectorNumber: any;
   @Input() fullLoadSequence: any;
   @Input() preInjectionSequence: any;
-
   @Output() downloadEvent = new EventEmitter();
+
+  logoImagePath: string = "";
 
   constructor() {
     super();
     this.reportClass = "reportClass";
+  }
+
+  ngOnChanges() {
+    if(this.workshop && this.workshop.id) {
+      this.logoImagePath = "assets/img/logos/" + this.workshop.logo;
+    }
   }
 
   download() {
